@@ -43,6 +43,9 @@ jobs:
       - uses: ./.github/actions/setup-node
       ### 👉 please remove ###
       - run: pnpm db:start
+      - run: sleep 5s
+        shell: bash
+
       - run: pnpm dev:db:migrate
         env:
           POSTGRES_URL: "postgresql://dev:1234@localhost:5432/mydb?schema=public"
