@@ -1,19 +1,19 @@
 <div align="center">
-  <strong>️️Web App Minimum Template 🎃</strong>
+  <strong>️️A minimal template for web app 🎃</strong>
 </div>
 
 <br />
 
 This template is based on create-next-app but has below new tech and configs.
 
-| kind        |                  |             |                |          |
-| ----------- | ---------------- | ----------- | -------------- | -------- |
-| **app**     | next.js          | tailwindcss | next-auth      | prisma   |
-|             | react-hook-form  | zod         |                |          |
-| **tools**   | typescript       | biome       | prettier       | eslint   |
-|             | lint-staged      |             |                |          |
-| **testing** | vitest           | playwright  |                |          |
-| **others**  | github workflows | .vscode     | docker-compose | renovate |
+| kind        |                          |                          |                         |                         |
+| ----------- | ------------------------ | ------------------------ | ----------------------- | ----------------------- |
+| **app**     | next.js (framework)      | tailwindcss (css)        | next-auth (auth)        | prisma (orm)            |
+|             | react-hook-form (form)   | zod (validator)          |                         |                         |
+| **tools**   | typescript (lang)        | biome (linter, fmt)      | prettier (linter)       | eslint (linter)         |
+|             | lint-staged (pre-commit) |                          |                         |                         |
+| **testing** | vitest (test runner)     | playwright (e2e testing) |                         |                         |
+| **others**  | workflows (ci)           | .vscode (editor)         | docker-compose (docker) | renovate (deps manager) |
 
 Just running create-next-app does not satisfy the dependencies, development environment, and CI environment to create a web application. In addition, many dependencies require setting configs for example, `@next-auth/prisma-adapter` requires adding many schemas to `schema.prisma` but we don't know what we add so always need to check the docs every time. This project is created as a template with minimal code in advance so that you can focus on development.
 
