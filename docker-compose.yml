@@ -14,7 +14,9 @@ services:
       POSTGRES_PASSWORD: 1234
       POSTGRES_DB: dev
     healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:5432"]
-      interval: 30s
-      timeout: 10s
-      retries: 2
+      test: >
+        echo ping to http://localhost:5432
+        until $(curl --output /dev/null --silent --fail http://localhost:5432); do
+          printf '!'
+          sleep 1
+        done
