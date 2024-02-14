@@ -4,7 +4,7 @@ volumes:
   db-data:
 
 services:
-  web-app-template-dev-db:
+  dev-db:
     image: postgres:16
     restart: always
     ports:
@@ -13,3 +13,12 @@ services:
       POSTGRES_USER: dev
       POSTGRES_PASSWORD: 1234
       POSTGRES_DB: dev
+  test-db:
+    image: postgres:16
+    restart: always
+    ports:
+      - "5433:5432"
+    environment:
+      POSTGRES_USER: test
+      POSTGRES_PASSWORD: 1234
+      POSTGRES_DB: test

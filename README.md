@@ -67,8 +67,6 @@ $ pnpm dev
 $ pnpm dev:db:migrate
 # reset the DB
 $ pnpm dev:db:reset
-# stop the DB
-$ pnpm dev:db:stop
 # view the contents
 $ pnpm dev:db:studio
 ```
@@ -88,8 +86,6 @@ $ pnpm test
 $ pnpm test:watch
 # reset the DB
 $ pnpm test:db:reset
-# stop the DB
-$ pnpm test:db:stop
 
 # e2e
 
