@@ -6,7 +6,7 @@
   "scripts": {
     "setup": "git config --local core.hooksPath .githooks && corepack enable pnpm",
     "dev": "pnpm dev:db:setup && next dev",
-    "dev:db:setup": "docker-compose up -d && pnpm dev:db:migrate",
+    "dev:db:setup": "pnpm db:start && pnpm dev:db:migrate",
     "dev:db:stop": "pnpm db:stop",
     "dev:db:migrate": "dotenv -e .env.local -- prisma migrate dev",
     "dev:db:reset": "dotenv -e .env.local -- pnpm db:reset",
@@ -17,6 +17,7 @@
     "test:db:stop": "docker-compose -f docker-compose.test.yml stop",
     "test:db:reset": "dotenv -e .env.test -- pnpm db:reset",
     "test:e2e": "dotenv -e .env.test -- playwright test",
+    "db:start": "docker-compose up -d",
     "db:stop": "docker-compose stop",
     "db:reset": "prisma migrate reset -f",
     "db:deploy": "prisma migrate deploy",
