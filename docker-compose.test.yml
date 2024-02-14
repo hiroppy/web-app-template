@@ -13,3 +13,8 @@ services:
       POSTGRES_USER: test
       POSTGRES_PASSWORD: 1234
       POSTGRES_DB: tests
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:5433"]
+      interval: 30s
+      timeout: 10s
+      retries: 2
