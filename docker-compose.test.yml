@@ -1,0 +1,15 @@
+version: "3"
+
+volumes:
+  db-data:
+
+services:
+  app-template-tests-db:
+    image: postgres:16
+    restart: always
+    ports:
+      - "5433:5432"
+    environment:
+      POSTGRES_USER: test
+      POSTGRES_PASSWORD: 1234
+      POSTGRES_DB: tests

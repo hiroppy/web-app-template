@@ -1,0 +1,15 @@
+version: "3"
+
+volumes:
+  db-data:
+
+services:
+  app-template-dev-db:
+    image: postgres:16
+    restart: always
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: dev
+      POSTGRES_PASSWORD: 1234
+      POSTGRES_DB: dev

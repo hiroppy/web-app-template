@@ -1,0 +1,72 @@
+name: ci
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - "package.json"
+      - "src/**"
+      - ".github/workflows/ci.yml"
+  push:
+    branches: [main]
+    paths:
+      - "package.json"
+      - "src/**"
+      - ".github/workflows/ci.yml"
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ./.github/actions/setup-node
+      - run: pnpm lint
+      - run: pnpm fmt
+  build:
+    runs-on: ubuntu-latest
+    env:
+      POSTGRES_URL: "postgresql://dev:1234@localhost:5432/mydb?schema=public"
+      NEXT_PUBLIC_SITE_URL: "http://localhost:3000"
+      NEXTAUTH_SECRET: UfxvOS6HetHOFkL44YTITYgc0DOuOlz5TBp3jkbnZ3w=
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ./.github/actions/setup-node
+      - run: pnpm dev:db:setup
+      - run: pnpm build
+      - uses: actions/upload-artifact@v4
+        with:
+          name: app
+          path: .next
+  unit-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ./.github/actions/setup-node
+      ### 👉 please remove ###
+      - run: pnpm dev:db:setup
+        env:
+          POSTGRES_URL: "postgresql://dev:1234@localhost:5432/mydb?schema=public"
+          NEXT_PUBLIC_SITE_URL: "http://localhost:3000"
+      ########################
+      - run: pnpm test:db:setup
+      - run: pnpm test
+  e2e-test:
+    needs: [build]
+    runs-on: ubuntu-latest
+    env:
+      NEXTAUTH_SECRET: UfxvOS6HetHOFkL44YTITYgc0DOuOlz5TBp3jkbnZ3w=
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ./.github/actions/setup-node
+      - run: pnpm exec playwright install chromium
+      ### 👉 please remove ###
+      - run: pnpm dev:db:setup
+        env:
+          POSTGRES_URL: "postgresql://dev:1234@localhost:5432/mydb?schema=public"
+          NEXT_PUBLIC_SITE_URL: "http://localhost:3000"
+      ########################
+      - run: pnpm test:db:setup
+      - uses: actions/download-artifact@v4
+        with:
+          name: app
+          path: .next
+      - run: pnpm test:e2e

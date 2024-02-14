@@ -1,0 +1,32 @@
+{
+  "extends": [
+    "config:base",
+    ":semanticCommitTypeAll(chore)",
+    ":enableVulnerabilityAlerts",
+    ":separateMajorReleases",
+    ":followTag(typescript, next)",
+    "group:definitelyTyped",
+    "group:monorepos",
+    "group:linters",
+    "group:test"
+  ],
+  "labels": ["deps"],
+  "packageRules": [
+    {
+      "matchManagers": ["npm"],
+      "matchUpdateTypes": ["patch", "pin"],
+      "matchPackagePatterns": ["*"],
+      "matchDepTypes": ["dependencies", "devDependencies", "peerDependencies"],
+      "groupName": "npm patch dependencies"
+    },
+    {
+      "matchManagers": ["npm"],
+      "matchUpdateTypes": ["minor"],
+      "matchPackagePatterns": ["*"],
+      "matchDepTypes": ["dependencies", "devDependencies", "peerDependencies"],
+      "groupName": "npm minor dependencies"
+    }
+  ],
+  "ignoreDeps": [],
+  "rangeStrategy": "bump"
+}

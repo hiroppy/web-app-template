@@ -1,0 +1,25 @@
+/node_modules
+/coverage
+
+/.next/
+/out/
+
+/build
+
+playwright-report
+
+.DS_Store
+*.pem
+
+.env*.local
+
+.vercel
+
+*.tsbuildinfo
+next-env.d.ts
+
+storageState.json
+
+### 👉 please remove ###
+migrations
+########################
