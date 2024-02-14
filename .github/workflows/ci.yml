@@ -46,6 +46,7 @@ jobs:
         env:
           POSTGRES_URL: "postgresql://dev:1234@localhost:5432/mydb?schema=public"
           NEXT_PUBLIC_SITE_URL: "http://localhost:3000"
+      - run: pnpm dev:db:stop
       ########################
       - run: pnpm test:db:setup
       - run: pnpm test
@@ -63,6 +64,7 @@ jobs:
         env:
           POSTGRES_URL: "postgresql://dev:1234@localhost:5432/mydb?schema=public"
           NEXT_PUBLIC_SITE_URL: "http://localhost:3000"
+      - run: pnpm dev:db:stop
       ########################
       - run: pnpm test:db:setup
       - uses: actions/download-artifact@v4
