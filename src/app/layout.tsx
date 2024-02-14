@@ -23,6 +23,7 @@ type Props = PropsWithChildren<{
   dialog: ReactNode;
 }>;
 
+("a");
 export default function Layout({ dialog, children }: Props) {
   return (
     <html lang="en">
