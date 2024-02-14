@@ -84,8 +84,8 @@ $ pnpm test:db:setup
 $ pnpm test
 # watch the unit tests
 $ pnpm test:watch
-# stop the DB
-$ pnpm test:db:stop
+# reset the DB
+$ pnpm test:db:reset
 
 # e2e
 
