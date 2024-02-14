@@ -4,7 +4,7 @@ volumes:
   db-data:
 
 services:
-  app-template-tests-db:
+  web-app-template-tests-db:
     image: postgres:16
     restart: always
     ports:
