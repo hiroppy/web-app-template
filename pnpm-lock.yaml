@@ -35,7 +35,7 @@ dependencies:
 
 devDependencies:
   '@biomejs/biome':
-    specifier: ^1.5.3
+    specifier: 1.5.3
     version: 1.5.3
   '@playwright/test':
     specifier: 1.41.2
@@ -62,7 +62,7 @@ devDependencies:
     specifier: 7.3.0
     version: 7.3.0
   eslint:
-    specifier: ^8.56.0
+    specifier: 8.56.0
     version: 8.56.0
   eslint-config-next:
     specifier: 14.1.0
@@ -77,7 +77,7 @@ devDependencies:
     specifier: 8.4.35
     version: 8.4.35
   prettier:
-    specifier: ^3.2.5
+    specifier: 3.2.5
     version: 3.2.5
   prisma:
     specifier: 5.9.1
