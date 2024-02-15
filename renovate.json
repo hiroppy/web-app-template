@@ -11,6 +11,7 @@
     "group:linters",
     "group:test"
   ],
+  "rangeStrategy": "pin",
   "labels": ["deps"],
   "packageRules": [
     {
@@ -39,6 +40,5 @@
       }
     }
   ],
-  "ignoreDeps": [],
-  "rangeStrategy": "bump"
+  "ignoreDeps": []
 }
