@@ -24,7 +24,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     env:
-      POSTGRES_URL: "postgresql://dev:1234@localhost:5432/mydb?schema=public"
+      POSTGRES_URL: "postgresql://dev:1234@localhost:5432/dev?schema=public"
       NEXT_PUBLIC_SITE_URL: "http://localhost:3000"
       NEXTAUTH_SECRET: UfxvOS6HetHOFkL44YTITYgc0DOuOlz5TBp3jkbnZ3w=
     steps:
@@ -44,7 +44,7 @@ jobs:
       ### 👉 please remove ###
       - run: pnpm dev:db:setup
         env:
-          POSTGRES_URL: "postgresql://dev:1234@localhost:5432/mydb?schema=public"
+          POSTGRES_URL: "postgresql://dev:1234@localhost:5432/dev?schema=public"
           NEXT_PUBLIC_SITE_URL: "http://localhost:3000"
       ########################
       - run: pnpm test:db:setup
@@ -61,7 +61,7 @@ jobs:
       ### 👉 please remove ###
       - run: pnpm dev:db:setup
         env:
-          POSTGRES_URL: "postgresql://dev:1234@localhost:5432/mydb?schema=public"
+          POSTGRES_URL: "postgresql://dev:1234@localhost:5432/dev?schema=public"
           NEXT_PUBLIC_SITE_URL: "http://localhost:3000"
       ########################
       - run: pnpm test:db:setup

@@ -120,7 +120,7 @@ $ pnpm dev:db:setup
 - ### 👉 please remove ###
 - - run: pnpm dev:db:setup
 - env:
--   POSTGRES_URL: "postgresql://dev:1234@localhost:5432/mydb?schema=public"
+-   POSTGRES_URL: "postgresql://dev:1234@localhost:5432/dev?schema=public"
 -   NEXT_PUBLIC_SITE_URL: "http://localhost:3000"
 - ########################
 ```
@@ -156,10 +156,12 @@ $ pnpm test:db:reset
 
 # e2e
 
-# test uses a built app since next.js has different cache behavior between development and production
-$ pnpm build
+# install chrome
+$ pnpm exec playwright install chrome
 # run the DB and generate the client
 $ pnpm test:db:setup
+# test uses a built app since next.js has different cache behavior between development and production
+$ pnpm build
 # execute
 $ pnpm test:e2e
 ```

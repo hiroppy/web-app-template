@@ -6,19 +6,13 @@ volumes:
 services:
   dev-db:
     image: postgres:16
+    env_file: .env.local
     restart: always
     ports:
       - "5432:5432"
-    environment:
-      POSTGRES_USER: dev
-      POSTGRES_PASSWORD: 1234
-      POSTGRES_DB: dev
   test-db:
     image: postgres:16
+    env_file: .env.test
     restart: always
     ports:
       - "5433:5432"
-    environment:
-      POSTGRES_USER: test
-      POSTGRES_PASSWORD: 1234
-      POSTGRES_DB: test
