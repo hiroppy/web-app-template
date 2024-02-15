@@ -44,13 +44,13 @@ devDependencies:
     specifier: 14.2.1
     version: 14.2.1(react-dom@18.2.0)(react@18.2.0)
   '@types/node':
-    specifier: ^20.11.18
+    specifier: 20.11.18
     version: 20.11.18
   '@types/react':
-    specifier: ^18.2.55
+    specifier: 18.2.55
     version: 18.2.55
   '@types/react-dom':
-    specifier: ^18.2.19
+    specifier: 18.2.19
     version: 18.2.19
   '@vitejs/plugin-react':
     specifier: 4.2.1
