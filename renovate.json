@@ -8,7 +8,6 @@
     ":followTag(typescript, next)",
     "group:definitelyTyped",
     "group:monorepos",
-    "group:linters",
     "group:test"
   ],
   "rangeStrategy": "pin",
@@ -31,7 +30,7 @@
     },
     {
       "matchManagers": ["npm"],
-      "groupName": "lint deps",
+      "groupName": "linter deps",
       "extends": ["packages:linters"],
       "matchPackagePatterns": ["^@biomejs", "^eslint", "^prettier"],
       "automerge": true,
