@@ -3,6 +3,9 @@
 </div>
 
 <br />
+<br />
+
+**This repo is a github template so please click "Use this template" button and you will create your repo.**
 
 This template is based on create-next-app but has below new tech and configs.
 
@@ -34,7 +37,7 @@ Just running create-next-app does not satisfy the dependencies, development envi
   <ul>
     <li>introducing dev/test env using Docker Compose and PostgreSQL</li>
     <li>fixing 
-      <a href="https://www.prisma.io/docs/orm/more/help-and-troubleshooting/help-articles/nextjs-prisma-client-dev-practices" target="_blank">
+      <a href="https://www.prisma.io/docs/orm/more/help-and-troubleshooting/help-articles/nextjs-prisma-client-dev-practices">
         well-known Next.js issue
       </a>
     </li>
@@ -47,7 +50,7 @@ Just running create-next-app does not satisfy the dependencies, development envi
   <ul>
     <li>introducing Google Oauth provider</li>
     <li>defining 
-      <a href="https://authjs.dev/reference/adapter/prisma#create-the-prisma-schema-from-scratch" target="_blank">
+      <a href="https://authjs.dev/reference/adapter/prisma#create-the-prisma-schema-from-scratch">
         Prisma schema
       </a>
       and connecting database
@@ -67,7 +70,7 @@ Just running create-next-app does not satisfy the dependencies, development envi
   <summary>Playwright</summary>
   <ul>
     <li>
-      introducing <a href="https://playwright.dev/docs/pom" target="_blank">Page object models</a> for e2e to make it resistant to change code
+      introducing <a href="https://playwright.dev/docs/pom">Page object models</a> for e2e to make it resistant to change code
     </li>
     <li>introducing how to avoid OAuth Providers with NextAuth.js</li>
   </ul>
