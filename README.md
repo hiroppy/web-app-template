@@ -25,63 +25,51 @@ Just running create-next-app does not satisfy the dependencies, development envi
 
 <details>
   <summary>Next.js</summary>
-  <ul>
-    <li>introducing parallel route and intercepting route</li>
-    <li>introducing server actions using Zod</li>
-    <li>setting common files like robots, opengraph-image, etc</li>
-  </ul>
+
+- introducing parallel route and intercepting route
+- introducing server actions using Zod
+- setting common files like robots, opengraph-image, etc
+
 </details>
 
 <details>
   <summary>Prisma</summary>
-  <ul>
-    <li>introducing dev/test env using Docker Compose and PostgreSQL</li>
-    <li>fixing 
-      <a href="https://www.prisma.io/docs/orm/more/help-and-troubleshooting/help-articles/nextjs-prisma-client-dev-practices">
-        well-known Next.js issue
-      </a>
-    </li>
-    <li>generating ERD automatically</li>
-  </ul>
+
+- introducing dev/test env using Docker Compose and PostgreSQL
+- fixing [well-known Next.js issue](https://www.prisma.io/docs/orm/more/help-and-troubleshooting/help-articles/nextjs-prisma-client-dev-practices)
+- generating ERD automatically
+
 </details>
 
 <details>
   <summary>NextAuth.js</summary>
-  <ul>
-    <li>introducing Google Oauth provider</li>
-    <li>defining 
-      <a href="https://authjs.dev/reference/adapter/prisma#create-the-prisma-schema-from-scratch">
-        Prisma schema
-      </a>
-      and connecting database
-    </li>
-    <li>setting Next.js api route using app router</li>
-  </ul>
+
+- introducing Google Oauth provider
+- defining [Prisma schema](https://authjs.dev/reference/adapter/prisma#create-the-prisma-schema-from-scratch) and connecting database
+- setting Next.js api route using app router
+
 </details>
 
 <details>
   <summary>Biome, Prettier, ESLint</summary>
-  <ul>
-    <li>introducing how to control these when pre-commit</li>
-  </ul>
+  
+  - introducing how to control these when pre-commit
 </details>
 
 <details>
   <summary>Playwright</summary>
-  <ul>
-    <li>
-      introducing <a href="https://playwright.dev/docs/pom">Page object models</a> for e2e to make it resistant to change code
-    </li>
-    <li>introducing how to avoid OAuth Providers with NextAuth.js</li>
-  </ul>
+
+- introducing [Page object models](https://playwright.dev/docs/pom) for e2e to make it resistant to change code
+- introducing how to avoid OAuth Providers with NextAuth.js
+
 </details>
 
 <details>
   <summary>Visual Studio Code</summary>
-  <ul>
-    <li>assigning Prisma, Biome, Prettier to each language</li>
-    <li>introducing cSpell to notice a typo</li>
-  </ul>
+
+- assigning Prisma, Biome, Prettier to each language
+- introducing cSpell to notice a typo
+
 </details>
 
 ## Setup
@@ -92,7 +80,7 @@ Just running create-next-app does not satisfy the dependencies, development envi
 $ npm run setup
 ```
 
-**Creating `.env.local` and modify envs**
+**Creating `.env.local` and modifying env**
 
 ```sh
 $ cp .env.sample .env.local
@@ -104,7 +92,7 @@ $ cp .env.sample .env.local
 $ pnpm dev:db:setup
 ```
 
-**Removing the below code and commit migration files**
+**Removing the below code and committing migration files**
 
 ```diff
 .gitignore
@@ -166,3 +154,5 @@ $ pnpm build
 # execute
 $ pnpm test:e2e
 ```
+
+💁‍♀️ This template recommends using a real database but when you face not keeping idempotency, you might consider using mock.
