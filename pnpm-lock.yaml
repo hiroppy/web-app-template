@@ -66,7 +66,7 @@ devDependencies:
     version: 8.56.0
   eslint-config-next:
     specifier: 14.1.0
-    version: 14.1.0(eslint@8.56.0)(typescript@5.3.3)
+    version: 14.1.0(eslint@8.56.0)(typescript@5.4.0-dev.20240215)
   jsdom:
     specifier: 24.0.0
     version: 24.0.0
@@ -84,13 +84,13 @@ devDependencies:
     version: 5.9.1
   prisma-erd-generator:
     specifier: 1.11.2
-    version: 1.11.2(@prisma/client@5.9.1)(typescript@5.3.3)
+    version: 1.11.2(@prisma/client@5.9.1)(typescript@5.4.0-dev.20240215)
   tailwindcss:
     specifier: 3.4.1
     version: 3.4.1
   typescript:
-    specifier: 5.3.3
-    version: 5.3.3
+    specifier: 5.4.0-dev.20240215
+    version: 5.4.0-dev.20240215
   vitest:
     specifier: ^1.2.2
     version: 1.2.2(@types/node@20.11.18)(jsdom@24.0.0)
@@ -719,14 +719,14 @@ packages:
       '@jridgewell/resolve-uri': 3.1.1
       '@jridgewell/sourcemap-codec': 1.4.15
 
-  /@mermaid-js/mermaid-cli@10.8.0(typescript@5.3.3):
+  /@mermaid-js/mermaid-cli@10.8.0(typescript@5.4.0-dev.20240215):
     resolution: {integrity: sha512-xZsGR88RsP72SAXyvjU23HzsKHsq6b7/kbnmQrEuIcPrJGPOckFiP9nzHvPh3Z04MjvpDJVjtbIspt2ZQwUzzA==}
     engines: {node: ^14.13 || >=16.0}
     hasBin: true
     dependencies:
       chalk: 5.3.0
       commander: 10.0.1
-      puppeteer: 19.11.1(typescript@5.3.3)
+      puppeteer: 19.11.1(typescript@5.4.0-dev.20240215)
     transitivePeerDependencies:
       - bufferutil
       - encoding
@@ -921,7 +921,7 @@ packages:
     dependencies:
       '@prisma/debug': 5.9.1
 
-  /@puppeteer/browsers@0.5.0(typescript@5.3.3):
+  /@puppeteer/browsers@0.5.0(typescript@5.4.0-dev.20240215):
     resolution: {integrity: sha512-Uw6oB7VvmPRLE4iKsjuOh8zgDabhNX67dzo8U/BB0f9527qx+4eeUs+korU98OhG5C4ubg7ufBgVi63XYwS6TQ==}
     engines: {node: '>=14.1.0'}
     hasBin: true
@@ -937,7 +937,7 @@ packages:
       progress: 2.0.3
       proxy-from-env: 1.1.0
       tar-fs: 2.1.1
-      typescript: 5.3.3
+      typescript: 5.4.0-dev.20240215
       unbzip2-stream: 1.4.3
       yargs: 17.7.1
     transitivePeerDependencies:
@@ -1167,7 +1167,7 @@ packages:
     dev: true
     optional: true
 
-  /@typescript-eslint/parser@6.21.0(eslint@8.56.0)(typescript@5.3.3):
+  /@typescript-eslint/parser@6.21.0(eslint@8.56.0)(typescript@5.4.0-dev.20240215):
     resolution: {integrity: sha512-tbsV1jPne5CkFQCgPBcDOt30ItF7aJoZL997JSF7MhGQqOeT3svWRYxiqlfA5RUdlHN6Fi+EI9bxqbdyAUZjYQ==}
     engines: {node: ^16.0.0 || >=18.0.0}
     peerDependencies:
@@ -1179,11 +1179,11 @@ packages:
     dependencies:
       '@typescript-eslint/scope-manager': 6.21.0
       '@typescript-eslint/types': 6.21.0
-      '@typescript-eslint/typescript-estree': 6.21.0(typescript@5.3.3)
+      '@typescript-eslint/typescript-estree': 6.21.0(typescript@5.4.0-dev.20240215)
       '@typescript-eslint/visitor-keys': 6.21.0
       debug: 4.3.4
       eslint: 8.56.0
-      typescript: 5.3.3
+      typescript: 5.4.0-dev.20240215
     transitivePeerDependencies:
       - supports-color
     dev: true
@@ -1201,7 +1201,7 @@ packages:
     engines: {node: ^16.0.0 || >=18.0.0}
     dev: true
 
-  /@typescript-eslint/typescript-estree@6.21.0(typescript@5.3.3):
+  /@typescript-eslint/typescript-estree@6.21.0(typescript@5.4.0-dev.20240215):
     resolution: {integrity: sha512-6npJTkZcO+y2/kr+z0hc4HwNfrrP4kNYh57ek7yCNlrBjWQ1Y0OS7jiZTkgumrvkX5HkEKXFZkkdFNkaW2wmUQ==}
     engines: {node: ^16.0.0 || >=18.0.0}
     peerDependencies:
@@ -1217,8 +1217,8 @@ packages:
       is-glob: 4.0.3
       minimatch: 9.0.3
       semver: 7.6.0
-      ts-api-utils: 1.2.1(typescript@5.3.3)
-      typescript: 5.3.3
+      ts-api-utils: 1.2.1(typescript@5.4.0-dev.20240215)
+      typescript: 5.4.0-dev.20240215
     transitivePeerDependencies:
       - supports-color
     dev: true
@@ -2207,7 +2207,7 @@ packages:
     engines: {node: '>=10'}
     dev: true
 
-  /eslint-config-next@14.1.0(eslint@8.56.0)(typescript@5.3.3):
+  /eslint-config-next@14.1.0(eslint@8.56.0)(typescript@5.4.0-dev.20240215):
     resolution: {integrity: sha512-SBX2ed7DoRFXC6CQSLc/SbLY9Ut6HxNB2wPTcoIWjUMd7aF7O/SIE7111L8FdZ9TXsNV4pulUDnfthpyPtbFUg==}
     peerDependencies:
       eslint: ^7.23.0 || ^8.0.0
@@ -2218,7 +2218,7 @@ packages:
     dependencies:
       '@next/eslint-plugin-next': 14.1.0
       '@rushstack/eslint-patch': 1.7.2
-      '@typescript-eslint/parser': 6.21.0(eslint@8.56.0)(typescript@5.3.3)
+      '@typescript-eslint/parser': 6.21.0(eslint@8.56.0)(typescript@5.4.0-dev.20240215)
       eslint: 8.56.0
       eslint-import-resolver-node: 0.3.9
       eslint-import-resolver-typescript: 3.6.1(@typescript-eslint/parser@6.21.0)(eslint-import-resolver-node@0.3.9)(eslint-plugin-import@2.29.1)(eslint@8.56.0)
@@ -2226,7 +2226,7 @@ packages:
       eslint-plugin-jsx-a11y: 6.8.0(eslint@8.56.0)
       eslint-plugin-react: 7.33.2(eslint@8.56.0)
       eslint-plugin-react-hooks: 4.6.0(eslint@8.56.0)
-      typescript: 5.3.3
+      typescript: 5.4.0-dev.20240215
     transitivePeerDependencies:
       - eslint-import-resolver-webpack
       - supports-color
@@ -2286,7 +2286,7 @@ packages:
       eslint-import-resolver-webpack:
         optional: true
     dependencies:
-      '@typescript-eslint/parser': 6.21.0(eslint@8.56.0)(typescript@5.3.3)
+      '@typescript-eslint/parser': 6.21.0(eslint@8.56.0)(typescript@5.4.0-dev.20240215)
       debug: 3.2.7
       eslint: 8.56.0
       eslint-import-resolver-node: 0.3.9
@@ -2305,7 +2305,7 @@ packages:
       '@typescript-eslint/parser':
         optional: true
     dependencies:
-      '@typescript-eslint/parser': 6.21.0(eslint@8.56.0)(typescript@5.3.3)
+      '@typescript-eslint/parser': 6.21.0(eslint@8.56.0)(typescript@5.4.0-dev.20240215)
       array-includes: 3.1.7
       array.prototype.findlastindex: 1.2.4
       array.prototype.flat: 1.3.2
@@ -4002,14 +4002,14 @@ packages:
     resolution: {integrity: sha512-WuxUnVtlWL1OfZFQFuqvnvs6MiAGk9UNsBostyBOB0Is9wb5uRESevA6rnl/rkksXaGX3GzZhPup5d6Vp1nFew==}
     dev: false
 
-  /prisma-erd-generator@1.11.2(@prisma/client@5.9.1)(typescript@5.3.3):
+  /prisma-erd-generator@1.11.2(@prisma/client@5.9.1)(typescript@5.4.0-dev.20240215):
     resolution: {integrity: sha512-abo2EBIjqJALfjm8p+uOsQk38DlU3rlLJA9/cOvcLLt8A9bjMkRwlqaZDAD/iXVZcXJRJPgJ98fEviTa+w8oTQ==}
     engines: {node: '>=14'}
     hasBin: true
     peerDependencies:
       '@prisma/client': ^4.0.0 || ^5.0.0
     dependencies:
-      '@mermaid-js/mermaid-cli': 10.8.0(typescript@5.3.3)
+      '@mermaid-js/mermaid-cli': 10.8.0(typescript@5.4.0-dev.20240215)
       '@prisma/client': 5.9.1(prisma@5.9.1)
       '@prisma/generator-helper': 5.9.1
       dotenv: 16.4.2
@@ -4062,7 +4062,7 @@ packages:
     engines: {node: '>=6'}
     dev: true
 
-  /puppeteer-core@19.11.1(typescript@5.3.3):
+  /puppeteer-core@19.11.1(typescript@5.4.0-dev.20240215):
     resolution: {integrity: sha512-qcuC2Uf0Fwdj9wNtaTZ2OvYRraXpAK+puwwVW8ofOhOgLPZyz1c68tsorfIZyCUOpyBisjr+xByu7BMbEYMepA==}
     engines: {node: '>=14.14.0'}
     peerDependencies:
@@ -4071,7 +4071,7 @@ packages:
       typescript:
         optional: true
     dependencies:
-      '@puppeteer/browsers': 0.5.0(typescript@5.3.3)
+      '@puppeteer/browsers': 0.5.0(typescript@5.4.0-dev.20240215)
       chromium-bidi: 0.4.7(devtools-protocol@0.0.1107588)
       cross-fetch: 3.1.5
       debug: 4.3.4
@@ -4080,7 +4080,7 @@ packages:
       https-proxy-agent: 5.0.1
       proxy-from-env: 1.1.0
       tar-fs: 2.1.1
-      typescript: 5.3.3
+      typescript: 5.4.0-dev.20240215
       unbzip2-stream: 1.4.3
       ws: 8.13.0
     transitivePeerDependencies:
@@ -4090,17 +4090,17 @@ packages:
       - utf-8-validate
     dev: true
 
-  /puppeteer@19.11.1(typescript@5.3.3):
+  /puppeteer@19.11.1(typescript@5.4.0-dev.20240215):
     resolution: {integrity: sha512-39olGaX2djYUdhaQQHDZ0T0GwEp+5f9UB9HmEP0qHfdQHIq0xGQZuAZ5TLnJIc/88SrPLpEflPC+xUqOTv3c5g==}
     deprecated: < 21.5.0 is no longer supported
     requiresBuild: true
     dependencies:
-      '@puppeteer/browsers': 0.5.0(typescript@5.3.3)
+      '@puppeteer/browsers': 0.5.0(typescript@5.4.0-dev.20240215)
       cosmiconfig: 8.1.3
       https-proxy-agent: 5.0.1
       progress: 2.0.3
       proxy-from-env: 1.1.0
-      puppeteer-core: 19.11.1(typescript@5.3.3)
+      puppeteer-core: 19.11.1(typescript@5.4.0-dev.20240215)
     transitivePeerDependencies:
       - bufferutil
       - encoding
@@ -4740,13 +4740,13 @@ packages:
       punycode: 2.3.1
     dev: true
 
-  /ts-api-utils@1.2.1(typescript@5.3.3):
+  /ts-api-utils@1.2.1(typescript@5.4.0-dev.20240215):
     resolution: {integrity: sha512-RIYA36cJn2WiH9Hy77hdF9r7oEwxAtB/TS9/S4Qd90Ap4z5FSiin5zEiTL44OII1Y3IIlEvxwxFUVgrHSZ/UpA==}
     engines: {node: '>=16'}
     peerDependencies:
       typescript: '>=4.2.0'
     dependencies:
-      typescript: 5.3.3
+      typescript: 5.4.0-dev.20240215
     dev: true
 
   /ts-interface-checker@0.1.13:
@@ -4826,8 +4826,8 @@ packages:
       is-typed-array: 1.1.13
     dev: true
 
-  /typescript@5.3.3:
-    resolution: {integrity: sha512-pXWcraxM0uxAS+tN0AG/BF2TyqmHO014Z070UsJ+pFvYuRSq8KH8DmWpnbXe0pEPDHXZV3FcAbJkijJ5oNEnWw==}
+  /typescript@5.4.0-dev.20240215:
+    resolution: {integrity: sha512-XC4/5bqzYJYPwH1EaVY3E7gtieevPWkKc1oBcHdiZytptFaqms77yIiiXmCpZsl+ydrcxCijAVzBXLWxujaksw==}
     engines: {node: '>=14.17'}
     hasBin: true
     dev: true
