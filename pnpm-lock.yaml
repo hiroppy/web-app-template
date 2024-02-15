@@ -41,7 +41,7 @@ devDependencies:
     specifier: 1.41.2
     version: 1.41.2
   '@testing-library/react':
-    specifier: ^14.2.1
+    specifier: 14.2.1
     version: 14.2.1(react-dom@18.2.0)(react@18.2.0)
   '@types/node':
     specifier: ^20.11.18
@@ -92,7 +92,7 @@ devDependencies:
     specifier: 5.3.3
     version: 5.3.3
   vitest:
-    specifier: ^1.2.2
+    specifier: 1.2.2
     version: 1.2.2(@types/node@20.11.18)(jsdom@24.0.0)
 
 packages:
