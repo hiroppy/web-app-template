@@ -1,4 +1,5 @@
 {
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": [
     "config:base",
     ":semanticCommitTypeAll(chore)",
@@ -17,7 +18,8 @@
       "matchUpdateTypes": ["patch"],
       "matchPackagePatterns": ["*"],
       "matchDepTypes": ["dependencies", "devDependencies", "peerDependencies"],
-      "groupName": "npm patch dependencies"
+      "groupName": "npm patch dependencies",
+      "automerge": true
     },
     {
       "matchManagers": ["npm"],
@@ -25,6 +27,16 @@
       "matchPackagePatterns": ["*"],
       "matchDepTypes": ["dependencies", "devDependencies", "peerDependencies"],
       "groupName": "npm minor dependencies"
+    },
+    {
+      "matchManagers": ["npm"],
+      "groupName": "lint deps",
+      "extends": ["packages:linters"],
+      "matchPackagePatterns": ["^@biomejs", "^eslint", "^prettier"],
+      "automerge": true,
+      "major": {
+        "automerge": false
+      }
     }
   ],
   "ignoreDeps": [],
