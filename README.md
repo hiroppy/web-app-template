@@ -6,35 +6,36 @@
 
 This template is based on create-next-app but has below new tech and configs.
 
-| kind        |                          |                          |                         |                         |
-| ----------- | ------------------------ | ------------------------ | ----------------------- | ----------------------- |
-| **app**     | next.js (framework)      | tailwindcss (css)        | next-auth (auth)        | prisma (orm)            |
-|             | react-hook-form (form)   | zod (validator)          |                         |                         |
-| **tools**   | typescript (language)    | biome (linter, fmt)      | prettier (linter)       | eslint (linter)         |
-|             | lint-staged (pre-commit) |                          |                         |                         |
-| **testing** | vitest (test runner)     | playwright (e2e testing) |                         |                         |
-| **others**  | workflows (ci)           | .vscode (editor)         | docker-compose (docker) | renovate (deps manager) |
+| kind        |                         |                          |                         |
+| ----------- | ----------------------- | ------------------------ | ----------------------- |
+| **app**     | Next.js (framework)     | Tailwind CSS (css)       | NextAuth.js (auth)      |
+|             | Prisma (orm)            | React Hook Form (form)   | Zod (validator)         |
+| **tools**   | TypeScript (language)   | Biome (linter, fmt)      | Prettier (linter)       |
+|             | ESLint (linter)         | lint-staged (pre-commit) |                         |
+| **testing** | Vitest (test runner)    | Playwright (e2e testing) |                         |
+| **others**  | workflows (ci)          | .vscode (editor)         | Docker Compose (docker) |
+|             | Renovate (deps manager) |                          |                         |
 
 Just running create-next-app does not satisfy the dependencies, development environment, and CI environment to create a web application. In addition, many dependencies require setting configs for example, `@next-auth/prisma-adapter` requires adding many schemas to `schema.prisma` but we don't know what we add so always need to check the docs every time. This project is created as a template with minimal code in advance so that you can focus on development.
 
 ## What does this project support?
 
 <details>
-  <summary>next.js</summary>
+  <summary>Next.js</summary>
   <ul>
     <li>introducing parallel route and intercepting route</li>
-    <li>introducing server actions</li>
+    <li>introducing server actions using Zod</li>
     <li>setting common files like robots, opengraph-image, etc</li>
   </ul>
 </details>
 
 <details>
-  <summary>prisma</summary>
+  <summary>Prisma</summary>
   <ul>
-    <li>introducing dev/test env using docker-compose and postgresql</li>
+    <li>introducing dev/test env using Docker Compose and PostgreSQL</li>
     <li>fixing 
       <a href="https://www.prisma.io/docs/orm/more/help-and-troubleshooting/help-articles/nextjs-prisma-client-dev-practices" target="_blank">
-        well-known next.js issue
+        well-known Next.js issue
       </a>
     </li>
     <li>generating ERD automatically</li>
@@ -42,40 +43,40 @@ Just running create-next-app does not satisfy the dependencies, development envi
 </details>
 
 <details>
-  <summary>next-auth</summary>
+  <summary>NextAuth.js</summary>
   <ul>
     <li>introducing Google Oauth provider</li>
     <li>defining 
       <a href="https://authjs.dev/reference/adapter/prisma#create-the-prisma-schema-from-scratch" target="_blank">
-        prisma schema
+        Prisma schema
       </a>
       and connecting database
     </li>
-    <li>setting next.js api route using app router</li>
+    <li>setting Next.js api route using app router</li>
   </ul>
 </details>
 
 <details>
-  <summary>biome, prettier, eslint</summary>
+  <summary>Biome, Prettier, ESLint</summary>
   <ul>
     <li>introducing how to control these when pre-commit</li>
   </ul>
 </details>
 
 <details>
-  <summary>playwright</summary>
+  <summary>Playwright</summary>
   <ul>
     <li>
       introducing <a href="https://playwright.dev/docs/pom" target="_blank">Page object models</a> for e2e to make it resistant to change code
     </li>
-    <li>introducing how to avoid OAuth Providers with next-auth</li>
+    <li>introducing how to avoid OAuth Providers with NextAuth.js</li>
   </ul>
 </details>
 
 <details>
-  <summary>vscode</summary>
+  <summary>Visual Studio Code</summary>
   <ul>
-    <li>assigning prisma, biome, prettier to each language</li>
+    <li>assigning Prisma, Biome, Prettier to each language</li>
     <li>introducing cSpell to notice a typo</li>
   </ul>
 </details>
