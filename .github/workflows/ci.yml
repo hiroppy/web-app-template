@@ -30,6 +30,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: ./.github/actions/setup-node
+      - run: cp ./.env.sample ./.env.local
       - run: pnpm dev:db:setup
       - run: pnpm build
       - uses: actions/upload-artifact@v4
@@ -42,6 +43,7 @@ jobs:
       - uses: actions/checkout@v4
       - uses: ./.github/actions/setup-node
       ### 👉 please remove ###
+      - run: cp ./.env.sample ./.env.local
       - run: pnpm dev:db:setup
         env:
           POSTGRES_URL: "postgresql://dev:1234@localhost:5432/dev?schema=public"
@@ -59,6 +61,7 @@ jobs:
       - uses: ./.github/actions/setup-node
       - run: pnpm exec playwright install chromium
       ### 👉 please remove ###
+      - run: cp ./.env.sample ./.env.local
       - run: pnpm dev:db:setup
         env:
           POSTGRES_URL: "postgresql://dev:1234@localhost:5432/dev?schema=public"

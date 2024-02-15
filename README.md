@@ -118,6 +118,7 @@ $ pnpm dev:db:setup
 .github/workflows/ci.yml
 
 - ### 👉 please remove ###
+- - run: cp ./.env.sample ./.env.local
 - - run: pnpm dev:db:setup
 - env:
 -   POSTGRES_URL: "postgresql://dev:1234@localhost:5432/dev?schema=public"
