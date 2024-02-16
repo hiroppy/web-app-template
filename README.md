@@ -74,10 +74,20 @@ Just running create-next-app does not satisfy the dependencies, development envi
 
 ## Setup
 
+**Installing Docker Compose**
+
+Please check [Installation scenarios](https://docs.docker.com/compose/install/) section.
+
 **Enabling git hook and corepack**
 
 ```sh
 $ npm run setup
+```
+
+**Installing Deps**
+
+```sh
+$ pnpm i
 ```
 
 **Creating `.env.local` and modifying env**
@@ -86,32 +96,14 @@ $ npm run setup
 $ cp .env.sample .env.local
 ```
 
-**Creating DB migration files**
+**Running init.mjs**
+
+- generating DB migration files
+- removing unnecessary code
+- updating name in package.json using directory name
 
 ```sh
-$ pnpm dev:db:setup
-```
-
-**Removing the below code and committing migration files**
-
-```diff
-.gitignore
-
-- ### 👉 please remove ###
-- migrations
-- ########################
-```
-
-```diff
-.github/workflows/ci.yml
-
-- ### 👉 please remove ###
-- - run: cp ./.env.sample ./.env.local
-- - run: pnpm dev:db:setup
-- env:
--   POSTGRES_URL: "postgresql://dev:1234@localhost:5432/dev?schema=public"
--   NEXT_PUBLIC_SITE_URL: "http://localhost:3000"
-- ########################
+$ node init.mjs
 ```
 
 ## Dev
