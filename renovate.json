@@ -5,7 +5,6 @@
     ":semanticCommitTypeAll(chore)",
     ":enableVulnerabilityAlerts",
     ":separateMajorReleases",
-    ":followTag(typescript, next)",
     "group:definitelyTyped",
     "group:monorepos",
     "group:test"
