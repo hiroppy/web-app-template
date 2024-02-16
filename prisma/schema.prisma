@@ -11,27 +11,29 @@ generator client {
 }
 
 generator erd {
-  provider = "prisma-erd-generator"
-  theme = "forest"
-  output = "ERD.md"
+  provider                  = "prisma-erd-generator"
+  theme                     = "forest"
+  output                    = "ERD.md"
   includeRelationFromFields = true
 }
 
 // https://next-auth.js.org/v3/adapters/prisma#setup
 model Account {
-  id                String  @id @default(cuid())
-  userId            String  @map("user_id")
+  id                String   @id @default(cuid())
+  userId            String   @map("user_id")
   type              String
   provider          String
-  providerAccountId String  @map("provider_account_id")
-  refresh_token     String? @db.Text
-  access_token      String? @db.Text
+  providerAccountId String   @map("provider_account_id")
+  refresh_token     String?  @db.Text
+  access_token      String?  @db.Text
   expires_at        Int?
   token_type        String?
   scope             String?
-  id_token          String? @db.Text
+  id_token          String?  @db.Text
   session_state     String?
-  user              User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  user              User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  createdAt         DateTime @default(now()) @map("created_at")
+  updatedAt         DateTime @updatedAt @map("updated_at")
 
   @@unique([provider, providerAccountId])
   @@map("accounts")
@@ -40,9 +42,11 @@ model Account {
 model Session {
   id           String   @id @default(cuid())
   sessionToken String   @unique @map("session_token")
-  userId       String
+  userId       String   @map("user_id")
   expires      DateTime
   user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  createdAt    DateTime @default(now()) @map("created_at")
+  updatedAt    DateTime @updatedAt @map("updated_at")
 
   @@map("sessions")
 }
@@ -54,10 +58,12 @@ model User {
   emailVerified DateTime? @map("email_verified")
   image         String?
   website       String?
-  created_at    DateTime?
-  updated_at    DateTime?
   accounts      Account[]
   sessions      Session[]
+  createdAt     DateTime  @default(now()) @map("created_at")
+  updatedAt     DateTime  @updatedAt @map("updated_at")
+  // https://authjs.dev/guides/basics/role-based-access-control
+  role          String?
   items         Item[]
 
   @@map("users")
@@ -67,18 +73,21 @@ model VerificationToken {
   identifier String
   token      String   @unique
   expires    DateTime
+  createdAt  DateTime @default(now()) @map("created_at")
+  updatedAt  DateTime @updatedAt @map("updated_at")
 
   @@unique([identifier, token])
   @@map("verificationtokens")
 }
 
+// example model
 model Item {
   id        String   @id @default(cuid())
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  content  String
+  content   String
   user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
   userId    String
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
 
   @@map("items")
 }

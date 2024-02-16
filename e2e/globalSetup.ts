@@ -14,6 +14,7 @@ export default async function globalSetup(config: FullConfig) {
       name: NAME,
       image: IMAGE,
       email: EMAIL,
+      role: "user",
       sessions: {
         create: {
           expires: new Date(

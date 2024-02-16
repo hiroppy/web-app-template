@@ -13,7 +13,12 @@ declare global {
 }
 
 declare module "next-auth" {
+  interface User {
+    id: string;
+    role: "user" | "admin";
+  }
+
   interface Session {
-    user?: DefaultUser & { id: string };
+    user: User;
   }
 }

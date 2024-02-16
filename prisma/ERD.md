@@ -3,10 +3,10 @@ erDiagram
 
   "accounts" {
     String id "🗝️"
-    String user_id 
-    String type 
-    String provider 
-    String provider_account_id 
+    String user_id
+    String type
+    String provider
+    String provider_account_id
     String refresh_token "❓"
     String access_token "❓"
     Int expires_at "❓"
@@ -14,16 +14,20 @@ erDiagram
     String scope "❓"
     String id_token "❓"
     String session_state "❓"
+    DateTime created_at
+    DateTime updated_at
     }
-  
+
 
   "sessions" {
     String id "🗝️"
-    String session_token 
-    String userId 
-    DateTime expires 
+    String session_token
+    String user_id
+    DateTime expires
+    DateTime created_at
+    DateTime updated_at
     }
-  
+
 
   "users" {
     String id "🗝️"
@@ -32,26 +36,29 @@ erDiagram
     DateTime email_verified "❓"
     String image "❓"
     String website "❓"
-    DateTime created_at "❓"
-    DateTime updated_at "❓"
+    DateTime created_at
+    DateTime updated_at
+    String role "❓"
     }
-  
+
 
   "verificationtokens" {
-    String identifier 
-    String token 
-    DateTime expires 
+    String identifier
+    String token
+    DateTime expires
+    DateTime created_at
+    DateTime updated_at
     }
-  
+
 
   "items" {
     String id "🗝️"
-    DateTime createdAt 
-    DateTime updatedAt 
-    String content 
-    String userId 
+    String content
+    String userId
+    DateTime created_at
+    DateTime updated_at
     }
-  
+
     "accounts" o|--|| "users" : "user"
     "sessions" o|--|| "users" : "user"
     "users" o{--}o "accounts" : "accounts"
