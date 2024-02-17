@@ -96,6 +96,8 @@ $ pnpm i
 $ cp .env.sample .env.local
 ```
 
+If you use Google OAuth, you need to set `GOOGLE_CLIENT_ID` and `GOOGLE_CLIENT_SECRET`, if not, you can remove a provider from `_clients/NextAuth.ts`. And NextAuth requires `NEXTAUTH_SECRET` token so please generate using OpenSSL.
+
 **Running init.mjs**
 
 - generating DB migration files
