@@ -35,10 +35,14 @@ async function removeLines() {
     }
   }
 
-  const fences = [["### 👉 please remove ###", "########################"]];
+  const fences = [
+    ["####### 👉 remove #######", "########################"],
+    ["<!-- 👉 remove -->", "<!-- ######## -->"],
+  ];
   const files = [
     [".gitignore", fences[0]],
     [".github/workflows/ci.yml", fences[0]],
+    ["README.md", fences[1]],
   ];
 
   await Promise.all(

@@ -1,3 +1,5 @@
+<!-- 👉 remove -->
+
 <div align="center">
   <strong>️️A minimal template for web app 🎃</strong>
 </div>
@@ -72,6 +74,8 @@ Just running create-next-app does not satisfy the dependencies, development envi
 
 </details>
 
+<!-- ######## -->
+
 ## Setup
 
 **Installing Docker Compose**
@@ -98,6 +102,8 @@ $ cp .env.sample .env.local
 
 If you use Google OAuth, you need to set `GOOGLE_CLIENT_ID` and `GOOGLE_CLIENT_SECRET`, if not, you can remove a provider from `_clients/NextAuth.ts`. And NextAuth requires `NEXTAUTH_SECRET` token so please generate using OpenSSL.
 
+<!-- 👉 remove -->
+
 **Running init.mjs**
 
 - generating DB migration files
@@ -107,6 +113,8 @@ If you use Google OAuth, you need to set `GOOGLE_CLIENT_ID` and `GOOGLE_CLIENT_S
 ```sh
 $ node init.mjs
 ```
+
+<!-- ######## -->
 
 ## Dev
 
