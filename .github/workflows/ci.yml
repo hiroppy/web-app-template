@@ -39,6 +39,7 @@ jobs:
       - uses: ./.github/actions/setup-node
       ####### 👉 remove #######
       # generate prisma client
+      - run: cp ./.env.sample ./.env.local
       - run: pnpm dev:db:setup
         env:
           POSTGRES_URL: "postgresql://dev:1234@localhost:5432/dev?schema=public"
@@ -59,6 +60,7 @@ jobs:
       - run: pnpm exec playwright install chromium
       ####### 👉 remove #######
       # generate prisma client
+      - run: cp ./.env.sample ./.env.local
       - run: pnpm dev:db:setup
         env:
           POSTGRES_URL: "postgresql://dev:1234@localhost:5432/dev?schema=public"
