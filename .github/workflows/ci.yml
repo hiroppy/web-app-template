@@ -43,6 +43,9 @@ jobs:
       ####### 👉 remove #######
       # generate prisma client
       - run: pnpm dev:db:setup
+        env:
+          POSTGRES_URL: "postgresql://dev:1234@localhost:5432/dev?schema=public"
+          NEXT_PUBLIC_SITE_URL: "http://localhost:3000"
       ########################
       - run: pnpm test
   e2e-test:
@@ -60,6 +63,9 @@ jobs:
       ####### 👉 remove #######
       # generate prisma client
       - run: pnpm dev:db:setup
+        env:
+          POSTGRES_URL: "postgresql://dev:1234@localhost:5432/dev?schema=public"
+          NEXT_PUBLIC_SITE_URL: "http://localhost:3000"
       ########################
       - uses: actions/download-artifact@v4
         with:
