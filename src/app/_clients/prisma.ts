@@ -7,9 +7,12 @@ export let prisma: PrismaClient;
 if (process.env.NODE_ENV === "production") {
   prisma = new PrismaClient();
 } else {
+  // @ts-expect-error avoid declaring global.prisma at global.d.ts to enable auto import by editors
   if (!global.prisma) {
+    // @ts-expect-error ditto
     global.prisma = new PrismaClient();
   }
 
+  // @ts-expect-error ditto
   prisma = global.prisma;
 }
