@@ -3,15 +3,15 @@ on:
   pull_request:
     branches: [main]
     paths:
-      - "package.json"
-      - "src/**"
-      - ".github/workflows/ci.yml"
+      - package.json
+      - src/**
+      - .github/workflows/ci.yml
   push:
     branches: [main]
     paths:
-      - "package.json"
-      - "src/**"
-      - ".github/workflows/ci.yml"
+      - package.json
+      - src/**
+      - .github/workflows/ci.yml
 
 jobs:
   lint:
@@ -23,15 +23,10 @@ jobs:
       - run: pnpm fmt
   build:
     runs-on: ubuntu-latest
-    env:
-      POSTGRES_URL: "postgresql://dev:1234@localhost:5432/dev?schema=public"
-      NEXT_PUBLIC_SITE_URL: "http://localhost:3000"
-      NEXTAUTH_SECRET: UfxvOS6HetHOFkL44YTITYgc0DOuOlz5TBp3jkbnZ3w=
     steps:
       - uses: actions/checkout@v4
       - uses: ./.github/actions/setup-node
-      - run: cp ./.env.sample ./.env.local
-      - run: pnpm dev:db:setup
+      - uses: ./.github/actions/setup-db
       - run: pnpm build
       - uses: actions/upload-artifact@v4
         with:
@@ -42,14 +37,17 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: ./.github/actions/setup-node
-      - run: cp ./.env.sample ./.env.local
       ####### 👉 remove #######
+      # generate prisma client
+      - run: cp ./.env.sample ./.env.local
       - run: pnpm dev:db:setup
         env:
           POSTGRES_URL: "postgresql://dev:1234@localhost:5432/dev?schema=public"
           NEXT_PUBLIC_SITE_URL: "http://localhost:3000"
       ########################
-      - run: pnpm test:db:setup
+      - uses: ./.github/actions/setup-db
+        with:
+          kind: test
       - run: pnpm test
   e2e-test:
     needs: [build]
@@ -60,14 +58,17 @@ jobs:
       - uses: actions/checkout@v4
       - uses: ./.github/actions/setup-node
       - run: pnpm exec playwright install chromium
-      - run: cp ./.env.sample ./.env.local
       ####### 👉 remove #######
+      # generate prisma client
+      - run: cp ./.env.sample ./.env.local
       - run: pnpm dev:db:setup
         env:
           POSTGRES_URL: "postgresql://dev:1234@localhost:5432/dev?schema=public"
           NEXT_PUBLIC_SITE_URL: "http://localhost:3000"
       ########################
-      - run: pnpm test:db:setup
+      - uses: ./.github/actions/setup-db
+        with:
+          kind: test
       - uses: actions/download-artifact@v4
         with:
           name: app
