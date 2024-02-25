@@ -3,4 +3,5 @@ export default {
     "biome check --apply --no-errors-on-unmatched",
   ],
   "*.{md,yml}": ["prettier --write"],
+  "*.prisma": ["prisma format"],
 };
