@@ -129,6 +129,8 @@ $ pnpm dev:db:reset
 $ pnpm dev:db:studio
 ```
 
+📙 [Database ER diagram](/prisma/ERD.md)
+
 ## Test
 
 Test uses also DB so need to start DB first.
