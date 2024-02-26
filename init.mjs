@@ -66,7 +66,7 @@ async function generateMigrationFiles() {
     const [cmd, ...args] = command.split(" ");
 
     await new Promise((resolve, reject) => {
-      const child = spawn(cmd, args, { stdio: "inherit" });
+      const child = spawn(cmd, args, { stdio: "overlapped" });
 
       child.on("exit", (code) => {
         if (code === 0) {
@@ -83,7 +83,7 @@ async function format() {
   title("formatting");
 
   await new Promise((resolve, reject) => {
-    const child = spawn("pnpm", ["fmt"], { stdio: "inherit" });
+    const child = spawn("pnpm", ["fmt"], { stdio: "overlapped" });
 
     child.on("exit", (code) => {
       if (code === 0) {
