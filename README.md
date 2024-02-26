@@ -31,6 +31,7 @@ Just running create-next-app does not satisfy the dependencies, development envi
 - introducing parallel route and intercepting route
 - introducing server actions using Zod
 - setting common files like robots, opengraph-image, etc
+- supporting Docker
 
 </details>
 

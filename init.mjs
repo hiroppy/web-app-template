@@ -18,10 +18,13 @@ await Promise.all([
   updatePackageJson(),
 ]);
 
-// remove me
-await unlink(new URL(import.meta.url).pathname);
+await docker();
+
+await removeFiles(["init.mjs"]);
 
 await format();
+
+console.log("done! please commit them 🐶");
 
 async function removeLines(files) {
   title("removing lines");
@@ -55,7 +58,11 @@ async function removeLines(files) {
   );
 }
 
-async function removeFiles(files) {}
+async function removeFiles(files) {
+  await Promise.all(
+    files.map((file) => unlink(new URL(file, import.meta.url))),
+  );
+}
 
 async function generateMigrationFiles() {
   title("creating migration files");
@@ -106,6 +113,24 @@ async function updatePackageJson() {
   parsed.name = currentDirectoryName;
 
   await writeFile(packageJsonPath, JSON.stringify(parsed, null, 2));
+}
+
+async function docker() {
+  title("docker");
+
+  const rl = createInterface({
+    input: process.stdin,
+    output: process.stdout,
+  });
+  const answer = await rl.question(
+    "> Do you want to remove docker files? (y/N) ",
+  );
+
+  if (answer === "y" || answer === "Y") {
+    removeFiles(["Dockerfile"]);
+  }
+
+  rl.close();
 }
 
 function title(title) {
