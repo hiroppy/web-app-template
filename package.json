@@ -26,8 +26,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint && biome lint .",
-    "fmt": "prettier -w . && biome format --write .",
-    "check": "biome check --apply ."
+    "fmt": "prettier -w . && biome format --write ."
   },
   "dependencies": {
     "@hookform/resolvers": "3.3.4",
