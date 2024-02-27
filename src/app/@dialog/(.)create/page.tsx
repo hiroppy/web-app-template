@@ -26,7 +26,7 @@ export default function Page() {
     resolver: zodResolver(schema),
   });
 
-  const onSubmit: SubmitHandler<Schema> = async (values) => {
+  const submit: SubmitHandler<Schema> = async (values) => {
     try {
       if (isPending) {
         return;
@@ -45,7 +45,7 @@ export default function Page() {
 
   return (
     <Dialog>
-      <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+      <form onSubmit={handleSubmit(submit)} className="space-y-4">
         <label htmlFor="content">New Memo</label>
         <input
           {...register("content")}

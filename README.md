@@ -7,8 +7,6 @@
 <br />
 <br />
 
-**This repo is a github template so please click "Use this template" button and you will create your repo.**
-
 This template is based on create-next-app but has below new tech and configs.
 
 | kind        |                         |                          |                         |
@@ -74,6 +72,20 @@ Just running create-next-app does not satisfy the dependencies, development envi
 - introducing cSpell to notice a typo
 
 </details>
+
+## Install
+
+### GitHub Template
+
+This repo is a github template so click the "Use this template" button and you will create your repo.
+
+### CLI
+
+[`create-app-foundation`](https://github.com/hiroppy/create-app-foundation) creates a directory based on this template and skips the setup section automatically.
+
+```sh
+$ npx create-app-foundation
+```
 
 <!-- ######## -->
 
