@@ -3,8 +3,9 @@ import { readFile, unlink, writeFile } from "node:fs/promises";
 import { basename } from "node:path";
 import { createInterface } from "node:readline/promises";
 
-const isSkipQuestions = process.argv[2] === "--skip-questions";
-
+const [_, __, ...flags] = process.argv;
+const isSkipQuestions = flags.includes("--skip-questions");
+const isRemoveDocker = flags.includes("--remove-docker");
 const fences = [
   ["####### 👉 remove #######", "########################"],
   ["<!-- 👉 remove -->", "<!-- ######## -->"],
@@ -20,9 +21,7 @@ await Promise.all([
   updatePackageJson(),
 ]);
 
-if (!isSkipQuestions) {
-  await docker();
-}
+await docker();
 
 await removeFiles(["init.mjs"]);
 
@@ -71,7 +70,12 @@ async function removeFiles(files) {
 async function generateMigrationFiles() {
   title("creating migration files");
 
-  const commands = ["pnpm dev:db:setup", "pnpm db:stop"];
+  const commands = [
+    "pnpm db:start",
+    "pnpm dev:db:migrate --name initial-migration",
+    "pnpm dev:db:generate",
+    "pnpm db:stop",
+  ];
 
   for (const command of commands) {
     const [cmd, ...args] = command.split(" ");
@@ -122,19 +126,28 @@ async function updatePackageJson() {
 async function docker() {
   title("docker");
 
-  const rl = createInterface({
-    input: process.stdin,
-    output: process.stdout,
-  });
-  const answer = await rl.question(
-    "> Do you want to remove docker files? (y/N) ",
-  );
-
-  if (answer === "y" || answer === "Y") {
+  if (isRemoveDocker) {
     removeFiles(["Dockerfile"]);
+
+    return;
   }
 
-  rl.close();
+  if (!isSkipQuestions) {
+    const rl = createInterface({
+      input: process.stdin,
+      output: process.stdout,
+    });
+    const answer = await rl.question(
+      "> Do you want to remove docker files? (y/N) ",
+    );
+
+    if (answer === "y" || answer === "Y") {
+      console.log("ssss");
+      removeFiles(["Dockerfile"]);
+    }
+
+    rl.close();
+  }
 }
 
 function title(title) {
