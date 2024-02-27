@@ -3,6 +3,8 @@ import { readFile, unlink, writeFile } from "node:fs/promises";
 import { basename } from "node:path";
 import { createInterface } from "node:readline/promises";
 
+const isSkipQuestions = process.argv[2] === "--skip-questions";
+
 const fences = [
   ["####### 👉 remove #######", "########################"],
   ["<!-- 👉 remove -->", "<!-- ######## -->"],
@@ -18,7 +20,9 @@ await Promise.all([
   updatePackageJson(),
 ]);
 
-await docker();
+if (!isSkipQuestions) {
+  await docker();
+}
 
 await removeFiles(["init.mjs"]);
 
