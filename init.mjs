@@ -71,6 +71,8 @@ async function removeWords(file, words) {
     for (const word of words) {
       if (line.includes(word)) {
         res.push(line.replace(word, ""));
+      } else {
+        res.push(line);
       }
     }
   }
