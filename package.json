@@ -15,7 +15,7 @@
     "test:watch": "dotenv -e .env.test -- vitest watch",
     "test:db:setup": "pnpm db:start && dotenv -e .env.test -- pnpm db:deploy && pnpm test:db:generate",
     "test:db:reset": "dotenv -e .env.test -- pnpm db:reset",
-    "test:db:generate": "dotenv -e .env.test -- pnpm generate:client",
+    "test:db:generate": "dotenv -e .env.test -- pnpm generate:client --generator client",
     "test:e2e": "dotenv -e .env.test -- playwright test",
     "db:start": "docker-compose up -d && pnpm wait",
     "db:stop": "docker-compose stop",

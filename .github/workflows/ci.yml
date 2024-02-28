@@ -6,12 +6,14 @@ on:
     paths:
       - package.json
       - src/**
+      - e2e/**
       - .github/workflows/ci.yml
   push:
     branches: [main]
     paths:
       - package.json
       - src/**
+      - e2e/**
       - .github/workflows/ci.yml
 
 jobs:
