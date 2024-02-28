@@ -124,7 +124,7 @@ async function updatePackageJson() {
 }
 
 async function docker() {
-  const fence = ["####### docker #######", "####### docker #######"];
+  const fence = ["####### docker #######", "########################"];
 
   title("docker");
 
