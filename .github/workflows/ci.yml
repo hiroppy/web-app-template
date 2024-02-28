@@ -1,4 +1,5 @@
 name: ci
+
 on:
   pull_request:
     branches: [main]
@@ -32,6 +33,33 @@ jobs:
         with:
           name: app
           path: .next
+  ####### docker #######
+  build-docker:
+    runs-on: ubuntu-latest
+    env:
+      POSTGRES_URL: postgresql://dev:1234@172.17.0.1:5432/dev?schema=public
+      NEXTAUTH_SECRET: UfxvOS6HetHOFkL44YTITYgc0DOuOlz5TBp3jkbnZ3w=
+      NEXT_PUBLIC_SITE_URL: http://localhost:3000
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ./.github/actions/setup-node
+      - uses: ./.github/actions/setup-db
+      - run: |
+          docker build \
+            -t app:${{github.event.number}} \
+            -f Dockerfile \
+            --build-arg POSTGRES_URL=${{env.POSTGRES_URL}} \
+            --build-arg NEXTAUTH_SECRET=${{env.NEXTAUTH_SECRET}} \
+            --build-arg NEXT_PUBLIC_SITE_URL=${{env.NEXT_PUBLIC_SITE_URL}} \
+            .
+      - run: docker run -d -p 3000:3000 app:${{github.event.number}}
+      - run: |
+          until $(curl --output /dev/null --silent --fail ${{env.NEXT_PUBLIC_SITE_URL}}); do
+            printf '!'
+            sleep 1
+          done
+        timeout-minutes: 1
+  ########################
   unit-test:
     runs-on: ubuntu-latest
     steps:

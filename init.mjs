@@ -61,6 +61,35 @@ async function removeLines(files) {
   );
 }
 
+async function removeWords(file, words) {
+  const filePath = new URL(file, import.meta.url);
+  const data = await readFile(filePath, "utf8");
+  const lines = data.split("\n");
+  const res = [];
+
+  for (const line of lines) {
+    let str = line;
+
+    // keep already empty lines
+    if (str.trim() === "") {
+      res.push(str);
+      continue;
+    }
+
+    for (const word of words) {
+      if (line.includes(word)) {
+        str = str.replace(word, "");
+      }
+    }
+
+    if (str.trim() !== "") {
+      res.push(str);
+    }
+  }
+
+  await writeFile(filePath, res.join("\n"));
+}
+
 async function removeFiles(files) {
   await Promise.all(
     files.map((file) => unlink(new URL(file, import.meta.url))),
@@ -124,10 +153,12 @@ async function updatePackageJson() {
 }
 
 async function docker() {
+  const fence = ["####### docker #######", "########################"];
+
   title("docker");
 
   if (isRemoveDocker) {
-    removeFiles(["Dockerfile"]);
+    await run();
 
     return;
   }
@@ -142,11 +173,23 @@ async function docker() {
     );
 
     if (answer === "y" || answer === "Y") {
-      console.log("ssss");
-      removeFiles(["Dockerfile"]);
+      await run();
+      rl.close();
+
+      return;
     }
 
     rl.close();
+  }
+
+  // no: remove just fences
+  await removeWords(".github/workflows/ci.yml", fence);
+
+  async function run() {
+    await Promise.all([
+      removeFiles(["Dockerfile"]),
+      removeLines([[".github/workflows/ci.yml", fence]]),
+    ]);
   }
 }
 
