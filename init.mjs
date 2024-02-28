@@ -70,6 +70,12 @@ async function removeWords(file, words) {
   for (const line of lines) {
     let str = line;
 
+    // keep already empty lines
+    if (str.trim() === "") {
+      res.push(str);
+      continue;
+    }
+
     for (const word of words) {
       if (line.includes(word)) {
         str = str.replace(word, "");
