@@ -16,6 +16,7 @@ services:
     restart: always
     ports:
       - "5433:5432"
-networks:
-  dev-db:
-    external: true
+# extra_hosts:
+#   - "host.docker.internal:host-gateway"
+extra_hosts:
+  - "host.docker.internal:172.17.0.1"
