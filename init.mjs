@@ -68,13 +68,15 @@ async function removeWords(file, words) {
   const res = [];
 
   for (const line of lines) {
+    let str = line;
+
     for (const word of words) {
       if (line.includes(word)) {
-        res.push(line.replace(word, ""));
-      } else {
-        res.push(line);
+        str = str.replace(word, "");
       }
     }
+
+    res.push(str);
   }
 
   await writeFile(filePath, res.join("\n"));
