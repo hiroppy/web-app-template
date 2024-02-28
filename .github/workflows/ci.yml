@@ -34,6 +34,10 @@ jobs:
           path: .next
   build-docker:
     runs-on: ubuntu-latest
+    env:
+      POSTGRES_URL: postgresql://dev:1234@172.17.0.1:5432/dev?schema=public
+      NEXTAUTH_SECRET: UfxvOS6HetHOFkL44YTITYgc0DOuOlz5TBp3jkbnZ3w=
+      NEXT_PUBLIC_SITE_URL: http://localhost:3000
     steps:
       - uses: actions/checkout@v4
       - uses: ./.github/actions/setup-node
@@ -46,10 +50,12 @@ jobs:
             --build-arg NEXTAUTH_SECRET=${{env.NEXTAUTH_SECRET}} \
             --build-arg NEXT_PUBLIC_SITE_URL=${{env.NEXT_PUBLIC_SITE_URL}} \
             .
-        env:
-          POSTGRES_URL: postgresql://dev:1234@172.17.0.1:5432/dev?schema=public
-          NEXTAUTH_SECRET: UfxvOS6HetHOFkL44YTITYgc0DOuOlz5TBp3jkbnZ3w=
-          NEXT_PUBLIC_SITE_URL: http://localhost:3000
+      - run: |
+          until $(curl --output /dev/null --silent --fail ${env.NEXT_PUBLIC_SITE_URL}); do
+            printf '.'
+            sleep 1
+          done
+
   unit-test:
     runs-on: ubuntu-latest
     steps:
