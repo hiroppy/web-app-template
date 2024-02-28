@@ -174,10 +174,10 @@ async function docker() {
   await removeWords(".github/workflows/ci.yml", fence);
 
   async function run() {
-    await Promise.all(
+    await Promise.all([
       removeFiles(["Dockerfile"]),
       removeLines([[".github/workflows/ci.yml", fence]]),
-    );
+    ]);
   }
 }
 
