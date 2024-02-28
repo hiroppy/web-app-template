@@ -50,9 +50,10 @@ jobs:
             --build-arg NEXTAUTH_SECRET=${{env.NEXTAUTH_SECRET}} \
             --build-arg NEXT_PUBLIC_SITE_URL=${{env.NEXT_PUBLIC_SITE_URL}} \
             .
+      - run: docker run -d -p 3000:3000 app:${{github.event.number}}
       - run: |
           until $(curl --output /dev/null --silent --fail ${{env.NEXT_PUBLIC_SITE_URL}}); do
-            printf '.'
+            printf '!'
             sleep 1
           done
         timeout-minutes: 1
