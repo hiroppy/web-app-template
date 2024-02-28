@@ -51,11 +51,11 @@ jobs:
             --build-arg NEXT_PUBLIC_SITE_URL=${{env.NEXT_PUBLIC_SITE_URL}} \
             .
       - run: |
-          until $(curl --output /dev/null --silent --fail ${env.NEXT_PUBLIC_SITE_URL}); do
+          until $(curl --output /dev/null --silent --fail ${{env.NEXT_PUBLIC_SITE_URL}}); do
             printf '.'
             sleep 1
           done
-        shell: bash
+        timeout-minutes: 1
 
   unit-test:
     runs-on: ubuntu-latest
