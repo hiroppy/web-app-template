@@ -127,7 +127,7 @@ async function docker() {
   title("docker");
 
   if (isRemoveDocker) {
-    removeFiles(["Dockerfile"]);
+    run();
 
     return;
   }
@@ -142,11 +142,23 @@ async function docker() {
     );
 
     if (answer === "y" || answer === "Y") {
-      console.log("ssss");
-      removeFiles(["Dockerfile"]);
+      run();
+      rl.close();
+
+      return;
     }
 
     rl.close();
+  }
+
+  // remove just fences
+
+  function run() {
+    removeFiles(["Dockerfile"]);
+    removeLines([
+      ".github/workflows/ci.yml",
+      ["####### docker #######", "####### docker #######"],
+    ]);
   }
 }
 
