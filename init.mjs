@@ -124,6 +124,8 @@ async function updatePackageJson() {
 }
 
 async function docker() {
+  const fence = ["####### docker #######", "####### docker #######"];
+
   title("docker");
 
   if (isRemoveDocker) {
@@ -151,14 +153,11 @@ async function docker() {
     rl.close();
   }
 
-  // remove just fences
+  // no: remove just fences
 
   function run() {
     removeFiles(["Dockerfile"]);
-    removeLines([
-      ".github/workflows/ci.yml",
-      ["####### docker #######", "####### docker #######"],
-    ]);
+    removeLines([".github/workflows/ci.yml", fence]);
   }
 }
 
