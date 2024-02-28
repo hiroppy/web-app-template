@@ -45,6 +45,7 @@ jobs:
             --build-arg POSTGRES_URL=${{env.POSTGRES_URL}} \
             --build-arg NEXTAUTH_SECRET=${{env.NEXTAUTH_SECRET}} \
             --build-arg NEXT_PUBLIC_SITE_URL=${{env.NEXT_PUBLIC_SITE_URL}} \
+            --network=dev-db \
             .
         env:
           POSTGRES_URL: postgresql://dev:1234@host.docker.internal:5432/dev?schema=public

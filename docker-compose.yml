@@ -16,3 +16,6 @@ services:
     restart: always
     ports:
       - "5433:5432"
+networks:
+  dev-db:
+    external: true
