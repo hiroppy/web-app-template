@@ -157,7 +157,7 @@ async function docker() {
 
   function run() {
     removeFiles(["Dockerfile"]);
-    removeLines([".github/workflows/ci.yml", fence]);
+    removeLines([[".github/workflows/ci.yml", fence]]);
   }
 }
 
