@@ -76,7 +76,9 @@ async function removeWords(file, words) {
       }
     }
 
-    res.push(str);
+    if (str.trim() !== "") {
+      res.push(str);
+    }
   }
 
   await writeFile(filePath, res.join("\n"));
