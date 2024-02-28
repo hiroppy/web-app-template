@@ -55,6 +55,7 @@ jobs:
             printf '.'
             sleep 1
           done
+        shell: bash
 
   unit-test:
     runs-on: ubuntu-latest
