@@ -8,6 +8,9 @@ ARG NEXT_PUBLIC_SITE_URL=''
 
 ENV PNPM_HOME="/pnpm"
 ENV PATH="$PNPM_HOME:$PATH"
+ENV POSTGRES_URL=$POSTGRES_URL
+ENV NEXTAUTH_SECRET=$NEXTAUTH_SECRET
+ENV NEXT_PUBLIC_SITE_URL=$NEXT_PUBLIC_SITE_URL
 
 RUN corepack enable
 RUN apt-get update -y && apt-get install -y openssl
@@ -22,7 +25,6 @@ RUN pnpm generate:client --generator client
 FROM base AS build
 
 RUN --mount=type=cache,id=pnpm,target=/pnpm/store pnpm i --frozen-lockfile
-RUN pnpm generate:client --generator client
 RUN pnpm build
 
 FROM base AS app

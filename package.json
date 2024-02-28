@@ -23,7 +23,7 @@
     "db:deploy": "prisma migrate deploy",
     "generate:client": "prisma generate",
     "wait": "sleep 0.5",
-    "build": "next build",
+    "build": "pnpm generate:client --generator client && next build",
     "start": "next start",
     "lint": "next lint && biome lint .",
     "fmt": "prettier -w . && biome format --write ."
