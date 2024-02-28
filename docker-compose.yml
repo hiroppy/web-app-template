@@ -10,13 +10,11 @@ services:
     restart: always
     ports:
       - "5432:5432"
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
   test-db:
     image: postgres:16
     env_file: .env.test
     restart: always
     ports:
       - "5433:5432"
-# extra_hosts:
-#   - "host.docker.internal:host-gateway"
-extra_hosts:
-  - "host.docker.internal:172.17.0.1"
