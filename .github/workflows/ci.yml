@@ -46,13 +46,13 @@ jobs:
       - uses: ./.github/actions/setup-db
       - run: |
           docker build \
-            -t app:${{github.event.number}} \
+            -t app \
             -f Dockerfile \
             --build-arg POSTGRES_URL=${{env.POSTGRES_URL}} \
             --build-arg NEXTAUTH_SECRET=${{env.NEXTAUTH_SECRET}} \
             --build-arg NEXT_PUBLIC_SITE_URL=${{env.NEXT_PUBLIC_SITE_URL}} \
             .
-      - run: docker run -d -p 3000:3000 app:${{github.event.number}}
+      - run: docker run -d -p 3000:3000 app
       - run: |
           until $(curl --output /dev/null --silent --fail ${{env.NEXT_PUBLIC_SITE_URL}}); do
             printf '!'
