@@ -1,6 +1,6 @@
 {
   "name": "",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "",
   "packageManager": "pnpm@8.15.4",
   "scripts": {
@@ -9,14 +9,15 @@
     "dev:db:setup": "pnpm db:start && pnpm dev:db:migrate && pnpm dev:db:generate",
     "dev:db:migrate": "dotenv -e .env.local -- prisma migrate dev",
     "dev:db:reset": "dotenv -e .env.local -- pnpm db:reset",
-    "dev:db:studio": "dotenv -e .env.local -- prisma studio",
     "dev:db:generate": "dotenv -e .env.local -- pnpm generate:client",
+    "dev:db:studio": "dotenv -e .env.local -- prisma studio",
     "test": "dotenv -e .env.test -- vitest run",
     "test:watch": "dotenv -e .env.test -- vitest watch",
-    "test:db:setup": "pnpm db:start && dotenv -e .env.test -- pnpm db:deploy && pnpm test:db:generate",
+    "test:e2e": "dotenv -e .env.test -- playwright test",
+    "test:db:setup": "pnpm db:start && pnpm test:db:migrate && pnpm test:db:generate",
+    "test:db:migrate": "dotenv -e .env.test -- pnpm db:deploy",
     "test:db:reset": "dotenv -e .env.test -- pnpm db:reset",
     "test:db:generate": "dotenv -e .env.test -- pnpm generate:client --generator client",
-    "test:e2e": "dotenv -e .env.test -- playwright test",
     "db:start": "docker-compose up -d && pnpm wait",
     "db:stop": "docker-compose stop",
     "db:reset": "prisma migrate reset -f",
@@ -26,7 +27,7 @@
     "build": "pnpm generate:client --generator client && next build",
     "start": "next start",
     "lint": "next lint && biome lint .",
-    "fmt": "prettier -w . && biome format --write ."
+    "fmt": "prettier -w './**/*.{md,yml}' && biome format --write ."
   },
   "dependencies": {
     "@hookform/resolvers": "3.3.4",
@@ -51,7 +52,6 @@
     "dotenv-cli": "7.3.0",
     "eslint": "8.57.0",
     "eslint-config-next": "14.1.0",
-    "jsdom": "24.0.0",
     "lint-staged": "15.2.2",
     "postcss": "8.4.35",
     "prettier": "3.2.5",

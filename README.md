@@ -15,7 +15,7 @@ This template is based on create-next-app but has below new tech and configs.
 |             | Prisma (orm)            | React Hook Form (form)   | Zod (validator)         |
 | **tools**   | TypeScript (language)   | Biome (linter, fmt)      | Prettier (linter)       |
 |             | ESLint (linter)         | lint-staged (pre-commit) |                         |
-| **testing** | Vitest (test runner)    | Playwright (e2e testing) |                         |
+| **testing** | Vitest (test runner)    | Playwright (e2e testing) | Testing Library (react) |
 | **others**  | workflows (ci)          | .vscode (editor)         | Docker Compose (docker) |
 |             | Renovate (deps manager) |                          |                         |
 

@@ -16,6 +16,6 @@
   },
   "files": {
     "ignoreUnknown": true,
-    "ignore": ["./.next"]
+    "ignore": [".next"]
   }
 }

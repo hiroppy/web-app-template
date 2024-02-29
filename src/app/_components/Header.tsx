@@ -1,28 +1,29 @@
-"use client";
-
-import { signIn, signOut, useSession } from "next-auth/react";
+import { getServerSession } from "next-auth";
 import Image from "next/image";
 import Link from "next/link";
+import { options } from "../_clients/nextAuth";
+import { SignInButton } from "./SignInButton";
+import { SignOutButton } from "./SignOutButton";
 
-export function Header() {
-  const { status, data } = useSession();
+export async function Header() {
+  const session = await getServerSession(options);
 
   return (
     <header className="px-8 py-3 flex items-center justify-between border-b border-b-gray-600">
-      {data?.user?.image ? (
+      {session?.user?.image ? (
         <Image
-          src={data?.user?.image}
+          src={session?.user?.image}
           width={40}
           height={40}
           className="rounded-full"
-          alt={data?.user?.name ?? "no name"}
+          alt={session?.user?.name ?? "no name"}
           priority
         />
       ) : (
         <i className="w-10 h-10 rounded-full bg-gray-600" />
       )}
       <div className="flex gap-4 items-center">
-        {status === "authenticated" && (
+        {session && (
           <Link
             href="/create"
             className="bg-blue-300 py-2 px-4 rounded-md text-gray-800"
@@ -32,17 +33,7 @@ export function Header() {
             Add an item
           </Link>
         )}
-        {status === "authenticated" ? (
-          <button type="button" onClick={() => signOut()} role="button">
-            Sign out
-          </button>
-        ) : status === "unauthenticated" ? (
-          <button type="button" onClick={() => signIn()} role="button">
-            Sign in
-          </button>
-        ) : (
-          <span>loading</span>
-        )}
+        {session ? <SignOutButton /> : <SignInButton />}
       </div>
     </header>
   );

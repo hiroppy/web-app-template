@@ -1,7 +1,7 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import { PropsWithChildren, useLayoutEffect, useRef } from "react";
+import { type PropsWithChildren, useLayoutEffect, useRef } from "react";
 
 type Props = PropsWithChildren;
 

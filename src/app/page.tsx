@@ -4,6 +4,8 @@ import Image from "next/image";
 import { Suspense } from "react";
 import { deleteAll } from "./_actions/items";
 import { options } from "./_clients/nextAuth";
+import { Button } from "./_components/Button";
+import { format } from "./_utils/date";
 
 export default async function Page() {
   return (
@@ -30,12 +32,12 @@ async function Status() {
       </p>
       {session?.user && (
         <form action={deleteAll}>
-          <button
+          <Button
             type="submit"
             className="py-2 px-4 bg-orange-800 rounded-md text-sm text-gray-100"
           >
             Delete my items
-          </button>
+          </Button>
         </form>
       )}
     </div>
@@ -57,7 +59,7 @@ async function List() {
       {data.map(({ id, content, createdAt, user }) => (
         <div
           key={id}
-          className="border border-gray-600 p-4 flex justify-between items-start"
+          className="border border-gray-600 p-4 flex justify-between items-start rounded-md"
           role="listitem"
         >
           <div className="flex justify-center gap-4 items-center">
@@ -78,15 +80,7 @@ async function List() {
               {content}
             </h2>
           </div>
-          <span className="text-sm text-gray-300">
-            {createdAt.toLocaleDateString("ja-JP", {
-              weekday: "long",
-              month: "long",
-              day: "numeric",
-              hour: "numeric",
-              minute: "numeric",
-            })}
-          </span>
+          <span className="text-sm text-gray-300">{format(createdAt)}</span>
         </div>
       ))}
     </section>
