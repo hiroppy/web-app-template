@@ -20,6 +20,7 @@
   "[prisma]": {
     "editor.defaultFormatter": "Prisma.prisma"
   },
+  "prettier.requireConfig": false,
   "cSpell.enabled": true,
   "cSpell.words": ["biomejs", "nvmrc"],
   "cSpell.allowCompoundWords": true,
