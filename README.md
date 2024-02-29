@@ -149,13 +149,13 @@ $ pnpm dev:db:studio
 Test uses also DB so need to start DB first.
 
 ```sh
-# unit tests
+# unit test
 
 # run the DB and generate the client
 $ pnpm test:db:setup
 # execute
 $ pnpm test
-# watch the unit tests
+# watch the unit test
 $ pnpm test:watch
 # reset the DB
 $ pnpm test:db:reset
@@ -173,3 +173,11 @@ $ pnpm test:e2e
 ```
 
 💁‍♀️ This template recommends using a real database but when you face not keeping idempotency, you might consider using mock.
+
+## Prod
+
+```
+$ pnpm db:start
+$ pnpm build
+$ pnpm start
+```
