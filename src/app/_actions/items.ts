@@ -2,7 +2,7 @@
 
 import { options } from "@/app/_clients/nextAuth";
 import { prisma } from "@/app/_clients/prisma";
-import { Schema, schema } from "@/app/_schema/create";
+import { Schema, schema } from "@/app/_schemas/create";
 import { getServerSession } from "next-auth";
 import { revalidatePath } from "next/cache";
 

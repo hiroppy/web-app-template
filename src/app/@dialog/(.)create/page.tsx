@@ -1,7 +1,7 @@
 "use client";
 
 import { create } from "@/app/_actions/items";
-import { type Schema, schema } from "@/app/_schema/create";
+import { type Schema, schema } from "@/app/_schemas/create";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "next/navigation";
 import { useTransition } from "react";
