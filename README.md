@@ -9,20 +9,23 @@
 
 This template is based on create-next-app but has below new tech and configs.
 
-| Kind        |                           |                           |                            |
-| ----------- | ------------------------- | ------------------------- | -------------------------- |
-| **App**     | Next.js (Framework)       | Tailwind CSS (CSS)        |                            |
-|             | React Hook Form (Form)    | Zod (Schema Validator)    |                            |
-|             | Prisma (ORM)              | NextAuth.js (Auth)        |                            |
-| **Tools**   | TypeScript (Language)     | pnpm (Package Manager)    | NVM (Node Version manager) |
-|             | Biome (Linter, Formatter) | ESLint (Linter byNext.js) | Prettier (Linter)          |
-|             | lint-staged (Pre Commit)  | Docker Compose (Docker)   |                            |
-| **Testing** | Vitest (Test Runner)      | Testing Library (React)   | Playwright (E2E Testing)   |
-| **Others**  | GitHub Workflows (CI)     | Renovate (Deps Manager)   | .vscode (Editor)           |
+| Kind        |                           |                            |                            |
+| ----------- | ------------------------- | -------------------------- | -------------------------- |
+| **App**     | Next.js (Framework)       | Tailwind CSS (CSS)         |                            |
+|             | React Hook Form (Form)    | Zod (Schema Validator)     |                            |
+|             | Prisma (ORM)              | NextAuth.js (Auth)         |                            |
+|             |                           |                            |                            |
+| **Tools**   | TypeScript (Language)     | pnpm (Package Manager)     | NVM (Node Version manager) |
+|             | Biome (Linter, Formatter) | ESLint (Linter by Next.js) | Prettier (Linter)          |
+|             | lint-staged (Pre Commit)  | Docker Compose (Docker)    |                            |
+|             |                           |                            |                            |
+| **Testing** | Vitest (Test Runner)      | Testing Library (React)    | Playwright (E2E Testing)   |
+|             |                           |                            |                            |
+| **Others**  | GitHub Workflows (CI)     | Renovate (Deps Manager)    | .vscode (Editor)           |
 
 Just running create-next-app does not satisfy the dependencies, development environment, and CI environment to create a web application. In addition, many dependencies require setting configs for example, `@next-auth/prisma-adapter` requires adding many schemas to `schema.prisma` but we don't know what we add so always need to check the docs every time. This project is created as a template with minimal code in advance so that you can focus on development.
 
-## What does this project support?
+## 🐕 What does this project support?
 
 <details>
   <summary>Next.js</summary>
@@ -80,7 +83,7 @@ Just running create-next-app does not satisfy the dependencies, development envi
 
 ### GitHub Template
 
-This repo is a github template so click the "Use this template" button and you will create your repo.
+This repo is a github template so click the ["Use this template"](https://github.com/new?template_owner=hiroppy&template_name=web-app-template) button and you will create your repo.
 
 ### CLI
 
@@ -94,33 +97,40 @@ npx create-app-foundation
 
 ## Setup
 
-**Installing Docker Compose**
+**1. Installing Docker Compose**
 
 Please check [Installation scenarios](https://docs.docker.com/compose/install/) section.
 
-**Enabling git hook and corepack**
+**2. Enabling git hook and corepack**
 
 ```sh
 npm run setup
 ```
 
-**Installing Deps**
+**3. Installing Deps**
 
 ```sh
 pnpm i
 ```
 
-**Creating `.env.local` and modifying env**
+**4. Creating `.env.local` and modifying environment variables**
 
 ```sh
 cp .env.sample .env.local
 ```
 
-If you use Google OAuth, you need to set `GOOGLE_CLIENT_ID` and `GOOGLE_CLIENT_SECRET`, if not, you can remove a provider from `_clients/NextAuth.ts`.
+Set the following environment variables in `.env.local`.
+
+```
+GOOGLE_CLIENT_ID=
+GOOGLE_CLIENT_SECRET=
+```
+
+_If you don't use Google OAuth, you can remove a provider from `_clients/NextAuth.ts`._
 
 <!-- 👉 remove -->
 
-**Running init.mjs**
+**5. Running init.mjs**
 
 - generating DB migration files
 - removing unnecessary code
