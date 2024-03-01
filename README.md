@@ -9,15 +9,16 @@
 
 This template is based on create-next-app but has below new tech and configs.
 
-| kind        |                         |                          |                         |
-| ----------- | ----------------------- | ------------------------ | ----------------------- |
-| **app**     | Next.js (framework)     | Tailwind CSS (css)       | NextAuth.js (auth)      |
-|             | Prisma (orm)            | React Hook Form (form)   | Zod (validator)         |
-| **tools**   | TypeScript (language)   | Biome (linter, fmt)      | Prettier (linter)       |
-|             | ESLint (linter)         | lint-staged (pre-commit) |                         |
-| **testing** | Vitest (test runner)    | Playwright (e2e testing) | Testing Library (react) |
-| **others**  | workflows (ci)          | .vscode (editor)         | Docker Compose (docker) |
-|             | Renovate (deps manager) |                          |                         |
+| Kind        |                           |                           |                            |
+| ----------- | ------------------------- | ------------------------- | -------------------------- |
+| **App**     | Next.js (Framework)       | Tailwind CSS (CSS)        |                            |
+|             | React Hook Form (Form)    | Zod (Schema Validator)    |                            |
+|             | Prisma (ORM)              | NextAuth.js (Auth)        |                            |
+| **Tools**   | TypeScript (Language)     | pnpm (Package Manager)    | NVM (Node Version manager) |
+|             | Biome (Linter, Formatter) | ESLint (Linter byNext.js) | Prettier (Linter)          |
+|             | lint-staged (Pre Commit)  | Docker Compose (Docker)   |                            |
+| **Testing** | Vitest (Test Runner)      | Testing Library (React)   | Playwright (E2E Testing)   |
+| **Others**  | GitHub Workflows (CI)     | Renovate (Deps Manager)   | .vscode (Editor)           |
 
 Just running create-next-app does not satisfy the dependencies, development environment, and CI environment to create a web application. In addition, many dependencies require setting configs for example, `@next-auth/prisma-adapter` requires adding many schemas to `schema.prisma` but we don't know what we add so always need to check the docs every time. This project is created as a template with minimal code in advance so that you can focus on development.
 
@@ -56,6 +57,7 @@ Just running create-next-app does not satisfy the dependencies, development envi
   <summary>Biome, Prettier, ESLint</summary>
   
   - introducing how to control these when pre-commit
+  - assigning Prisma, Biome, Prettier to each language for vscode
 </details>
 
 <details>
@@ -67,10 +69,10 @@ Just running create-next-app does not satisfy the dependencies, development envi
 </details>
 
 <details>
-  <summary>Visual Studio Code</summary>
+  <summary>CI</summary>
 
-- assigning Prisma, Biome, Prettier to each language
-- introducing cSpell to notice a typo
+- CI tasks: lint, build, unit test, e2e test
+- Prod tasks: migrating DB when main branch
 
 </details>
 
@@ -85,7 +87,7 @@ This repo is a github template so click the "Use this template" button and you w
 [`create-app-foundation`](https://github.com/hiroppy/create-app-foundation) creates a directory based on this template and skips the setup section automatically.
 
 ```sh
-$ npx create-app-foundation
+npx create-app-foundation
 ```
 
 <!-- ######## -->
@@ -99,19 +101,19 @@ Please check [Installation scenarios](https://docs.docker.com/compose/install/) 
 **Enabling git hook and corepack**
 
 ```sh
-$ npm run setup
+npm run setup
 ```
 
 **Installing Deps**
 
 ```sh
-$ pnpm i
+pnpm i
 ```
 
 **Creating `.env.local` and modifying env**
 
 ```sh
-$ cp .env.sample .env.local
+cp .env.sample .env.local
 ```
 
 If you use Google OAuth, you need to set `GOOGLE_CLIENT_ID` and `GOOGLE_CLIENT_SECRET`, if not, you can remove a provider from `_clients/NextAuth.ts`.
@@ -125,7 +127,7 @@ If you use Google OAuth, you need to set `GOOGLE_CLIENT_ID` and `GOOGLE_CLIENT_S
 - updating name in package.json using directory name
 
 ```sh
-$ node init.mjs
+node init.mjs
 ```
 
 <!-- ######## -->
@@ -134,13 +136,13 @@ $ node init.mjs
 
 ```sh
 # start docker-compose, migrations(generating the client), and next dev
-$ pnpm dev
+pnpm dev
 # create new migration
-$ pnpm dev:db:migrate
+pnpm dev:db:migrate
 # reset the DB
-$ pnpm dev:db:reset
+pnpm dev:db:reset
 # view the contents
-$ pnpm dev:db:studio
+pnpm dev:db:studio
 ```
 
 📙 [Database ER diagram](/prisma/ERD.md)
@@ -153,32 +155,34 @@ Test uses also DB so need to start DB first.
 # unit test
 
 # run the DB and generate the client
-$ pnpm test:db:setup
+pnpm test:db:setup
 # execute
-$ pnpm test
+pnpm test
 # watch the unit test
-$ pnpm test:watch
+pnpm test:watch
 # reset the DB
-$ pnpm test:db:reset
+pnpm test:db:reset
 
 # e2e
 
 # install chrome
-$ pnpm exec playwright install chrome
+pnpm exec playwright install chrome
 # run the DB and generate the client
-$ pnpm test:db:setup
+pnpm test:db:setup
 # test uses a built app since next.js has different cache behavior between development and production
-$ pnpm build
+pnpm build
 # execute
-$ pnpm test:e2e
+pnpm test:e2e
 ```
 
 💁‍♀️ This template recommends using a real database but when you face not keeping idempotency, you might consider using mock.
 
 ## Prod
 
+```sh
+pnpm db:start
+pnpm build
+pnpm start
 ```
-$ pnpm db:start
-$ pnpm build
-$ pnpm start
-```
+
+If you set `POSTGRESQL_URL` as GitHub secrets, you will be able to execute migration for database on GitHub actions(`.github/workflows/migration.yml`).
