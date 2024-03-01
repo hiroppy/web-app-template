@@ -1,4 +1,4 @@
-name: Migration
+name: migration
 
 on:
   push:
@@ -14,8 +14,8 @@ jobs:
     # please remove this after you set the secrsts
     if: false
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
       - uses: ./.github/actions/setup-db
       - run: pnpm db:deploy
         env:
-          DATABASE_URL: ${{ secrets.DATABASE_URL != '' }}
+          DATABASE_URL: ${{secrets.POSTGRES_URL}}
