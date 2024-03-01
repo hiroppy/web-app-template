@@ -2,14 +2,16 @@ name: ci
 
 on:
   pull_request:
-    branches: [main]
+    branches:
+      - main
     paths:
       - package.json
       - src/**
       - e2e/**
       - .github/workflows/ci.yml
   push:
-    branches: [main]
+    branches:
+      - main
     paths:
       - package.json
       - src/**

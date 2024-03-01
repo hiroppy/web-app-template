@@ -1,0 +1,21 @@
+name: Migration
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - prisma/**
+  workflow_dispatch:
+
+jobs:
+  migrate:
+    runs-on: ubuntu-latest
+    # please remove this after you set the secrsts
+    if: false
+    steps:
+      - uses: actions/checkout@v2
+      - uses: ./.github/actions/setup-db
+      - run: pnpm db:deploy
+        env:
+          DATABASE_URL: ${{ secrets.DATABASE_URL != '' }}

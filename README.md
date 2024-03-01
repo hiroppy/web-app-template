@@ -39,6 +39,7 @@ Just running create-next-app does not satisfy the dependencies, development envi
 - introducing dev/test env using Docker Compose and PostgreSQL
 - fixing [well-known Next.js issue](https://www.prisma.io/docs/orm/more/help-and-troubleshooting/help-articles/nextjs-prisma-client-dev-practices)
 - generating ERD automatically
+- running migration on github actions
 
 </details>
 
