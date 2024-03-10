@@ -5,7 +5,7 @@ import { type Schema, schema } from "@/app/_schemas/create";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "next/navigation";
 import { useTransition } from "react";
-import { SubmitHandler, useForm } from "react-hook-form";
+import { type SubmitHandler, useForm } from "react-hook-form";
 import { Dialog } from "../_components/Dialog";
 
 // bug: https://github.com/vercel/next.js/discussions/58431
