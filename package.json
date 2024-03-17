@@ -37,7 +37,7 @@
     "next-auth": "4.24.7",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "react-hook-form": "7.51.0",
+    "react-hook-form": "7.51.1",
     "zod": "3.22.4"
   },
   "devDependencies": {
