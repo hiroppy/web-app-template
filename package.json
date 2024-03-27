@@ -37,7 +37,7 @@
     "next-auth": "4.24.7",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "react-hook-form": "7.51.1",
+    "react-hook-form": "7.51.2",
     "zod": "3.22.4"
   },
   "devDependencies": {
@@ -45,7 +45,7 @@
     "@playwright/test": "1.42.1",
     "@testing-library/react": "14.2.2",
     "@types/node": "20.11.30",
-    "@types/react": "18.2.71",
+    "@types/react": "18.2.72",
     "@types/react-dom": "18.2.22",
     "@vitejs/plugin-react": "4.2.1",
     "autoprefixer": "10.4.19",
