@@ -16,7 +16,7 @@ This template is based on create-next-app but has below new tech and configs.
 |             | Prisma (ORM)              | NextAuth.js (Auth)      |                            |
 |             |                           |                         |                            |
 | **Tools**   | TypeScript (Language)     | pnpm (Package Manager)  | NVM (Node Version manager) |
-|             | Biome (Linter, Formatter) | Prettier (Linter)       |                            |
+|             | Biome (Linter, Formatter) | Prettier (Formatter)    |                            |
 |             | lint-staged (Pre Commit)  | Docker Compose (Docker) |                            |
 |             |                           |                         |                            |
 | **Testing** | Vitest (Test Runner)      | Testing Library (React) | Playwright (E2E Testing)   |
