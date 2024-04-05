@@ -1,13 +1,16 @@
 import { prisma } from "@/app/_clients/prisma";
-import { PrismaAdapter } from "@next-auth/prisma-adapter";
+import { PrismaAdapter } from "@auth/prisma-adapter";
 import type { NextAuthOptions } from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
 
 export const options: NextAuthOptions = {
-  debug: process.env.NODE_ENV === "development",
   session: {
     strategy: "database",
   },
+  pages: {
+    signIn: "/auth/signin",
+  },
+  // @ts-expect-error https://github.com/nextauthjs/next-auth/issues/9493
   adapter: PrismaAdapter(prisma),
   providers: [
     GoogleProvider({

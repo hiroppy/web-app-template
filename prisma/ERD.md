@@ -54,7 +54,7 @@ erDiagram
   "items" {
     String id "🗝️"
     String content
-    String userId
+    String user_id
     DateTime created_at
     DateTime updated_at
     }

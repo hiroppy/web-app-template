@@ -24,7 +24,7 @@ async function Status() {
   const session = await getServerSession(options);
 
   return (
-    <div className="flex justify-between">
+    <div className="flex justify-between gap-3 flex-col md:flex-row">
       <p className="text-gray-300">
         {session?.user
           ? `you are signed in as ${session.user.name} 😄`
