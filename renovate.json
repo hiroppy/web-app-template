@@ -31,7 +31,7 @@
       "matchManagers": ["npm"],
       "groupName": "linter deps",
       "extends": ["packages:linters"],
-      "matchPackagePatterns": ["^@biomejs", "^eslint", "^prettier"],
+      "matchPackagePatterns": ["^@biomejs", "^prettier"],
       "automerge": true,
       "major": {
         "automerge": false

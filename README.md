@@ -9,19 +9,19 @@
 
 This template is based on create-next-app but has below new tech and configs.
 
-| Kind        |                           |                            |                            |
-| ----------- | ------------------------- | -------------------------- | -------------------------- |
-| **App**     | Next.js (Framework)       | Tailwind CSS (CSS)         |                            |
-|             | React Hook Form (Form)    | Zod (Schema Validator)     |                            |
-|             | Prisma (ORM)              | NextAuth.js (Auth)         |                            |
-|             |                           |                            |                            |
-| **Tools**   | TypeScript (Language)     | pnpm (Package Manager)     | NVM (Node Version manager) |
-|             | Biome (Linter, Formatter) | ESLint (Linter by Next.js) | Prettier (Linter)          |
-|             | lint-staged (Pre Commit)  | Docker Compose (Docker)    |                            |
-|             |                           |                            |                            |
-| **Testing** | Vitest (Test Runner)      | Testing Library (React)    | Playwright (E2E Testing)   |
-|             |                           |                            |                            |
-| **Others**  | GitHub Workflows (CI)     | Renovate (Deps Manager)    | .vscode (Editor)           |
+| Kind        |                           |                         |                            |
+| ----------- | ------------------------- | ----------------------- | -------------------------- |
+| **App**     | Next.js (Framework)       | Tailwind CSS (CSS)      |                            |
+|             | React Hook Form (Form)    | Zod (Schema Validator)  |                            |
+|             | Prisma (ORM)              | NextAuth.js (Auth)      |                            |
+|             |                           |                         |                            |
+| **Tools**   | TypeScript (Language)     | pnpm (Package Manager)  | NVM (Node Version manager) |
+|             | Biome (Linter, Formatter) | Prettier (Linter)       |                            |
+|             | lint-staged (Pre Commit)  | Docker Compose (Docker) |                            |
+|             |                           |                         |                            |
+| **Testing** | Vitest (Test Runner)      | Testing Library (React) | Playwright (E2E Testing)   |
+|             |                           |                         |                            |
+| **Others**  | GitHub Workflows (CI)     | Renovate (Deps Manager) | .vscode (Editor)           |
 
 Just running create-next-app does not satisfy the dependencies, development environment, and CI environment to create a web application. In addition, many dependencies require setting configs for example, `@next-auth/prisma-adapter` requires adding many schemas to `schema.prisma` but we don't know what we add so always need to check the docs every time. This project is created as a template with minimal code in advance so that you can focus on development.
 
@@ -57,7 +57,7 @@ Just running create-next-app does not satisfy the dependencies, development envi
 </details>
 
 <details>
-  <summary>Biome, Prettier, ESLint</summary>
+  <summary>Biome, Prettier</summary>
   
   - introducing how to control these when pre-commit
   - assigning Prisma, Biome, Prettier to each language for vscode
