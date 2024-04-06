@@ -44,7 +44,7 @@
     "@biomejs/biome": "1.6.4",
     "@playwright/test": "1.43.0",
     "@testing-library/react": "14.2.2",
-    "@types/node": "20.12.4",
+    "@types/node": "20.12.5",
     "@types/react": "18.2.74",
     "@types/react-dom": "18.2.24",
     "@vitejs/plugin-react": "4.2.1",
