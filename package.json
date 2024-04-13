@@ -2,7 +2,7 @@
   "name": "",
   "version": "0.0.1",
   "description": "",
-  "packageManager": "pnpm@8.15.6",
+  "packageManager": "pnpm@8.15.7",
   "scripts": {
     "setup": "git config --local core.hooksPath .githooks && corepack enable pnpm",
     "dev": "pnpm dev:db:setup && next dev",
