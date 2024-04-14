@@ -14,11 +14,12 @@ export async function create(data: Schema) {
   }
 
   const session = await getServerSession(options);
-  const res = await prisma.$transaction(async (prisma) => {
-    if (!session?.user?.id) {
-      throw new Error("no session token");
-    }
 
+  if (!session?.user?.id) {
+    throw new Error("no session token");
+  }
+
+  const res = await prisma.$transaction(async (prisma) => {
     const res = await prisma.item.create({
       data: {
         content: validatedFields.data.content,
