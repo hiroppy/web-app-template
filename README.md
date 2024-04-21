@@ -9,19 +9,19 @@
 
 This template is based on create-next-app but has below new tech and configs.
 
-| Kind        |                           |                         |                            |
-| ----------- | ------------------------- | ----------------------- | -------------------------- |
-| **App**     | Next.js (Framework)       | Tailwind CSS (CSS)      |                            |
-|             | React Hook Form (Form)    | Zod (Schema Validator)  |                            |
-|             | Prisma (ORM)              | NextAuth.js (Auth)      |                            |
-|             |                           |                         |                            |
-| **Tools**   | TypeScript (Language)     | pnpm (Package Manager)  | NVM (Node Version manager) |
-|             | Biome (Linter, Formatter) | Prettier (Formatter)    |                            |
-|             | lint-staged (Pre Commit)  | Docker Compose (Docker) |                            |
-|             |                           |                         |                            |
-| **Testing** | Vitest (Test Runner)      | Testing Library (React) | Playwright (E2E Testing)   |
-|             |                           |                         |                            |
-| **Others**  | GitHub Workflows (CI)     | Renovate (Deps Manager) | .vscode (Editor)           |
+| Kind        |                           |                         |                               |
+| ----------- | ------------------------- | ----------------------- | ----------------------------- |
+| **App**     | Next.js (Framework)       | Tailwind CSS (CSS)      |                               |
+|             | React Hook Form (Form)    | Zod (Schema Validator)  |                               |
+|             | Prisma (ORM)              | NextAuth.js (Auth)      | OpenTelemetry (Observability) |
+|             |                           |                         |                               |
+| **Tools**   | TypeScript (Language)     | pnpm (Package Manager)  | NVM (Node Version manager)    |
+|             | Biome (Linter, Formatter) | Prettier (Formatter)    |                               |
+|             | lint-staged (Pre Commit)  | Docker Compose (Docker) |                               |
+|             |                           |                         |                               |
+| **Testing** | Vitest (Test Runner)      | Testing Library (React) | Playwright (E2E Testing)      |
+|             |                           |                         |                               |
+| **Others**  | GitHub Workflows (CI)     | Renovate (Deps Manager) | .vscode (Editor)              |
 
 Just running create-next-app does not satisfy the dependencies, development environment, and CI environment to create a web application. In addition, many dependencies require setting configs for example, `@next-auth/prisma-adapter` requires adding many schemas to `schema.prisma` but we don't know what we add so always need to check the docs every time. This project is created as a template with minimal code in advance so that you can focus on development.
 
@@ -34,6 +34,7 @@ Just running create-next-app does not satisfy the dependencies, development envi
 - introducing server actions using Zod
 - setting common files like robots, opengraph-image, etc
 - supporting Docker
+- supporting observability using OpenTelemetry
 
 </details>
 
@@ -196,3 +197,27 @@ pnpm start
 ```
 
 If you set `POSTGRESQL_URL` as GitHub secrets, you will be able to execute migration for database on GitHub actions(`.github/workflows/migration.yml`).
+
+## Observability
+
+This project has [OpenTelemetry](https://opentelemetry.io/) and it works only production environment.
+
+### Local
+
+```sh
+pnpm db:start
+pnpm build
+pnpm start
+# open Jaeger
+open http://localhost:16686/
+```
+
+<!-- 👉 remove -->
+
+![jaeger](.github/assets/jaeger.png)
+
+<!-- ######## -->
+
+### Server
+
+Please add a url to `process.env.TRACE_EXPORTER_URL`.
