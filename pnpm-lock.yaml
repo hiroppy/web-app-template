@@ -54,8 +54,8 @@ importers:
         specifier: 7.51.3
         version: 7.51.3(react@18.2.0)
       zod:
-        specifier: 3.22.5
-        version: 3.22.5
+        specifier: 3.23.0
+        version: 3.23.0
     devDependencies:
       '@biomejs/biome':
         specifier: 1.7.0
@@ -2277,8 +2277,8 @@ packages:
     resolution: {integrity: sha512-9bnSc/HEW2uRy67wc+T8UwauLuPJVn28jb+GtJY16iiKWyvmYJRXVT4UamsAEGQfPohgr2q4Tq0sQbQlxTfi1g==}
     engines: {node: '>=12.20'}
 
-  zod@3.22.5:
-    resolution: {integrity: sha512-HqnGsCdVZ2xc0qWPLdO25WnseXThh0kEYKIdV5F/hTHO75hNZFp8thxSeHhiPrHZKrFTo1SOgkAj9po5bexZlw==}
+  zod@3.23.0:
+    resolution: {integrity: sha512-OFLT+LTocvabn6q76BTwVB0hExEBS0IduTr3cqZyMqEDbOnYmcU+y0tUAYbND4uwclpBGi4I4UUBGzylWpjLGA==}
 
 snapshots:
 
@@ -4432,4 +4432,4 @@ snapshots:
 
   yocto-queue@1.0.0: {}
 
-  zod@3.22.5: {}
+  zod@3.23.0: {}
