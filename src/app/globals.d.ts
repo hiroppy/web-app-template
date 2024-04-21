@@ -7,6 +7,7 @@ declare global {
       NEXT_PUBLIC_SITE_URL: string;
       GOOGLE_CLIENT_ID: string;
       GOOGLE_CLIENT_SECRET: string;
+      TRACE_EXPORTER_URL: string | /* for local */ undefined;
     }
   }
 }

@@ -23,7 +23,7 @@ await Promise.all([
 
 await docker();
 
-await removeFiles(["init.mjs"]);
+await removeFiles(["init.mjs", ".github/assets/jaeger.png"]);
 
 await format();
 
