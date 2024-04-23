@@ -64,8 +64,8 @@ importers:
         specifier: 1.43.1
         version: 1.43.1
       '@testing-library/react':
-        specifier: 15.0.2
-        version: 15.0.2(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+        specifier: 15.0.3
+        version: 15.0.3(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       '@types/node':
         specifier: 20.12.7
         version: 20.12.7
@@ -881,8 +881,8 @@ packages:
     resolution: {integrity: sha512-PmJPnogldqoVFf+EwbHvbBJ98MmqASV8kLrBYgsDNxQcFMeIS7JFL48sfyXvuMtgmWO/wMhh25odr+8VhDmn4g==}
     engines: {node: '>=18'}
 
-  '@testing-library/react@15.0.2':
-    resolution: {integrity: sha512-5mzIpuytB1ctpyywvyaY2TAAUQVCZIGqwiqFQf6u9lvj/SJQepGUzNV18Xpk+NLCaCE2j7CWrZE0tEf9xLZYiQ==}
+  '@testing-library/react@15.0.3':
+    resolution: {integrity: sha512-lrfuttDGLJbpwMZ5Staz/b2GJuyQQUHEYffK2oL9DxgoeIPxFIquv0TmzJyeI0JQkc+WJMvcRRmpP9BtWlMbgQ==}
     engines: {node: '>=18'}
     peerDependencies:
       react: ^18.0.0
@@ -1857,7 +1857,7 @@ packages:
 
   puppeteer@19.11.1:
     resolution: {integrity: sha512-39olGaX2djYUdhaQQHDZ0T0GwEp+5f9UB9HmEP0qHfdQHIq0xGQZuAZ5TLnJIc/88SrPLpEflPC+xUqOTv3c5g==}
-    deprecated: < 21.8.0 is no longer supported
+    deprecated: < 21.9.0 is no longer supported
 
   queue-microtask@1.2.3:
     resolution: {integrity: sha512-NuaNSa6flKT5JaSYQzJok04JzTL1CA6aGhv5rfLW3PgqA+M2ChpZQnAC8h8i4ZFkBS8X5RqkDBHA7r4hej3K9A==}
@@ -3007,7 +3007,7 @@ snapshots:
       lz-string: 1.5.0
       pretty-format: 27.5.1
 
-  '@testing-library/react@15.0.2(react-dom@18.2.0(react@18.2.0))(react@18.2.0)':
+  '@testing-library/react@15.0.3(react-dom@18.2.0(react@18.2.0))(react@18.2.0)':
     dependencies:
       '@babel/runtime': 7.23.9
       '@testing-library/dom': 10.0.0
