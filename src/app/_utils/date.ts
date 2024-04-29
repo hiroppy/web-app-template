@@ -5,5 +5,6 @@ export function format(date: Date) {
     day: "numeric",
     hour: "numeric",
     minute: "numeric",
+    timeZone: "Asia/Tokyo",
   });
 }
