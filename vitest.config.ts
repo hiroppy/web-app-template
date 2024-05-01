@@ -11,6 +11,7 @@ export default defineConfig({
     restoreMocks: true,
     clearMocks: true,
     include: ["./src/**/*.test.{ts,tsx}"],
+    globalSetup: "./vitest.setup.ts",
   },
   resolve: {
     alias: {
