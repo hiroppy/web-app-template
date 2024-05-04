@@ -13,7 +13,7 @@ importers:
         version: 2.0.0(@prisma/client@5.13.0(prisma@5.13.0))
       '@hookform/resolvers':
         specifier: 3.3.4
-        version: 3.3.4(react-hook-form@7.51.3(react@18.3.1))
+        version: 3.3.4(react-hook-form@7.51.4(react@18.3.1))
       '@opentelemetry/exporter-trace-otlp-grpc':
         specifier: 0.51.0
         version: 0.51.0(@opentelemetry/api@1.8.0)
@@ -51,8 +51,8 @@ importers:
         specifier: 18.3.1
         version: 18.3.1(react@18.3.1)
       react-hook-form:
-        specifier: 7.51.3
-        version: 7.51.3(react@18.3.1)
+        specifier: 7.51.4
+        version: 7.51.4(react@18.3.1)
       zod:
         specifier: 3.23.6
         version: 3.23.6
@@ -1871,8 +1871,8 @@ packages:
     peerDependencies:
       react: ^18.3.1
 
-  react-hook-form@7.51.3:
-    resolution: {integrity: sha512-cvJ/wbHdhYx8aviSWh28w9ImjmVsb5Y05n1+FW786vEZQJV5STNM0pW6ujS+oiBecb0ARBxJFyAnXj9+GHXACQ==}
+  react-hook-form@7.51.4:
+    resolution: {integrity: sha512-V14i8SEkh+V1gs6YtD0hdHYnoL4tp/HX/A45wWQN15CYr9bFRmmRdYStSO5L65lCCZRF+kYiSKhm9alqbcdiVA==}
     engines: {node: '>=12.22.0'}
     peerDependencies:
       react: ^16.8.0 || ^17 || ^18
@@ -2569,9 +2569,9 @@ snapshots:
       protobufjs: 7.2.6
       yargs: 17.7.2
 
-  '@hookform/resolvers@3.3.4(react-hook-form@7.51.3(react@18.3.1))':
+  '@hookform/resolvers@3.3.4(react-hook-form@7.51.4(react@18.3.1))':
     dependencies:
-      react-hook-form: 7.51.3(react@18.3.1)
+      react-hook-form: 7.51.4(react@18.3.1)
 
   '@isaacs/cliui@8.0.2':
     dependencies:
@@ -4020,7 +4020,7 @@ snapshots:
       react: 18.3.1
       scheduler: 0.23.2
 
-  react-hook-form@7.51.3(react@18.3.1):
+  react-hook-form@7.51.4(react@18.3.1):
     dependencies:
       react: 18.3.1
 
