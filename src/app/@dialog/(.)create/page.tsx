@@ -24,20 +24,20 @@ export default function Page() {
   });
 
   const submit: SubmitHandler<Schema> = async (values) => {
-    try {
-      if (isPending) {
-        return;
-      }
-
-      startTransition(async () => {
-        await create(values);
-      });
-      router.push("/");
-    } catch (e) {
-      if (e instanceof Error) {
-        alert(e.message);
-      }
+    if (isPending) {
+      return;
     }
+
+    startTransition(async () => {
+      try {
+        await create(values);
+        router.push("/");
+      } catch (e) {
+        if (e instanceof Error) {
+          alert(e.message);
+        }
+      }
+    });
   };
 
   return (
