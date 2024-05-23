@@ -49,7 +49,7 @@
   },
   "devDependencies": {
     "@biomejs/biome": "1.7.3",
-    "@playwright/test": "1.44.0",
+    "@playwright/test": "1.44.1",
     "@testing-library/react": "15.0.7",
     "@types/node": "20.12.12",
     "@types/react": "18.3.2",
