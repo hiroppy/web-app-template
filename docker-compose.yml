@@ -5,18 +5,15 @@ services:
   dev-db:
     image: postgres:16
     env_file: .env.local
-    restart: always
     ports:
       - "5432:5432"
   test-db:
     image: postgres:16
     env_file: .env.test
-    restart: always
     ports:
       - "5433:5432"
   jaeger:
     image: jaegertracing/all-in-one
-    restart: always
     ports:
       # frontend
       - "16686:16686"
@@ -27,7 +24,6 @@ services:
       - PROMETHEUS_QUERY_SUPPORT_SPANMETRICS_CONNECTOR=true
   otel-collector:
     image: otel/opentelemetry-collector-contrib
-    restart: always
     command: ["--config=/etc/otel-collector-config.yml"]
     volumes:
       - ./otel-collector-config.yml:/etc/otel-collector-config.yml
