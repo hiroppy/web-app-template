@@ -29,6 +29,15 @@
     },
     {
       "matchManagers": ["npm"],
+      "matchPackagePrefixes": ["@types/"],
+      "automerge": true,
+      "groupName": "npm @types",
+      "major": {
+        "automerge": false
+      }
+    },
+    {
+      "matchManagers": ["npm"],
       "groupName": "linter deps",
       "extends": ["packages:linters"],
       "matchPackagePatterns": ["^@biomejs", "^prettier"],
