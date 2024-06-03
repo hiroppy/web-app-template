@@ -1,4 +1,3 @@
-import { PrismaClient } from "@prisma/client";
 import type { DefaultUser } from "next-auth";
 
 declare global {
