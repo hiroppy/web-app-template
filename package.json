@@ -40,7 +40,7 @@
     "@opentelemetry/semantic-conventions": "1.25.1",
     "@prisma/client": "5.16.2",
     "@prisma/instrumentation": "5.16.2",
-    "next": "14.2.4",
+    "next": "14.2.5",
     "next-auth": "4.24.7",
     "react": "18.3.1",
     "react-dom": "18.3.1",
