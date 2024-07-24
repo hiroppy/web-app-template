@@ -58,7 +58,7 @@
     "autoprefixer": "10.4.19",
     "dotenv-cli": "7.4.2",
     "lint-staged": "15.2.7",
-    "postcss": "8.4.39",
+    "postcss": "8.4.40",
     "prettier": "3.3.3",
     "prisma": "5.17.0",
     "prisma-erd-generator": "1.11.2",
