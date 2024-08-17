@@ -4,6 +4,7 @@ import type { PropsWithChildren, ReactNode } from "react";
 import { Footer } from "./_components/Footer";
 import { Header } from "./_components/Header";
 import "./globals.css";
+import { AuthProvider } from "./_providers/AuthProvider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -33,10 +34,12 @@ export default function Layout({ dialog, children }: Props) {
           "has-[dialog[open]]:overflow-hidden",
         ].join(" ")}
       >
-        <Header />
-        <main className="py-4 px-8 flex-1 overflow-y-auto">{children}</main>
-        <Footer />
-        {dialog}
+        <AuthProvider>
+          <Header />
+          <main className="py-4 px-8 flex-1 overflow-y-auto">{children}</main>
+          <Footer />
+          {dialog}
+        </AuthProvider>
       </body>
     </html>
   );

@@ -1,6 +1,7 @@
 import { prisma } from "@/app/_clients/prisma";
 import { getServerSession } from "next-auth";
 import Image from "next/image";
+import Link from "next/link";
 import { Suspense } from "react";
 import { deleteAll } from "./_actions/items";
 import { options } from "./_clients/nextAuth";
@@ -73,12 +74,12 @@ async function List() {
                 priority
               />
             )}
-            <h2
-              className="font-semibold md:text-xl break-all"
-              title="memo title"
+            <Link
+              href={`/items/${id}`}
+              className="font-semibold md:text-xl break-all underline"
             >
               {content}
-            </h2>
+            </Link>
           </div>
           <span className="text-sm text-gray-300">{format(createdAt)}</span>
         </div>

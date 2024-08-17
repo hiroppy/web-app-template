@@ -19,16 +19,6 @@ erDiagram
     }
 
 
-  "sessions" {
-    String id "🗝️"
-    String session_token
-    String user_id
-    DateTime expires
-    DateTime created_at
-    DateTime updated_at
-    }
-
-
   "users" {
     String id "🗝️"
     String name "❓"
@@ -42,15 +32,6 @@ erDiagram
     }
 
 
-  "verificationtokens" {
-    String identifier
-    String token
-    DateTime expires
-    DateTime created_at
-    DateTime updated_at
-    }
-
-
   "items" {
     String id "🗝️"
     String content
@@ -60,9 +41,7 @@ erDiagram
     }
 
     "accounts" o|--|| "users" : "user"
-    "sessions" o|--|| "users" : "user"
     "users" o{--}o "accounts" : "accounts"
-    "users" o{--}o "sessions" : "sessions"
     "users" o{--}o "items" : "items"
     "items" o|--|| "users" : "user"
 ```

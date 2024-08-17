@@ -1,3 +1,5 @@
+import "next-auth";
+import "next-auth/jwt";
 import type { DefaultUser } from "next-auth";
 
 declare global {
@@ -11,13 +13,28 @@ declare global {
   }
 }
 
-declare module "next-auth" {
-  interface User {
-    id: string;
-    role: "user" | "admin";
-  }
+interface UserInfo extends DefaultUser {
+  id: string;
+  role: "user" | "admin";
+}
 
-  interface Session {
-    user: User;
+interface TokenError {
+  error?: "RefreshAccessTokenError";
+}
+
+declare module "next-auth" {
+  interface User extends UserInfo {}
+
+  interface Session extends TokenError {
+    user: UserInfo;
+  }
+}
+
+declare module "next-auth/jwt" {
+  interface JWT extends TokenError {
+    accessToken: string;
+    expiresAt: number;
+    refreshToken: string;
+    user: UserInfo;
   }
 }
