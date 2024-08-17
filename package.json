@@ -44,7 +44,7 @@
     "next-auth": "4.24.7",
     "react": "18.3.1",
     "react-dom": "18.3.1",
-    "react-hook-form": "7.52.1",
+    "react-hook-form": "7.52.2",
     "zod": "3.23.8"
   },
   "devDependencies": {
@@ -55,14 +55,14 @@
     "@types/react": "18.3.3",
     "@types/react-dom": "18.3.0",
     "@vitejs/plugin-react": "4.3.1",
-    "autoprefixer": "10.4.19",
+    "autoprefixer": "10.4.20",
     "dotenv-cli": "7.4.2",
-    "lint-staged": "15.2.7",
-    "postcss": "8.4.40",
+    "lint-staged": "15.2.9",
+    "postcss": "8.4.41",
     "prettier": "3.3.3",
     "prisma": "5.17.0",
     "prisma-erd-generator": "1.11.2",
-    "tailwindcss": "3.4.7",
+    "tailwindcss": "3.4.10",
     "typescript": "5.5.4",
     "vitest": "2.0.5"
   }
