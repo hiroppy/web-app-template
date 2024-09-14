@@ -19,6 +19,8 @@ next-env.d.ts
 
 storageState.json
 
+test-results
+
 ####### 👉 remove #######
 migrations
 ########################

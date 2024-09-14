@@ -55,12 +55,11 @@ async function List() {
   });
 
   return (
-    <section className="space-y-4" role="list" aria-label="items">
+    <ul className="space-y-4" aria-label="items">
       {data.map(({ id, content, createdAt, user }) => (
-        <div
+        <li
           key={id}
           className="border border-gray-600 p-4 flex justify-between items-start rounded-md"
-          role="listitem"
         >
           <div className="flex justify-center gap-4 items-center">
             {user.image && (
@@ -81,8 +80,8 @@ async function List() {
             </h2>
           </div>
           <span className="text-sm text-gray-300">{format(createdAt)}</span>
-        </div>
+        </li>
       ))}
-    </section>
+    </ul>
   );
 }
