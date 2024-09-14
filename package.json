@@ -26,7 +26,7 @@
     "wait": "sleep 0.5",
     "build": "pnpm generate:client --generator client && next build",
     "start": "next start",
-    "lint": "biome lint . --apply",
+    "lint": "biome lint . --write",
     "fmt": "prettier -w './**/*.{md,yml}' && biome format --write ."
   },
   "dependencies": {
@@ -48,7 +48,7 @@
     "zod": "3.23.8"
   },
   "devDependencies": {
-    "@biomejs/biome": "1.8.3",
+    "@biomejs/biome": "1.9.0",
     "@playwright/test": "1.47.1",
     "@testing-library/react": "16.0.1",
     "@types/node": "22.5.5",
