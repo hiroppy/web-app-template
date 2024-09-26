@@ -22,7 +22,7 @@
   },
   "prettier.requireConfig": false,
   "cSpell.enabled": true,
-  "cSpell.words": ["biomejs", "nvmrc", "otel", "otlp"],
+  "cSpell.words": ["biomejs", "otel", "otlp"],
   "cSpell.allowCompoundWords": true,
   "cSpell.ignorePaths": ["**/node_modules/**", "**/vscode-extension/**"]
 }
