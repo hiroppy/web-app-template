@@ -51,7 +51,7 @@
     "@biomejs/biome": "1.9.2",
     "@playwright/test": "1.47.2",
     "@testing-library/react": "16.0.1",
-    "@types/node": "22.7.2",
+    "@types/node": "22.7.3",
     "@types/react": "18.3.9",
     "@types/react-dom": "18.3.0",
     "@vitejs/plugin-react": "4.3.1",
