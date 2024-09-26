@@ -46,13 +46,13 @@ export async function deleteAll() {
     throw new Error("no session token");
   }
 
-  const res = await prisma.item.deleteMany({
-    where: {
-      userId: session.user.id,
-    },
+  await prisma.$transaction(async (prisma) => {
+    await prisma.item.deleteMany({
+      where: {
+        userId: session.user.id,
+      },
+    });
   });
 
   revalidatePath("/");
-
-  return res;
 }

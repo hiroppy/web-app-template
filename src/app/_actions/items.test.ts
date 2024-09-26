@@ -89,11 +89,10 @@ describe("actions/items", () => {
     });
 
     test("should delete all items", async () => {
-      expect(await deleteAll()).toMatchInlineSnapshot(`
-        {
-          "count": 2,
-        }
-      `);
+      expect(await prisma.item.count()).toBe(2);
+      await deleteAll();
+      expect(await prisma.item.count()).toBe(0);
+
       expect(mock.revalidatePath.mock.calls).toMatchInlineSnapshot(`
         [
           [
@@ -101,7 +100,6 @@ describe("actions/items", () => {
           ],
         ]
       `);
-      expect(await prisma.item.findMany()).toMatchObject([]);
     });
 
     test("should throw an error if there is no session token", async () => {
