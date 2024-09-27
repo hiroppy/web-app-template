@@ -3,12 +3,12 @@ volumes:
 
 services:
   dev-db:
-    image: postgres:16
+    image: postgres:17
     env_file: .env.local
     ports:
       - "5432:5432"
   test-db:
-    image: postgres:16
+    image: postgres:17
     env_file: .env.test
     ports:
       - "5433:5432"
