@@ -40,7 +40,7 @@
     "@opentelemetry/semantic-conventions": "1.27.0",
     "@prisma/client": "5.20.0",
     "@prisma/instrumentation": "5.20.0",
-    "next": "14.2.14",
+    "next": "14.2.15",
     "next-auth": "4.24.8",
     "react": "18.3.1",
     "react-dom": "18.3.1",
@@ -63,7 +63,7 @@
     "prisma": "5.20.0",
     "prisma-erd-generator": "1.11.2",
     "tailwindcss": "3.4.13",
-    "typescript": "5.6.2",
+    "typescript": "5.6.3",
     "vitest": "2.1.2"
   }
 }
