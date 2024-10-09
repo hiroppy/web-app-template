@@ -30,7 +30,7 @@
     "fmt": "prettier -w './**/*.{md,yml}' && biome format --write ."
   },
   "dependencies": {
-    "@auth/prisma-adapter": "2.5.3",
+    "@auth/prisma-adapter": "2.7.0",
     "@hookform/resolvers": "3.9.0",
     "@opentelemetry/exporter-trace-otlp-grpc": "0.53.0",
     "@opentelemetry/instrumentation-http": "0.53.0",
@@ -49,7 +49,7 @@
   },
   "devDependencies": {
     "@biomejs/biome": "1.9.3",
-    "@playwright/test": "1.47.2",
+    "@playwright/test": "1.48.0",
     "@testing-library/react": "16.0.1",
     "@types/node": "22.7.5",
     "@types/react": "18.3.11",
