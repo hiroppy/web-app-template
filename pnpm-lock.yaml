@@ -42,8 +42,8 @@ importers:
         specifier: 14.2.16
         version: 14.2.16(@babel/core@7.25.2)(@opentelemetry/api@1.8.0)(@playwright/test@1.47.2)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       next-auth:
-        specifier: 4.24.9
-        version: 4.24.9(next@14.2.16(@babel/core@7.25.2)(@opentelemetry/api@1.8.0)(@playwright/test@1.47.2)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+        specifier: 4.24.10
+        version: 4.24.10(next@14.2.16(@babel/core@7.25.2)(@opentelemetry/api@1.8.0)(@playwright/test@1.47.2)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       react:
         specifier: 18.3.1
         version: 18.3.1
@@ -1550,8 +1550,8 @@ packages:
     engines: {node: ^10 || ^12 || ^13.7 || ^14 || >=15.0.1}
     hasBin: true
 
-  next-auth@4.24.9:
-    resolution: {integrity: sha512-1eSvaJb5I3EIzSkU+HMBnLPQTD+q23CuBhWRW6PvT7x5wVHTAkOTpnLobczPjqra38ai8E6uSlVy/HSV3gecXw==}
+  next-auth@4.24.10:
+    resolution: {integrity: sha512-8NGqiRO1GXBcVfV8tbbGcUgQkAGsX4GRzzXXea4lDikAsJtD5KiEY34bfhUOjHLvr6rT6afpcxw2H8EZqOV6aQ==}
     peerDependencies:
       '@auth/core': 0.34.2
       next: ^12.2.5 || ^13 || ^14 || ^15
@@ -3621,7 +3621,7 @@ snapshots:
 
   nanoid@3.3.7: {}
 
-  next-auth@4.24.9(next@14.2.16(@babel/core@7.25.2)(@opentelemetry/api@1.8.0)(@playwright/test@1.47.2)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1):
+  next-auth@4.24.10(next@14.2.16(@babel/core@7.25.2)(@opentelemetry/api@1.8.0)(@playwright/test@1.47.2)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1):
     dependencies:
       '@babel/runtime': 7.23.9
       '@panva/hkdf': 1.1.1
