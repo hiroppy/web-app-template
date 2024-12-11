@@ -67,8 +67,8 @@ importers:
         specifier: 16.0.1
         version: 16.0.1(@testing-library/dom@10.0.0)(@types/react-dom@18.3.5(@types/react@18.3.16))(@types/react@18.3.16)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@types/node':
-        specifier: 22.10.1
-        version: 22.10.1
+        specifier: 22.10.2
+        version: 22.10.2
       '@types/react':
         specifier: 18.3.16
         version: 18.3.16
@@ -77,7 +77,7 @@ importers:
         version: 18.3.5(@types/react@18.3.16)
       '@vitejs/plugin-react':
         specifier: 4.3.4
-        version: 4.3.4(vite@5.1.1(@types/node@22.10.1))
+        version: 4.3.4(vite@5.1.1(@types/node@22.10.2))
       autoprefixer:
         specifier: 10.4.20
         version: 10.4.20(postcss@8.4.49)
@@ -107,7 +107,7 @@ importers:
         version: 5.6.3
       vitest:
         specifier: 2.1.8
-        version: 2.1.8(@types/node@22.10.1)
+        version: 2.1.8(@types/node@22.10.2)
 
 packages:
 
@@ -890,8 +890,8 @@ packages:
   '@types/estree@1.0.5':
     resolution: {integrity: sha512-/kYRxGDLWzHOB7q+wtSUQlFrtcdUccpfy+X+9iMBpHK8QLLhx2wIPYuS5DYtR9Wa/YlZAbIovy7qVdB1Aq6Lyw==}
 
-  '@types/node@22.10.1':
-    resolution: {integrity: sha512-qKgsUwfHZV2WCWLAnVP1JqnpE6Im6h3Y0+fYgMTasNQ7V++CBX5OT1as0g0f+OyubbFqhf6XVNIsmN4IIhEgGQ==}
+  '@types/node@22.10.2':
+    resolution: {integrity: sha512-Xxr6BBRCAOQixvonOye19wnzyDiUtTeqldOOmj3CkeblonbccA12PFwlufvRdrpjXxqnmUaeiU5EOA+7s5diUQ==}
 
   '@types/prop-types@15.7.11':
     resolution: {integrity: sha512-ga8y9v9uyeiLdpKddhxYQkxNDrfvuPrlFb0N1qnZZByvcElJaXthF1UhvCh9TLWJBEHeNtdnbysW7Y6Uq8CVng==}
@@ -3031,7 +3031,7 @@ snapshots:
 
   '@types/estree@1.0.5': {}
 
-  '@types/node@22.10.1':
+  '@types/node@22.10.2':
     dependencies:
       undici-types: 6.20.0
 
@@ -3050,17 +3050,17 @@ snapshots:
 
   '@types/yauzl@2.10.3':
     dependencies:
-      '@types/node': 22.10.1
+      '@types/node': 22.10.2
     optional: true
 
-  '@vitejs/plugin-react@4.3.4(vite@5.1.1(@types/node@22.10.1))':
+  '@vitejs/plugin-react@4.3.4(vite@5.1.1(@types/node@22.10.2))':
     dependencies:
       '@babel/core': 7.26.0
       '@babel/plugin-transform-react-jsx-self': 7.25.9(@babel/core@7.26.0)
       '@babel/plugin-transform-react-jsx-source': 7.25.9(@babel/core@7.26.0)
       '@types/babel__core': 7.20.5
       react-refresh: 0.14.2
-      vite: 5.1.1(@types/node@22.10.1)
+      vite: 5.1.1(@types/node@22.10.2)
     transitivePeerDependencies:
       - supports-color
 
@@ -3071,13 +3071,13 @@ snapshots:
       chai: 5.1.2
       tinyrainbow: 1.2.0
 
-  '@vitest/mocker@2.1.8(vite@5.1.1(@types/node@22.10.1))':
+  '@vitest/mocker@2.1.8(vite@5.1.1(@types/node@22.10.2))':
     dependencies:
       '@vitest/spy': 2.1.8
       estree-walker: 3.0.3
       magic-string: 0.30.12
     optionalDependencies:
-      vite: 5.1.1(@types/node@22.10.1)
+      vite: 5.1.1(@types/node@22.10.2)
 
   '@vitest/pretty-format@2.1.8':
     dependencies:
@@ -3943,7 +3943,7 @@ snapshots:
       '@protobufjs/path': 1.1.2
       '@protobufjs/pool': 1.1.0
       '@protobufjs/utf8': 1.1.0
-      '@types/node': 22.10.1
+      '@types/node': 22.10.2
       long: 5.2.3
 
   proxy-from-env@1.1.0: {}
@@ -4277,13 +4277,13 @@ snapshots:
 
   uuid@8.3.2: {}
 
-  vite-node@2.1.8(@types/node@22.10.1):
+  vite-node@2.1.8(@types/node@22.10.2):
     dependencies:
       cac: 6.7.14
       debug: 4.3.7
       es-module-lexer: 1.5.4
       pathe: 1.1.2
-      vite: 5.1.1(@types/node@22.10.1)
+      vite: 5.1.1(@types/node@22.10.2)
     transitivePeerDependencies:
       - '@types/node'
       - less
@@ -4294,19 +4294,19 @@ snapshots:
       - supports-color
       - terser
 
-  vite@5.1.1(@types/node@22.10.1):
+  vite@5.1.1(@types/node@22.10.2):
     dependencies:
       esbuild: 0.19.12
       postcss: 8.4.49
       rollup: 4.10.0
     optionalDependencies:
-      '@types/node': 22.10.1
+      '@types/node': 22.10.2
       fsevents: 2.3.3
 
-  vitest@2.1.8(@types/node@22.10.1):
+  vitest@2.1.8(@types/node@22.10.2):
     dependencies:
       '@vitest/expect': 2.1.8
-      '@vitest/mocker': 2.1.8(vite@5.1.1(@types/node@22.10.1))
+      '@vitest/mocker': 2.1.8(vite@5.1.1(@types/node@22.10.2))
       '@vitest/pretty-format': 2.1.8
       '@vitest/runner': 2.1.8
       '@vitest/snapshot': 2.1.8
@@ -4322,11 +4322,11 @@ snapshots:
       tinyexec: 0.3.1
       tinypool: 1.0.1
       tinyrainbow: 1.2.0
-      vite: 5.1.1(@types/node@22.10.1)
-      vite-node: 2.1.8(@types/node@22.10.1)
+      vite: 5.1.1(@types/node@22.10.2)
+      vite-node: 2.1.8(@types/node@22.10.2)
       why-is-node-running: 2.3.0
     optionalDependencies:
-      '@types/node': 22.10.1
+      '@types/node': 22.10.2
     transitivePeerDependencies:
       - less
       - lightningcss
