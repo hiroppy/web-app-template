@@ -2,16 +2,14 @@ volumes:
   db-data:
 
 services:
-  dev-db:
+  db:
     image: postgres:16
-    env_file: .env.local
     ports:
       - "5432:5432"
-  test-db:
-    image: postgres:16
-    env_file: .env.test
-    ports:
-      - "5433:5432"
+    environment:
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+      - POSTGRES_DB=${POSTGRES_DB}
   jaeger:
     image: jaegertracing/all-in-one
     ports:

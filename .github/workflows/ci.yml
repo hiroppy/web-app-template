@@ -71,17 +71,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: ./.github/actions/setup-node
-      ####### 👉 remove #######
-      # generate prisma client
-      - run: cp ./.env.sample ./.env.local
-      - run: pnpm dev:db:setup
-        env:
-          POSTGRES_URL: "postgresql://dev:1234@localhost:5432/dev?schema=public"
-          NEXT_PUBLIC_SITE_URL: "http://localhost:3000"
-      ########################
-      - uses: ./.github/actions/setup-db
-        with:
-          kind: test
+      - uses: ./.github/actions/setup-prisma
       - run: pnpm test
   e2e-test:
     needs: [build]
@@ -91,18 +81,8 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: ./.github/actions/setup-node
+      - uses: ./.github/actions/setup-prisma
       - run: pnpm exec playwright install chromium
-      ####### 👉 remove #######
-      # generate prisma client
-      - run: cp ./.env.sample ./.env.local
-      - run: pnpm dev:db:setup
-        env:
-          POSTGRES_URL: "postgresql://dev:1234@localhost:5432/dev?schema=public"
-          NEXT_PUBLIC_SITE_URL: "http://localhost:3000"
-      ########################
-      - uses: ./.github/actions/setup-db
-        with:
-          kind: test
       - uses: actions/download-artifact@v4
         with:
           name: app
