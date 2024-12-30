@@ -1,7 +1,7 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": [
-    "config:base",
+    "config:recommended",
     ":semanticCommitTypeAll(chore)",
     ":enableVulnerabilityAlerts",
     ":separateMajorReleases",
@@ -10,41 +10,74 @@
     "group:test"
   ],
   "rangeStrategy": "pin",
-  "labels": ["deps"],
+  "labels": [
+    "deps"
+  ],
   "packageRules": [
     {
-      "matchManagers": ["npm"],
-      "matchUpdateTypes": ["patch"],
-      "matchPackagePatterns": ["*"],
-      "matchDepTypes": ["dependencies", "devDependencies", "peerDependencies"],
+      "matchManagers": [
+        "npm"
+      ],
+      "matchUpdateTypes": [
+        "patch"
+      ],
+      "matchDepTypes": [
+        "dependencies",
+        "devDependencies",
+        "peerDependencies"
+      ],
       "groupName": "npm patch dependencies",
-      "automerge": true
+      "automerge": true,
+      "matchPackageNames": [
+        "*"
+      ]
     },
     {
-      "matchManagers": ["npm"],
-      "matchUpdateTypes": ["minor"],
-      "matchPackagePatterns": ["*"],
-      "matchDepTypes": ["dependencies", "devDependencies", "peerDependencies"],
-      "groupName": "npm minor dependencies"
+      "matchManagers": [
+        "npm"
+      ],
+      "matchUpdateTypes": [
+        "minor"
+      ],
+      "matchDepTypes": [
+        "dependencies",
+        "devDependencies",
+        "peerDependencies"
+      ],
+      "groupName": "npm minor dependencies",
+      "matchPackageNames": [
+        "*"
+      ]
     },
     {
-      "matchManagers": ["npm"],
-      "matchPackagePrefixes": ["@types/"],
+      "matchManagers": [
+        "npm"
+      ],
       "automerge": true,
       "groupName": "npm @types",
       "major": {
         "automerge": false
-      }
+      },
+      "matchPackageNames": [
+        "@types/{/,}**"
+      ]
     },
     {
-      "matchManagers": ["npm"],
+      "matchManagers": [
+        "npm"
+      ],
       "groupName": "linter deps",
-      "extends": ["packages:linters"],
-      "matchPackagePatterns": ["^@biomejs", "^prettier"],
+      "extends": [
+        "packages:linters"
+      ],
       "automerge": true,
       "major": {
         "automerge": false
-      }
+      },
+      "matchPackageNames": [
+        "/^@biomejs/",
+        "/^prettier/"
+      ]
     }
   ],
   "ignoreDeps": []
