@@ -1,5 +1,3 @@
-// for client api like useSession
-
 "use client";
 
 import { SessionProvider } from "next-auth/react";

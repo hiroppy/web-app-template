@@ -1,14 +1,12 @@
 "use client";
 
 import { create } from "@/app/_actions/items";
-import { type Schema, schema } from "@/app/_schemas/create";
+import { type ItemCreateSchema, itemCreateSchema } from "@/app/_schemas/items";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "next/navigation";
 import { useTransition } from "react";
 import { type SubmitHandler, useForm } from "react-hook-form";
 import { Dialog } from "../_components/Dialog";
-
-// bug: https://github.com/vercel/next.js/discussions/58431
 
 // users who are not logged in cannot reach here due to intercepting routes.
 export default function Page() {
@@ -18,12 +16,12 @@ export default function Page() {
     register,
     formState: { errors },
     handleSubmit,
-  } = useForm<Schema>({
+  } = useForm<ItemCreateSchema>({
     mode: "onChange",
-    resolver: zodResolver(schema),
+    resolver: zodResolver(itemCreateSchema),
   });
 
-  const submit: SubmitHandler<Schema> = async (values) => {
+  const submit: SubmitHandler<ItemCreateSchema> = async (values) => {
     if (isPending) {
       return;
     }
