@@ -7,6 +7,6 @@ runs:
   steps:
     - run: cp ./.env.sample ./.env.local
       shell: bash
-    - run: pnpm dev:db:setup
+    - run: pnpm db:setup
       if: ${{ inputs.kind == 'dev' }}
       shell: bash
