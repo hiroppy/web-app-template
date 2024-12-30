@@ -1,5 +1,6 @@
-/** @type {import('next').NextConfig} */
-const nextConfig = {
+import type { NextConfig } from "next";
+
+const nextConfig: NextConfig = {
   images: {
     remotePatterns: [
       {
@@ -7,9 +8,6 @@ const nextConfig = {
         hostname: "lh3.googleusercontent.com",
       },
     ],
-  },
-  experimental: {
-    instrumentationHook: true,
   },
   webpack: (config, { isServer }) => {
     if (isServer) {
