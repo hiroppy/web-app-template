@@ -1,12 +1,8 @@
 name: Setup DB
-inputs:
-  kind:
-    default: dev
 runs:
   using: composite
   steps:
     - run: cp ./.env.sample ./.env.local
       shell: bash
-    - run: pnpm db:setup
-      if: ${{ inputs.kind == 'dev' }}
+    - run: pnpm db:up && pnpm db:migrate && pnpm generate:client
       shell: bash
