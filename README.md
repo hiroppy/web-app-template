@@ -151,9 +151,9 @@ pnpm dev
 # create new migration
 pnpm db:migrate
 # reset the DB
-pnpm dev:db:reset
+pnpm db:reset
 # view the contents
-pnpm dev:db:studio
+pnpm db:studio
 ```
 
 📙 [Database ER diagram](/prisma/ERD.md)
@@ -164,16 +164,12 @@ Test uses also DB so need to start DB first.
 
 ```sh
 # unit test
-
 # execute
 pnpm test
 # watch the unit test
 pnpm test:watch
-# reset the DB
-pnpm test:db:reset
 
 # e2e
-
 # install chrome
 pnpm exec playwright install chrome
 # test uses a built app since next.js has different cache behavior between development and production
