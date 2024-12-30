@@ -146,10 +146,10 @@ node init.mjs
 ## Dev
 
 ```sh
-# start docker-compose, migrations(generating the client), and next dev
+# start docker compose, migrations(generating the client), and next dev
 pnpm dev
 # create new migration
-pnpm dev:db:migrate
+pnpm db:migrate
 # reset the DB
 pnpm dev:db:reset
 # view the contents
@@ -165,8 +165,6 @@ Test uses also DB so need to start DB first.
 ```sh
 # unit test
 
-# run the DB and generate the client
-pnpm test:db:setup
 # execute
 pnpm test
 # watch the unit test
@@ -178,8 +176,6 @@ pnpm test:db:reset
 
 # install chrome
 pnpm exec playwright install chrome
-# run the DB and generate the client
-pnpm test:db:setup
 # test uses a built app since next.js has different cache behavior between development and production
 pnpm build
 # execute

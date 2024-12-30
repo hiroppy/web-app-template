@@ -1,7 +1,6 @@
 name: Setup DB
 inputs:
   kind:
-    description: dev or test
     default: dev
 runs:
   using: composite
@@ -10,7 +9,4 @@ runs:
       shell: bash
     - run: pnpm dev:db:setup
       if: ${{ inputs.kind == 'dev' }}
-      shell: bash
-    - run: pnpm test:db:setup
-      if: ${{ inputs.kind == 'test' }}
       shell: bash

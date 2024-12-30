@@ -1,15 +1,15 @@
 name: Setup Node
 runs:
-  using: "composite"
+  using: composite
   steps:
     - uses: pnpm/action-setup@v2
       with:
         version: 8
     - uses: actions/setup-node@v4
       with:
-        node-version-file: ".node-version"
+        node-version-file: .node-version
         cache: pnpm
-        cache-dependency-path: "pnpm-lock.yaml"
+        cache-dependency-path: pnpm-lock.yaml
     - run: npm run setup
       shell: bash
     - run: pnpm i

@@ -1,6 +1,16 @@
-import { prisma } from "@/app/_clients/prisma";
-import { afterEach, beforeEach, describe, expect, test, vi } from "vitest";
+import {
+  afterAll,
+  afterEach,
+  beforeEach,
+  describe,
+  expect,
+  test,
+  vi,
+} from "vitest";
+import { setupDB } from "../../../dbSetup.test";
 import { create, deleteAll } from "./items";
+
+const { container, prisma } = await setupDB();
 
 describe("actions/items", () => {
   const mock = vi.hoisted(() => ({
@@ -35,6 +45,10 @@ describe("actions/items", () => {
 
   afterEach(async () => {
     await Promise.all([prisma.user.deleteMany(), prisma.item.deleteMany()]);
+  });
+
+  afterAll(async () => {
+    await container.down();
   });
 
   describe("create", () => {

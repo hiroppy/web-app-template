@@ -10,74 +10,41 @@
     "group:test"
   ],
   "rangeStrategy": "pin",
-  "labels": [
-    "deps"
-  ],
+  "labels": ["deps"],
   "packageRules": [
     {
-      "matchManagers": [
-        "npm"
-      ],
-      "matchUpdateTypes": [
-        "patch"
-      ],
-      "matchDepTypes": [
-        "dependencies",
-        "devDependencies",
-        "peerDependencies"
-      ],
+      "matchManagers": ["npm"],
+      "matchUpdateTypes": ["patch"],
+      "matchDepTypes": ["dependencies", "devDependencies", "peerDependencies"],
       "groupName": "npm patch dependencies",
       "automerge": true,
-      "matchPackageNames": [
-        "*"
-      ]
+      "matchPackageNames": ["*"]
     },
     {
-      "matchManagers": [
-        "npm"
-      ],
-      "matchUpdateTypes": [
-        "minor"
-      ],
-      "matchDepTypes": [
-        "dependencies",
-        "devDependencies",
-        "peerDependencies"
-      ],
+      "matchManagers": ["npm"],
+      "matchUpdateTypes": ["minor"],
+      "matchDepTypes": ["dependencies", "devDependencies", "peerDependencies"],
       "groupName": "npm minor dependencies",
-      "matchPackageNames": [
-        "*"
-      ]
+      "matchPackageNames": ["*"]
     },
     {
-      "matchManagers": [
-        "npm"
-      ],
+      "matchManagers": ["npm"],
       "automerge": true,
       "groupName": "npm @types",
       "major": {
         "automerge": false
       },
-      "matchPackageNames": [
-        "@types/{/,}**"
-      ]
+      "matchPackageNames": ["@types/{/,}**"]
     },
     {
-      "matchManagers": [
-        "npm"
-      ],
+      "matchManagers": ["npm"],
       "groupName": "linter deps",
-      "extends": [
-        "packages:linters"
-      ],
+      "extends": ["packages:linters"],
       "automerge": true,
       "major": {
         "automerge": false
       },
-      "matchPackageNames": [
-        "/^@biomejs/",
-        "/^prettier/"
-      ]
+      "matchPackageNames": ["/^@biomejs/", "/^prettier/"]
     }
   ],
   "ignoreDeps": []

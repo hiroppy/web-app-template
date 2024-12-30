@@ -1,9 +1,14 @@
 import { resolve } from "node:path";
 import { type FullConfig, chromium } from "@playwright/test";
-import { prisma } from "../src/app/_clients/prisma";
+import { setupDB } from "../dbSetup.test";
 import { EMAIL, IMAGE, NAME } from "./constants";
 
 export default async function globalSetup(config: FullConfig) {
+  const { container, prisma } = await setupDB();
+
+  // @ts-expect-error Store the container reference for later teardown
+  global.__DB_CONTAINER__ = container;
+
   const sessionToken = "session_token";
 
   await prisma.user.upsert({
