@@ -9,17 +9,18 @@
 
 This template is based on create-next-app but has below new tech and configs.
 
-| Kind        |                           |                         |                               |
+|             |                           |                         |                               |
 | ----------- | ------------------------- | ----------------------- | ----------------------------- |
 | **App**     | Next.js (Framework)       | Tailwind CSS (CSS)      |                               |
 |             | React Hook Form (Form)    | Zod (Schema Validator)  |                               |
 |             | Prisma (ORM)              | NextAuth.js (Auth)      | OpenTelemetry (Observability) |
 |             |                           |                         |                               |
-| **Tools**   | TypeScript (Language)     | pnpm (Package Manager)  | NVM (Node Version manager)    |
+| **Tools**   | TypeScript (Language)     | pnpm (Package Manager)  |                               |
 |             | Biome (Linter, Formatter) | Prettier (Formatter)    |                               |
 |             | lint-staged (Pre Commit)  | Docker Compose (Docker) |                               |
 |             |                           |                         |                               |
 | **Testing** | Vitest (Test Runner)      | Testing Library (React) | Playwright (E2E Testing)      |
+|             | Testcontainers (Docker)   |                         |
 |             |                           |                         |                               |
 | **Others**  | GitHub Workflows (CI)     | Renovate (Deps Manager) | .vscode (Editor)              |
 
