@@ -100,7 +100,7 @@ async function generateMigrationFiles() {
   title("creating migration files");
 
   const commands = [
-    "pnpm db:start",
+    "pnpm db:up",
     "pnpm db:migrate --name initial-migration",
     "pnpm generate:client",
     "pnpm db:stop",
