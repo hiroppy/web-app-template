@@ -1,3 +1,5 @@
+import type { JSX } from "react";
+
 type Props = JSX.IntrinsicElements["button"];
 
 export function Button({ children, ...rest }: Props) {
