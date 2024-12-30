@@ -8,9 +8,7 @@ datasource db {
 
 generator client {
   provider        = "prisma-client-js"
-  // https://www.prisma.io/docs/orm/prisma-client/queries/full-text-search
-  // "fullTextSearch"
-  previewFeatures = ["tracing"]
+  previewFeatures = ["fullTextSearchPostgres"]
 }
 
 generator erd {
