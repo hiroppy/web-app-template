@@ -2,12 +2,12 @@
 
 import { options } from "@/app/_clients/nextAuth";
 import { prisma } from "@/app/_clients/prisma";
-import { type Schema, schema } from "@/app/_schemas/create";
+import { type ItemCreateSchema, itemCreateSchema } from "@/app/_schemas/items";
 import { getServerSession } from "next-auth";
 import { revalidatePath } from "next/cache";
 
-export async function create(data: Schema) {
-  const validatedFields = schema.safeParse(data);
+export async function create(data: ItemCreateSchema) {
+  const validatedFields = itemCreateSchema.safeParse(data);
 
   if (!validatedFields.success) {
     throw new Error("invalid schema");

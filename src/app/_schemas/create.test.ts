@@ -1,9 +1,9 @@
 import { describe, expect, test } from "vitest";
-import { type Schema, schema } from "./create";
+import { type ItemCreateSchema, itemCreateSchema } from "./items";
 
-describe("schema/create", () => {
+describe("schema/items/create", () => {
   test("should be valid", () => {
-    const fixtures: Schema[] = [
+    const fixtures: ItemCreateSchema[] = [
       {
         content: "hello",
       },
@@ -16,12 +16,12 @@ describe("schema/create", () => {
     ];
 
     for (const fixture of fixtures) {
-      expect(schema.safeParse(fixture).success).toBeTruthy();
+      expect(itemCreateSchema.safeParse(fixture).success).toBeTruthy();
     }
   });
 
   test("should be invalid", () => {
-    const fixtures: [Schema, string[]][] = [
+    const fixtures: [ItemCreateSchema, string[]][] = [
       [
         {
           content: "",
@@ -37,7 +37,7 @@ describe("schema/create", () => {
     ];
 
     for (const [fixture, errors] of fixtures) {
-      const res = schema.safeParse(fixture);
+      const res = itemCreateSchema.safeParse(fixture);
 
       expect(res.success).toBeFalsy();
 

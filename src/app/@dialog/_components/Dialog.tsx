@@ -18,6 +18,7 @@ export function Dialog({ children }: Props) {
     <dialog
       ref={ref}
       className="fixed inset-0 w-[560px] h-[520px] bg-gray-800 rounded-sm border border-gray-500 backdrop:bg-gray-900/70 backdrop:backdrop-blur-sm"
+      // click backdrop to close
       onMouseDown={(e) => {
         if (e.target === e.currentTarget) {
           router.back();
