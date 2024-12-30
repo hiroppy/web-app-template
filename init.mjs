@@ -148,6 +148,7 @@ async function updatePackageJson() {
   const currentDirectoryName = basename(process.cwd());
 
   parsed.name = currentDirectoryName;
+  parsed.version = "0.0.1";
 
   await writeFile(packageJsonPath, JSON.stringify(parsed, null, 2));
 }
