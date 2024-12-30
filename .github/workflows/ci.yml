@@ -9,6 +9,7 @@ on:
       - src/**
       - e2e/**
       - .github/workflows/ci.yml
+      - Dockerfile
   push:
     branches:
       - main
@@ -17,6 +18,7 @@ on:
       - src/**
       - e2e/**
       - .github/workflows/ci.yml
+      - Dockerfile
 
 jobs:
   lint:
