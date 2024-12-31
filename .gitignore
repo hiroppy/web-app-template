@@ -23,4 +23,5 @@ test-results
 
 ####### 👉 remove #######
 migrations
+internal-tests-output-*
 ########################

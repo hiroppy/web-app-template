@@ -92,7 +92,7 @@ This repo is a github template so click the ["Use this template"](https://github
 [`create-app-foundation`](https://github.com/hiroppy/create-app-foundation) creates a directory based on this template and skips the setup section automatically.
 
 ```sh
-npx create-app-foundation
+npx create-app-foundation@latest
 ```
 
 <!-- ######## -->
