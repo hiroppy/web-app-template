@@ -98,7 +98,7 @@ jobs:
       - uses: ./.github/actions/setup-node
       - if: ${{ github.ref_name == 'main' }}
         run: echo "IS_MAIN_BRANCH=true" >> $GITHUB_ENV
-      - run: cd ./internal-tests && make run
+      - run: cd ./.internal/tests && make run
         env:
           # to fetch this repo via CLI on main branch
           IS_MAIN_BRANCH: ${{ env.IS_MAIN_BRANCH }}

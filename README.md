@@ -139,7 +139,7 @@ _If you don't use Google OAuth, you can remove a provider from `_clients/NextAut
 - updating name in package.json using directory name
 
 ```sh
-node init.mjs
+node .internal/init.mjs
 ```
 
 <!-- ######## -->

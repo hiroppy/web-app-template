@@ -1,6 +1,6 @@
 import { spawn } from "node:child_process";
 import { readFile, rm, unlink, writeFile } from "node:fs/promises";
-import { basename } from "node:path";
+import { basename, join, resolve } from "node:path";
 import { createInterface } from "node:readline/promises";
 
 const [_, __, ...flags] = process.argv;
@@ -10,6 +10,7 @@ const fences = [
   ["####### 👉 remove #######", "########################"],
   ["<!-- 👉 remove -->", "<!-- ######## -->"],
 ];
+const basePath = resolve(import.meta.dirname, "..");
 
 await Promise.all([
   removeLines([
@@ -19,12 +20,12 @@ await Promise.all([
   ]),
   generateMigrationFiles(),
   updatePackageJson(),
-  removeDirs(["internal-tests", ".github/assets"]),
+  removeDirs([".github/assets"]),
 ]);
 
 await docker();
 
-await removeFiles(["init.mjs"]);
+await removeDirs([".internal"]);
 
 await format();
 
@@ -36,8 +37,8 @@ async function removeLines(files) {
   await Promise.all(
     files.map(async ([file, fence]) => {
       try {
-        const filePath = new URL(file, import.meta.url);
-        const data = await readFile(filePath, "utf8");
+        const target = join(basePath, file);
+        const data = await readFile(target, "utf8");
         const lines = data.split("\n");
         const res = [];
         let isInFence = false;
@@ -54,7 +55,7 @@ async function removeLines(files) {
           }
         }
 
-        await writeFile(filePath, res.join("\n"));
+        await writeFile(target, res.join("\n"));
       } catch (error) {
         console.error(error);
       }
@@ -63,8 +64,8 @@ async function removeLines(files) {
 }
 
 async function removeWords(file, words) {
-  const filePath = new URL(file, import.meta.url);
-  const data = await readFile(filePath, "utf8");
+  const target = join(basePath, file);
+  const data = await readFile(target, "utf8");
   const lines = data.split("\n");
   const res = [];
 
@@ -88,18 +89,16 @@ async function removeWords(file, words) {
     }
   }
 
-  await writeFile(filePath, res.join("\n"));
+  await writeFile(target, res.join("\n"));
 }
 
 async function removeFiles(files) {
-  await Promise.all(
-    files.map((file) => unlink(new URL(file, import.meta.url))),
-  );
+  await Promise.all(files.map((file) => unlink(join(basePath, file))));
 }
 
 async function removeDirs(dirs) {
   await Promise.all(
-    dirs.map((dir) => rm(new URL(dir, import.meta.url), { recursive: true })),
+    dirs.map((dir) => rm(join(basePath, dir), { recursive: true })),
   );
 }
 
@@ -149,7 +148,7 @@ async function format() {
 async function updatePackageJson() {
   title("updating package.json");
 
-  const packageJsonPath = new URL("./package.json", import.meta.url);
+  const packageJsonPath = join(basePath, "package.json");
   const packageJson = await readFile(packageJsonPath, "utf8");
   const parsed = JSON.parse(packageJson);
   const currentDirectoryName = basename(process.cwd());

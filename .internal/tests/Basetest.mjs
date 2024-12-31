@@ -21,7 +21,7 @@ export class BaseTest {
         await execAsync("docker compose stop");
         await new Promise((resolve, reject) => {
           if (!process.env.IS_MAIN_BRANCH) {
-            process.env.LOCAL_FROM_PATH = resolvePath(process.cwd(), "..");
+            process.env.LOCAL_FROM_PATH = resolvePath(process.cwd(), "../..");
           }
 
           // for local debug
