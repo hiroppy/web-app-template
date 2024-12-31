@@ -1,12 +1,11 @@
-import { getServerSession } from "next-auth";
 import Image from "next/image";
 import Link from "next/link";
-import { options } from "../_clients/nextAuth";
+import { auth } from "../_clients/nextAuth";
 import { SignInButton } from "./SignInButton";
 import { SignOutButton } from "./SignOutButton";
 
 export async function Header() {
-  const session = await getServerSession(options);
+  const session = await auth();
 
   return (
     <header className="px-8 py-3 flex items-center justify-between border-b border-b-gray-600">

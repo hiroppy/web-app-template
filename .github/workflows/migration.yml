@@ -11,7 +11,7 @@ on:
 jobs:
   migrate:
     runs-on: ubuntu-latest
-    # please remove this after you set the secrsts
+    # please remove this after you set the secret
     if: false
     steps:
       - uses: actions/checkout@v4

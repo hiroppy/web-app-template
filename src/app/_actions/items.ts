@@ -1,9 +1,8 @@
 "use server";
 
-import { options } from "@/app/_clients/nextAuth";
+import { auth } from "@/app/_clients/nextAuth";
 import { prisma } from "@/app/_clients/prisma";
 import { type ItemCreateSchema, itemCreateSchema } from "@/app/_schemas/items";
-import { getServerSession } from "next-auth";
 import { revalidatePath } from "next/cache";
 
 export async function create(data: ItemCreateSchema) {
@@ -13,7 +12,7 @@ export async function create(data: ItemCreateSchema) {
     throw new Error("invalid schema");
   }
 
-  const session = await getServerSession(options);
+  const session = await auth();
 
   if (!session?.user?.id) {
     throw new Error("no session token");
@@ -40,7 +39,7 @@ export async function create(data: ItemCreateSchema) {
 }
 
 export async function deleteAll() {
-  const session = await getServerSession(options);
+  const session = await auth();
 
   if (!session?.user?.id) {
     throw new Error("no session token");

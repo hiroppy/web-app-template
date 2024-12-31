@@ -14,12 +14,14 @@ const { container, prisma } = await setupDB();
 
 describe("actions/items", () => {
   const mock = vi.hoisted(() => ({
-    getServerSession: vi.fn(),
+    auth: vi.fn(),
     revalidatePath: vi.fn(),
   }));
 
   vi.mock("next-auth", () => ({
-    getServerSession: mock.getServerSession,
+    default: () => ({
+      auth: mock.auth,
+    }),
   }));
 
   vi.mock("next/cache", () => ({
@@ -27,7 +29,7 @@ describe("actions/items", () => {
   }));
 
   beforeEach(async () => {
-    mock.getServerSession.mockReturnValue({
+    mock.auth.mockReturnValue({
       user: {
         id: "id",
       },
@@ -78,7 +80,7 @@ describe("actions/items", () => {
     });
 
     test("should throw an error if there is no session token", async () => {
-      mock.getServerSession.mockReturnValueOnce(null);
+      mock.auth.mockReturnValueOnce(null);
 
       await expect(create({ content: "hello" })).rejects.toThrow(
         "no session token",
@@ -117,7 +119,7 @@ describe("actions/items", () => {
     });
 
     test("should throw an error if there is no session token", async () => {
-      mock.getServerSession.mockReturnValueOnce(null);
+      mock.auth.mockReturnValueOnce(null);
 
       await expect(deleteAll()).rejects.toThrow("no session token");
     });
