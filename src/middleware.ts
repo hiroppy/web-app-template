@@ -1,4 +1,4 @@
-import { config as authConfig } from "@/app/_clients/auth";
+import { config as authConfig } from "@/app/_clients/nextAuthConfig";
 import NextAuth from "next-auth";
 import { NextResponse } from "next/server";
 

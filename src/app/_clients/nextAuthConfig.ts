@@ -1,5 +1,22 @@
 import type { NextAuthConfig, User } from "next-auth";
+import type { JWT, JWTDecodeParams, JWTEncodeParams } from "next-auth/jwt";
 import GoogleProvider from "next-auth/providers/google";
+
+// for test
+export const testConfig = {
+  jwt: {
+    encode: async ({ token }: JWTEncodeParams<JWT>) => {
+      return btoa(JSON.stringify(token));
+    },
+    decode: async ({ token }: JWTDecodeParams) => {
+      if (!token) {
+        return {};
+      }
+
+      return JSON.parse(atob(token));
+    },
+  },
+};
 
 export const config = {
   pages: {
