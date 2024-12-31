@@ -1,9 +1,9 @@
 "use server";
 
-import { auth } from "@/app/_clients/nextAuth";
-import { prisma } from "@/app/_clients/prisma";
-import { type ItemCreateSchema, itemCreateSchema } from "@/app/_schemas/items";
 import { revalidatePath } from "next/cache";
+import { auth } from "../_clients/nextAuth";
+import { prisma } from "../_clients/prisma";
+import { type ItemCreateSchema, itemCreateSchema } from "../_schemas/items";
 
 export async function create(data: ItemCreateSchema) {
   const validatedFields = itemCreateSchema.safeParse(data);

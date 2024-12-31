@@ -1,11 +1,11 @@
 "use client";
 
-import { create } from "@/app/_actions/items";
-import { type ItemCreateSchema, itemCreateSchema } from "@/app/_schemas/items";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "next/navigation";
 import { useTransition } from "react";
 import { type SubmitHandler, useForm } from "react-hook-form";
+import { create } from "../../_actions/items";
+import { type ItemCreateSchema, itemCreateSchema } from "../../_schemas/items";
 import { Dialog } from "../_components/Dialog";
 
 // users who are not logged in cannot reach here due to intercepting routes.

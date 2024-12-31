@@ -13,9 +13,4 @@ export default defineConfig({
     include: ["./src/**/*.test.{ts,tsx}"],
     globalSetup: "./vitest.setup.ts",
   },
-  resolve: {
-    alias: {
-      "@": `${__dirname}/src`,
-    },
-  },
 });

@@ -1,8 +1,8 @@
-import { prisma } from "@/app/_clients/prisma";
 import Image from "next/image";
 import { Suspense } from "react";
 import { deleteAll } from "../_actions/items";
 import { auth } from "../_clients/nextAuth";
+import { prisma } from "../_clients/prisma";
 import { Button } from "../_components/Button";
 import { format } from "../_utils/date";
 

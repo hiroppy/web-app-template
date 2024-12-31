@@ -1,7 +1,7 @@
-import { prisma } from "@/app/_clients/prisma";
 import { PrismaAdapter } from "@auth/prisma-adapter";
 import NextAuth from "next-auth";
 import { config, configForTest } from "./nextAuthConfig";
+import { prisma } from "./prisma";
 
 export const {
   auth,

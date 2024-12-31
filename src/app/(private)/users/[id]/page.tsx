@@ -1,5 +1,5 @@
-import { prisma } from "@/app/_clients/prisma";
 import { notFound } from "next/navigation";
+import { prisma } from "../../../_clients/prisma";
 
 type Props = {
   params: Promise<{
