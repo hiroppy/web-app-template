@@ -12,6 +12,7 @@
     "test:watch": "dotenv -e .env.test -- vitest watch",
     "test:e2e": "dotenv -e .env.test -- playwright test",
     "test:e2e:ui": "dotenv -e .env.test -- playwright test --ui",
+    "test:build": "dotenv -e .env.test -- pnpm build",
     "db:up": "docker compose --env-file .env.local up -d && sleep 0.5",
     "db:stop": "docker compose stop",
     "db:migrate": "dotenv -e .env.local -- prisma migrate dev",

@@ -10,6 +10,7 @@ declare global {
       GOOGLE_CLIENT_ID: string;
       GOOGLE_CLIENT_SECRET: string;
       TRACE_EXPORTER_URL: string | /* for local */ undefined;
+      NEXTAUTH_TEST_MODE?: string;
     }
   }
 }

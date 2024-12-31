@@ -9,39 +9,35 @@ export default async function globalSetup(config: FullConfig) {
   // @ts-expect-error Store the container reference for later teardown
   global.__DB_CONTAINER__ = container;
 
-  const sessionToken = "session_token";
+  const jwt = {
+    id: "id",
+    name: NAME,
+    email: EMAIL,
+    image: IMAGE,
+    role: "user",
+  };
+
+  const userData = {
+    ...jwt,
+    accounts: {
+      create: {
+        type: "oauth",
+        provider: "google",
+        providerAccountId: "id",
+        id_token: "id_token",
+        access_token: "access_token",
+        token_type: "Bearer",
+        scope: "scope",
+      },
+    },
+  };
 
   await prisma.user.upsert({
     where: {
       email: EMAIL,
     },
-    create: {
-      name: NAME,
-      image: IMAGE,
-      email: EMAIL,
-      role: "user",
-      sessions: {
-        create: {
-          expires: new Date(
-            new Date().setFullYear(new Date().getFullYear() + 1),
-          ),
-          sessionToken,
-        },
-      },
-      accounts: {
-        create: {
-          type: "oauth",
-          provider: "google",
-          providerAccountId: "id",
-          id_token: "id_token",
-          access_token: "access_token",
-          token_type: "Bearer",
-          scope:
-            "https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile openid",
-        },
-      },
-    },
-    update: {},
+    create: userData,
+    update: userData,
   });
 
   const browser = await chromium.launch();
@@ -50,7 +46,13 @@ export default async function globalSetup(config: FullConfig) {
   await browserContext.addCookies([
     {
       name: "authjs.session-token",
-      value: sessionToken,
+      value: btoa(
+        JSON.stringify({
+          ...jwt,
+          // google provides picture, not image
+          picture: IMAGE,
+        }),
+      ),
       domain: "localhost",
       path: "/",
       httpOnly: true,

@@ -1,11 +1,15 @@
+import { config as authConfig } from "@/app/_clients/nextAuthConfig";
 import NextAuth from "next-auth";
-import type { NextRequest } from "next/server";
-import { authConfig } from "./app/_clients/nextAuth";
+import { NextResponse } from "next/server";
 
 const { auth } = NextAuth(authConfig);
 
-export const config = { matcher: [] };
+export const config = { matcher: ["/users/:id"] };
 
-export default auth(async function middleware(req: NextRequest) {
-  // Your custom middleware logic goes here
+export default auth(async function middleware(req) {
+  if (req.auth?.user.role === "user") {
+    return NextResponse.next();
+  }
+
+  return NextResponse.rewrite(new URL("/signin", req.url));
 });
