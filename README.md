@@ -115,13 +115,13 @@ npm run setup
 pnpm i
 ```
 
-**4. Creating `.env.local` and modifying environment variables**
+**4. Creating `.env` and modifying environment variables**
 
 ```sh
-cp .env.sample .env.local
+cp .env.sample .env
 ```
 
-Set the following environment variables in `.env.local`.
+Set the following environment variables in `.env`.
 
 ```
 GOOGLE_CLIENT_ID=

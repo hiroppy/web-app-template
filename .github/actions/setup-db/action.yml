@@ -2,7 +2,7 @@ name: Setup DB
 runs:
   using: composite
   steps:
-    - run: cp ./.env.sample ./.env.local
+    - run: cp ./.env.sample ./.env
       shell: bash
     - run: pnpm db:up && pnpm db:migrate && pnpm generate:client
       shell: bash

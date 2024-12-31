@@ -1,7 +1,7 @@
 exports[`no-docker > should put files 1`] = `
 [
   "internal-tests-output-no-docker/.editorconfig",
-  "internal-tests-output-no-docker/.env.local",
+  "internal-tests-output-no-docker/.env",
   "internal-tests-output-no-docker/.env.sample",
   "internal-tests-output-no-docker/.env.test",
   "internal-tests-output-no-docker/.githooks/pre-commit",
