@@ -1,5 +1,5 @@
 import { spawn } from "node:child_process";
-import { readFile, unlink, writeFile } from "node:fs/promises";
+import { readFile, rm, unlink, writeFile } from "node:fs/promises";
 import { basename } from "node:path";
 import { createInterface } from "node:readline/promises";
 
@@ -19,11 +19,12 @@ await Promise.all([
   ]),
   generateMigrationFiles(),
   updatePackageJson(),
+  removeDirs(["internal-tests", ".github/assets"]),
 ]);
 
 await docker();
 
-await removeFiles(["init.mjs", ".github/assets/jaeger.png"]);
+await removeFiles(["init.mjs"]);
 
 await format();
 
@@ -93,6 +94,12 @@ async function removeWords(file, words) {
 async function removeFiles(files) {
   await Promise.all(
     files.map((file) => unlink(new URL(file, import.meta.url))),
+  );
+}
+
+async function removeDirs(dirs) {
+  await Promise.all(
+    dirs.map((dir) => rm(new URL(dir, import.meta.url), { recursive: true })),
   );
 }
 
