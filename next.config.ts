@@ -9,6 +9,9 @@ const nextConfig: NextConfig = {
       },
     ],
   },
+  experimental: {
+    authInterrupts: true,
+  },
   webpack: (config, { isServer }) => {
     if (isServer) {
       // https://github.com/open-telemetry/opentelemetry-js/issues/4173

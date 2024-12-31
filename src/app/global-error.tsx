@@ -1,6 +1,7 @@
 "use client";
 
 import { Button } from "./_components/Button";
+import { Container } from "./_components/Container";
 
 type Props = {
   error: Error & { digest?: string };
@@ -11,8 +12,10 @@ export default function GlobalError({ error, reset }: Props) {
   return (
     <html lang="en">
       <body>
-        <h2>Something went wrong!</h2>
-        <Button onClick={() => reset()}>Try again</Button>
+        <Container>
+          <h2>Something went wrong!</h2>
+          <Button onClick={() => reset()}>Try again</Button>
+        </Container>
       </body>
     </html>
   );

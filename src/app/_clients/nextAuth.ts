@@ -5,7 +5,7 @@ import GoogleProvider from "next-auth/providers/google";
 
 export const authConfig = {
   pages: {
-    signIn: "/auth/signin",
+    signIn: "/signin",
   },
   providers: [
     GoogleProvider({

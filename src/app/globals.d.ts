@@ -1,9 +1,12 @@
-import type { DefaultUser } from "next-auth";
+export type {};
 
 declare global {
   namespace NodeJS {
     interface ProcessEnv {
+      // public
       NEXT_PUBLIC_SITE_URL: string;
+
+      // private
       GOOGLE_CLIENT_ID: string;
       GOOGLE_CLIENT_SECRET: string;
       TRACE_EXPORTER_URL: string | /* for local */ undefined;

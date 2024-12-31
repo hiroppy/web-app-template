@@ -28,13 +28,13 @@ export default function Layout({ dialog, children }: Props) {
       <body
         className={[
           inter.className,
-          "bg-gray-700 text-gray-200 h-screen flex flex-col",
+          "bg-gray-700 text-gray-200 min-h-screen flex flex-col",
           // for dialog
           "has-[dialog[open]]:overflow-hidden",
         ].join(" ")}
       >
         <Header />
-        <main className="py-4 px-8 flex-1 overflow-y-auto">{children}</main>
+        <main className="flex-1">{children}</main>
         <Footer />
         {dialog}
       </body>
