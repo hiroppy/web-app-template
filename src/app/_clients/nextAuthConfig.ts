@@ -1,22 +1,7 @@
+// don't import @auth/prisma-adapter here to avoid importing it at Edge
+
 import type { NextAuthConfig, User } from "next-auth";
-import type { JWT, JWTDecodeParams, JWTEncodeParams } from "next-auth/jwt";
 import GoogleProvider from "next-auth/providers/google";
-
-// for test
-export const testConfig = {
-  jwt: {
-    encode: async ({ token }: JWTEncodeParams<JWT>) => {
-      return btoa(JSON.stringify(token));
-    },
-    decode: async ({ token }: JWTDecodeParams) => {
-      if (!token) {
-        return {};
-      }
-
-      return JSON.parse(atob(token));
-    },
-  },
-};
 
 export const config = {
   pages: {
@@ -62,3 +47,18 @@ export const config = {
   // https://authjs.dev/getting-started/deployment#docker
   trustHost: true,
 } satisfies NextAuthConfig;
+
+export const configForTest = {
+  jwt: {
+    encode: async ({ token }) => {
+      return btoa(JSON.stringify(token));
+    },
+    decode: async ({ token }) => {
+      if (!token) {
+        return {};
+      }
+
+      return JSON.parse(atob(token));
+    },
+  },
+} satisfies Omit<NextAuthConfig, "providers">;

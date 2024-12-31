@@ -1,7 +1,7 @@
 import { prisma } from "@/app/_clients/prisma";
 import { PrismaAdapter } from "@auth/prisma-adapter";
 import NextAuth from "next-auth";
-import { config, testConfig } from "./nextAuthConfig";
+import { config, configForTest } from "./nextAuthConfig";
 
 export const {
   auth,
@@ -14,6 +14,6 @@ export const {
   session: {
     strategy: "jwt",
   },
-  ...(process.env.NEXTAUTH_TEST_MODE === "true" ? testConfig : {}),
+  ...(process.env.NEXTAUTH_TEST_MODE === "true" ? configForTest : {}),
   ...config,
 });

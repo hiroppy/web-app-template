@@ -7,7 +7,7 @@ const { auth } = NextAuth(authConfig);
 export const config = { matcher: ["/users/:id"] };
 
 export default auth(async function middleware(req) {
-  if (req?.auth?.user.role === "user") {
+  if (req.auth?.user.role === "user") {
     return NextResponse.next();
   }
 
