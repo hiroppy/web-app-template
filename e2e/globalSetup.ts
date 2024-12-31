@@ -49,7 +49,7 @@ export default async function globalSetup(config: FullConfig) {
 
   await browserContext.addCookies([
     {
-      name: "next-auth.session-token",
+      name: "authjs.session-token",
       value: sessionToken,
       domain: "localhost",
       path: "/",

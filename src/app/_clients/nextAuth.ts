@@ -1,17 +1,12 @@
 import { prisma } from "@/app/_clients/prisma";
 import { PrismaAdapter } from "@auth/prisma-adapter";
-import type { NextAuthOptions } from "next-auth";
+import NextAuth, { type NextAuthConfig } from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
 
-export const options: NextAuthOptions = {
-  session: {
-    strategy: "database",
-  },
+export const authConfig = {
   pages: {
     signIn: "/auth/signin",
   },
-  // @ts-expect-error https://github.com/nextauthjs/next-auth/issues/9493
-  adapter: PrismaAdapter(prisma),
   providers: [
     GoogleProvider({
       clientId: process.env.GOOGLE_CLIENT_ID,
@@ -28,10 +23,10 @@ export const options: NextAuthOptions = {
     }),
   ],
   callbacks: {
-    redirect: async ({ url, baseUrl }) => {
+    redirect: async ({ baseUrl }) => {
       return baseUrl;
     },
-    session: async ({ session, token, user, trigger, newSession }) => {
+    session: async ({ session, user }) => {
       if (session?.user) {
         session.user.id = user.id;
         session.user.role = user.role;
@@ -40,4 +35,15 @@ export const options: NextAuthOptions = {
       return session;
     },
   },
-};
+  // https://authjs.dev/getting-started/deployment#docker
+  trustHost: true,
+} satisfies NextAuthConfig;
+
+export const { auth, handlers } = NextAuth({
+  // @ts-expect-error https://github.com/nextauthjs/next-auth/issues/9493
+  adapter: PrismaAdapter(prisma),
+  session: {
+    strategy: "database",
+  },
+  ...authConfig,
+});

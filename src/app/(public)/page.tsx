@@ -1,9 +1,8 @@
 import { prisma } from "@/app/_clients/prisma";
-import { getServerSession } from "next-auth";
 import Image from "next/image";
 import { Suspense } from "react";
 import { deleteAll } from "../_actions/items";
-import { options } from "../_clients/nextAuth";
+import { auth } from "../_clients/nextAuth";
 import { Button } from "../_components/Button";
 import { format } from "../_utils/date";
 
@@ -21,7 +20,7 @@ export default async function Page() {
 }
 
 async function Status() {
-  const session = await getServerSession(options);
+  const session = await auth();
 
   return (
     <div className="flex justify-between gap-3 flex-col md:flex-row">
