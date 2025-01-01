@@ -1,4 +1,6 @@
-// don't import @auth/prisma-adapter here to avoid importing it at Edge
+// don't import prisma or @auth/prisma-adapter here to avoid importing it at Edge
+// [auth][error] JWTSessionError: Read more at https://errors.authjs.dev#jwtsessionerror
+// [auth][cause]: Error: PrismaClient is not configured to run in Edge Runtime (Vercel Edge Functions, Vercel Edge Middleware, Next.js (Pages Router) Edge API Routes, Next.js (App Router) Edge Route Handlers or Next.js Middleware). In order to run Prisma Client on edge runtime, either:
 
 import type { NextAuthConfig, User } from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
@@ -24,18 +26,10 @@ export const config = {
     }),
   ],
   callbacks: {
-    redirect: async ({ baseUrl }) => {
+    redirect: ({ url, baseUrl }) => {
       return baseUrl;
     },
-    async jwt({ token, user }) {
-      // user exists when only signing in
-      if (user) {
-        token.id = user.id;
-        token.role = user.role;
-      }
-      return token;
-    },
-    session: async ({ session, token }) => {
+    session: ({ session, token }) => {
       if (session?.user && token) {
         session.user.id = token.id as string;
         session.user.role = token.role as User["role"];
