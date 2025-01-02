@@ -13,9 +13,7 @@ export async function setupDB() {
   const dbContainer = container.getContainer("db-1");
   const dbUrl = `postgresql://${process.env.POSTGRES_USER}:${process.env.POSTGRES_PASSWORD}@${dbContainer.getHost()}:${dbContainer.getMappedPort(5432)}/${process.env.POSTGRES_DB}?schema=public`;
 
-  await execAsync(`DATABASE_URL=${dbUrl} npx prisma migrate deploy`);
-
-  console.log("done migration");
+  await execAsync(`DATABASE_URL=${dbUrl} npx prisma migrate dev`);
 
   const prisma = new PrismaClient({
     datasources: {
