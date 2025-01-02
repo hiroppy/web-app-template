@@ -1,5 +1,5 @@
 import type { FullConfig } from "@playwright/test";
-import { setupDB } from "../dbSetup.test";
+import { setupDB } from "../test-db.setup";
 
 export default async function globalSetup(config: FullConfig) {
   const { down } = await setupDB({
