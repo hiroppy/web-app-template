@@ -22,7 +22,7 @@ export async function setupDB({ port }: { port: "random" | number }) {
     port: mappedPort,
   });
 
-  await execAsync(`POSTGRES_URL=${url} npx prisma migrate dev`);
+  await execAsync(`POSTGRES_URL=${url} npx prisma db push`);
 
   const prisma = new PrismaClient({
     datasources: {
