@@ -5,6 +5,21 @@
 import type { NextAuthConfig, User } from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
 
+export const configForTest = {
+  jwt: {
+    encode: async ({ token }) => {
+      return btoa(JSON.stringify(token));
+    },
+    decode: async ({ token }) => {
+      if (!token) {
+        return {};
+      }
+
+      return JSON.parse(atob(token));
+    },
+  },
+} satisfies Omit<NextAuthConfig, "providers">;
+
 export const config = {
   pages: {
     signIn: "/signin",
@@ -40,19 +55,5 @@ export const config = {
   },
   // https://authjs.dev/getting-started/deployment#docker
   trustHost: true,
+  ...(process.env.NEXTAUTH_TEST_MODE === "true" ? configForTest : {}),
 } satisfies NextAuthConfig;
-
-export const configForTest = {
-  jwt: {
-    encode: async ({ token }) => {
-      return btoa(JSON.stringify(token));
-    },
-    decode: async ({ token }) => {
-      if (!token) {
-        return {};
-      }
-
-      return JSON.parse(atob(token));
-    },
-  },
-} satisfies Omit<NextAuthConfig, "providers">;

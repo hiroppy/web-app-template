@@ -1,6 +1,6 @@
 import type { Page } from "@playwright/test";
 import { expect } from "@playwright/test";
-import { IMAGE } from "../constants";
+import type { User } from "next-auth";
 
 export class Base {
   protected page: Page;
@@ -10,20 +10,21 @@ export class Base {
   }
 
   async init() {
-    await this.page.goto("http://localhost:3000");
-    await this.page.waitForLoadState("networkidle");
+    await this.page.goto(process.env.NEXT_PUBLIC_SITE_URL, {
+      waitUntil: "networkidle",
+    });
   }
 
-  async expectHeaderUI(state: "signIn" | "signOut") {
+  async expectHeaderUI(state: "signIn" | "signOut", user: User) {
     if (state === "signIn") {
       await expect(
         this.page.getByRole("button", { name: "Sign out" }),
       ).toBeVisible();
       expect(
         await this.page
-          .getByRole("img", { name: "e2e-test" })
+          .getByRole("img", { name: "profile" })
           .getAttribute("src"),
-      ).toBe(IMAGE);
+      ).toBe(user.image);
       expect(
         await this.page
           .getByRole("link", { name: "Add an item" })

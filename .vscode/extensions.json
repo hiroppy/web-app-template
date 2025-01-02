@@ -3,8 +3,9 @@
     "Prisma.prisma",
     "esbenp.prettier-vscode",
     "biomejs.biome",
-    "streetsidesoftware.code-spell-checker",
     "EditorConfig.EditorConfig",
-    "vitest.explorer"
+    "streetsidesoftware.code-spell-checker",
+    "vitest.explorer",
+    "ms-playwright.playwright"
   ]
 }

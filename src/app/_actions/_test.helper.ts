@@ -5,7 +5,7 @@ export async function setup() {
   const { container, prisma, truncate, down } = await vi.hoisted(async () => {
     const { setupDB } = await import("../../../dbSetup.test");
 
-    return await setupDB();
+    return await setupDB({ port: "random" });
   });
 
   const mock = vi.hoisted(() => ({
