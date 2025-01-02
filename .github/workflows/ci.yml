@@ -35,11 +35,6 @@ jobs:
       - uses: ./.github/actions/setup-node
       - uses: ./.github/actions/setup-db
       - run: pnpm build
-      - uses: actions/upload-artifact@v4
-        with:
-          name: app
-          path: .next
-          include-hidden-files: true
   ####### docker #######
   build-docker:
     runs-on: ubuntu-latest
@@ -76,7 +71,6 @@ jobs:
       - uses: ./.github/actions/setup-prisma
       - run: pnpm test
   e2e-test:
-    needs: [build]
     runs-on: ubuntu-latest
     env:
       NEXTAUTH_SECRET: UfxvOS6HetHOFkL44YTITYgc0DOuOlz5TBp3jkbnZ3w=
@@ -85,10 +79,7 @@ jobs:
       - uses: ./.github/actions/setup-node
       - uses: ./.github/actions/setup-prisma
       - run: pnpm exec playwright install chromium
-      - uses: actions/download-artifact@v4
-        with:
-          name: app
-          path: .next
+      - run: pnpm build:test
       - run: pnpm test:e2e
   ####### 👉 remove #######
   internal-test:

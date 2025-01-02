@@ -2,35 +2,35 @@ import { exec } from "node:child_process";
 import { promisify } from "node:util";
 import { Prisma, PrismaClient } from "@prisma/client";
 import { DockerComposeEnvironment, Wait } from "testcontainers";
+import { createDBUrl } from "./src/app/_utils/db";
 
 const execAsync = promisify(exec);
 
-export async function setupDB() {
+export async function setupDB({ port }: { port: "random" | number }) {
   const container = await new DockerComposeEnvironment(".", "compose.yml")
     .withEnvironmentFile(".env.test")
+    // overwrite config
+    .withEnvironment({
+      POSTGRES_PORT: port === "random" ? "0" : `${port}`,
+    })
     .withWaitStrategy("db", Wait.forListeningPorts())
     .up(["db"]);
   const dbContainer = container.getContainer("db-1");
-  const dbUrl = `postgresql://${process.env.POSTGRES_USER}:${process.env.POSTGRES_PASSWORD}@${dbContainer.getHost()}:${dbContainer.getMappedPort(5432)}/${process.env.POSTGRES_DB}?schema=public`;
+  const mappedPort = dbContainer.getMappedPort(5432);
+  const url = createDBUrl({
+    host: dbContainer.getHost(),
+    port: mappedPort,
+  });
 
-  await execAsync(`DATABASE_URL=${dbUrl} npx prisma migrate dev`);
+  await execAsync(`POSTGRES_URL=${url} npx prisma db push`);
 
   const prisma = new PrismaClient({
     datasources: {
       db: {
-        url: dbUrl,
+        url,
       },
     },
   });
-
-  async function truncate() {
-    const tableNames = Prisma.dmmf.datamodel.models.map((model) => {
-      return model.dbName || model.name.toLowerCase();
-    });
-    const truncateQuery = `TRUNCATE TABLE ${tableNames.map((name) => `"${name}"`).join(", ")} CASCADE`;
-
-    await prisma.$executeRawUnsafe(truncateQuery);
-  }
 
   async function down() {
     await prisma.$disconnect();
@@ -39,11 +39,21 @@ export async function setupDB() {
 
   return <const>{
     container,
+    port,
     prisma,
-    truncate,
+    truncate: () => truncate(prisma),
     down,
     async [Symbol.asyncDispose]() {
       await down();
     },
   };
+}
+
+export async function truncate(prisma: PrismaClient) {
+  const tableNames = Prisma.dmmf.datamodel.models.map((model) => {
+    return model.dbName || model.name.toLowerCase();
+  });
+  const truncateQuery = `TRUNCATE TABLE ${tableNames.map((name) => `"${name}"`).join(", ")} CASCADE`;
+
+  await prisma.$executeRawUnsafe(truncateQuery);
 }

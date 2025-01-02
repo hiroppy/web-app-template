@@ -8,8 +8,8 @@ export const {
   unstable_update: update,
   handlers,
 } = NextAuth({
-  ...config,
   // https://authjs.dev/getting-started/migrating-to-v5#edge-compatibility
+  ...config,
   // @ts-expect-error https://github.com/nextauthjs/next-auth/issues/9493
   adapter: PrismaAdapter(prisma),
   session: {

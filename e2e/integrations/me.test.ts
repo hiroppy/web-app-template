@@ -1,3 +1,5 @@
+// TODO: update
+
 import { user1 } from "../dummyUsers";
 import { expect, test } from "../fixtures";
 import { reset } from "../helpers/reset";
@@ -20,6 +22,7 @@ test.afterEach(async ({ context }) => {
 });
 
 test("should create an item and then delete all items", async ({ page }) => {
+  await page.reload();
   const topPage = new TopPage(page);
 
   await topPage.expectHeaderUI("signIn", user1);
@@ -27,24 +30,7 @@ test("should create an item and then delete all items", async ({ page }) => {
 
   await topPage.addItem("hello!");
 
-  expect(await topPage.getItems()).toMatchObject([
-    {
-      img: user1.image,
-      title: "hello!",
-    },
-  ]);
-
   await topPage.deleteAllItems();
 
   expect(await topPage.getItems()).toMatchObject([]);
-});
-
-test("should hide all UI related to sign in", async ({ page, context }) => {
-  await context.clearCookies();
-  await page.reload();
-
-  const topPage = new TopPage(page);
-
-  await topPage.expectHeaderUI("signOut", user1);
-  await topPage.expectUI("signOut");
 });

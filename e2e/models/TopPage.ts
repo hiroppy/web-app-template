@@ -1,5 +1,5 @@
 import { expect } from "@playwright/test";
-import { Base } from "./Common";
+import { Base } from "./Base";
 
 export class TopPage extends Base {
   async goTo() {

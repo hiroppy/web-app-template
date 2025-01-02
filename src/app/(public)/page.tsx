@@ -32,7 +32,7 @@ async function Status() {
       </p>
       {session?.user && (
         <div className="flex items-center gap-4">
-          <Link href="/create">
+          <Link href="/create" scroll={false}>
             <Button className="bg-blue-600">Add an item</Button>
           </Link>
           <form action={deleteAll}>
