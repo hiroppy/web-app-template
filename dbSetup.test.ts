@@ -34,7 +34,7 @@ export async function setupDB() {
 
   async function down() {
     await prisma.$disconnect();
-    await container.stop();
+    await container.down();
   }
 
   return <const>{

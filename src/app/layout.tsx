@@ -26,7 +26,7 @@ type Props = PropsWithChildren<{
 export default function Layout({ dialog, children }: Props) {
   return (
     <html lang="en">
-      {/* if you don't use useSession, please remove AuthProvide */}
+      {/* if you don't use useSession, please remove AuthProvider */}
       <AuthProvider>
         <body
           className={[
