@@ -13,6 +13,10 @@ declare global {
       NEXTAUTH_TEST_MODE?: string;
     }
   }
+
+  type PartialWithNullable<T> = {
+    [P in keyof T]?: T[P] | null;
+  };
 }
 
 declare module "next-auth" {
