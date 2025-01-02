@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import type { PropsWithChildren, ReactNode } from "react";
 import { Footer } from "./_components/Footer";
 import { Header } from "./_components/Header";
+import { AuthProvider } from "./_providers/AuthProvider";
 import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -25,19 +26,22 @@ type Props = PropsWithChildren<{
 export default function Layout({ dialog, children }: Props) {
   return (
     <html lang="en">
-      <body
-        className={[
-          inter.className,
-          "bg-gray-700 text-gray-200 min-h-screen flex flex-col",
-          // for dialog
-          "has-[dialog[open]]:overflow-hidden",
-        ].join(" ")}
-      >
-        <Header />
-        <main className="flex-1">{children}</main>
-        <Footer />
-        {dialog}
-      </body>
+      {/* if you don't use useSession, please remove AuthProvider */}
+      <AuthProvider>
+        <body
+          className={[
+            inter.className,
+            "bg-gray-700 text-gray-200 min-h-screen flex flex-col",
+            // for dialog
+            "has-[dialog[open]]:overflow-hidden",
+          ].join(" ")}
+        >
+          <Header />
+          <main className="flex-1">{children}</main>
+          <Footer />
+          {dialog}
+        </body>
+      </AuthProvider>
     </html>
   );
 }

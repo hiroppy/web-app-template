@@ -27,13 +27,12 @@ export function Content() {
     }
 
     startTransition(async () => {
-      try {
-        await create(values);
+      const { success, message } = await create(values);
+
+      if (success) {
         router.push("/");
-      } catch (e) {
-        if (e instanceof Error) {
-          alert(e.message);
-        }
+      } else {
+        alert(message);
       }
     });
   };

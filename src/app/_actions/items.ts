@@ -1,25 +1,33 @@
 "use server";
 
+import type { Item } from "@prisma/client";
 import { revalidatePath } from "next/cache";
 import { auth } from "../_clients/nextAuth";
 import { prisma } from "../_clients/prisma";
 import { type ItemCreateSchema, itemCreateSchema } from "../_schemas/items";
+import type { Result } from "./_types";
 
-export async function create(data: ItemCreateSchema) {
-  const validatedFields = itemCreateSchema.safeParse(data);
-
-  if (!validatedFields.success) {
-    throw new Error("invalid schema");
-  }
-
+export async function create(data: ItemCreateSchema): Promise<Result<Item>> {
   const session = await auth();
 
   if (!session?.user?.id) {
-    throw new Error("no session token");
+    return {
+      success: false,
+      message: "no session token",
+    };
+  }
+
+  const validatedFields = itemCreateSchema.safeParse(data);
+
+  if (!validatedFields.success) {
+    return {
+      success: false,
+      message: "invalid fields",
+    };
   }
 
   const res = await prisma.$transaction(async (prisma) => {
-    const res = await prisma.item.create({
+    return await prisma.item.create({
       data: {
         content: validatedFields.data.content,
         user: {
@@ -29,13 +37,14 @@ export async function create(data: ItemCreateSchema) {
         },
       },
     });
-
-    return res;
   });
 
   revalidatePath("/");
 
-  return res;
+  return {
+    success: true,
+    data: res,
+  };
 }
 
 export async function deleteAll() {

@@ -1,56 +1,14 @@
-import {
-  afterAll,
-  afterEach,
-  beforeEach,
-  describe,
-  expect,
-  test,
-  vi,
-} from "vitest";
-import { setupDB } from "../../../dbSetup.test";
+import { beforeEach, describe, expect, test } from "vitest";
+import { setup } from "./_test.helper";
+
+// need to import after test.helper
 import { create, deleteAll } from "./items";
 
-const { container, prisma } = await setupDB();
+const { prisma, mock, createUser } = await setup();
 
 describe("actions/items", () => {
-  const mock = vi.hoisted(() => ({
-    auth: vi.fn(),
-    revalidatePath: vi.fn(),
-  }));
-
-  vi.mock("next-auth", () => ({
-    default: () => ({
-      auth: mock.auth,
-    }),
-  }));
-
-  vi.mock("next/cache", () => ({
-    revalidatePath: mock.revalidatePath,
-  }));
-
   beforeEach(async () => {
-    mock.auth.mockReturnValue({
-      user: {
-        id: "id",
-      },
-    });
-
-    await prisma.user.create({
-      data: {
-        id: "id",
-        email: "hello@a.com",
-      },
-    });
-
-    expect(await prisma.user.count()).toBe(1);
-  });
-
-  afterEach(async () => {
-    await Promise.all([prisma.user.deleteMany(), prisma.item.deleteMany()]);
-  });
-
-  afterAll(async () => {
-    await container.down();
+    await createUser();
   });
 
   describe("create", () => {
@@ -64,7 +22,10 @@ describe("actions/items", () => {
         await create({
           content: "hello",
         }),
-      ).toMatchObject(expected);
+      ).toMatchObject({
+        success: true,
+        data: expected,
+      });
       expect(mock.revalidatePath.mock.calls).toMatchInlineSnapshot(`
       [
         [
@@ -75,16 +36,24 @@ describe("actions/items", () => {
       expect(await prisma.item.findMany()).toMatchObject([expected]);
     });
 
-    test("should throw an error if the schema is invalid", async () => {
-      await expect(create({ content: "" })).rejects.toThrow("invalid schema");
-    });
-
     test("should throw an error if there is no session token", async () => {
       mock.auth.mockReturnValueOnce(null);
 
-      await expect(create({ content: "hello" })).rejects.toThrow(
-        "no session token",
-      );
+      expect(await create({ content: "hello" })).toMatchInlineSnapshot(`
+        {
+          "message": "no session token",
+          "success": false,
+        }
+      `);
+    });
+
+    test("should throw an error if the schema is invalid", async () => {
+      expect(await create({ content: "" })).toMatchInlineSnapshot(`
+        {
+          "message": "invalid fields",
+          "success": false,
+        }
+      `);
     });
   });
 

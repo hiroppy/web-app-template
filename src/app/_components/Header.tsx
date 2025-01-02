@@ -12,30 +12,20 @@ export async function Header() {
     <header className="border-b border-b-gray-600 sticky top-0 bg-gray-700">
       <Container className="flex items-center justify-between" size="md">
         {session?.user?.image ? (
-          <Image
-            src={session?.user?.image}
-            width={40}
-            height={40}
-            className="rounded-full"
-            alt={session?.user?.name ?? "no name"}
-            priority
-          />
+          <Link href="/me">
+            <Image
+              src={session?.user?.image}
+              width={40}
+              height={40}
+              className="rounded-full"
+              alt={session?.user?.name ?? "no name"}
+              priority
+            />
+          </Link>
         ) : (
           <i className="w-10 h-10 rounded-full bg-gray-600" />
         )}
-        <div className="flex gap-4 items-center">
-          {session && (
-            <Link
-              href="/create"
-              className="bg-blue-300 py-2 px-4 rounded-md text-gray-800"
-              // https://github.com/shadcn-ui/ui/issues/1355
-              scroll={false}
-            >
-              Add an item
-            </Link>
-          )}
-          {session ? <SignOutButton /> : <SignInButton />}
-        </div>
+        {session ? <SignOutButton /> : <SignInButton />}
       </Container>
     </header>
   );

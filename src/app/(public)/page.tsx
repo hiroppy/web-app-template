@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import { Suspense } from "react";
 import { deleteAll } from "../_actions/items";
 import { auth } from "../_clients/nextAuth";
@@ -23,21 +24,23 @@ async function Status() {
   const session = await auth();
 
   return (
-    <div className="flex justify-between gap-3 flex-col md:flex-row">
+    <div className="flex justify-between gap-3 flex-col md:flex-row md:items-center">
       <p className="text-gray-300">
         {session?.user
           ? `you are signed in as ${session.user.name} 😄`
           : "you are not signed in 🥲"}
       </p>
       {session?.user && (
-        <form action={deleteAll}>
-          <Button
-            type="submit"
-            className="py-2 px-4 bg-orange-800 rounded-md text-sm text-gray-100"
-          >
-            Delete my items
-          </Button>
-        </form>
+        <div className="flex items-center gap-4">
+          <Link href="/create">
+            <Button className="bg-blue-600">Add an item</Button>
+          </Link>
+          <form action={deleteAll}>
+            <Button type="submit" className="bg-orange-800  text-gray-100">
+              Delete my items
+            </Button>
+          </form>
+        </div>
       )}
     </div>
   );

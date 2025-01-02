@@ -4,6 +4,7 @@
     "esbenp.prettier-vscode",
     "biomejs.biome",
     "streetsidesoftware.code-spell-checker",
-    "EditorConfig.EditorConfig"
+    "EditorConfig.EditorConfig",
+    "vitest.explorer"
   ]
 }

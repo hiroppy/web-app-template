@@ -41,7 +41,7 @@ describe("middleware", () => {
       unstable_doesMiddlewareMatch({
         config,
         nextConfig,
-        url: "/users/id",
+        url: "/me",
       }),
     ).toEqual(true);
   });

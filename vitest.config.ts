@@ -15,5 +15,10 @@ export default defineConfig({
     clearMocks: true,
     include: ["./src/**/*.test.{ts,tsx}"],
     globalSetup: "./vitest.setup.ts",
+    poolOptions: {
+      forks: {
+        singleFork: true,
+      },
+    },
   },
 });
