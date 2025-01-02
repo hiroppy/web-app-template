@@ -15,7 +15,6 @@ exports[`no-docker > should put files 1`] = `
   "internal-tests-output-no-docker/.npmrc",
   "internal-tests-output-no-docker/.vscode/extensions.json",
   "internal-tests-output-no-docker/.vscode/settings.json",
-  "internal-tests-output-no-docker/LICENSE",
   "internal-tests-output-no-docker/README.md",
   "internal-tests-output-no-docker/biome.json",
   "internal-tests-output-no-docker/compose.yml",

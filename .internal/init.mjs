@@ -21,6 +21,7 @@ await Promise.all([
   generateMigrationFiles(),
   updatePackageJson(),
   removeDirs([".github/assets"]),
+  removeFiles(["LICENSE"]),
 ]);
 
 await docker();

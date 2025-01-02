@@ -16,7 +16,6 @@ exports[`common > should put files 1`] = `
   "internal-tests-output-common/.vscode/extensions.json",
   "internal-tests-output-common/.vscode/settings.json",
   "internal-tests-output-common/Dockerfile",
-  "internal-tests-output-common/LICENSE",
   "internal-tests-output-common/README.md",
   "internal-tests-output-common/biome.json",
   "internal-tests-output-common/compose.yml",
