@@ -1,5 +1,6 @@
 "use client";
 
+import clsx from "clsx";
 import { useSession } from "next-auth/react";
 import { notFound } from "next/navigation";
 import { useActionState } from "react";
@@ -34,11 +35,16 @@ export default function Page() {
       <Button type="submit" className="bg-blue-500 px-8" disabled={isLoading}>
         Save
       </Button>
-      {!formState.success && formState.message && (
-        <span className="text-red-300 text-sm">{formState.message}</span>
-      )}
-      {formState.success && formState.message && (
-        <span className="text-green-300 text-sm">{formState.message}</span>
+      {formState.message && (
+        <span
+          className={clsx(
+            "text-sm",
+            formState.success && "text-green-300",
+            !formState.success && "text-red-300",
+          )}
+        >
+          {formState.message}
+        </span>
       )}
     </form>
   );

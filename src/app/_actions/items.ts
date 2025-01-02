@@ -5,7 +5,7 @@ import { revalidatePath } from "next/cache";
 import { auth } from "../_clients/nextAuth";
 import { prisma } from "../_clients/prisma";
 import { type ItemCreateSchema, itemCreateSchema } from "../_schemas/items";
-import type { Result } from "./types";
+import type { Result } from "./_types";
 
 export async function create(data: ItemCreateSchema): Promise<Result<Item>> {
   const session = await auth();
