@@ -47,8 +47,4 @@ export async function createUser(browser: Browser, user = user1) {
       expires: Math.round((Date.now() + 60 * 60 * 24 * 1000 * 7) / 1000),
     },
   ]);
-
-  await browserContext.storageState({
-    path: resolve(__dirname, "storageState.json"),
-  });
 }
