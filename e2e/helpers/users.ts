@@ -1,9 +1,9 @@
-import { resolve } from "node:path";
-import type { Browser } from "@playwright/test";
-import { user1 } from "../mockedUsers";
+import type { BrowserContext, TestType } from "@playwright/test";
+import type { User } from "next-auth";
+import type { TestFixtures, WorkerFixtures } from "../fixtures";
 import { generatePrismaClient } from "./prisma";
 
-export async function createUser(browser: Browser, user = user1) {
+export async function registerUserToDB(user: User) {
   await using db = await generatePrismaClient();
   const userData = {
     ...user,
@@ -27,10 +27,10 @@ export async function createUser(browser: Browser, user = user1) {
     create: userData,
     update: userData,
   });
+}
 
-  const browserContext = await browser.newContext();
-
-  await browserContext.addCookies([
+export async function createAuthState(context: BrowserContext, user: User) {
+  await context.addCookies([
     {
       name: "authjs.session-token",
       value: btoa(
@@ -47,4 +47,18 @@ export async function createUser(browser: Browser, user = user1) {
       expires: Math.round((Date.now() + 60 * 60 * 24 * 1000 * 7) / 1000),
     },
   ]);
+  await context.storageState({
+    path: getStorageStatePath(user),
+  });
+}
+
+export async function useUser<T extends TestType<TestFixtures, WorkerFixtures>>(
+  test: T,
+  user: User,
+) {
+  test.use({ storageState: getStorageStatePath(user) });
+}
+
+export function getStorageStatePath(user: User) {
+  return `e2e/.auth/${user.id}.json`;
 }

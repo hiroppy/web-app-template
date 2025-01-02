@@ -3,9 +3,9 @@
 
 /.next/
 
-/build
-
+.auth
 playwright-report
+test-results
 
 .DS_Store
 *.pem
@@ -17,10 +17,6 @@ playwright-report
 
 *.tsbuildinfo
 next-env.d.ts
-
-storageState.json
-
-test-results
 
 ####### 👉 remove #######
 migrations

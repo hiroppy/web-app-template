@@ -86,7 +86,6 @@ exports[`no-docker > should update .github/workflows/ci.yml 1`] = `
   "      - uses: ./.github/actions/setup-prisma",
   "      - run: pnpm test",
   "  e2e-test:",
-  "    needs: [build]",
   "    runs-on: ubuntu-latest",
   "    env:",
   "      NEXTAUTH_SECRET: UfxvOS6HetHOFkL44YTITYgc0DOuOlz5TBp3jkbnZ3w=",

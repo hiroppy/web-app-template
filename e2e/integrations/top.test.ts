@@ -1,12 +1,13 @@
+import { user1 } from "../dummyUsers";
 import { expect, test } from "../fixtures";
-import { createUser } from "../helpers/createUser";
 import { reset } from "../helpers/reset";
-import { user1 } from "../mockedUsers";
+import { registerUserToDB, useUser } from "../helpers/users";
 import { TopPage } from "../models/TopPage";
 
-test.beforeEach(async ({ browser, page }) => {
-  await page.reload();
-  await createUser(browser);
+useUser(test, user1);
+
+test.beforeEach(async ({ page }) => {
+  await registerUserToDB(user1);
 
   const topPage = new TopPage(page);
 
