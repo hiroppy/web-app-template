@@ -7,7 +7,10 @@ export function Button({ children, className, ...rest }: Props) {
   return (
     <button
       type="button"
-      className={clsx("py-2 px-4 rounded-md text-sm text-gray-100", className)}
+      className={clsx(
+        "py-2 px-4 rounded-md text-sm text-gray-100 cursor-pointer",
+        className,
+      )}
       {...rest}
     >
       {children}
