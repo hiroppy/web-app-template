@@ -15,6 +15,8 @@ export async function setupDB() {
 
   await execAsync(`DATABASE_URL=${dbUrl} npx prisma migrate deploy`);
 
+  console.log("done migration");
+
   const prisma = new PrismaClient({
     datasources: {
       db: {
@@ -24,6 +26,7 @@ export async function setupDB() {
   });
 
   async function truncate() {
+    console.log("truncate");
     const tableNames = Prisma.dmmf.datamodel.models.map((model) => {
       return model.dbName || model.name.toLowerCase();
     });
