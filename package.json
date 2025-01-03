@@ -5,7 +5,7 @@
   "packageManager": "pnpm@9.15.2",
   "scripts": {
     "setup": "git config --local core.hooksPath .githooks && corepack enable pnpm",
-    "dev": "pnpm db:up && pnpm db:migrate && pnpm generate:client && next dev",
+    "dev": "pnpm db:up && pnpm db:migrate && pnpm generate:client && next dev --turbo",
     "start": "next start",
     "build": "pnpm generate:client && next build",
     "build:test": "dotenv -e .env.test -- pnpm build",
