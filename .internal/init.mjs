@@ -26,9 +26,11 @@ const basePath = resolve(import.meta.dirname, "..");
 
 await execAsync("npm run setup", { stdio: "ignore" });
 
-await docker();
+title("Installing dependencies");
+await execAsync("pnpm i", { stdio: "ignore" });
 
-await otel();
+title("Copying .env.sample to .env");
+await execAsync("cp .env.sample .env");
 
 // common
 await Promise.all([
@@ -38,18 +40,14 @@ await Promise.all([
     ["README.md", fences[1]],
   ]),
   updatePackageJson(),
+  generateMigrationFiles(),
   removeDirs([".github/assets"]),
   removeFiles(["LICENSE"]),
 ]);
 
-title("Installing dependencies");
-await execAsync("pnpm i", { stdio: "ignore" });
+await docker();
 
-title("Copying .env.sample to .env");
-await execAsync("cp .env.sample .env");
-
-// if the task requires node_modules
-await Promise.all([generateMigrationFiles()]);
+await otel();
 
 await removeDirs([".internal"]);
 
@@ -209,6 +207,7 @@ async function otel() {
       );
 
       await writeFile(path, JSON.stringify(data, null, 2));
+      await execAsync("pnpm i", { stdio: "ignore" });
     }
   }
 }
