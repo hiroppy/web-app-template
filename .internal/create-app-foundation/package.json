@@ -6,7 +6,7 @@
     "create-app-foundation": "src/index.mjs"
   },
   "engines": {
-    "node": ">=20"
+    "node": "23.5.0"
   },
   "author": "hiroppy <git@hiroppy.me> (https://hiroppy.me/)",
   "repository": {
