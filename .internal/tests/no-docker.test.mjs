@@ -10,6 +10,5 @@ describe("no-docker", async () => {
   });
 
   await baseTest.testFileList();
-
   await baseTest.testFileContent(".github/workflows/ci.yml");
 });

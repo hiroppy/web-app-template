@@ -1,4 +1,5 @@
 import { exec } from "node:child_process";
+import { existsSync } from "node:fs";
 import { readFile, readdir, rm } from "node:fs/promises";
 import { join, resolve as resolvePath } from "node:path";
 import { after, before, test } from "node:test";
@@ -15,7 +16,7 @@ export class BaseTest {
     this.outputPath = join(process.cwd(), this.outputDir);
   }
 
-  globalHook({ noDocker }) {
+  globalHook({ noDocker, noOtel }) {
     before(
       async () => {
         await execAsync("docker compose stop");
@@ -25,7 +26,7 @@ export class BaseTest {
           }
 
           // for local debug
-          // const child = exec("create-app-foundation");
+          // const child = exec("DEBUG=true create-app-foundation");
           const child = exec("npx create-app-foundation@latest");
 
           child.stdout.on("data", (data) => {
@@ -40,6 +41,13 @@ export class BaseTest {
             }
             if (data.includes("remove Docker")) {
               if (noDocker) {
+                child.stdin.write("y\n");
+              } else {
+                child.stdin.write("N\n");
+              }
+            }
+            if (data.includes("remove OpenTelemetry")) {
+              if (noOtel) {
                 child.stdin.write("y\n");
               } else {
                 child.stdin.write("N\n");
@@ -133,6 +141,29 @@ export class BaseTest {
       const content = await this.getFileContent(filePath);
 
       t.assert.snapshot(content.split("\n"));
+    });
+  }
+
+  async testRemovedSrcFiles(filePaths) {
+    test("should remove files from src", async (t) => {
+      const isAllDeleted = filePaths.every((path) => {
+        const target = join(this.outputPath, "src", path);
+
+        return !existsSync(target);
+      });
+
+      t.assert.equal(isAllDeleted, true);
+    });
+  }
+
+  async testDependencies() {
+    test("should update dependencies", async (t) => {
+      const { dependencies, devDependencies } = await this.getPackageJson();
+
+      t.assert.snapshot({
+        dependencies: Object.keys(dependencies),
+        devDependencies: Object.keys(devDependencies),
+      });
     });
   }
 

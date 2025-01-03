@@ -254,3 +254,124 @@ exports[`common > should update README.md 1`] = `
   ""
 ]
 `;
+
+exports[`common > should update compose.yml 1`] = `
+[
+  "volumes:",
+  "  db-data:",
+  "",
+  "services:",
+  "  db:",
+  "    image: postgres:17",
+  "    ports:",
+  "      - \${POSTGRES_PORT:-5432}:5432",
+  "    environment:",
+  "      - POSTGRES_USER=\${POSTGRES_USER}",
+  "      - POSTGRES_PASSWORD=\${POSTGRES_PASSWORD}",
+  "      - POSTGRES_DB=\${POSTGRES_DB}",
+  "  jaeger:",
+  "    image: jaegertracing/all-in-one",
+  "    ports:",
+  "      # https://www.jaegertracing.io/docs/1.6/getting-started/#all-in-one-docker-image",
+  "      # frontend",
+  "      - 16686:16686",
+  "      - 14268",
+  "      - 14250",
+  "    environment:",
+  "      - METRICS_STORAGE_TYPE=prometheus",
+  "      - PROMETHEUS_QUERY_SUPPORT_SPANMETRICS_CONNECTOR=true",
+  "      - COLLECTOR_OTLP_ENABLED=true",
+  "  # don't use contrib on prod",
+  "  # https://opentelemetry.io/blog/2024/otel-collector-anti-patterns/#3--not-using-the-right-collector-distribution-or-not-building-your-own-distribution",
+  "  otel-collector:",
+  "    image: otel/opentelemetry-collector-contrib",
+  "    command: [\\"--config=/conf/otel-collector-config.yml\\"]",
+  "    volumes:",
+  "      - ./otel-collector-config.yml:/conf/otel-collector-config.yml",
+  "    ports:",
+  "      - 13133:13133 # health_check extension",
+  "      - 4317:4317 # OTLP gRPC receiver",
+  "    depends_on:",
+  "      - jaeger",
+  ""
+]
+`;
+
+exports[`common > should update dependencies 1`] = `
+{
+  "dependencies": [
+    "@auth/prisma-adapter",
+    "@hookform/resolvers",
+    "@opentelemetry/exporter-metrics-otlp-grpc",
+    "@opentelemetry/exporter-trace-otlp-grpc",
+    "@opentelemetry/exporter-trace-otlp-proto",
+    "@opentelemetry/instrumentation-http",
+    "@opentelemetry/resources",
+    "@opentelemetry/sdk-metrics",
+    "@opentelemetry/sdk-node",
+    "@opentelemetry/sdk-trace-base",
+    "@opentelemetry/semantic-conventions",
+    "@prisma/client",
+    "@prisma/instrumentation",
+    "clsx",
+    "next",
+    "next-auth",
+    "react",
+    "react-dom",
+    "react-hook-form",
+    "zod"
+  ],
+  "devDependencies": [
+    "@biomejs/biome",
+    "@playwright/test",
+    "@tailwindcss/postcss",
+    "@testing-library/react",
+    "@types/node",
+    "@types/react",
+    "@types/react-dom",
+    "@vitejs/plugin-react",
+    "autoprefixer",
+    "dotenv",
+    "dotenv-cli",
+    "lint-staged",
+    "postcss",
+    "prettier",
+    "prisma",
+    "prisma-erd-generator",
+    "tailwindcss",
+    "testcontainers",
+    "typescript",
+    "vitest"
+  ]
+}
+`;
+
+exports[`common > should update next.config.ts 1`] = `
+[
+  "import type { NextConfig } from \\"next\\";",
+  "",
+  "const nextConfig: NextConfig = {",
+  "  images: {",
+  "    remotePatterns: [",
+  "      {",
+  "        protocol: \\"https\\",",
+  "        hostname: \\"lh3.googleusercontent.com\\",",
+  "      },",
+  "    ],",
+  "  },",
+  "  experimental: {",
+  "    authInterrupts: true,",
+  "  },",
+  "  webpack: (config, { isServer }) => {",
+  "    if (isServer) {",
+  "      // https://github.com/open-telemetry/opentelemetry-js/issues/4173",
+  "      config.ignoreWarnings = [{ module: /opentelemetry/ }];",
+  "    }",
+  "    return config;",
+  "  },",
+  "};",
+  "",
+  "export default nextConfig;",
+  ""
+]
+`;
