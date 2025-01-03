@@ -35,6 +35,8 @@ await Promise.all([
 
 await docker();
 
+await otel();
+
 await removeDirs([".internal"]);
 
 await format();
@@ -43,6 +45,7 @@ console.log("done! please commit them 🐶");
 
 async function format() {
   title("formatting");
+
   await new Promise((resolve, reject) => {
     const child = spawn("pnpm", ["fmt"], { stdio: "overlapped" });
 
@@ -136,4 +139,8 @@ async function docker() {
   }
 }
 
-async function otel() {}
+async function otel() {
+  const fence = ["####### otel #######", "########################"];
+
+  title("openTelemetry");
+}
