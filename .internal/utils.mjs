@@ -87,3 +87,7 @@ export async function getPackageJson() {
 
   return { path: packageJsonPath, data: parsed };
 }
+
+export async function removeDeps(deps) {
+  await execAsync(`pnpm remove ${deps.join(" ")}`, { stdio: "ignore" });
+}

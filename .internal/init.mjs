@@ -7,6 +7,7 @@ import { createInterface } from "node:readline/promises";
 import {
   execAsync,
   getPackageJson,
+  removeDeps,
   removeDirs,
   removeFiles,
   removeLines,
@@ -185,6 +186,14 @@ async function otel() {
   await removeWords("next.config.ts", fences[1]);
 
   async function run() {
+    const { data } = await getPackageJson();
+    const deps = [
+      "@prisma/instrumentation",
+      ...Object.keys(data.dependencies).filter((key) =>
+        key.startsWith("@opentelemetry/"),
+      ),
+    ];
+
     await Promise.all([
       removeFiles(["otel-collector-config.yml", "./src/instrumentation.ts"]),
       removeDirs(["./src/otel"]),
@@ -192,22 +201,7 @@ async function otel() {
         ["compose.yml", fences[0]],
         ["next.config.ts", fences[1]],
       ]),
-      removeDeps(),
+      removeDeps(deps),
     ]);
-
-    async function removeDeps() {
-      const { path, data } = await getPackageJson();
-
-      data.dependencies = Object.fromEntries(
-        Object.entries(data.dependencies).filter(
-          ([key]) =>
-            !key.startsWith("@opentelemetry/") &&
-            key !== "@prisma/instrumentation",
-        ),
-      );
-
-      await writeFile(path, JSON.stringify(data, null, 2));
-      await execAsync("pnpm i", { stdio: "ignore" });
-    }
   }
 }
