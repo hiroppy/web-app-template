@@ -41,18 +41,4 @@ export class Base {
       ).not.toBeVisible();
     }
   }
-
-  async addItem(content: string) {
-    expect(
-      await this.page
-        .getByRole("link", { name: "Add an item" })
-        .getAttribute("href"),
-    ).toBe("/create");
-    await this.page.getByRole("link", { name: "Add an item" }).click();
-
-    await this.page.getByLabel("New Memo").fill(content);
-    await this.page.keyboard.press("Enter");
-    await this.page.waitForLoadState("networkidle");
-    await this.page.goto("/");
-  }
 }

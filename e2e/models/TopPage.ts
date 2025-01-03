@@ -40,6 +40,21 @@ export class TopPage extends Base {
     return res;
   }
 
+  async addItem(content: string) {
+    expect(
+      await this.page
+        .getByRole("link", { name: "Add an item" })
+        .getAttribute("href"),
+    ).toBe("/create");
+
+    await this.page.getByRole("link", { name: "Add an item" }).click();
+
+    await this.page.fill("#content", content);
+    await this.page.keyboard.press("Enter");
+    await this.page.waitForLoadState("networkidle");
+    await this.page.goto("/");
+  }
+
   async deleteAllItems() {
     await this.page.getByRole("button", { name: "Delete my items" }).click();
     await this.page.waitForLoadState("networkidle");
