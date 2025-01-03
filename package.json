@@ -21,8 +21,7 @@
     "db:studio": "prisma studio",
     "generate:client": "prisma generate",
     "lint": "biome lint --write .",
-    "fmt": "prettier -w './**/*.{md,yml}' && biome format --write .",
-    "internal:test:update": "cd .internal/tests && make update && cd -"
+    "fmt": "prettier -w './**/*.{md,yml}' && biome format --write ."
   },
   "dependencies": {
     "@auth/prisma-adapter": "2.7.4",
