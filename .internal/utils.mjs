@@ -8,7 +8,7 @@ const basePath = resolve(import.meta.dirname, "..");
 export const execAsync = promisify(exec);
 
 export function title(title) {
-  console.info("\x1b[36m%s\x1b[0m", `🎃 - ${title}`);
+  console.info("\x1b[36m%s\x1b[0m", `🎃 ${title}...`);
 }
 
 export async function removeDirs(dirs) {

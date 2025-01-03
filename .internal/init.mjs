@@ -42,7 +42,7 @@ await Promise.all([
   removeFiles(["LICENSE"]),
 ]);
 
-title("Installing dependencies...");
+title("Installing dependencies");
 await execAsync("pnpm i", { stdio: "ignore" });
 
 title("Copying .env.sample to .env");
@@ -58,7 +58,7 @@ await format();
 console.info("done! please commit them 🐶");
 
 async function format() {
-  title("formatting");
+  title("Formatting");
 
   await new Promise((resolve, reject) => {
     const child = spawn("pnpm", ["fmt"], { stdio: "overlapped" });
@@ -74,7 +74,7 @@ async function format() {
 }
 
 async function generateMigrationFiles() {
-  title("creating migration files");
+  title("Creating migration files");
 
   const commands = [
     "pnpm db:up",
@@ -101,7 +101,7 @@ async function generateMigrationFiles() {
 }
 
 async function updatePackageJson() {
-  title("updating package.json");
+  title("Updating package.json");
 
   const { path, data } = await getPackageJson();
   const currentDirectoryName = basename(process.cwd());
@@ -114,8 +114,6 @@ async function updatePackageJson() {
 
 async function docker() {
   const fence = ["####### docker #######", "########################"];
-
-  title("docker");
 
   if (isRemoveDocker) {
     await run();
@@ -158,8 +156,6 @@ async function otel() {
     ["####### otel #######", "########################"],
     ["/***** otel *****/", "/****************/"],
   ];
-
-  title("openTelemetry");
 
   if (isRemoveOtel) {
     await run();
