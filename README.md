@@ -81,124 +81,108 @@ Just running create-next-app does not satisfy the dependencies, development envi
 
 </details>
 
+## Required
+
+- Node.js ^v20
+- [Docker](https://docs.docker.com/engine/install/)
+
 ## Install
 
-### GitHub Template
+When installing the repository, you can skip the setup section, as the init script will do the equivalent of setup.
 
-This repo is a github template so click the ["Use this template"](https://github.com/new?template_owner=hiroppy&template_name=web-app-template) button and you will create your repo.
-
-### CLI
-
-[`create-app-foundation`](https://github.com/hiroppy/create-app-foundation) creates a directory based on this template and skips the setup section automatically.
+### Using CLI (recommended)
 
 ```sh
-npx create-app-foundation@latest
+$ npx create-app-foundation@latest
+```
+
+The CLI creates a project directory and run internal/init script so it's easy to get started.
+
+### Using GitHub Template
+
+This repo is a GitHub template, so click the ["Use this template"](https://github.com/new?template_owner=hiroppy&template_name=web-app-template) button to create your repo. Then, you need to execute the below to finish setting it up.
+
+```sh
+$ node .internal/init.mjs
 ```
 
 <!-- ######## -->
 
 ## Setup
 
-**1. Installing Docker Compose**
-
-Please check [Installation scenarios](https://docs.docker.com/compose/install/) section.
-
-**2. Enabling git hook and corepack**
-
 ```sh
-npm run setup
+# enable to git hooks and corepack
+$ npm run setup
+# install deps
+$ pnpm i
+# create ".env" and modifying environment variables
+$ cp .env.sample .env
 ```
 
-**3. Installing Deps**
-
-```sh
-pnpm i
-```
-
-**4. Creating `.env` and modifying environment variables**
-
-```sh
-cp .env.sample .env
-```
-
-Set the following environment variables in `.env`.
-
-```
-GOOGLE_CLIENT_ID=
-GOOGLE_CLIENT_SECRET=
-```
-
-_If you don't use Google OAuth, you can remove a provider from `_clients/NextAuth.ts`._
-
-<!-- 👉 remove -->
-
-**5. Running init.mjs**
-
-- generating DB migration files
-- removing unnecessary code
-- updating name in package.json using directory name
-
-```sh
-node .internal/init.mjs
-```
-
-<!-- ######## -->
-
-## Dev
+## Development
 
 ```sh
 # start docker compose, migrations(generating the client), and next dev
-pnpm dev
-# create new migration
-pnpm db:migrate
-# reset the DB
-pnpm db:reset
-# view the contents
-pnpm db:studio
+$ pnpm dev
 ```
 
-📙 [Database ER diagram](/prisma/ERD.md)
+## Database
+
+```sh
+# create new migration
+$ pnpm db:migrate
+# reset the DB
+$ pnpm db:reset
+# view the database items
+$ pnpm db:studio
+```
 
 ## Test
 
-Test uses DB via testcontaiers.
+Test uses real DB via testcontaiers.
+
+### Unit Test
 
 ```sh
-# unit test
 # execute
 pnpm test
 # watch the unit test
 pnpm test:watch
+```
 
-# e2e
+### E2E Test
+
+```sh
 # install chrome
 pnpm exec playwright install chrome
-# test uses a built app since next.js has different cache behavior between development and production
+# build using test environments since it needs to change encode/decode functions of next-auth
 pnpm build:test
 # execute
 pnpm test:e2e
+# execute with UI
+pnpm test:e2e:ui
 ```
 
-💁‍♀️ This template recommends using a real database but when you face not keeping idempotency, you might consider using mock.
-
-## Prod
+## Production
 
 ```sh
-pnpm db:start
+pnpm db:up
 pnpm build
 pnpm start
 ```
 
 If you set `POSTGRESQL_URL` as GitHub secrets, you will be able to execute migration for database on GitHub actions(`.github/workflows/migration.yml`).
 
-## Observability
+## Observability (optional)
+
+_This feature can be opted out._
 
 This project has [OpenTelemetry](https://opentelemetry.io/) and it works only production environment.
 
 ### Local
 
 ```sh
-pnpm db:start
+pnpm db:up
 pnpm build
 pnpm start
 # open Jaeger
@@ -213,4 +197,12 @@ open http://localhost:16686/
 
 ### Server
 
-Please add a url to `process.env.TRACE_EXPORTER_URL`.
+Please add a exporter url to `.env`.
+
+```
+TRACE_EXPORTER_URL=
+```
+
+## Links
+
+- [Database ER diagram](/prisma/ERD.md)
