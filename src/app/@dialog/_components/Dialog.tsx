@@ -1,11 +1,15 @@
 "use client";
 
+import clsx from "clsx";
 import { useRouter } from "next/navigation";
 import { type PropsWithChildren, useLayoutEffect, useRef } from "react";
 
-type Props = PropsWithChildren;
+type Props = PropsWithChildren<{
+  dialogProps?: React.JSX.IntrinsicElements["dialog"];
+  contentProps?: React.JSX.IntrinsicElements["div"];
+}>;
 
-export function Dialog({ children }: Props) {
+export function Dialog({ children, dialogProps, contentProps }: Props) {
   const ref = useRef<HTMLDialogElement>(null);
   const router = useRouter();
 
@@ -17,7 +21,6 @@ export function Dialog({ children }: Props) {
   return (
     <dialog
       ref={ref}
-      className="fixed inset-0 w-[560px] h-[520px] bg-gray-800 rounded-sm border border-gray-500 backdrop:bg-gray-900/70 backdrop:backdrop-blur-sm"
       // click backdrop to close
       onMouseDown={(e) => {
         if (e.target === e.currentTarget) {
@@ -29,8 +32,18 @@ export function Dialog({ children }: Props) {
           router.back();
         }
       }}
+      {...dialogProps}
+      className={clsx(
+        "fixed m-auto w-[560px] h-[520px] bg-gray-800 rounded-sm border border-gray-500 backdrop:bg-gray-900/70 backdrop:backdrop-blur-sm",
+        dialogProps?.className,
+      )}
     >
-      <div className="text-gray-200 p-10 h-full">{children}</div>
+      <div
+        {...contentProps}
+        className={clsx("text-gray-200 p-10 h-full", contentProps?.className)}
+      >
+        {children}
+      </div>
     </dialog>
   );
 }
