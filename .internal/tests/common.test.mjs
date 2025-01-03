@@ -18,7 +18,15 @@ describe("common", async () => {
     t.assert.equal(content.version, "0.0.1");
   });
 
-  await baseTest.testFileContent("README.md");
-  await baseTest.testFileContent(".gitignore");
-  await baseTest.testFileContent(".github/workflows/ci.yml");
+  // remove fenced code block
+  await Promise.all([
+    // common
+    baseTest.testFileContent("README.md"),
+    baseTest.testFileContent(".gitignore"),
+    // common, docker
+    baseTest.testFileContent(".github/workflows/ci.yml"),
+    // otel
+    baseTest.testFileContent("compose.yml"),
+    baseTest.testFileContent("next.config.ts"),
+  ]);
 });
