@@ -2,7 +2,7 @@ import { exec } from "node:child_process";
 import { promisify } from "node:util";
 import { Prisma, PrismaClient } from "@prisma/client";
 import { DockerComposeEnvironment, Wait } from "testcontainers";
-import { createDBUrl } from "./src/app/_utils/db";
+import { createDBUrl } from "../src/app/_utils/db";
 
 const execAsync = promisify(exec);
 

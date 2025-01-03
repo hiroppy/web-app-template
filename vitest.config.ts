@@ -1,5 +1,3 @@
-/// <reference types="vitest" />
-
 import react from "@vitejs/plugin-react";
 import { config } from "dotenv";
 import { defineConfig } from "vitest/config";
@@ -14,6 +12,6 @@ export default defineConfig({
     restoreMocks: true,
     clearMocks: true,
     include: ["./src/**/*.test.{ts,tsx}"],
-    globalSetup: "./vitest.setup.ts",
+    globalSetup: "./tests/vitest.setup.ts",
   },
 });

@@ -1,5 +1,5 @@
 import type { BrowserContext } from "@playwright/test";
-import { truncate } from "../../test-db.setup";
+import { truncate } from "../../tests/test-db.setup";
 import { generatePrismaClient } from "./prisma";
 
 export async function reset(context: BrowserContext) {

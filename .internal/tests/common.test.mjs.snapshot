@@ -31,10 +31,10 @@ exports[`common > should put files 1`] = `
   "internal-tests-output-common/prisma/schema.prisma",
   "internal-tests-output-common/public/.gitkeep",
   "internal-tests-output-common/renovate.json",
-  "internal-tests-output-common/test-db.setup.ts",
+  "internal-tests-output-common/tests/test-db.setup.ts",
+  "internal-tests-output-common/tests/vitest.setup.ts",
   "internal-tests-output-common/tsconfig.json",
   "internal-tests-output-common/vitest.config.ts",
-  "internal-tests-output-common/vitest.setup.ts",
   "mocked/migration.sql"
 ]
 `;

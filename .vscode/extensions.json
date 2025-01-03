@@ -1,11 +1,12 @@
 {
   "recommendations": [
+    "bradlc.vscode-tailwindcss",
+    "vitest.explorer",
+    "ms-playwright.playwright",
     "Prisma.prisma",
     "esbenp.prettier-vscode",
     "biomejs.biome",
     "EditorConfig.EditorConfig",
-    "streetsidesoftware.code-spell-checker",
-    "vitest.explorer",
-    "ms-playwright.playwright"
+    "streetsidesoftware.code-spell-checker"
   ]
 }
