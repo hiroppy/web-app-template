@@ -173,7 +173,9 @@ $ pnpm start
 
 If you set `POSTGRESQL_URL` as GitHub secrets, you will be able to execute migration for database on GitHub actions(`.github/workflows/migration.yml`).
 
-## Observability (optional)
+<!-- otel -->
+
+## Observability
 
 _This feature can be opted out._
 
@@ -202,6 +204,8 @@ Please add a exporter url to `.env`.
 ```
 TRACE_EXPORTER_URL=
 ```
+
+<!-- ######## otel -->
 
 ## Links
 

@@ -10,6 +10,7 @@ describe("no-otel", async () => {
   });
 
   await baseTest.testFileList();
+  await baseTest.testFileContent("README.md");
   await baseTest.testFileContent("compose.yml");
   await baseTest.testFileContent("next.config.ts");
   await baseTest.testRemovedSrcFiles(["instrumentation.ts", "otel/node.ts"]);

@@ -156,6 +156,7 @@ async function otel() {
   const fences = [
     ["####### otel #######", "########################"],
     ["/***** otel *****/", "/****************/"],
+    ["<!-- otel -->", "<!-- ######## otel -->"],
   ];
 
   if (isRemoveOtel) {
@@ -184,8 +185,11 @@ async function otel() {
   }
 
   // no: remove just fences
-  await removeWords("compose.yml", fences[0]);
-  await removeWords("next.config.ts", fences[1]);
+  await Promise.all([
+    removeWords("compose.yml", fences[0]),
+    removeWords("next.config.ts", fences[1]),
+    removeWords("README.md", fences[2]),
+  ]);
 
   async function run() {
     const { data } = await getPackageJson();
@@ -202,6 +206,7 @@ async function otel() {
       removeLines([
         ["compose.yml", fences[0]],
         ["next.config.ts", fences[1]],
+        ["README.md", fences[2]],
       ]),
       removeDeps(deps),
     ]);

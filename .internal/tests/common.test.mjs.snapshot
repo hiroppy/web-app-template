@@ -219,7 +219,7 @@ exports[`common > should update README.md 1`] = `
   "",
   "If you set \`POSTGRESQL_URL\` as GitHub secrets, you will be able to execute migration for database on GitHub actions(\`.github/workflows/migration.yml\`).",
   "",
-  "## Observability (optional)",
+  "## Observability",
   "",
   "_This feature can be opted out._",
   "",
