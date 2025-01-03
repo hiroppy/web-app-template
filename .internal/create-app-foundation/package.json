@@ -1,0 +1,28 @@
+{
+  "name": "create-app-foundation",
+  "version": "1.0.11",
+  "description": "Create a web app template using Next.js, NextAuth, Prisma, etc. An easy way to begin development 🐕",
+  "bin": {
+    "create-app-foundation": "src/index.mjs"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "author": "hiroppy <git@hiroppy.me> (https://hiroppy.me/)",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hiroppy/create-app-foundation.git"
+  },
+  "files": ["src"],
+  "license": "MIT",
+  "keywords": [
+    "react",
+    "next",
+    "next.js",
+    "nextAuth",
+    "prisma",
+    "typescript",
+    "template",
+    "react hook form"
+  ]
+}
