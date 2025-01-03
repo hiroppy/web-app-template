@@ -111,7 +111,7 @@ $ node .internal/setup/init.mjs
 ## Setup
 
 ```sh
-# enable to git hooks and corepack
+# enable git hooks and corepack
 $ npm run setup
 # install deps
 $ pnpm i
@@ -145,30 +145,30 @@ Test uses real DB via testcontaiers.
 
 ```sh
 # execute
-pnpm test
+$ pnpm test
 # watch the unit test
-pnpm test:watch
+$ pnpm test:watch
 ```
 
 ### E2E Test
 
 ```sh
 # install chrome
-pnpm exec playwright install chrome
+$ pnpm exec playwright install chrome
 # build using test environments since it needs to change encode/decode functions of next-auth
-pnpm build:test
+$ pnpm build:test
 # execute
-pnpm test:e2e
+$ pnpm test:e2e
 # execute with UI
-pnpm test:e2e:ui
+$ pnpm test:e2e:ui
 ```
 
 ## Production
 
 ```sh
-pnpm db:up
-pnpm build
-pnpm start
+$ pnpm db:up
+$ pnpm build
+$ pnpm start
 ```
 
 If you set `POSTGRESQL_URL` as GitHub secrets, you will be able to execute migration for database on GitHub actions(`.github/workflows/migration.yml`).
@@ -182,11 +182,11 @@ This project has [OpenTelemetry](https://opentelemetry.io/) and it works only pr
 ### Local
 
 ```sh
-pnpm db:up
-pnpm build
-pnpm start
+$ pnpm db:up
+$ pnpm build
+$ pnpm start
 # open Jaeger
-open http://localhost:16686/
+$ open http://localhost:16686/
 ```
 
 <!-- 👉 remove -->

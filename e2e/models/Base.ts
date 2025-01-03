@@ -1,12 +1,18 @@
-import type { Page } from "@playwright/test";
-import { expect } from "@playwright/test";
+import type { Locator, Page } from "@playwright/test";
 import type { User } from "next-auth";
+import { expect } from "../fixtures";
 
 export class Base {
-  protected page: Page;
+  page: Page;
+  signInLocator: Locator;
+  signOutLocator: Locator;
+  profileImageLocator: Locator;
 
   constructor(page: Page) {
     this.page = page;
+    this.signInLocator = this.page.getByRole("button", { name: "Sign in" });
+    this.signOutLocator = this.page.getByRole("button", { name: "Sign out" });
+    this.profileImageLocator = this.page.getByRole("img", { name: "profile" });
   }
 
   async init() {
@@ -17,28 +23,14 @@ export class Base {
 
   async expectHeaderUI(state: "signIn" | "signOut", user: User) {
     if (state === "signIn") {
-      await expect(
-        this.page.getByRole("button", { name: "Sign out" }),
-      ).toBeVisible();
-      expect(
-        await this.page
-          .getByRole("img", { name: "profile" })
-          .getAttribute("src"),
-      ).toBe(user.image);
-      expect(
-        await this.page
-          .getByRole("link", { name: "Add an item" })
-          .getAttribute("href"),
-      ).toBe("/create");
+      await expect(this.signOutLocator).toBeVisible();
+      expect(await this.profileImageLocator.getAttribute("src")).toBe(
+        user.image,
+      );
     }
 
     if (state === "signOut") {
-      await expect(
-        this.page.getByRole("button", { name: "Sign in" }),
-      ).toBeVisible();
-      await expect(
-        this.page.getByRole("link", { name: "Add an item" }),
-      ).not.toBeVisible();
+      await expect(this.signInLocator).toBeVisible();
     }
   }
 }

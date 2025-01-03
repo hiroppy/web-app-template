@@ -25,7 +25,7 @@ async function Status() {
 
   return (
     <div className="flex justify-between gap-3 flex-col md:flex-row md:items-center">
-      <p className="text-gray-300">
+      <p className="text-gray-300" aria-label="User status">
         {session?.user
           ? `you are signed in as ${session.user.name} 😄`
           : "you are not signed in 🥲"}
