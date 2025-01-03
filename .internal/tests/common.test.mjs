@@ -10,6 +10,7 @@ describe("common", async () => {
   });
 
   await baseTest.testFileList();
+  await baseTest.testDependencies();
 
   test("should update package.json fields", async (t) => {
     const content = await baseTest.getPackageJson();

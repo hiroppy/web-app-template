@@ -79,7 +79,7 @@ async function generateMigrationFiles() {
     "pnpm db:up",
     "pnpm db:migrate --name initial-migration",
     "pnpm generate:client",
-    "pnpm db:stop",
+    "docker compose down",
   ];
 
   for (const command of commands) {
@@ -92,7 +92,9 @@ async function generateMigrationFiles() {
         if (code === 0) {
           resolve();
         } else {
-          reject(new Error(`command failed with code ${code}`));
+          reject(
+            new Error(`[docker compose]: command failed with code ${code}`),
+          );
         }
       });
     });
