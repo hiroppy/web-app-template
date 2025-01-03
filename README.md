@@ -161,7 +161,7 @@ pnpm db:studio
 
 ## Test
 
-Test uses also DB so need to start DB first.
+Test uses DB via testcontaiers.
 
 ```sh
 # unit test
@@ -174,7 +174,7 @@ pnpm test:watch
 # install chrome
 pnpm exec playwright install chrome
 # test uses a built app since next.js has different cache behavior between development and production
-pnpm build
+pnpm build:test
 # execute
 pnpm test:e2e
 ```

@@ -8,7 +8,6 @@ import { create } from "../../_actions/items";
 import { type ItemCreateSchema, itemCreateSchema } from "../../_schemas/items";
 import { Dialog } from "../_components/Dialog";
 
-// users who are not logged in cannot reach here due to intercepting routes.
 export function Content() {
   const router = useRouter();
   const [isPending, startTransition] = useTransition();
@@ -46,8 +45,9 @@ export function Content() {
             {...register("content")}
             id="content"
             disabled={isPending}
-            placeholder="write you memo..."
-            className=" w-full bg-gray-600 text-gray-100 focus:outline-none py-3 px-5 rounded-sm"
+            placeholder="write your memo..."
+            className="w-full bg-gray-600 text-gray-100 focus:outline-none py-3 px-5 rounded-sm"
+            // ignore 1password
             data-1p-ignore
           />
           {errors.content?.message && (
