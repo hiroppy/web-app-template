@@ -23,7 +23,7 @@ const fences = [
   ["####### 👉 remove #######", "########################"],
   ["<!-- 👉 remove -->", "<!-- ######## -->"],
 ];
-const basePath = resolve(import.meta.dirname, "..");
+const basePath = resolve(import.meta.dirname, "../..");
 
 await execAsync("npm run setup", { stdio: "ignore" });
 

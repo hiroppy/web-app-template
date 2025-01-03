@@ -3,7 +3,7 @@ import { readFile, rm, unlink, writeFile } from "node:fs/promises";
 import { basename, join, resolve } from "node:path";
 import { promisify } from "node:util";
 
-const basePath = resolve(import.meta.dirname, "..");
+const basePath = resolve(import.meta.dirname, "../..");
 
 export const execAsync = promisify(exec);
 

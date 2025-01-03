@@ -68,7 +68,9 @@ tryGitInit(workingDir);
 
 report("Setting up...");
 args.push("--skip-questions");
-execSync(`node .internal/init.mjs ${args.join(" ")}`, { stdio: "inherit" });
+execSync(`node .internal/setup/init.mjs ${args.join(" ")}`, {
+  stdio: "inherit",
+});
 
 console.log("");
 console.log("Completed to setup 🎉🎉🎉🎉🎉🎉");

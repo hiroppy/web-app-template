@@ -103,7 +103,7 @@ The CLI creates a project directory and run internal/init script so it's easy to
 This repo is a GitHub template, so click the ["Use this template"](https://github.com/new?template_owner=hiroppy&template_name=web-app-template) button to create your repo. Then, you need to execute the below to finish setting it up.
 
 ```sh
-$ node .internal/init.mjs
+$ node .internal/setup/init.mjs
 ```
 
 <!-- ######## -->
