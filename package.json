@@ -47,7 +47,7 @@
     "@playwright/test": "1.49.1",
     "@tailwindcss/postcss": "4.0.0-beta.8",
     "@testing-library/react": "16.1.0",
-    "@types/node": "22.10.4",
+    "@types/node": "22.10.5",
     "@types/react": "19.0.2",
     "@types/react-dom": "19.0.2",
     "@vitejs/plugin-react": "4.3.4",
