@@ -12,6 +12,7 @@ const nextConfig: NextConfig = {
   experimental: {
     authInterrupts: true,
   },
+  /***** otel *****/
   webpack: (config, { isServer }) => {
     if (isServer) {
       // https://github.com/open-telemetry/opentelemetry-js/issues/4173
@@ -19,6 +20,7 @@ const nextConfig: NextConfig = {
     }
     return config;
   },
+  /****************/
 };
 
 export default nextConfig;

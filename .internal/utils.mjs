@@ -1,10 +1,14 @@
+import { exec } from "node:child_process";
 import { readFile, rm, unlink, writeFile } from "node:fs/promises";
 import { basename, join, resolve } from "node:path";
+import { promisify } from "node:util";
 
 const basePath = resolve(import.meta.dirname, "..");
 
+export const execAsync = promisify(exec);
+
 export function title(title) {
-  console.log("\x1b[36m%s\x1b[0m", `🎃 - ${title}`);
+  console.info("\x1b[36m%s\x1b[0m", `🎃 - ${title}`);
 }
 
 export async function removeDirs(dirs) {
@@ -78,7 +82,7 @@ export async function removeLines(files) {
 
 export async function getPackageJson() {
   const packageJsonPath = join(basePath, "package.json");
-  const packageJson = await readFile(packageJsonPath, "utf8");
+  const packageJson = await readFile(packageJsonPath, "utf-8");
   const parsed = JSON.parse(packageJson);
 
   return { path: packageJsonPath, data: parsed };
