@@ -4,6 +4,7 @@ receivers:
   otlp:
     protocols:
       grpc:
+        endpoint: 0.0.0.0:4317
 exporters:
   otlp:
     endpoint: jaeger:4317
@@ -15,8 +16,15 @@ extensions:
   health_check:
 service:
   extensions: [health_check]
+  telemetry:
+    logs:
+      level: "debug"
   pipelines:
     traces:
+      receivers: [otlp]
+      processors: [batch]
+      exporters: [otlp]
+    metrics:
       receivers: [otlp]
       processors: [batch]
       exporters: [otlp]

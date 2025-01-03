@@ -5,7 +5,7 @@
   "packageManager": "pnpm@9.15.2",
   "scripts": {
     "setup": "git config --local core.hooksPath .githooks && corepack enable pnpm",
-    "dev": "pnpm db:up && pnpm db:migrate && pnpm generate:client && next dev --turbo",
+    "dev": "pnpm db:up && pnpm db:migrate && pnpm generate:client && next dev",
     "start": "next start",
     "build": "pnpm generate:client && next build",
     "build:test": "dotenv -e .env.test -- pnpm build",
@@ -26,9 +26,12 @@
   "dependencies": {
     "@auth/prisma-adapter": "2.7.4",
     "@hookform/resolvers": "3.9.1",
+    "@opentelemetry/exporter-metrics-otlp-grpc": "0.57.0",
     "@opentelemetry/exporter-trace-otlp-grpc": "0.57.0",
+    "@opentelemetry/exporter-trace-otlp-proto": "0.57.0",
     "@opentelemetry/instrumentation-http": "0.57.0",
     "@opentelemetry/resources": "1.30.0",
+    "@opentelemetry/sdk-metrics": "1.30.0",
     "@opentelemetry/sdk-node": "0.57.0",
     "@opentelemetry/sdk-trace-base": "1.30.0",
     "@opentelemetry/semantic-conventions": "1.28.0",

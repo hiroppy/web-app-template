@@ -13,6 +13,7 @@ services:
   jaeger:
     image: jaegertracing/all-in-one
     ports:
+      # https://www.jaegertracing.io/docs/1.6/getting-started/#all-in-one-docker-image
       # frontend
       - 16686:16686
       - 14268
@@ -20,11 +21,14 @@ services:
     environment:
       - METRICS_STORAGE_TYPE=prometheus
       - PROMETHEUS_QUERY_SUPPORT_SPANMETRICS_CONNECTOR=true
+      - COLLECTOR_OTLP_ENABLED=true
+  # don't use contrib on prod
+  # https://opentelemetry.io/blog/2024/otel-collector-anti-patterns/#3--not-using-the-right-collector-distribution-or-not-building-your-own-distribution
   otel-collector:
     image: otel/opentelemetry-collector-contrib
-    command: ["--config=/etc/otel-collector-config.yml"]
+    command: ["--config=/conf/otel-collector-config.yml"]
     volumes:
-      - ./otel-collector-config.yml:/etc/otel-collector-config.yml
+      - ./otel-collector-config.yml:/conf/otel-collector-config.yml
     ports:
       - 13133:13133 # health_check extension
       - 4317:4317 # OTLP gRPC receiver

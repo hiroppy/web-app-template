@@ -11,11 +11,13 @@ const nextConfig: NextConfig = {
   },
   experimental: {
     authInterrupts: true,
-    serverComponentsExternalPackages: [
+  },
+  webpack: (config, { isServer }) => {
+    if (isServer) {
       // https://github.com/open-telemetry/opentelemetry-js/issues/4173
-      "@sentry/node",
-      "@opentelemetry/instrumentation",
-    ],
+      config.ignoreWarnings = [{ module: /opentelemetry/ }];
+    }
+    return config;
   },
 };
 
