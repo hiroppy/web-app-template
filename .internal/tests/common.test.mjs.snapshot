@@ -330,7 +330,6 @@ exports[`common > should update dependencies 1`] = `
     "@types/react",
     "@types/react-dom",
     "@vitejs/plugin-react",
-    "autoprefixer",
     "dotenv",
     "dotenv-cli",
     "lint-staged",
