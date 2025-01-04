@@ -1,5 +1,5 @@
-/node_modules
-/coverage
+node_modules
+coverage
 
 /.next/
 
@@ -20,6 +20,7 @@ test-results
 next-env.d.ts
 
 ####### 👉 remove #######
+cache
 migrations
 internal-tests-output-*
 ########################
