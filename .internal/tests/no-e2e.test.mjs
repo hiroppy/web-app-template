@@ -9,7 +9,7 @@ describe("no-e2e", async () => {
     noE2e: true,
   });
 
-  await baseTest.testFileList();
+  await baseTest.testFileList({ ignoreE2e: true });
   await baseTest.testFileContent(".gitignore");
   await baseTest.testFileContent("README.md");
   await baseTest.testFileContent(".github/workflows/ci.yml");

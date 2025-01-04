@@ -26,8 +26,8 @@ export class BaseTest {
           }
 
           // for local debug
-          const child = exec("DEBUG=true create-app-foundation");
-          // const child = exec("npx create-app-foundation@latest");
+          // const child = exec("DEBUG=true create-app-foundation");
+          const child = exec("npx create-app-foundation@latest");
 
           child.stdout.on("data", (data) => {
             function debug(message) {
@@ -93,7 +93,7 @@ export class BaseTest {
     );
   }
 
-  async testFileList() {
+  async testFileList({ ignoreE2e = false } = {}) {
     test("should put files", async (t) => {
       const list = await readdir(this.outputDir, {
         recursive: true,
@@ -113,12 +113,15 @@ export class BaseTest {
         ),
         true,
       );
-      // t.assert.equal(
-      //   list.some((dirent) =>
-      //     dirent.parentPath.startsWith(`${this.outputDir}/e2e`),
-      //   ),
-      //   true,
-      // );
+
+      if (!ignoreE2e) {
+        t.assert.equal(
+          list.some((dirent) =>
+            dirent.parentPath.startsWith(`${this.outputDir}/e2e`),
+          ),
+          true,
+        );
+      }
 
       const files = list
         .filter(
