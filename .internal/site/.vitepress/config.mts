@@ -5,24 +5,42 @@ export default defineConfig({
   description:
     "From Zero to Service: Build with Best Practices, Minimal Code, and Essential Tools.",
   srcDir: "src",
+  lang: "en",
   themeConfig: {
+    logo: "images/icon.png",
     nav: [
       { text: "Home", link: "/" },
-      { text: "Examples", link: "/markdown-examples" },
+      { text: "Getting Started", link: "getting-started" },
     ],
-
     sidebar: [
       {
-        text: "Examples",
+        text: "Introduction",
         items: [
-          { text: "Markdown Examples", link: "/markdown-examples" },
-          { text: "Runtime API Examples", link: "/api-examples" },
+          {
+            text: "What is web app template?",
+            link: "/what-is-web-app-template",
+          },
+          {
+            text: "Challenges Solved",
+            link: "/challenges-solved",
+          },
+          { text: "Getting Started", link: "/getting-started" },
+        ],
+      },
+      {
+        text: "Writing",
+        items: [
+          {
+            text: "Auth",
+            link: "/auth",
+          },
         ],
       },
     ],
-
     socialLinks: [
       { icon: "github", link: "https://github.com/hiroppy/web-app-template" },
+      { icon: "twitter", link: "https://x.com/about_hiroppy" },
+      { icon: "homeadvisor", link: "https://hiroppy.me/" },
     ],
   },
   locales: {

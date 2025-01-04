@@ -1,5 +1,4 @@
 ---
-# https://vitepress.dev/reference/default-theme-home-page
 layout: home
 
 hero:
@@ -8,16 +7,24 @@ hero:
   tagline: Build with Best Practices, Minimal Code, and Essential Tools
   image:
     src: /images/icon.png
-    alt: VitePress
+    alt: web-app-template
   actions:
     - theme: brand
-      text: Markdown Examples
-      link: /markdown-examples
+      text: What is web-app-template?
+      link: what-is-web-app-template
     - theme: alt
-      text: API Examples
-      link: /api-examples
+      text: Quick Start!
+      link: getting-started
 
 features:
+  - title: Feature A
+    details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
+    icon:
+      src: /images/libs/react-hook-form.png
+  - title: Feature B
+    details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
+  - title: Feature C
+    details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
   - title: Feature A
     details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
     icon:

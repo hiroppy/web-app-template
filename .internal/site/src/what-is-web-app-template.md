@@ -1,0 +1,30 @@
+# What is web app template?
+
+This template enables rapid web service creation.
+
+## Why not use create-next-app?
+
+The create-next-app focuses on only next.js but actually, when you create a web service, you need to set up Test environment, CI, Formatter, Linter, and many libraries like CSS, Form, etc.
+
+## Goal
+
+- Suggests best practice code while keeping the amount of code to a minimum
+- This template builds various configurations so **you can focus on application development**
+
+## Using Libraries
+
+These are the main libraries that are installed. However, Playwright and OpenTelemetry can be opted out at install time. If you have any unnecessary libraries, please delete them after the initial creation.
+
+|             |                                                                                                                                   |                                                                                                                                                     |                                                                                                                              |
+| ----------- | --------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------- |
+| **App**     | <div align="center"><img src="/images/libs/nextjs.png" alt="nextjs" width="42"><br>Next.js (Framework)</div>                      | <div align="center"><img src="/images/libs/tailwind.png" alt="tailwind" width="42"><br>Tailwind CSS (CSS)</div>                                     |                                                                                                                              |
+|             | <div align="center"><img src="/images/libs/react-hook-form.png" alt="react-hook-form" width="42"><br>React Hook Form (Form)</div> | <div align="center"><img src="/images/libs/zod.svg" alt="zod" width="42"><br>Zod (Schema Validator) </div>                                          |                                                                                                                              |
+|             | <div align="center"><img src="/images/libs/prisma.svg" alt="prisma" width="42"><br>Prisma (ORM)</div>                             | <div align="center"><img src="/images/libs/next-auth.png" alt="next-auth" width="42"><br>NextAuth.js (Auth)</div>                                   | <div align="center"><img src="/images/libs/otel.png" alt="otel" width="42"><br>OpenTelemetry (Observability)</div>           |
+|             |                                                                                                                                   |                                                                                                                                                     |                                                                                                                              |
+| **Tools**   | <div align="center"><img src="/images/libs/typescript.png" alt="typescirpt" width="42"><br>TypeScript (Language)</div>            | <div align="center"><img src="/images/libs/pnpm.svg" alt="pnpm" width="42"><br>pnpm (Package Manager)</div>                                         | <div align="center"><img src="/images/libs/lint-staged.png" alt="lint-staged" width="42"><br> lint-staged (Pre Commit)</div> |
+|             | <div align="center"><img src="/images/libs/biome.png" alt="biome" width="42"><br>Biome (Linter, Formatter)</div>                  | <div align="center"><img src="/images/libs/prettier.png" alt="prettier" width="42"><br> Prettier (Formatter)</div>                                  | <div align="center"><img src="/images/libs/docker.png" alt="docker" width="42"><br> Docker (Container)</div>                 |
+|             |                                                                                                                                   |                                                                                                                                                     |                                                                                                                              |
+| **Testing** | <div align="center"><img src="/images/libs/vitest.png" alt="vitest" width="42"><br> Vitest (Test Runner)</div>                    | <div align="center"><img src="/images/libs/testing-library.png" alt="testing-library" width="42"><br> Testing Library (DOM testing utilities)</div> | <div align="center"><img src="/images/libs/playwright.png" alt="playwright" width="42"><br> Playwright (E2E Testing)</div>   |
+|             | <div align="center"><img src="/images/libs/testcontainers.png" alt="testcontainers" width="42"><br> Testcontainers (Docker)</div> |                                                                                                                                                     |
+|             |                                                                                                                                   |                                                                                                                                                     |                                                                                                                              |
+| **Others**  | <div align="center"><img src="/images/libs/github-actions.png" alt="actions" width="42"><br> GitHub Actions (CI)</div>            | <div align="center"><img src="/images/libs/renovate.png" alt="renovate" width="42"><br> Renovate (Deps Manager)</div>                               | <div align="center"><img src="/images/libs/vscode.png" alt="vscode" width="42"><br> VSCode (Editor)</div>                    |

@@ -2,8 +2,7 @@
 
 <div align="center">
   <h1>️️A minimal template for web app 🎃</h1>
-  <br />
-
+  <img src=".internal/site/src/public/images/icon.png" alt="icon" width="120">
   <p>From Zero to Service, Build with Best Practices, Minimal Code, and Essential Tools</p>
   <br />
 </div>
@@ -79,12 +78,12 @@ Just running create-next-app does not satisfy the dependencies, development envi
 
 </details>
 
-## Required
+## Prerequisites
 
-- Node.js ^v20
+- Node.js v20 or higher
 - [Docker](https://docs.docker.com/engine/install/)
 
-## Install
+## Installation
 
 When installing the repository, you can skip the setup section, as the init script will do the equivalent of setup.
 
