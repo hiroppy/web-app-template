@@ -3,12 +3,45 @@ import { readFile, rm, unlink, writeFile } from "node:fs/promises";
 import { basename, join, resolve } from "node:path";
 import { promisify } from "node:util";
 
-const basePath = resolve(import.meta.dirname, "../..");
+export const basePath = resolve(import.meta.dirname, "../..");
 
 export const execAsync = promisify(exec);
 
 export function title(title) {
   console.info("\x1b[36m%s\x1b[0m", `🎃 ${title}...`);
+}
+
+export async function executeOptionalQuestion({
+  question,
+  /* for skip question*/ answer,
+  isSkipQuestion,
+  noCallback,
+  yesCallback,
+}) {
+  if (answer) {
+    await yesCallback();
+
+    return;
+  }
+
+  if (!isSkipQuestion) {
+    const rl = createInterface({
+      input: process.stdin,
+      output: process.stdout,
+    });
+    const answer = await rl.question(question);
+
+    if (answer === "y" || answer === "Y") {
+      await yesCallback();
+      rl.close();
+
+      return;
+    }
+
+    rl.close();
+  }
+
+  await noCallback();
 }
 
 export async function removeDirs(dirs) {
