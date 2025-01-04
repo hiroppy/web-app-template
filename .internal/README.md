@@ -11,3 +11,11 @@ The CLI script for userland to build this repo to own local.
 ## tests
 
 Test to check if this repository is actually deployed as expected when using the CLI.
+
+```sh
+$ cd .tests
+
+$ make run
+# # update snapshot or when adding a new test
+$ make update
+```

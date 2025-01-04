@@ -13,7 +13,6 @@ test-results
 *.pem
 
 .env
-.env*.local
 
 .vercel
 
