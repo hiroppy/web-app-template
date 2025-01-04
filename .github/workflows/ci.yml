@@ -70,6 +70,7 @@ jobs:
       - uses: ./.github/actions/setup-node
       - uses: ./.github/actions/setup-prisma
       - run: pnpm test
+  ####### e2e #######
   e2e-test:
     runs-on: ubuntu-latest
     env:
@@ -81,6 +82,7 @@ jobs:
       - run: pnpm exec playwright install chromium
       - run: pnpm build:test
       - run: pnpm test:e2e
+  ########################
   ####### 👉 remove #######
   internal-test:
     runs-on: ubuntu-latest

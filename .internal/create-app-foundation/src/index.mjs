@@ -44,6 +44,15 @@ const args = [];
 }
 {
   const answer = await rl.question(
+    question("Do you want to remove e2e test? (y/N)"),
+  );
+
+  if (answer === "y" || answer === "Y") {
+    args.push("--remove-e2e");
+  }
+}
+{
+  const answer = await rl.question(
     question("Do you want to remove OpenTelemetry for app? (y/N)"),
   );
 

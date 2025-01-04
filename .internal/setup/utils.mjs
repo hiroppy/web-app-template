@@ -124,3 +124,13 @@ export async function getPackageJson() {
 export async function removeDeps(deps) {
   await execAsync(`pnpm remove ${deps.join(" ")}`, { stdio: "ignore" });
 }
+
+export async function removeNpmScripts(scripts) {
+  const { path, data } = await getPackageJson();
+
+  for (const script of scripts) {
+    delete data.scripts[script];
+  }
+
+  await writeFile(path, JSON.stringify(data, null, 2));
+}

@@ -3,9 +3,11 @@
 
 /.next/
 
+####### e2e #######
 .auth
 playwright-report
 test-results
+########################
 
 .DS_Store
 *.pem
