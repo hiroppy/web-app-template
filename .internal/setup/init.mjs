@@ -2,6 +2,7 @@
 
 import { generateMigrationFiles } from "./db.mjs";
 import { docker } from "./docker.mjs";
+import { e2e } from "./e2e.mjs";
 import { format } from "./format.mjs";
 import { otel } from "./otel.mjs";
 import { updatePackageJson } from "./packageJson.mjs";
@@ -21,6 +22,7 @@ import {
 const [_, __, ...flags] = process.argv;
 const isSkipQuestions = flags.includes("--skip-questions");
 const isRemoveDocker = flags.includes("--remove-docker");
+const isRemoveE2e = flags.includes("--remove-e2e");
 const isRemoveOtel = flags.includes("--remove-otel");
 
 await execAsync("npm run setup", { stdio: "ignore" });
@@ -58,7 +60,7 @@ await execAsync("cp .env.sample .env");
 }
 
 await docker(isRemoveDocker, isSkipQuestions);
-
+await e2e(isRemoveE2e, isSkipQuestions);
 await otel(isRemoveOtel, isSkipQuestions);
 
 await removeDirs([".internal"]);

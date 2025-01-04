@@ -1,45 +1,44 @@
-exports[`common > should put files 1`] = `
+exports[`no-e2e > should put files 1`] = `
 [
-  "internal-tests-output-common/.editorconfig",
-  "internal-tests-output-common/.env",
-  "internal-tests-output-common/.env.sample",
-  "internal-tests-output-common/.env.test",
-  "internal-tests-output-common/.githooks/pre-commit",
-  "internal-tests-output-common/.github/actions/setup-db/action.yml",
-  "internal-tests-output-common/.github/actions/setup-node/action.yml",
-  "internal-tests-output-common/.github/actions/setup-prisma/action.yml",
-  "internal-tests-output-common/.github/workflows/ci.yml",
-  "internal-tests-output-common/.github/workflows/migration.yml",
-  "internal-tests-output-common/.gitignore",
-  "internal-tests-output-common/.node-version",
-  "internal-tests-output-common/.npmrc",
-  "internal-tests-output-common/.vscode/extensions.json",
-  "internal-tests-output-common/.vscode/settings.json",
-  "internal-tests-output-common/Dockerfile",
-  "internal-tests-output-common/README.md",
-  "internal-tests-output-common/biome.json",
-  "internal-tests-output-common/compose.yml",
-  "internal-tests-output-common/lint-staged.config.mjs",
-  "internal-tests-output-common/next.config.ts",
-  "internal-tests-output-common/otel-collector-config.yml",
-  "internal-tests-output-common/package.json",
-  "internal-tests-output-common/playwright.config.ts",
-  "internal-tests-output-common/pnpm-lock.yaml",
-  "internal-tests-output-common/postcss.config.mjs",
-  "internal-tests-output-common/prisma/ERD.md",
-  "internal-tests-output-common/prisma/migrations/migration_lock.toml",
-  "internal-tests-output-common/prisma/schema.prisma",
-  "internal-tests-output-common/public/.gitkeep",
-  "internal-tests-output-common/renovate.json",
-  "internal-tests-output-common/tests/test-db.setup.ts",
-  "internal-tests-output-common/tests/vitest.setup.ts",
-  "internal-tests-output-common/tsconfig.json",
-  "internal-tests-output-common/vitest.config.ts",
+  "internal-tests-output-no-e2e/.editorconfig",
+  "internal-tests-output-no-e2e/.env",
+  "internal-tests-output-no-e2e/.env.sample",
+  "internal-tests-output-no-e2e/.env.test",
+  "internal-tests-output-no-e2e/.githooks/pre-commit",
+  "internal-tests-output-no-e2e/.github/actions/setup-db/action.yml",
+  "internal-tests-output-no-e2e/.github/actions/setup-node/action.yml",
+  "internal-tests-output-no-e2e/.github/actions/setup-prisma/action.yml",
+  "internal-tests-output-no-e2e/.github/workflows/ci.yml",
+  "internal-tests-output-no-e2e/.github/workflows/migration.yml",
+  "internal-tests-output-no-e2e/.gitignore",
+  "internal-tests-output-no-e2e/.node-version",
+  "internal-tests-output-no-e2e/.npmrc",
+  "internal-tests-output-no-e2e/.vscode/extensions.json",
+  "internal-tests-output-no-e2e/.vscode/settings.json",
+  "internal-tests-output-no-e2e/Dockerfile",
+  "internal-tests-output-no-e2e/README.md",
+  "internal-tests-output-no-e2e/biome.json",
+  "internal-tests-output-no-e2e/compose.yml",
+  "internal-tests-output-no-e2e/lint-staged.config.mjs",
+  "internal-tests-output-no-e2e/next.config.ts",
+  "internal-tests-output-no-e2e/otel-collector-config.yml",
+  "internal-tests-output-no-e2e/package.json",
+  "internal-tests-output-no-e2e/pnpm-lock.yaml",
+  "internal-tests-output-no-e2e/postcss.config.mjs",
+  "internal-tests-output-no-e2e/prisma/ERD.md",
+  "internal-tests-output-no-e2e/prisma/migrations/migration_lock.toml",
+  "internal-tests-output-no-e2e/prisma/schema.prisma",
+  "internal-tests-output-no-e2e/public/.gitkeep",
+  "internal-tests-output-no-e2e/renovate.json",
+  "internal-tests-output-no-e2e/tests/test-db.setup.ts",
+  "internal-tests-output-no-e2e/tests/vitest.setup.ts",
+  "internal-tests-output-no-e2e/tsconfig.json",
+  "internal-tests-output-no-e2e/vitest.config.ts",
   "mocked/migration.sql"
 ]
 `;
 
-exports[`common > should update .github/workflows/ci.yml 1`] = `
+exports[`no-e2e > should update .github/workflows/ci.yml 1`] = `
 [
   "name: ci",
   "",
@@ -111,31 +110,17 @@ exports[`common > should update .github/workflows/ci.yml 1`] = `
   "      - uses: ./.github/actions/setup-node",
   "      - uses: ./.github/actions/setup-prisma",
   "      - run: pnpm test",
-  "  e2e-test:",
-  "    runs-on: ubuntu-latest",
-  "    env:",
-  "      NEXTAUTH_SECRET: UfxvOS6HetHOFkL44YTITYgc0DOuOlz5TBp3jkbnZ3w=",
-  "    steps:",
-  "      - uses: actions/checkout@v4",
-  "      - uses: ./.github/actions/setup-node",
-  "      - uses: ./.github/actions/setup-prisma",
-  "      - run: pnpm exec playwright install chromium",
-  "      - run: pnpm build:test",
-  "      - run: pnpm test:e2e",
   ""
 ]
 `;
 
-exports[`common > should update .gitignore 1`] = `
+exports[`no-e2e > should update .gitignore 1`] = `
 [
   "/node_modules",
   "/coverage",
   "",
   "/.next/",
   "",
-  ".auth",
-  "playwright-report",
-  "test-results",
   "",
   ".DS_Store",
   "*.pem",
@@ -152,7 +137,7 @@ exports[`common > should update .gitignore 1`] = `
 ]
 `;
 
-exports[`common > should update README.md 1`] = `
+exports[`no-e2e > should update README.md 1`] = `
 [
   "## Setup",
   "",
@@ -196,19 +181,6 @@ exports[`common > should update README.md 1`] = `
   "$ pnpm test:watch",
   "\`\`\`",
   "",
-  "### E2E Test",
-  "",
-  "\`\`\`sh",
-  "# install chrome",
-  "$ pnpm exec playwright install chrome",
-  "# build using test environments since it needs to change encode/decode functions of next-auth",
-  "$ pnpm build:test",
-  "# execute",
-  "$ pnpm test:e2e",
-  "# execute with UI",
-  "$ pnpm test:e2e:ui",
-  "\`\`\`",
-  "",
   "## Production",
   "",
   "\`\`\`sh",
@@ -248,49 +220,7 @@ exports[`common > should update README.md 1`] = `
 ]
 `;
 
-exports[`common > should update compose.yml 1`] = `
-[
-  "volumes:",
-  "  db-data:",
-  "",
-  "services:",
-  "  db:",
-  "    image: postgres:17",
-  "    ports:",
-  "      - \${POSTGRES_PORT:-5432}:5432",
-  "    environment:",
-  "      - POSTGRES_USER=\${POSTGRES_USER}",
-  "      - POSTGRES_PASSWORD=\${POSTGRES_PASSWORD}",
-  "      - POSTGRES_DB=\${POSTGRES_DB}",
-  "  jaeger:",
-  "    image: jaegertracing/all-in-one",
-  "    ports:",
-  "      # https://www.jaegertracing.io/docs/1.6/getting-started/#all-in-one-docker-image",
-  "      # frontend",
-  "      - 16686:16686",
-  "      - 14268",
-  "      - 14250",
-  "    environment:",
-  "      - METRICS_STORAGE_TYPE=prometheus",
-  "      - PROMETHEUS_QUERY_SUPPORT_SPANMETRICS_CONNECTOR=true",
-  "      - COLLECTOR_OTLP_ENABLED=true",
-  "  # don't use contrib on prod",
-  "  # https://opentelemetry.io/blog/2024/otel-collector-anti-patterns/#3--not-using-the-right-collector-distribution-or-not-building-your-own-distribution",
-  "  otel-collector:",
-  "    image: otel/opentelemetry-collector-contrib",
-  "    command: [\\"--config=/conf/otel-collector-config.yml\\"]",
-  "    volumes:",
-  "      - ./otel-collector-config.yml:/conf/otel-collector-config.yml",
-  "    ports:",
-  "      - 13133:13133 # health_check extension",
-  "      - 4317:4317 # OTLP gRPC receiver",
-  "    depends_on:",
-  "      - jaeger",
-  ""
-]
-`;
-
-exports[`common > should update dependencies 1`] = `
+exports[`no-e2e > should update dependencies 1`] = `
 {
   "dependencies": [
     "@auth/prisma-adapter",
@@ -316,7 +246,6 @@ exports[`common > should update dependencies 1`] = `
   ],
   "devDependencies": [
     "@biomejs/biome",
-    "@playwright/test",
     "@tailwindcss/postcss",
     "@testing-library/react",
     "@types/node",
@@ -338,32 +267,21 @@ exports[`common > should update dependencies 1`] = `
 }
 `;
 
-exports[`common > should update next.config.ts 1`] = `
+exports[`no-e2e > should update npm scripts 1`] = `
 [
-  "import type { NextConfig } from \\"next\\";",
-  "",
-  "const nextConfig: NextConfig = {",
-  "  images: {",
-  "    remotePatterns: [",
-  "      {",
-  "        protocol: \\"https\\",",
-  "        hostname: \\"lh3.googleusercontent.com\\",",
-  "      },",
-  "    ],",
-  "  },",
-  "  experimental: {",
-  "    authInterrupts: true,",
-  "  },",
-  "  webpack: (config, { isServer }) => {",
-  "    if (isServer) {",
-  "      // https://github.com/open-telemetry/opentelemetry-js/issues/4173",
-  "      config.ignoreWarnings = [{ module: /opentelemetry/ }];",
-  "    }",
-  "    return config;",
-  "  },",
-  "};",
-  "",
-  "export default nextConfig;",
-  ""
+  "setup",
+  "dev",
+  "start",
+  "build",
+  "test",
+  "test:watch",
+  "db:up",
+  "db:migrate",
+  "db:reset",
+  "db:deploy",
+  "db:studio",
+  "generate:client",
+  "lint",
+  "fmt"
 ]
 `;

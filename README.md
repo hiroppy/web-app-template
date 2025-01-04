@@ -150,6 +150,8 @@ $ pnpm test
 $ pnpm test:watch
 ```
 
+<!-- e2e -->
+
 ### E2E Test
 
 ```sh
@@ -162,6 +164,8 @@ $ pnpm test:e2e
 # execute with UI
 $ pnpm test:e2e:ui
 ```
+
+<!-- ######## e2e -->
 
 ## Production
 
@@ -176,8 +180,6 @@ If you set `POSTGRESQL_URL` as GitHub secrets, you will be able to execute migra
 <!-- otel -->
 
 ## Observability
-
-_This feature can be opted out._
 
 This project has [OpenTelemetry](https://opentelemetry.io/) and it works only production environment.
 

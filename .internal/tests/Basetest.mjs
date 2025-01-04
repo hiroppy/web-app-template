@@ -16,7 +16,7 @@ export class BaseTest {
     this.outputPath = join(process.cwd(), this.outputDir);
   }
 
-  globalHook({ noDocker, noOtel }) {
+  globalHook({ noDocker, noE2e, noOtel }) {
     before(
       async () => {
         await execAsync("docker compose stop");
@@ -26,8 +26,8 @@ export class BaseTest {
           }
 
           // for local debug
-          // const child = exec("DEBUG=true create-app-foundation");
-          const child = exec("npx create-app-foundation@latest");
+          const child = exec("DEBUG=true create-app-foundation");
+          // const child = exec("npx create-app-foundation@latest");
 
           child.stdout.on("data", (data) => {
             function debug(message) {
@@ -41,6 +41,13 @@ export class BaseTest {
             }
             if (data.includes("remove Docker")) {
               if (noDocker) {
+                child.stdin.write("y\n");
+              } else {
+                child.stdin.write("N\n");
+              }
+            }
+            if (data.includes("remove e2e")) {
+              if (noE2e) {
                 child.stdin.write("y\n");
               } else {
                 child.stdin.write("N\n");
@@ -93,6 +100,7 @@ export class BaseTest {
         withFileTypes: true,
       });
 
+      // don't list up them
       t.assert.equal(
         list.some((dirent) =>
           dirent.parentPath.startsWith(`${this.outputDir}/node_modules`),
@@ -105,12 +113,12 @@ export class BaseTest {
         ),
         true,
       );
-      t.assert.equal(
-        list.some((dirent) =>
-          dirent.parentPath.startsWith(`${this.outputDir}/e2e`),
-        ),
-        true,
-      );
+      // t.assert.equal(
+      //   list.some((dirent) =>
+      //     dirent.parentPath.startsWith(`${this.outputDir}/e2e`),
+      //   ),
+      //   true,
+      // );
 
       const files = list
         .filter(
@@ -164,6 +172,14 @@ export class BaseTest {
         dependencies: Object.keys(dependencies),
         devDependencies: Object.keys(devDependencies),
       });
+    });
+  }
+
+  async testNpmScripts() {
+    test("should update npm scripts", async (t) => {
+      const { scripts } = await this.getPackageJson();
+
+      t.assert.snapshot(Object.keys(scripts));
     });
   }
 
