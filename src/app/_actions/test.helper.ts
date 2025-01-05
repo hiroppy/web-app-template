@@ -3,7 +3,7 @@ import { afterAll, afterEach, expect, vi } from "vitest";
 
 export async function setup() {
   const { container, prisma, truncate, down } = await vi.hoisted(async () => {
-    const { setupDB } = await import("../../../tests/test-db.setup");
+    const { setupDB } = await import("../../../tests/db.setup");
 
     return await setupDB({ port: "random" });
   });

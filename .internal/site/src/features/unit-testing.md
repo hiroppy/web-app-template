@@ -11,7 +11,7 @@ Using a real database is more robust than mocking one. However, using an actual 
 As a result, this template were able to significantly reduce the overall test completion time while using a real database.
 
 ::: code-group
-<<< ../../../../tests/test-db.setup.ts
+<<< ../../../../tests/db.setup.ts
 
 <!-- prettier-ignore -->
 <<< ../../../../src/app/_actions/test.helper.ts{5-9}

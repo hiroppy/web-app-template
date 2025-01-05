@@ -30,7 +30,7 @@ exports[`no-otel > should put files 1`] = `
   "internal-tests-output-no-otel/prisma/schema.prisma",
   "internal-tests-output-no-otel/public/.gitkeep",
   "internal-tests-output-no-otel/renovate.json",
-  "internal-tests-output-no-otel/tests/test-db.setup.ts",
+  "internal-tests-output-no-otel/tests/db.setup.ts",
   "internal-tests-output-no-otel/tests/vitest.setup.ts",
   "internal-tests-output-no-otel/tsconfig.json",
   "internal-tests-output-no-otel/vitest.config.ts",

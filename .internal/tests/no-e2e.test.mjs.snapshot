@@ -30,7 +30,7 @@ exports[`no-e2e > should put files 1`] = `
   "internal-tests-output-no-e2e/prisma/schema.prisma",
   "internal-tests-output-no-e2e/public/.gitkeep",
   "internal-tests-output-no-e2e/renovate.json",
-  "internal-tests-output-no-e2e/tests/test-db.setup.ts",
+  "internal-tests-output-no-e2e/tests/db.setup.ts",
   "internal-tests-output-no-e2e/tests/vitest.setup.ts",
   "internal-tests-output-no-e2e/tsconfig.json",
   "internal-tests-output-no-e2e/vitest.config.ts",
