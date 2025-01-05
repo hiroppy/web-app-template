@@ -9,7 +9,7 @@ importers:
   .:
     devDependencies:
       vitepress:
-        specifier: ^1.5.0
+        specifier: 1.5.0
         version: 1.5.0(@algolia/client-search@5.18.0)(postcss@8.4.49)(search-insights@2.17.3)
 
 packages:
