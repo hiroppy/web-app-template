@@ -4,7 +4,7 @@
   "description": "",
   "packageManager": "pnpm@9.15.2",
   "scripts": {
-    "setup": "git config --local core.hooksPath .githooks && corepack enable pnpm",
+    "setup": "corepack enable pnpm",
     "dev": "pnpm db:up && pnpm db:migrate && pnpm generate:client && next dev",
     "start": "next start",
     "build": "pnpm generate:client && next build",
@@ -18,7 +18,7 @@
     "db:reset": "prisma migrate reset -f",
     "db:deploy": "prisma migrate deploy",
     "db:studio": "prisma studio",
-    "generate:client": "prisma generate",
+    "generate:client": "prisma generate && prettier -w ./prisma/ERD.md",
     "lint": "biome lint --write .",
     "fmt": "prettier -w './**/*.{md,yml}' && biome format --write ."
   },
@@ -56,7 +56,7 @@
     "dotenv": "16.4.7",
     "dotenv-cli": "8.0.0",
     "jsdom": "25.0.1",
-    "lint-staged": "15.3.0",
+    "lefthook": "1.10.1",
     "postcss": "8.4.49",
     "prettier": "3.4.2",
     "prisma": "6.1.0",

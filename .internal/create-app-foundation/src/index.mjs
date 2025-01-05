@@ -123,6 +123,7 @@ async function copyDir(from, to) {
 
   await copyDirectory(from, tmpDir, [
     // add files written in .gitignore
+    /.githooks/,
     /node_modules/,
     /\.DS_Store$/,
     /\.next$/,

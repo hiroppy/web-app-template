@@ -1,3 +1,5 @@
+.githooks
+
 node_modules
 coverage
 

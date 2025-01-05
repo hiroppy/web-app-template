@@ -67,8 +67,8 @@ export default defineConfig({
       { icon: "twitter", link: "https://x.com/about_hiroppy" },
     ],
     editLink: {
-      // TODO
-      pattern: "https://github.com/vuejs/vitepress/edit/main/docs/:path",
+      pattern:
+        "https://github.com/hiroppy/web-app-template/tree/main/.internal/site/src/:path",
       text: "Edit this page on GitHub",
     },
     lastUpdated: {

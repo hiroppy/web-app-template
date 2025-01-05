@@ -4,7 +4,6 @@ exports[`no-e2e > should put files 1`] = `
   "internal-tests-output-no-e2e/.env",
   "internal-tests-output-no-e2e/.env.sample",
   "internal-tests-output-no-e2e/.env.test",
-  "internal-tests-output-no-e2e/.githooks/pre-commit",
   "internal-tests-output-no-e2e/.github/actions/setup-db/action.yml",
   "internal-tests-output-no-e2e/.github/actions/setup-node/action.yml",
   "internal-tests-output-no-e2e/.github/actions/setup-prisma/action.yml",
@@ -19,7 +18,7 @@ exports[`no-e2e > should put files 1`] = `
   "internal-tests-output-no-e2e/README.md",
   "internal-tests-output-no-e2e/biome.json",
   "internal-tests-output-no-e2e/compose.yml",
-  "internal-tests-output-no-e2e/lint-staged.config.mjs",
+  "internal-tests-output-no-e2e/lefthook.yml",
   "internal-tests-output-no-e2e/next.config.ts",
   "internal-tests-output-no-e2e/otel-collector-config.yml",
   "internal-tests-output-no-e2e/package.json",
@@ -116,6 +115,8 @@ exports[`no-e2e > should update .github/workflows/ci.yml 1`] = `
 
 exports[`no-e2e > should update .gitignore 1`] = `
 [
+  ".githooks",
+  "",
   "node_modules",
   "coverage",
   "",
@@ -234,7 +235,7 @@ exports[`no-e2e > should update dependencies 1`] = `
     "dotenv",
     "dotenv-cli",
     "jsdom",
-    "lint-staged",
+    "lefthook",
     "postcss",
     "prettier",
     "prisma",
