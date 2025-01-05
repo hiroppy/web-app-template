@@ -6,6 +6,7 @@ export default defineConfig({
     "From Zero to Service: Build with Best Practices, Minimal Code, and Essential Tools.",
   srcDir: "src",
   lang: "en",
+  base: "/web-app-template/",
   themeConfig: {
     logo: "images/icon.png",
     nav: [
