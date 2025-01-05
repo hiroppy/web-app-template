@@ -13,5 +13,6 @@ export default defineConfig({
     clearMocks: true,
     include: ["./src/**/*.test.{ts,tsx}"],
     globalSetup: "./tests/vitest.setup.ts",
+    environment: "jsdom",
   },
 });

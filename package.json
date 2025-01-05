@@ -55,6 +55,7 @@
     "@vitejs/plugin-react": "4.3.4",
     "dotenv": "16.4.7",
     "dotenv-cli": "8.0.0",
+    "jsdom": "25.0.1",
     "lint-staged": "15.3.0",
     "postcss": "8.4.49",
     "prettier": "3.4.2",

@@ -324,6 +324,7 @@ exports[`common > should update dependencies 1`] = `
     "@vitejs/plugin-react",
     "dotenv",
     "dotenv-cli",
+    "jsdom",
     "lint-staged",
     "postcss",
     "prettier",
