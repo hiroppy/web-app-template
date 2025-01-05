@@ -55,7 +55,7 @@ await execAsync("cp .env.sample .env");
       await generateMigrationFiles();
     })(),
     removeDirs([".github/assets"]),
-    removeFiles(["LICENSE"]),
+    removeFiles(["LICENSE", ".github/workflows/site.yml"]),
   ]);
 }
 
