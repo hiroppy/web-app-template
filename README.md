@@ -136,12 +136,6 @@ $ pnpm start
 $ open http://localhost:16686/
 ```
 
-<!-- 👉 remove -->
-
-![jaeger](.github/assets/jaeger.png)
-
-<!-- ######## -->
-
 ### Server
 
 Please add a exporter url to `.env`.
