@@ -4,7 +4,7 @@ import { revalidatePath } from "next/cache";
 import { auth } from "../_clients/nextAuth";
 import { prisma } from "../_clients/prisma";
 import { type UserMeSchema, userMeSchema } from "../_schemas/users";
-import type { Result } from "./_types";
+import type { Result } from "./types";
 
 type UpdateMeState = Result<PartialWithNullable<UserMeSchema>>;
 

@@ -1,0 +1,15 @@
+{
+  "name": "site",
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "vitepress dev",
+    "build": "vitepress build",
+    "preview": "vitepress preview"
+  },
+  "author": "hiroppy <git@hiroppy.me> (https://hiroppy.me/)",
+  "license": "MIT",
+  "description": "",
+  "devDependencies": {
+    "vitepress": "^1.5.0"
+  }
+}

@@ -1,28 +1,25 @@
 <!-- 👉 remove -->
 
 <div align="center">
-  <strong>️️A minimal template for web app 🎃</strong>
+  <h1>️️A minimal template for web app 🎃</h1>
+  <img src=".internal/site/src/public/images/icon.png" alt="icon" width="120">
+  <p>From Zero to Service, Build with Best Practices, Minimal Code, and Essential Tools</p>
+  <br />
 </div>
 
-<br />
-<br />
-
-This template is based on create-next-app but has below new tech and configs.
-
-|             |                           |                         |                               |
-| ----------- | ------------------------- | ----------------------- | ----------------------------- |
-| **App**     | Next.js (Framework)       | Tailwind CSS (CSS)      |                               |
-|             | React Hook Form (Form)    | Zod (Schema Validator)  |                               |
-|             | Prisma (ORM)              | NextAuth.js (Auth)      | OpenTelemetry (Observability) |
-|             |                           |                         |                               |
-| **Tools**   | TypeScript (Language)     | pnpm (Package Manager)  |                               |
-|             | Biome (Linter, Formatter) | Prettier (Formatter)    |                               |
-|             | lint-staged (Pre Commit)  | Docker Compose (Docker) |                               |
-|             |                           |                         |                               |
-| **Testing** | Vitest (Test Runner)      | Testing Library (React) | Playwright (E2E Testing)      |
-|             | Testcontainers (Docker)   |                         |
-|             |                           |                         |                               |
-| **Others**  | GitHub Workflows (CI)     | Renovate (Deps Manager) | .vscode (Editor)              |
+|             |                                                                                                                                                            |                                                                                                                                                                              |                                                                                                                                                       |
+| ----------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **App**     | <div align="center"><img src=".internal/site/src/public/images/libs/nextjs.png" alt="nextjs" width="42"><br>Next.js (Framework)</div>                      | <div align="center"><img src=".internal/site/src/public/images/libs/tailwind.png" alt="tailwind" width="42"><br>Tailwind CSS (CSS)</div>                                     |                                                                                                                                                       |
+|             | <div align="center"><img src=".internal/site/src/public/images/libs/react-hook-form.png" alt="react-hook-form" width="42"><br>React Hook Form (Form)</div> | <div align="center"><img src=".internal/site/src/public/images/libs/zod.svg" alt="zod" width="42"><br>Zod (Schema Validator) </div>                                          |                                                                                                                                                       |
+|             | <div align="center"><img src=".internal/site/src/public/images/libs/prisma.svg" alt="prisma" width="42"><br>Prisma (ORM)</div>                             | <div align="center"><img src=".internal/site/src/public/images/libs/next-auth.png" alt="next-auth" width="42"><br>NextAuth.js (Auth)</div>                                   | <div align="center"><img src=".internal/site/src/public/images/libs/otel.png" alt="otel" width="42"><br>OpenTelemetry (Observability)</div>           |
+|             |                                                                                                                                                            |                                                                                                                                                                              |                                                                                                                                                       |
+| **Tools**   | <div align="center"><img src=".internal/site/src/public/images/libs/typescript.png" alt="typescirpt" width="42"><br>TypeScript (Language)</div>            | <div align="center"><img src=".internal/site/src/public/images/libs/pnpm.svg" alt="pnpm" width="42"><br>pnpm (Package Manager)</div>                                         | <div align="center"><img src=".internal/site/src/public/images/libs/lint-staged.png" alt="lint-staged" width="42"><br> lint-staged (Pre Commit)</div> |
+|             | <div align="center"><img src=".internal/site/src/public/images/libs/biome.png" alt="biome" width="42"><br>Biome (Linter, Formatter)</div>                  | <div align="center"><img src=".internal/site/src/public/images/libs/prettier.png" alt="prettier" width="42"><br> Prettier (Formatter)</div>                                  | <div align="center"><img src=".internal/site/src/public/images/libs/docker.png" alt="docker" width="42"><br> Docker (Container)</div>                 |
+|             |                                                                                                                                                            |                                                                                                                                                                              |                                                                                                                                                       |
+| **Testing** | <div align="center"><img src=".internal/site/src/public/images/libs/vitest.png" alt="vitest" width="42"><br> Vitest (Test Runner)</div>                    | <div align="center"><img src=".internal/site/src/public/images/libs/testing-library.png" alt="testing-library" width="42"><br> Testing Library (DOM testing utilities)</div> | <div align="center"><img src=".internal/site/src/public/images/libs/playwright.png" alt="playwright" width="42"><br> Playwright (E2E Testing)</div>   |
+|             | <div align="center"><img src=".internal/site/src/public/images/libs/testcontainers.png" alt="testcontainers" width="42"><br> Testcontainers (Docker)</div> |                                                                                                                                                                              |
+|             |                                                                                                                                                            |                                                                                                                                                                              |                                                                                                                                                       |
+| **Others**  | <div align="center"><img src=".internal/site/src/public/images/libs/github-actions.png" alt="actions" width="42"><br> GitHub Actions (CI)</div>            | <div align="center"><img src=".internal/site/src/public/images/libs/renovate.png" alt="renovate" width="42"><br> Renovate (Deps Manager)</div>                               | <div align="center"><img src=".internal/site/src/public/images/libs/vscode.png" alt="vscode" width="42"><br> VSCode (Editor)</div>                    |
 
 Just running create-next-app does not satisfy the dependencies, development environment, and CI environment to create a web application. In addition, many dependencies require setting configs for example, `@next-auth/prisma-adapter` requires adding many schemas to `schema.prisma` but we don't know what we add so always need to check the docs every time. This project is created as a template with minimal code in advance so that you can focus on development.
 
@@ -81,12 +78,12 @@ Just running create-next-app does not satisfy the dependencies, development envi
 
 </details>
 
-## Required
+## Prerequisites
 
-- Node.js ^v20
+- Node.js v20 or higher
 - [Docker](https://docs.docker.com/engine/install/)
 
-## Install
+## Installation
 
 When installing the repository, you can skip the setup section, as the init script will do the equivalent of setup.
 

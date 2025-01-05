@@ -128,8 +128,8 @@ exports[`common > should update .github/workflows/ci.yml 1`] = `
 
 exports[`common > should update .gitignore 1`] = `
 [
-  "/node_modules",
-  "/coverage",
+  "node_modules",
+  "coverage",
   "",
   "/.next/",
   "",
@@ -141,7 +141,6 @@ exports[`common > should update .gitignore 1`] = `
   "*.pem",
   "",
   ".env",
-  ".env*.local",
   "",
   ".vercel",
   "",

@@ -19,13 +19,13 @@ export class MePage extends Base {
     return await this.page.goto("/me");
   }
 
-  async expectUI() {
-    await expect(this.nameInputLocator).toBeVisible();
-    await expect(this.submitButtonLocator).toBeVisible();
-  }
-
   async changeName(name: string) {
     await this.nameInputLocator.fill(name);
     await this.submitButtonLocator.click();
+  }
+
+  async expectUI() {
+    await expect(this.nameInputLocator).toBeVisible();
+    await expect(this.submitButtonLocator).toBeVisible();
   }
 }
