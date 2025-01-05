@@ -85,10 +85,10 @@ export default defineConfig({
       label: "English",
       lang: "en",
     },
-    ja: {
-      label: "Japanese",
-      lang: "ja",
-      link: "/ja/guide",
-    },
+    // ja: {
+    //   label: "Japanese",
+    //   lang: "ja",
+    //   link: "/ja/guide",
+    // },
   },
 });

@@ -17,20 +17,22 @@ hero:
       link: /introduction/getting-started
 
 features:
-  - title: Feature A
-    details: Using a real Database for dev and test
-    icon:
-      src: /images/libs/react-hook-form.png
-  - title: Feature B
-    details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
-  - title: Feature C
-    details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
-  - title: Feature A
-    details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
-    icon:
-      src: /images/libs/react-hook-form.png
-  - title: Feature B
-    details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
-  - title: Feature C
-    details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
+  - title: Everything you need is included
+    details: App Codebase, Auth, Database, CI, Linter, Formatter, observability, etc.
+    icon: 🎁
+  - title: Authentication processing is supported
+    details: NextAuth.js is already integrated with Next.js and Prisma
+    icon: 🚓
+  - title: Observability
+    details: o11y is essential for the stable operation of the service
+    icon: 🔎
+  - title: No mocked Database
+    details: unit and e2e tests use real databases, and the unit test can execute parallel
+    icon: 🐳
+  - title: GitHub Actions
+    details: the required CI is already set up
+    icon: ⚙️
+  - title: Copilot Edits (AI)
+    details: including guidelines makes it easier to generate code tailored to this template
+    icon: 🤖
 ---

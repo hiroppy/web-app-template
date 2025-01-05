@@ -47,13 +47,13 @@ This repository uses Google Oauth provider via next-auth so needs to set up.
 1. Creating [a project](https://console.cloud.google.com/projectcreate) on Google Cloud
 2. Accessing [the credentials page](https://console.cloud.google.com/apis/credentials) and set below values
 
-- AUTHORIZED JAVASCRIPT ORIGINS
+- `AUTHORIZED JAVASCRIPT ORIGINS`
 
 ```
 http://localhost:3000
 ```
 
-- AUTHORIZED REDIRECT URIS
+- `AUTHORIZED REDIRECT URIS`
 
 ```
 http://localhost:3000/api/auth/callback/google

@@ -4,12 +4,24 @@ This template enables rapid web service creation.
 
 ## Why not use create-next-app?
 
-The create-next-app focuses on only next.js but actually, when you create a web service, you need to set up Test environment, CI, Formatter, Linter, and many libraries like CSS, Form, etc.
+The create-next-app focuses on only next.js but actually, when you create a web service, you need to set up Test environment, CI, Formatter, Linter, and many libraries like Form, Observability, etc.
+
+[hiroppy](https://x.com/about_hiroppy) develops more than three services annually but often finds tasks like setting up frontend infrastructure, CI environments, and directory structures to be tedious. To address this, a comprehensive template like this was created.
+
+He also has Terraform configurations for deploying to Google Cloud but he doesn't know it's good to depend on the vendor, so those are not included in this template.
+
+## Why not start with a blank slate?
+
+As you can see in this template, there are a few pre-existing pages and a database model. For those experienced with frontend development, the Next.js pages, Zod, and React Hook Form code might seem unnecessary—they usually delete everything at the start.
+
+However, by intentionally leaving best-practice examples in the code, the template becomes more accessible for beginners. The goal is to provide a balance: reducing the overall code volume while including reference implementations.
+
+In the future, a "blank slate" option might be added as a flag.
 
 ## Goal
 
-- Suggests best practice code while keeping the amount of code to a minimum
-- This template builds various configurations so **you can focus on application development**
+- Set up various configurations so **you can focus on application development**
+- Provide best-practice code examples while keeping the overall codebase minimal
 
 ## Using Libraries
 
