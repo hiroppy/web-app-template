@@ -20,8 +20,5 @@ test-results
 next-env.d.ts
 
 ####### 👉 remove #######
-cache
-dist
 migrations
-internal-tests-output-*
 ########################
