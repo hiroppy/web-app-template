@@ -28,7 +28,7 @@ jobs:
       - run: cd .internal/site && pnpm build
       - uses: actions/upload-pages-artifact@v3
         with:
-          path: .internal/site/docs/.vitepress/dist
+          path: .internal/site/.vitepress/dist
   deploy:
     needs: build
     runs-on: ubuntu-latest
