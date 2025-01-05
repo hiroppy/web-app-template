@@ -68,7 +68,9 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: ./.github/actions/setup-node
-      - uses: ./.github/actions/setup-prisma
+      - uses: ./.github/actions/setup-db
+        with:
+          run_db: false
       - run: pnpm test
   ####### e2e #######
   e2e-test:
@@ -78,7 +80,9 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: ./.github/actions/setup-node
-      - uses: ./.github/actions/setup-prisma
+      - uses: ./.github/actions/setup-db
+        with:
+          run_db: false
       - run: pnpm exec playwright install chromium
       - run: pnpm build:test
       - run: pnpm test:e2e

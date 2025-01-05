@@ -1,8 +1,0 @@
-name: Setup Prisma
-runs:
-  using: composite
-  steps:
-    - run: cp ./.env.sample ./.env
-      shell: bash
-    - run: pnpm generate:client
-      shell: bash
