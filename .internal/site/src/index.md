@@ -11,14 +11,14 @@ hero:
   actions:
     - theme: brand
       text: What is web-app-template?
-      link: what-is-web-app-template
+      link: /introduction/what-is-web-app-template
     - theme: alt
       text: Quick Start!
-      link: getting-started
+      link: /introduction/getting-started
 
 features:
   - title: Feature A
-    details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
+    details: Using a real Database for dev and test
     icon:
       src: /images/libs/react-hook-form.png
   - title: Feature B

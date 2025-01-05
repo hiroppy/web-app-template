@@ -42,7 +42,7 @@
 - Mocking and working around next-auth's JWT strategy
 - Writing code using [Page Object Models](https://playwright.dev/docs/pom) suggested by Playwright
 
-## Accessibility <Badge type="warning" text="Optional" />
+## Observability <Badge type="warning" text="Optional" />
 
 - Setting up OpenTelemetry on Next.js
 - Building [Opentelemetry Collector](https://opentelemetry.io/docs/collector/) and [Jaeger](https://www.jaegertracing.io/)
@@ -69,6 +69,7 @@
 
 - Supporting recommended extensions for team members
 - Setting up some workspace configurations mainly linter, formatter, and cSpell
+- Supporting instructions for GitHub Copilot Edit
 
 <br />
 <br />

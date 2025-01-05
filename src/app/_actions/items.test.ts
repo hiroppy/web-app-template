@@ -1,5 +1,5 @@
 import { beforeEach, describe, expect, test } from "vitest";
-import { setup } from "./_test.helper";
+import { setup } from "./test.helper";
 
 // need to import after test.helper
 import { create, deleteAll } from "./items";
