@@ -56,7 +56,7 @@ http://localhost:3000/api/auth/callback/google
 
 3. After creating the OAuth 2.0 client, please fill below
 
-```env
+```
 GOOGLE_CLIENT_ID=
 GOOGLE_CLIENT_SECRET=
 ```
