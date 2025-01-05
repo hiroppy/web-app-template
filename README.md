@@ -65,9 +65,57 @@ $ cp .env.sample .env
 ## Development
 
 ```sh
-# start docker compose, migrations(generating the client), and next dev
 $ pnpm dev
 ```
+
+## Production
+
+```sh
+$ pnpm db:up
+$ pnpm build
+$ pnpm start
+```
+
+<!-- otel -->
+
+### Observability
+
+This template uses Jaeger as a tracing platform. The local environment doesn't require `TRACE_EXPORTER_URL` environment value.
+
+```sh
+# open Jaeger
+$ open http://localhost:16686/
+```
+
+<!-- ######## otel -->
+
+## Test
+
+### Unit Test
+
+```sh
+$ pnpm test
+$ pnpm test:watch
+```
+
+<!-- e2e -->
+
+### E2E Test
+
+A build task must be executed before running tests to bypass JWT logic.
+
+```sh
+# install chrome
+$ pnpm exec playwright install chrome
+# build using test environments since it needs to change encode/decode functions of next-auth
+$ pnpm build:test
+
+$ pnpm test:e2e
+# execute with UI
+$ pnpm test:e2e:ui
+```
+
+<!-- ######## e2e -->
 
 ## Database
 
@@ -79,72 +127,6 @@ $ pnpm db:reset
 # view the database items
 $ pnpm db:studio
 ```
-
-## Test
-
-Test uses real DB via testcontaiers.
-
-### Unit Test
-
-```sh
-# execute
-$ pnpm test
-# watch the unit test
-$ pnpm test:watch
-```
-
-<!-- e2e -->
-
-### E2E Test
-
-```sh
-# install chrome
-$ pnpm exec playwright install chrome
-# build using test environments since it needs to change encode/decode functions of next-auth
-$ pnpm build:test
-# execute
-$ pnpm test:e2e
-# execute with UI
-$ pnpm test:e2e:ui
-```
-
-<!-- ######## e2e -->
-
-## Production
-
-```sh
-$ pnpm db:up
-$ pnpm build
-$ pnpm start
-```
-
-If you set `POSTGRESQL_URL` as GitHub secrets, you will be able to execute migration for database on GitHub actions(`.github/workflows/migration.yml`).
-
-<!-- otel -->
-
-## Observability
-
-This project has [OpenTelemetry](https://opentelemetry.io/) and it works only production environment.
-
-### Local
-
-```sh
-$ pnpm db:up
-$ pnpm build
-$ pnpm start
-# open Jaeger
-$ open http://localhost:16686/
-```
-
-### Server
-
-Please add a exporter url to `.env`.
-
-```
-TRACE_EXPORTER_URL=
-```
-
-<!-- ######## otel -->
 
 ## Links
 
