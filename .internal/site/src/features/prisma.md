@@ -2,7 +2,7 @@
 
 |                                                             |                                                             |                                                         |
 | :---------------------------------------------------------: | :---------------------------------------------------------: | :-----------------------------------------------------: |
-| <img src="/images/libs/prisma.svg" alt="prisma" width="40"> | <img src="/images/libs/nextjs.png" alt="nextjs" width="40"> | <img src="/images/libs/otel.png" alt="otel" width="40"> |
+| <img src="/images/libs/prisma.png" alt="prisma" width="40"> | <img src="/images/libs/nextjs.png" alt="nextjs" width="40"> | <img src="/images/libs/otel.png" alt="otel" width="40"> |
 
 ## Schema <Badge type="tip" text="Best Practice" />
 

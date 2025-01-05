@@ -30,6 +30,12 @@ After creating the repository, you need to run the following commands to clean a
 $ node .internal/setup/init.mjs
 ```
 
+## Opt-out
+
+- `Dockerfile` and Docker build job as GitHub Actions
+- OpenTelemetry
+- Playwright
+
 ## Configuration
 
 ### Rewriting .env

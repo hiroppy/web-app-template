@@ -65,7 +65,6 @@ export default defineConfig({
     socialLinks: [
       { icon: "github", link: "https://github.com/hiroppy/web-app-template" },
       { icon: "twitter", link: "https://x.com/about_hiroppy" },
-      { icon: "homeadvisor", link: "https://hiroppy.me/" },
     ],
     editLink: {
       // TODO
