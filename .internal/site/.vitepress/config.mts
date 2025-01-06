@@ -6,6 +6,21 @@ export default defineConfig({
     "From Zero to Service: Build with Best Practices, Minimal Code, and Essential Tools.",
   srcDir: "src",
   lang: "en",
+  head: [
+    ["link", { rel: "icon", href: "/favicon.ico" }],
+    // [
+    //   "script",
+    //   { async: "", src: "https://www.googletagmanager.com/gtag/js?id=TAG_ID" },
+    // ],
+    // [
+    //   "script",
+    //   {},
+    //   `window.dataLayer = window.dataLayer || [];
+    //   function gtag(){dataLayer.push(arguments);}
+    //   gtag('js', new Date());
+    //   gtag('config', 'TAG_ID');`,
+    // ],
+  ],
   base: "/web-app-template/",
   themeConfig: {
     logo: "images/icon.png",
@@ -61,8 +76,12 @@ export default defineConfig({
             link: "/features/observability",
           },
           {
-            text: "Git",
-            link: "/features/git",
+            text: "Code Quality Automation",
+            link: "/features/code-quality-automation",
+          },
+          {
+            text: "Copilot Edits",
+            link: "/features/copilot",
           },
         ],
       },

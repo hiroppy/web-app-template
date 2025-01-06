@@ -10,6 +10,8 @@
   <br />
 </div>
 
+Installing this template automatically sets up the following libraries/tools. By saving you significant effort, it allows you to focus entirely on writing your product code.🤗
+
 |             |                                                                                                                                              |                                                                                                                                                      |                                                                                                                                       |                                                                                                                                                     |
 | ----------- | -------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------- |
 | **App**     | <div align="center"><img src=".internal/site/src/public/images/libs/nextjs.png" alt="nextjs" width="44"><br>Next.js</div>                    | <div align="center"><img src=".internal/site/src/public/images/libs/tailwind.png" alt="tailwind" width="44"><br>Tailwind CSS</div>                   | <div align="center"><img src=".internal/site/src/public/images/libs/next-auth.png" alt="next-auth" width="44"><br>NextAuth.js</div>   | <div align="center"><img src=".internal/site/src/public/images/libs/react-hook-form.png" alt="react-hook-form" width="44"><br>React Hook Form</div> |
@@ -129,3 +131,4 @@ $ pnpm db:studio
 ## Links
 
 - [Database ER diagram](/prisma/ERD.md)
+- [Web App Template](https://hiroppy.github.io/web-app-template/)

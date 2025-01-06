@@ -1,8 +1,8 @@
 # Prisma
 
-|                                                             |                                                             |                                                         |
-| :---------------------------------------------------------: | :---------------------------------------------------------: | :-----------------------------------------------------: |
-| <img src="/images/libs/prisma.png" alt="prisma" width="40"> | <img src="/images/libs/nextjs.png" alt="nextjs" width="40"> | <img src="/images/libs/otel.png" alt="otel" width="40"> |
+|                                                             |                                                             |                                                         |                                                                     |
+| :---------------------------------------------------------: | :---------------------------------------------------------: | :-----------------------------------------------------: | ------------------------------------------------------------------- |
+| <img src="/images/libs/prisma.png" alt="prisma" width="40"> | <img src="/images/libs/nextjs.png" alt="nextjs" width="40"> | <img src="/images/libs/otel.png" alt="otel" width="40"> | <img src="/images/libs/postgresql.png" alt="postgresql" width="40"> |
 
 ## Schema <Badge type="tip" text="Best Practice" />
 
@@ -35,6 +35,6 @@ In development, prisma requires avoiding multiple Prisma Client instances but Ho
 
 Prisma provides OpenTelemetry tracing feature. This template uses `@prisma/instrumentation` and you can view Prisma Query, Engine, and Database Query on Jeager via otel-collector. Learn more [here](/features/observability)
 
-TODO: add images
+![query metric](/images/otel/query.png)
 
 - [OpenTelemetry tracing](https://www.prisma.io/docs/orm/prisma-client/observability-and-logging/opentelemetry-tracing)

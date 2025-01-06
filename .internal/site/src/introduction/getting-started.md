@@ -34,7 +34,7 @@ $ node .internal/setup/init.mjs
 
 - `Dockerfile` and Docker build job as GitHub Actions
 - OpenTelemetry
-- Playwright
+- E2E testing
 
 ## Configuration
 
