@@ -26,6 +26,11 @@ export default defineConfig({
             link: "/introduction/challenges-solved",
           },
           { text: "Getting Started", link: "/introduction/getting-started" },
+          { text: "Tasks", link: "/introduction/tasks" },
+          {
+            text: "Routing",
+            link: "/introduction/routing",
+          },
         ],
       },
       {

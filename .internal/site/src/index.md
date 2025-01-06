@@ -23,16 +23,16 @@ features:
   - title: Authentication processing is supported
     details: NextAuth.js is already integrated with Next.js and Prisma
     icon: 🚓
-  - title: Observability
-    details: o11y is essential for the stable operation of the service
-    icon: 🔎
   - title: No mocked Database
     details: unit and e2e tests use real databases, and the unit test can execute parallel
     icon: 🐳
+  - title: Observability
+    details: o11y is essential for the stable operation of the service
+    icon: 🔎
   - title: GitHub Actions
     details: the required CI is already set up
     icon: ⚙️
-  - title: Copilot Edits (AI)
+  - title: Copilot Edits
     details: including guidelines makes it easier to generate code tailored to this template
     icon: 🤖
 ---

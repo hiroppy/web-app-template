@@ -1,6 +1,6 @@
 # What is web app template?
 
-This template enables rapid web service creation.
+This template based on Next.js enables rapid web service creation.
 
 ## Why not use create-next-app?
 

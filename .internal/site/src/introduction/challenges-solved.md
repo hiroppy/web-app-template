@@ -5,13 +5,13 @@
 - Using App Router
 - Setting up the directory structure that you will probably make when actually creating a service
 - Providing examples based on several code patterns
-  - client components + `useTransition` + react-hook-form
-  - client components + `useActionState` + server action(form)
-  - server components + server action(form)
-  - parallel route + intercepting route
+  - Server Components + Form + Server Actions
+  - Client Components + `useTransition` + react-hook-form + Server Actions
+  - Client Components + `useActionState` + Form + Server Actions
+  - Parallel Route + intercepting route
 - Adding tests including middleware, server actions, etc
 - Supporting instrumentation
-- Supporting Docker build
+- Supporting `Dockerfile`
 
 > [!NOTE]
 > This repository will use [dynamicIO](https://nextjs.org/docs/app/api-reference/directives/use-cache) so the code will be changed when the canary version will be stable from now on
@@ -20,8 +20,8 @@
 
 - Introducing Google Oauth provider
 - Connecting to Prisma
-- Setting up Next.js api route
-- Using JWT strategy to check users on [middleware](https://next-auth.js.org/tutorials/securing-pages-and-api-routes#nextjs-middleware)
+- Setting up Next.js api routes
+- Using JWT strategy to authenticate users on [middleware](https://next-auth.js.org/tutorials/securing-pages-and-api-routes#nextjs-middleware)
 - Supporting updating all JWTs for the same user, allowing access from multiple devices
 - [Separating the edge-compatible configuration from the rest](https://authjs.dev/getting-started/migrating-to-v5#edge-compatibility), as some adapters may not support Edge
 
@@ -69,7 +69,7 @@
 
 - Supporting recommended extensions for team members
 - Setting up some workspace configurations mainly linter, formatter, and cSpell
-- Supporting instructions for GitHub Copilot Edit
+- Supporting instructions for GitHub Copilot Edits
 
 <br />
 <br />
