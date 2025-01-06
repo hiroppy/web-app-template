@@ -1,8 +1,21 @@
 name: site
 
 on:
+  pull_request:
+    branches:
+      - main
+    paths:
+      - src/**
+      - .internal/site/**
+      - .github/workflows/site.yml
   push:
-    branches: [main]
+    branches:
+      - main
+    paths:
+      - src/**
+      - .internal/site/**
+      - .github/workflows/site.yml
+
   workflow_dispatch:
 
 permissions:
@@ -27,6 +40,7 @@ jobs:
         with:
           path: .internal/site/.vitepress/dist
   deploy:
+    if: github.ref == 'refs/heads/main'
     needs: build
     runs-on: ubuntu-latest
     environment:
