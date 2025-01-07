@@ -34,12 +34,6 @@ jobs:
       - uses: actions/checkout@v4
       - uses: ./.github/actions/setup-node
       - uses: ./.github/actions/setup-db
-      - name: Load .env.sample
-        run: |
-          set -a
-          [ -f .env.sample ] && source .env.sample
-          set +a
-        env: $(cat .env.sample | xargs)
       - run: pnpm build
 
   ####### docker #######
