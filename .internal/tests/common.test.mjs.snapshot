@@ -78,6 +78,7 @@ exports[`common > should update .github/workflows/ci.yml 1`] = `
   "      - uses: ./.github/actions/setup-node",
   "      - uses: ./.github/actions/setup-db",
   "      - run: pnpm build",
+  "",
   "  build-docker:",
   "    runs-on: ubuntu-latest",
   "    env:",

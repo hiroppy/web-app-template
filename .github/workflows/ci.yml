@@ -35,7 +35,6 @@ jobs:
       - uses: ./.github/actions/setup-node
       - uses: ./.github/actions/setup-db
       - run: pnpm build
-
   ####### docker #######
   build-docker:
     runs-on: ubuntu-latest
