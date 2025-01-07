@@ -17,6 +17,7 @@ exports[`no-docker > should put files 1`] = `
   "internal-tests-output-no-docker/README.md",
   "internal-tests-output-no-docker/biome.json",
   "internal-tests-output-no-docker/compose.yml",
+  "internal-tests-output-no-docker/env.ts",
   "internal-tests-output-no-docker/lefthook.yml",
   "internal-tests-output-no-docker/next.config.ts",
   "internal-tests-output-no-docker/otel-collector-config.yml",

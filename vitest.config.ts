@@ -1,8 +1,8 @@
 import react from "@vitejs/plugin-react";
-import { config } from "dotenv";
 import { defineConfig } from "vitest/config";
+import { config } from "./env";
 
-config({ path: ".env.test" });
+config(".env.test");
 
 export default defineConfig({
   plugins: [react()],

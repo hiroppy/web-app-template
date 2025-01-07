@@ -1,26 +1,8 @@
-export type {};
+import type { Schema } from "../../env";
 
 declare global {
   namespace NodeJS {
-    interface ProcessEnv {
-      // public
-      NEXT_PUBLIC_SITE_URL: string;
-
-      // private
-      POSTGRES_USER: string;
-      POSTGRES_PASSWORD: string;
-      POSTGRES_HOST: string;
-      POSTGRES_PORT: string;
-      POSTGRES_DB: string;
-      POSTGRES_SCHEMA: string;
-
-      GOOGLE_CLIENT_ID: string;
-      GOOGLE_CLIENT_SECRET: string;
-
-      TRACE_EXPORTER_URL?: string;
-
-      NEXTAUTH_TEST_MODE?: string;
-    }
+    interface ProcessEnv extends Schema {}
   }
 
   type PartialWithNullable<T> = {

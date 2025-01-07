@@ -9,9 +9,9 @@ const execAsync = promisify(exec);
 export async function setupDB({ port }: { port: "random" | number }) {
   const container = await new DockerComposeEnvironment(".", "compose.yml")
     .withEnvironmentFile(".env.test")
-    // overwrite config
+    // overwrite environment variables
     .withEnvironment({
-      POSTGRES_PORT: port === "random" ? "0" : `${port}`,
+      DATABASE_PORT: port === "random" ? "0" : `${port}`,
     })
     .withWaitStrategy("db", Wait.forListeningPorts())
     .up(["db"]);
@@ -22,7 +22,7 @@ export async function setupDB({ port }: { port: "random" | number }) {
     port: mappedPort,
   });
 
-  await execAsync(`POSTGRES_URL=${url} npx prisma db push`);
+  await execAsync(`DATABASE_URL=${url} npx prisma db push`);
 
   const prisma = new PrismaClient({
     datasources: {

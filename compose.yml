@@ -5,11 +5,11 @@ services:
   db:
     image: postgres:17
     ports:
-      - ${POSTGRES_PORT:-5432}:5432
+      - ${DATABASE_PORT:-5432}:5432
     environment:
-      - POSTGRES_USER=${POSTGRES_USER}
-      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
-      - POSTGRES_DB=${POSTGRES_DB}
+      - POSTGRES_USER=${DATABASE_USER}
+      - POSTGRES_PASSWORD=${DATABASE_PASSWORD}
+      - POSTGRES_DB=${DATABASE_DB}
   ####### otel #######
   jaeger:
     image: jaegertracing/all-in-one

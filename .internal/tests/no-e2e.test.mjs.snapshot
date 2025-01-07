@@ -18,6 +18,7 @@ exports[`no-e2e > should put files 1`] = `
   "internal-tests-output-no-e2e/README.md",
   "internal-tests-output-no-e2e/biome.json",
   "internal-tests-output-no-e2e/compose.yml",
+  "internal-tests-output-no-e2e/env.ts",
   "internal-tests-output-no-e2e/lefthook.yml",
   "internal-tests-output-no-e2e/next.config.ts",
   "internal-tests-output-no-e2e/otel-collector-config.yml",
@@ -80,7 +81,7 @@ exports[`no-e2e > should update .github/workflows/ci.yml 1`] = `
   "    runs-on: ubuntu-latest",
   "    env:",
   "      # should store them to github.secrets",
-  "      POSTGRES_URL: postgresql://dev:1234@172.17.0.1:5432/dev?schema=public",
+  "      DATABASE_URL: postgresql://dev:1234@172.17.0.1:5432/dev?schema=public",
   "      NEXTAUTH_SECRET: UfxvOS6HetHOFkL44YTITYgc0DOuOlz5TBp3jkbnZ3w=",
   "      NEXT_PUBLIC_SITE_URL: http://localhost:3000",
   "    steps:",
@@ -91,7 +92,7 @@ exports[`no-e2e > should update .github/workflows/ci.yml 1`] = `
   "          docker build \\\\",
   "            -t app \\\\",
   "            -f Dockerfile \\\\",
-  "            --build-arg POSTGRES_URL=\${{env.POSTGRES_URL}} \\\\",
+  "            --build-arg DATABASE_URL=\${{env.DATABASE_URL}} \\\\",
   "            --build-arg NEXTAUTH_SECRET=\${{env.NEXTAUTH_SECRET}} \\\\",
   "            --build-arg NEXT_PUBLIC_SITE_URL=\${{env.NEXT_PUBLIC_SITE_URL}} \\\\",
   "            .",
@@ -198,6 +199,7 @@ exports[`no-e2e > should update README.md 1`] = `
   "## Links",
   "",
   "- [Database ER diagram](/prisma/ERD.md)",
+  "- [Web App Template](https://hiroppy.github.io/web-app-template/)",
   ""
 ]
 `;
