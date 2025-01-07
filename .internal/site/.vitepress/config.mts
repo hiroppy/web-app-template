@@ -46,6 +46,10 @@ export default defineConfig({
             text: "Routing",
             link: "/introduction/routing",
           },
+          {
+            text: "Dotenv",
+            link: "/introduction/dotenv",
+          },
         ],
       },
       {
