@@ -77,7 +77,6 @@ exports[`no-docker > should update .github/workflows/ci.yml 1`] = `
   "      - uses: ./.github/actions/setup-node",
   "      - uses: ./.github/actions/setup-db",
   "      - run: pnpm build",
-  "",
   "  unit-test:",
   "    runs-on: ubuntu-latest",
   "    steps:",
