@@ -1,10 +1,10 @@
 export function createDBUrl({
-  user = process.env.POSTGRES_USER,
-  password = process.env.POSTGRES_PASSWORD,
-  host = process.env.POSTGRES_HOST,
-  port = Number(process.env.POSTGRES_PORT),
-  db = process.env.POSTGRES_DB,
-  schema = process.env.POSTGRES_SCHEMA,
+  user = process.env.DATABASE_USER,
+  password = process.env.DATABASE_PASSWORD,
+  host = process.env.DATABASE_HOST,
+  port = Number(process.env.DATABASE_PORT),
+  db = process.env.DATABASE_DB,
+  schema = process.env.DATABASE_SCHEMA,
 }: {
   user?: string;
   password?: string;

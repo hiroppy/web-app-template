@@ -18,4 +18,4 @@ jobs:
       - uses: ./.github/actions/setup-db
       - run: pnpm db:deploy
         env:
-          DATABASE_URL: ${{secrets.POSTGRES_URL}}
+          DATABASE_URL: ${{secrets.DATABASE_URL}}

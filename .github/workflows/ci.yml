@@ -40,7 +40,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       # should store them to github.secrets
-      POSTGRES_URL: postgresql://dev:1234@172.17.0.1:5432/dev?schema=public
+      DATABASE_URL: postgresql://dev:1234@172.17.0.1:5432/dev?schema=public
       NEXTAUTH_SECRET: UfxvOS6HetHOFkL44YTITYgc0DOuOlz5TBp3jkbnZ3w=
       NEXT_PUBLIC_SITE_URL: http://localhost:3000
     steps:
@@ -51,7 +51,7 @@ jobs:
           docker build \
             -t app \
             -f Dockerfile \
-            --build-arg POSTGRES_URL=${{env.POSTGRES_URL}} \
+            --build-arg DATABASE_URL=${{env.DATABASE_URL}} \
             --build-arg NEXTAUTH_SECRET=${{env.NEXTAUTH_SECRET}} \
             --build-arg NEXT_PUBLIC_SITE_URL=${{env.NEXT_PUBLIC_SITE_URL}} \
             .

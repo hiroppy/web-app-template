@@ -18,6 +18,7 @@ exports[`no-otel > should put files 1`] = `
   "internal-tests-output-no-otel/README.md",
   "internal-tests-output-no-otel/biome.json",
   "internal-tests-output-no-otel/compose.yml",
+  "internal-tests-output-no-otel/env.ts",
   "internal-tests-output-no-otel/lefthook.yml",
   "internal-tests-output-no-otel/next.config.ts",
   "internal-tests-output-no-otel/package.json",
@@ -102,6 +103,7 @@ exports[`no-otel > should update README.md 1`] = `
   "## Links",
   "",
   "- [Database ER diagram](/prisma/ERD.md)",
+  "- [Web App Template](https://hiroppy.github.io/web-app-template/)",
   ""
 ]
 `;
@@ -115,11 +117,11 @@ exports[`no-otel > should update compose.yml 1`] = `
   "  db:",
   "    image: postgres:17",
   "    ports:",
-  "      - \${POSTGRES_PORT:-5432}:5432",
+  "      - \${DATABASE_PORT:-5432}:5432",
   "    environment:",
-  "      - POSTGRES_USER=\${POSTGRES_USER}",
-  "      - POSTGRES_PASSWORD=\${POSTGRES_PASSWORD}",
-  "      - POSTGRES_DB=\${POSTGRES_DB}",
+  "      - POSTGRES_USER=\${DATABASE_USER}",
+  "      - POSTGRES_PASSWORD=\${DATABASE_PASSWORD}",
+  "      - POSTGRES_DB=\${DATABASE_DB}",
   ""
 ]
 `;
@@ -166,6 +168,9 @@ exports[`no-otel > should update dependencies 1`] = `
 exports[`no-otel > should update next.config.ts 1`] = `
 [
   "import type { NextConfig } from \\"next\\";",
+  "import { config } from \\"./env\\";",
+  "",
+  "config();",
   "",
   "const nextConfig: NextConfig = {",
   "  images: {",
