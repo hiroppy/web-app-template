@@ -17,9 +17,27 @@ export async function executeOptionalQuestion({
   isSkipQuestion,
   noCallback,
   yesCallback,
+  codeAndFenceList = [],
 }) {
+  async function removeCodeOrFence(answer) {
+    return Promise.all(
+      codeAndFenceList?.map(async ([file, fence]) => {
+        try {
+          if (!answer) {
+            await removeWords(file, fence);
+          } else {
+            await removeLines([[file, fence]]);
+          }
+        } catch (error) {
+          console.error(error);
+        }
+      }),
+    );
+  }
+
   if (answer) {
-    await yesCallback();
+    await yesCallback?.();
+    await removeCodeOrFence(true);
 
     return;
   }
@@ -32,7 +50,8 @@ export async function executeOptionalQuestion({
     const answer = await rl.question(question);
 
     if (answer === "y" || answer === "Y") {
-      await yesCallback();
+      await yesCallback?.();
+      await removeCodeOrFence(true);
       rl.close();
 
       return;
@@ -41,7 +60,8 @@ export async function executeOptionalQuestion({
     rl.close();
   }
 
-  await noCallback();
+  await noCallback?.();
+  await removeCodeOrFence(false);
 }
 
 export async function removeDirs(dirs) {
@@ -55,8 +75,7 @@ export async function removeFiles(files) {
 }
 
 export async function removeWords(file, words) {
-  const target = join(basePath, file);
-  const data = await readFile(target, "utf8");
+  const data = await readFileFromCopiedDir(file);
   const lines = data.split("\n");
   const res = [];
 
@@ -80,15 +99,14 @@ export async function removeWords(file, words) {
     }
   }
 
-  await writeFile(target, res.join("\n"));
+  await writeFileToCopiedDir(file, res.join("\n"));
 }
 
 export async function removeLines(files) {
   await Promise.all(
     files.map(async ([file, fence]) => {
       try {
-        const target = join(basePath, file);
-        const data = await readFile(target, "utf8");
+        const data = await readFileFromCopiedDir(file);
         const lines = data.split("\n");
         const res = [];
         let isInFence = false;
@@ -105,7 +123,7 @@ export async function removeLines(files) {
           }
         }
 
-        await writeFile(target, res.join("\n"));
+        await writeFileToCopiedDir(file, res.join("\n"));
       } catch (error) {
         console.error(error);
       }
@@ -114,11 +132,10 @@ export async function removeLines(files) {
 }
 
 export async function getPackageJson() {
-  const packageJsonPath = join(basePath, "package.json");
-  const packageJson = await readFile(packageJsonPath, "utf-8");
+  const packageJson = await readFileFromCopiedDir("package.json");
   const parsed = JSON.parse(packageJson);
 
-  return { path: packageJsonPath, data: parsed };
+  return { path: join(basePath, "package.json"), data: parsed };
 }
 
 export async function removeDeps(deps) {
@@ -133,4 +150,17 @@ export async function removeNpmScripts(scripts) {
   }
 
   await writeFile(path, JSON.stringify(data, null, 2));
+}
+
+export async function readFileFromCopiedDir(file) {
+  const target = join(basePath, file);
+  const data = await readFile(target, "utf8");
+
+  return data;
+}
+
+export async function writeFileToCopiedDir(file, data) {
+  const target = join(basePath, file);
+
+  await writeFile(target, data);
 }

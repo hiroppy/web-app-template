@@ -1,3 +1,4 @@
+import { clsx } from "clsx";
 import type { Metadata, Viewport } from "next";
 import { Inter } from "next/font/google";
 import type { PropsWithChildren, ReactNode } from "react";
@@ -29,12 +30,12 @@ export default function Layout({ dialog, children }: Props) {
       {/* if you don't use useSession, please remove AuthProvider */}
       <AuthProvider>
         <body
-          className={[
+          className={clsx(
             inter.className,
             "bg-gray-700 text-gray-200 min-h-screen flex flex-col",
             // for dialog
             "has-[dialog[open]]:overflow-hidden",
-          ].join(" ")}
+          )}
         >
           <Header />
           <main className="flex-1">{children}</main>

@@ -35,7 +35,7 @@ jobs:
       - uses: ./.github/actions/setup-node
       - uses: ./.github/actions/setup-db
       - run: pnpm build
-  ####### docker #######
+  # start: docker #
   build-docker:
     runs-on: ubuntu-latest
     env:
@@ -62,7 +62,7 @@ jobs:
             sleep 1
           done
         timeout-minutes: 1
-  ########################
+  # end: docker #
   unit-test:
     runs-on: ubuntu-latest
     steps:
@@ -72,7 +72,7 @@ jobs:
         with:
           run_db: false
       - run: pnpm test
-  ####### e2e #######
+  # start: e2e #
   e2e-test:
     runs-on: ubuntu-latest
     env:
@@ -86,7 +86,7 @@ jobs:
       - run: pnpm exec playwright install chromium
       - run: pnpm build:test
       - run: pnpm test:e2e
-  ########################
+  # end: e2e #
   ####### 👉 remove #######
   internal-test:
     runs-on: ubuntu-latest

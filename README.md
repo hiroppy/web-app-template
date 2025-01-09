@@ -76,7 +76,7 @@ $ pnpm build
 $ pnpm start
 ```
 
-<!-- otel -->
+<!-- start: otel -->
 
 ### Observability
 
@@ -87,7 +87,7 @@ This template uses Jaeger as a tracing platform. The local environment doesn't r
 $ open http://localhost:16686/
 ```
 
-<!-- ######## otel -->
+<!-- end: otel -->
 
 ## Test
 
@@ -98,7 +98,7 @@ $ pnpm test
 $ pnpm test:watch
 ```
 
-<!-- e2e -->
+<!-- start: e2e -->
 
 ### E2E Test
 
@@ -115,7 +115,7 @@ $ pnpm test:e2e
 $ pnpm test:e2e:ui
 ```
 
-<!-- ######## e2e -->
+<!-- end: e2e -->
 
 ## Database
 

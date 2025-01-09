@@ -5,11 +5,11 @@ coverage
 
 /.next/
 
-####### e2e #######
+# start: e2e #
 .auth
 playwright-report
 test-results
-########################
+# end: e2e #
 
 .DS_Store
 *.pem

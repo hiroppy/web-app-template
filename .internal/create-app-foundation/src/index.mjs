@@ -35,6 +35,15 @@ const args = [];
 }
 {
   const answer = await rl.question(
+    question("Do you want to remove sample application code? (y/N)"),
+  );
+
+  if (answer === "y" || answer === "Y") {
+    args.push("--remove-sample-code");
+  }
+}
+{
+  const answer = await rl.question(
     question("Do you want to remove Docker for app? (y/N)"),
   );
 
@@ -129,6 +138,7 @@ async function copyDir(from, to) {
     /\.next$/,
     /test-results/,
     /\.env$/,
+    /\.auth/,
     /next-env\.d\.ts$/,
     /prisma\/migrations/,
   ]);

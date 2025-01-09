@@ -49,13 +49,11 @@ model User {
   updatedAt     DateTime  @updatedAt @map("updated_at")
   // https://authjs.dev/guides/basics/role-based-access-control
   role          String?
-  // example model
   items         Item[]
 
   @@map("users")
 }
 
-// example model
 model Item {
   id        String   @id @default(cuid())
   content   String
