@@ -3,19 +3,21 @@ import {
   modifiedFiles,
   removedDirs,
   removedFiles,
-} from "../setup/questions/docker.mjs";
+} from "../setup/questions/sample-code.mjs";
 import { BaseTest } from "./Basetest.mjs";
 
-const outputDir = "no-docker";
+const outputDir = "no-sample-code";
 const baseTest = new BaseTest({ outputDir });
 
-describe("no-docker", async () => {
+describe("no-sample-code", async () => {
   baseTest.globalHook({
-    noDocker: true,
+    noSampleCode: true,
   });
 
-  await baseTest.testFileList();
+  await baseTest.testFileList({ ignoreSrc: false, ignoreE2e: false });
   await baseTest.testFileContent(modifiedFiles);
   await baseTest.testRemovedDirs(removedDirs);
   await baseTest.testRemovedFiles(removedFiles);
+
+  await baseTest.testBuild();
 });

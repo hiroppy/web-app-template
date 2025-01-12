@@ -1,13 +1,20 @@
 import test, { describe } from "node:test";
+import {
+  modifiedFiles,
+  removedDirs,
+  removedFiles,
+} from "../setup/common-processing.mjs";
+import { modifiedFiles as modifiedFilesForDocker } from "../setup/questions/docker.mjs";
+import { modifiedFiles as modifiedFilesForE2e } from "../setup/questions/e2e.mjs";
+import { modifiedFiles as modifiedFilesForOtel } from "../setup/questions/otel.mjs";
+import { modifiedFiles as modifiedFilesForSampleCode } from "../setup/questions/sample-code.mjs";
 import { BaseTest } from "./Basetest.mjs";
 
 const outputDir = "common";
 const baseTest = new BaseTest({ outputDir });
 
 describe("common", async () => {
-  baseTest.globalHook({
-    noDocker: false,
-  });
+  baseTest.globalHook();
 
   await baseTest.testFileList();
   await baseTest.testDependencies();
@@ -19,15 +26,13 @@ describe("common", async () => {
     t.assert.equal(content.version, "0.0.1");
   });
 
-  // remove fenced code block
-  await Promise.all([
-    // common
-    baseTest.testFileContent("README.md"),
-    baseTest.testFileContent(".gitignore"),
-    // common, docker
-    baseTest.testFileContent(".github/workflows/ci.yml"),
-    // otel
-    baseTest.testFileContent("compose.yml"),
-    baseTest.testFileContent("next.config.ts"),
+  const modifiedAllFiles = new Set([
+    ...modifiedFiles,
+    ...modifiedFilesForDocker,
+    ...modifiedFilesForE2e,
+    ...modifiedFilesForOtel,
+    ...modifiedFilesForSampleCode,
   ]);
+
+  await baseTest.testFileContent(modifiedAllFiles);
 });

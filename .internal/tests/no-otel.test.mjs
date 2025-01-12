@@ -1,4 +1,9 @@
 import { describe } from "node:test";
+import {
+  modifiedFiles,
+  removedDirs,
+  removedFiles,
+} from "../setup/questions/otel.mjs";
 import { BaseTest } from "./Basetest.mjs";
 
 const outputDir = "no-otel";
@@ -10,9 +15,8 @@ describe("no-otel", async () => {
   });
 
   await baseTest.testFileList();
-  await baseTest.testFileContent("README.md");
-  await baseTest.testFileContent("compose.yml");
-  await baseTest.testFileContent("next.config.ts");
-  await baseTest.testRemovedSrcFiles(["instrumentation.ts", "otel/node.ts"]);
+  await baseTest.testFileContent(modifiedFiles);
+  await baseTest.testRemovedDirs(removedDirs);
+  await baseTest.testRemovedFiles(removedFiles);
   await baseTest.testDependencies();
 });

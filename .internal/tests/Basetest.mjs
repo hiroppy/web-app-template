@@ -16,7 +16,7 @@ export class BaseTest {
     this.outputPath = join(process.cwd(), this.outputDir);
   }
 
-  globalHook({ noDocker, noE2e, noOtel }) {
+  globalHook({ noSampleCode, noDocker, noE2e, noOtel } = {}) {
     before(
       async () => {
         await execAsync("docker compose stop");
@@ -38,6 +38,13 @@ export class BaseTest {
 
             if (data.includes("project named?")) {
               child.stdin.write(`${this.outputDir}\n`);
+            }
+            if (data.includes("remove sample application code")) {
+              if (noSampleCode) {
+                child.stdin.write("y\n");
+              } else {
+                child.stdin.write("N\n");
+              }
             }
             if (data.includes("remove Docker")) {
               if (noDocker) {
@@ -93,7 +100,7 @@ export class BaseTest {
     );
   }
 
-  async testFileList({ ignoreE2e = false } = {}) {
+  async testFileList({ ignoreE2e = true, ignoreSrc = true } = {}) {
     test("should put files", async (t) => {
       const list = await readdir(this.outputDir, {
         recursive: true,
@@ -113,7 +120,6 @@ export class BaseTest {
         ),
         true,
       );
-
       if (!ignoreE2e) {
         t.assert.equal(
           list.some((dirent) =>
@@ -124,13 +130,31 @@ export class BaseTest {
       }
 
       const files = list
-        .filter(
-          (dirent) =>
-            dirent.isFile() &&
-            !dirent.parentPath.startsWith(`${this.outputDir}/node_modules`) &&
-            !dirent.parentPath.startsWith(`${this.outputDir}/src`) &&
-            !dirent.parentPath.startsWith(`${this.outputDir}/e2e`),
-        )
+        .filter((dirent) => {
+          if (dirent.isFile()) {
+            if (
+              ignoreE2e &&
+              dirent.parentPath.startsWith(`${this.outputDir}/e2e`)
+            ) {
+              return false;
+            }
+            if (
+              ignoreSrc &&
+              dirent.parentPath.startsWith(`${this.outputDir}/src`)
+            ) {
+              return false;
+            }
+            if (
+              dirent.parentPath.startsWith(`${this.outputDir}/node_modules`)
+            ) {
+              return false;
+            }
+
+            return true;
+          }
+
+          return false;
+        })
         .map(({ parentPath, name }) => join(parentPath, name))
         // dynamic
         .map((file) => {
@@ -147,18 +171,32 @@ export class BaseTest {
     });
   }
 
-  async testFileContent(filePath) {
-    test(`should update ${filePath}`, async (t) => {
-      const content = await this.getFileContent(filePath);
+  async testFileContent(filePaths) {
+    for (const filePath of filePaths) {
+      test(`should update ${filePath}`, async (t) => {
+        const content = await this.getFileContent(filePath);
 
-      t.assert.snapshot(content.split("\n"));
+        t.assert.snapshot(content.split("\n"));
+      });
+    }
+  }
+
+  async testRemovedDirs(dirPaths) {
+    test("should remove directories", async (t) => {
+      const isAllDeleted = dirPaths.every((path) => {
+        const target = join(this.outputPath, path);
+
+        return !existsSync(target);
+      });
+
+      t.assert.equal(isAllDeleted, true);
     });
   }
 
-  async testRemovedSrcFiles(filePaths) {
-    test("should remove files from src", async (t) => {
+  async testRemovedFiles(filePaths) {
+    test("should remove files", async (t) => {
       const isAllDeleted = filePaths.every((path) => {
-        const target = join(this.outputPath, "src", path);
+        const target = join(this.outputPath, path);
 
         return !existsSync(target);
       });
@@ -183,6 +221,16 @@ export class BaseTest {
       const { scripts } = await this.getPackageJson();
 
       t.assert.snapshot(Object.keys(scripts));
+    });
+  }
+
+  async testBuild() {
+    test("should build", async (t) => {
+      await execAsync("npm run build", {
+        cwd: this.outputPath,
+      });
+
+      t.assert.ok(true);
     });
   }
 
