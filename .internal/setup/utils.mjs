@@ -65,13 +65,17 @@ export async function executeOptionalQuestion({
 }
 
 export async function removeDirs(dirs) {
-  await Promise.all(
-    dirs.map((dir) => rm(join(basePath, dir), { recursive: true })),
-  );
+  try {
+    await Promise.all(
+      dirs.map((dir) => rm(join(basePath, dir), { recursive: true })),
+    );
+  } catch {}
 }
 
 export async function removeFiles(files) {
-  await Promise.all(files.map((file) => unlink(join(basePath, file))));
+  try {
+    await Promise.all(files.map((file) => unlink(join(basePath, file))));
+  } catch {}
 }
 
 export async function removeWords(file, words) {
