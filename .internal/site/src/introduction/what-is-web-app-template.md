@@ -16,7 +16,7 @@ As you can see in this template, there are a few pre-existing pages and a databa
 
 However, by intentionally leaving best-practice examples in the code, the template becomes more accessible for beginners. The goal is to provide a balance: reducing the overall code volume while including reference implementations.
 
-In the future, a "blank slate" option might be added as a flag.
+You can choose `--remove-sample-code` when creating a project and the application code will be removed.
 
 ## Goal
 

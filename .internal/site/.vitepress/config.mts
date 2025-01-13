@@ -43,12 +43,12 @@ export default defineConfig({
           { text: "Getting Started", link: "/introduction/getting-started" },
           { text: "Tasks", link: "/introduction/tasks" },
           {
-            text: "Routing",
-            link: "/introduction/routing",
+            text: ".env",
+            link: "/introduction/dotenv",
           },
           {
-            text: "Dotenv",
-            link: "/introduction/dotenv",
+            text: "Routing",
+            link: "/introduction/routing",
           },
         ],
       },

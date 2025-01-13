@@ -1,4 +1,4 @@
-# Dotenv
+# .env
 
 Dotenv is the de facto standard, but it lacks validation, making it prone to errors. In this template, we use zod to validate the required environment variables in files like `next.config.ts`. If any required variables are missing or invalid, the application will fail to execute. This approach ensures robustness at runtime.
 

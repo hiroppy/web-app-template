@@ -49,6 +49,13 @@ This repo is a GitHub template, so click the ["Use this template"](https://githu
 $ node .internal/setup/init.mjs
 ```
 
+### Opt-out
+
+- Sample Application Code
+- Dockerfile
+- E2E Testing
+- Observability feature
+
 <!-- ######## -->
 
 ## Setup

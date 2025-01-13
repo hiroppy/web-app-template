@@ -32,6 +32,7 @@ $ node .internal/setup/init.mjs
 
 ## Opt-out
 
+- Application Code
 - `Dockerfile` and Docker build job as GitHub Actions
 - OpenTelemetry
 - E2E testing
