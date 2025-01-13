@@ -51,6 +51,8 @@ $ node .internal/setup/init.mjs
 
 ### Opt-out
 
+The following items will be asked whether they are required when the project is initialized:
+
 - Sample Application Code
 - Dockerfile
 - E2E Testing
