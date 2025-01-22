@@ -121,8 +121,8 @@ importers:
         specifier: 4.0.0-beta.9
         version: 4.0.0-beta.9
       testcontainers:
-        specifier: 10.16.0
-        version: 10.16.0
+        specifier: 10.17.1
+        version: 10.17.1
       typescript:
         specifier: 5.7.3
         version: 5.7.3
@@ -2430,8 +2430,8 @@ packages:
   tar-stream@3.1.7:
     resolution: {integrity: sha512-qJj60CXt7IU1Ffyc3NJMjh6EkuCFej46zUqJ4J7pqYlThyd9bO0XBTmcOIhSzZJVWfsLks0+nle/j538YAW9RQ==}
 
-  testcontainers@10.16.0:
-    resolution: {integrity: sha512-oxPLuOtrRWS11A+Yn0+zXB7GkmNarflWqmy6CQJk8KJ75LZs2/zlUXDpizTbPpCGtk4kE2EQYwFZjrE967F8Wg==}
+  testcontainers@10.17.1:
+    resolution: {integrity: sha512-pYwpm6iH1UtZFVoSWjfUol4JCMyX4UksA5fwDotlTp2GgMqoHud+A+PY60kYUBVdSJJ/5AsSqhhFRvoK4ijISg==}
 
   text-decoder@1.2.3:
     resolution: {integrity: sha512-3/o9z3X0X0fTupwsYvR03pJ/DjWuqqrfwBgTQzdWDiQSm9KitAyz/9WqsT2JQW7KV2m+bC2ol/zqpW37NHxLaA==}
@@ -4964,7 +4964,7 @@ snapshots:
       fast-fifo: 1.3.2
       streamx: 2.21.1
 
-  testcontainers@10.16.0:
+  testcontainers@10.17.1:
     dependencies:
       '@balena/dockerignore': 1.0.2
       '@types/dockerode': 3.3.32
