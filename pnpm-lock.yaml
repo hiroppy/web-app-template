@@ -80,16 +80,16 @@ importers:
         version: 4.0.0
       '@testing-library/react':
         specifier: 16.2.0
-        version: 16.2.0(@testing-library/dom@10.0.0)(@types/react-dom@19.0.3(@types/react@19.0.7))(@types/react@19.0.7)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
+        version: 16.2.0(@testing-library/dom@10.0.0)(@types/react-dom@19.0.3(@types/react@19.0.8))(@types/react@19.0.8)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       '@types/node':
         specifier: 22.10.9
         version: 22.10.9
       '@types/react':
-        specifier: 19.0.7
-        version: 19.0.7
+        specifier: 19.0.8
+        version: 19.0.8
       '@types/react-dom':
         specifier: 19.0.3
-        version: 19.0.3(@types/react@19.0.7)
+        version: 19.0.3(@types/react@19.0.8)
       '@vitejs/plugin-react':
         specifier: 4.3.4
         version: 4.3.4(vite@5.1.1(@types/node@22.10.9)(lightningcss@1.29.1))
@@ -1169,8 +1169,8 @@ packages:
     peerDependencies:
       '@types/react': ^19.0.0
 
-  '@types/react@19.0.7':
-    resolution: {integrity: sha512-MoFsEJKkAtZCrC1r6CM8U22GzhG7u2Wir8ons/aCKH6MBdD1ibV24zOSSkdZVUKqN5i396zG5VKLYZ3yaUZdLA==}
+  '@types/react@19.0.8':
+    resolution: {integrity: sha512-9P/o1IGdfmQxrujGbIMDyYaaCykhLKc0NGCtYcECNUr9UAaDe4gwvV9bR6tvd5Br1SG0j+PBpbKr2UYY8CwqSw==}
 
   '@types/shimmer@1.2.0':
     resolution: {integrity: sha512-UE7oxhQLLd9gub6JKIAhDq06T0F6FnztwMNRvYgjeQSBeMc1ZG/tA47EwfduvkuQS8apbkM/lpLpWsaCeYsXVg==}
@@ -3603,15 +3603,15 @@ snapshots:
       lz-string: 1.5.0
       pretty-format: 27.5.1
 
-  '@testing-library/react@16.2.0(@testing-library/dom@10.0.0)(@types/react-dom@19.0.3(@types/react@19.0.7))(@types/react@19.0.7)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)':
+  '@testing-library/react@16.2.0(@testing-library/dom@10.0.0)(@types/react-dom@19.0.3(@types/react@19.0.8))(@types/react@19.0.8)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)':
     dependencies:
       '@babel/runtime': 7.23.9
       '@testing-library/dom': 10.0.0
       react: 19.0.0
       react-dom: 19.0.0(react@19.0.0)
     optionalDependencies:
-      '@types/react': 19.0.7
-      '@types/react-dom': 19.0.3(@types/react@19.0.7)
+      '@types/react': 19.0.8
+      '@types/react-dom': 19.0.3(@types/react@19.0.8)
 
   '@types/aria-query@5.0.4': {}
 
@@ -3659,11 +3659,11 @@ snapshots:
     dependencies:
       undici-types: 6.20.0
 
-  '@types/react-dom@19.0.3(@types/react@19.0.7)':
+  '@types/react-dom@19.0.3(@types/react@19.0.8)':
     dependencies:
-      '@types/react': 19.0.7
+      '@types/react': 19.0.8
 
-  '@types/react@19.0.7':
+  '@types/react@19.0.8':
     dependencies:
       csstype: 3.1.3
 
