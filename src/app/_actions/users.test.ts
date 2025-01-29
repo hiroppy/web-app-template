@@ -51,6 +51,11 @@ describe("actions/users", () => {
         {
           "message": "invalid fields",
           "success": false,
+          "zodErrors": {
+            "name": [
+              "name is too long",
+            ],
+          },
         }
       `);
     });

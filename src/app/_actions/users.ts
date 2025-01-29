@@ -4,9 +4,10 @@ import { revalidatePath } from "next/cache";
 import { auth } from "../_clients/nextAuth";
 import { prisma } from "../_clients/prisma";
 import { type UserMeSchema, userMeSchema } from "../_schemas/users";
+import { getFieldErrors } from "../_utils/zod";
 import type { Result } from "./types";
 
-type UpdateMeState = Result<PartialWithNullable<UserMeSchema>>;
+type UpdateMeState = Result<PartialWithNullable<UserMeSchema>, UserMeSchema>;
 
 export async function updateMe(
   prevState: UpdateMeState,
@@ -34,6 +35,7 @@ export async function updateMe(
     return {
       success: false,
       message: "invalid fields",
+      zodErrors: getFieldErrors(validatedFields),
     };
   }
 

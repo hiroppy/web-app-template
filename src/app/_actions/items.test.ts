@@ -52,6 +52,11 @@ describe("actions/items", () => {
         {
           "message": "invalid fields",
           "success": false,
+          "zodErrors": {
+            "content": [
+              "content is too short",
+            ],
+          },
         }
       `);
     });

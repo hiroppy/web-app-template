@@ -22,16 +22,23 @@ export default function Page() {
   }
 
   return (
-    <form className="flex flex-col gap-10 items-start" action={formAction}>
-      <label className="flex gap-4 items-center">
-        name
-        <input
-          type="text"
-          name="name"
-          defaultValue={formState.data?.name ?? session.data.user.name ?? ""}
-          className="border border-gray-300 rounded px-2 py-0.5 bg-gray-600"
-        />
-      </label>
+    <form className="flex flex-col gap-5 items-start" action={formAction}>
+      <div className="flex flex-col gap-2">
+        <label className="flex gap-4 items-center">
+          name
+          <input
+            type="text"
+            name="name"
+            defaultValue={formState.data?.name ?? session.data.user.name ?? ""}
+            className="border border-gray-300 rounded px-2 py-0.5 bg-gray-600"
+          />
+        </label>
+        {formState?.zodErrors?.name && (
+          <span className="text-red-300 text-sm">
+            {formState.zodErrors.name}
+          </span>
+        )}
+      </div>
       <Button type="submit" className="bg-blue-500 px-8" disabled={isLoading}>
         Save
       </Button>

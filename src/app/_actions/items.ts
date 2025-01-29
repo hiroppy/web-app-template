@@ -5,6 +5,7 @@ import { revalidatePath } from "next/cache";
 import { auth } from "../_clients/nextAuth";
 import { prisma } from "../_clients/prisma";
 import { type ItemCreateSchema, itemCreateSchema } from "../_schemas/items";
+import { getFieldErrors } from "../_utils/zod";
 import type { Result } from "./types";
 
 export async function create(data: ItemCreateSchema): Promise<Result<Item>> {
@@ -23,6 +24,7 @@ export async function create(data: ItemCreateSchema): Promise<Result<Item>> {
     return {
       success: false,
       message: "invalid fields",
+      zodErrors: getFieldErrors(validatedFields),
     };
   }
 
