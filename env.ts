@@ -1,4 +1,4 @@
-import dotenv from "dotenv";
+import { loadEnvConfig } from "@next/env";
 import { z } from "zod";
 
 export type Schema = z.infer<typeof schema>;
@@ -33,12 +33,9 @@ export const schema = z.object({
   TRACE_EXPORTER_URL: z.string().url().optional().or(z.literal("")),
 });
 
-export function config(file?: ".env" | ".env.test") {
-  if (file) {
-    dotenv.config({ path: file });
-  }
-
-  const res = schema.safeParse(process.env);
+export function config() {
+  const { combinedEnv } = loadEnvConfig(process.cwd());
+  const res = schema.safeParse(combinedEnv);
 
   if (res.error) {
     console.error("\x1b[31m%s\x1b[0m", "[Errors] environment variables");

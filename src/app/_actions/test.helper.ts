@@ -12,21 +12,29 @@ export async function setup() {
     auth: vi.fn(),
     revalidatePath: vi.fn(),
     revalidateTag: vi.fn(),
+    redirect: vi.fn(),
   }));
 
   vi.mock("../_clients/prisma", () => ({
     prisma,
   }));
 
-  vi.mock("next-auth", () => ({
+  vi.mock("next-auth", async (actual) => ({
+    ...(await actual<typeof import("next-auth")>()),
     default: () => ({
       auth: mock.auth,
     }),
   }));
 
-  vi.mock("next/cache", () => ({
+  vi.mock("next/cache", async (actual) => ({
+    ...(await actual<typeof import("next/cache")>()),
     revalidatePath: mock.revalidatePath,
     revalidateTag: mock.revalidateTag,
+  }));
+
+  vi.mock("next/navigation", async (actual) => ({
+    ...(await actual<typeof import("next/navigation")>()),
+    redirect: mock.redirect,
   }));
 
   afterAll(async () => {

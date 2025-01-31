@@ -57,6 +57,7 @@ exports[`no-sample-code > should put files 1`] = `
   "internal-tests-output-no-sample-code/src/app/_providers/AuthProvider.tsx",
   "internal-tests-output-no-sample-code/src/app/_utils/db.test.ts",
   "internal-tests-output-no-sample-code/src/app/_utils/db.ts",
+  "internal-tests-output-no-sample-code/src/app/_utils/zod.test.ts",
   "internal-tests-output-no-sample-code/src/app/_utils/zod.ts",
   "internal-tests-output-no-sample-code/src/app/api/auth/[...nextauth]/route.ts",
   "internal-tests-output-no-sample-code/src/app/api/health/route.ts",

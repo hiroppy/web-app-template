@@ -304,6 +304,7 @@ exports[`common > should update dependencies 1`] = `
   ],
   "devDependencies": [
     "@biomejs/biome",
+    "@next/env",
     "@playwright/test",
     "@tailwindcss/postcss",
     "@testing-library/react",
@@ -311,8 +312,6 @@ exports[`common > should update dependencies 1`] = `
     "@types/react",
     "@types/react-dom",
     "@vitejs/plugin-react",
-    "dotenv",
-    "dotenv-cli",
     "jsdom",
     "lefthook",
     "postcss",

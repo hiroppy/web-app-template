@@ -2,7 +2,7 @@ import react from "@vitejs/plugin-react";
 import { defineConfig } from "vitest/config";
 import { config } from "./env";
 
-config(".env.test");
+config();
 
 export default defineConfig({
   plugins: [react()],

@@ -1,7 +1,7 @@
 import { defineConfig, devices } from "@playwright/test";
 import { config } from "./env";
 
-config(".env.test");
+config();
 
 export default defineConfig({
   testDir: "./e2e",

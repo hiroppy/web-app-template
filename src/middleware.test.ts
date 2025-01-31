@@ -1,3 +1,4 @@
+import { beforeEach } from "node:test";
 import type { NextAuthResult } from "next-auth";
 import type { AppRouteHandlerFn } from "next/dist/server/route-modules/app-route/module";
 import {
@@ -13,20 +14,19 @@ import middleware, { config } from "./middleware";
 type NextAuthRequest = Parameters<Parameters<NextAuthResult["auth"]>[0]>[0];
 
 describe("middleware", () => {
-  // need to mock next-auth to avoid errors
-  // Error: Cannot find module '/node_modules/.pnpm/next-auth@5.0.0-beta.25_next@15.1.3_@babel+core@7.26.0_@opentelemetry+api@1.8.0_@playwright+t_d57mf5jazi4hxealio4ynmcldm/node_modules/next/server'
-  // imported from /node_modules/.pnpm/next-auth@5.0.0-beta.25_next@15.1.3_@babel+core@7.26.0_@opentelemetry+api@1.8.0_@playwright+t_d57mf5jazi4hxealio4ynmcldm/node_modules/next-auth/lib/env.js
-  // Did you mean to import "next/server.js"?
-  vi.mock("next-auth", () => ({
-    default: () => ({
-      auth: (
-        fn: (
-          req: NextAuthRequest,
-          ctx: AppRouteHandlerFn,
-        ) => Promise<NextResponse>,
-      ) => fn,
-    }),
-  }));
+  beforeEach(() => {
+    vi.mock("next-auth", async (actual) => ({
+      ...(await actual<typeof import("next-auth")>()),
+      default: () => ({
+        auth: (
+          fn: (
+            req: NextAuthRequest,
+            ctx: AppRouteHandlerFn,
+          ) => Promise<NextResponse>,
+        ) => fn,
+      }),
+    }));
+  });
 
   test("should execute middleware when paths are specified by config", () => {
     expect(
@@ -55,14 +55,14 @@ describe("middleware", () => {
   });
 
   test("should accept only users having role of user", async () => {
-    const req = new NextRequest("http://localhost:3000") as NextAuthRequest;
-
-    req.auth = {
-      user: {
-        role: "user",
+    const req = {
+      auth: {
+        user: {
+          role: "user",
+        },
+        expires: "expires",
       },
-      expires: "expires",
-    };
+    } as NextAuthRequest;
 
     const res = (await middleware(req, {})) as NextResponse;
 
