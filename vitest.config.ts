@@ -14,5 +14,11 @@ export default defineConfig({
     include: ["./src/**/*.test.{ts,tsx}"],
     globalSetup: "./tests/vitest.setup.ts",
     environment: "jsdom",
+    // https://github.com/nextauthjs/next-auth/discussions/9385
+    server: {
+      deps: {
+        inline: ["next"],
+      },
+    },
   },
 });
