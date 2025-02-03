@@ -17,3 +17,5 @@ runs:
       shell: bash
     - run: pnpm i
       shell: bash
+    - run: cp ./.env.test ./.env
+      shell: bash

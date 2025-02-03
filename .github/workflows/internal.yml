@@ -30,3 +30,4 @@ jobs:
         env:
           # to fetch this repo via CLI on main branch
           IS_MAIN_BRANCH: ${{ env.IS_MAIN_BRANCH }}
+          IS_LOCAL: false

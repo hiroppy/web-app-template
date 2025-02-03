@@ -25,9 +25,10 @@ export class BaseTest {
             process.env.LOCAL_FROM_PATH = resolvePath(process.cwd(), "../..");
           }
 
-          // for local debug
-          // const child = exec("DEBUG=true create-app-foundation");
-          const child = exec("npx create-app-foundation@latest");
+          const child =
+            process.env.IS_LOCAL === "false"
+              ? exec("npx create-app-foundation@latest")
+              : exec("DEBUG=true create-app-foundation");
 
           child.stdout.on("data", (data) => {
             function debug(message) {
@@ -224,6 +225,16 @@ export class BaseTest {
     });
   }
 
+  async testLint() {
+    test("should test lint", async (t) => {
+      await execAsync("npm run lint", {
+        cwd: this.outputPath,
+      });
+
+      t.assert.ok(true);
+    });
+  }
+
   async testBuild(hasE2e = true) {
     const command = !hasE2e ? "npm run build" : "npm run build:test";
 
@@ -245,6 +256,7 @@ export class BaseTest {
       t.assert.ok(true);
     });
   }
+
   async testE2e() {
     test("should test e2e", async (t) => {
       await execAsync("npm run test:e2e", {
@@ -253,6 +265,16 @@ export class BaseTest {
 
       t.assert.ok(true);
     });
+  }
+
+  async allTests({ hasE2e }) {
+    await this.testBuild(hasE2e);
+
+    await Promise.all([this.testLint(), this.testUnit()]);
+
+    if (hasE2e) {
+      await this.testE2e(hasE2e);
+    }
   }
 
   async getFileContent(filePath) {

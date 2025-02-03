@@ -2,6 +2,7 @@ import { clsx } from "clsx";
 import type { Metadata, Viewport } from "next";
 import { Inter } from "next/font/google";
 import type { PropsWithChildren } from "react";
+import { Footer } from "./_components/Footer";
 import { Header } from "./_components/Header";
 import "./globals.css";
 
@@ -20,9 +21,15 @@ export const viewport: Viewport = {
 export default function Layout({ children }: PropsWithChildren) {
   return (
     <html lang="en">
-      <body className={clsx("bg-gray-800 text-gray-200", inter.className)}>
+      <body
+        className={clsx(
+          "bg-gray-800 text-gray-200 flex flex-col min-h-screen",
+          inter.className,
+        )}
+      >
         <Header />
-        <main>{children}</main>
+        <main className="flex-1">{children}</main>
+        <Footer />
       </body>
     </html>
   );

@@ -19,7 +19,5 @@ describe("no-sample-code", async () => {
   await baseTest.testRemovedDirs(removedDirs);
   await baseTest.testRemovedFiles(removedFiles);
 
-  await baseTest.testBuild();
-  await baseTest.testUnit();
-  await baseTest.testE2e();
+  await baseTest.allTests({ hasE2e: true });
 });

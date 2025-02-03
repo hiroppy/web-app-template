@@ -22,7 +22,15 @@
   },
   "prettier.requireConfig": false,
   "cSpell.enabled": true,
-  "cSpell.words": ["dotenv", "biomejs", "otel", "otlp", "clsx", "vitest"],
+  "cSpell.words": [
+    "dotenv",
+    "biomejs",
+    "otel",
+    "otlp",
+    "clsx",
+    "vitest",
+    "knip"
+  ],
   "cSpell.allowCompoundWords": true,
   "cSpell.ignorePaths": ["**/node_modules/**", "**/vscode-extension/**"]
 }

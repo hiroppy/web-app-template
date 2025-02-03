@@ -20,4 +20,6 @@ await removeDirs([".internal"]);
 
 await format();
 
+await execAsync("npx lefthook install");
+
 console.info("done! please commit them 🐶");
