@@ -9,7 +9,7 @@ export async function Header() {
   const session = await auth();
 
   return (
-    <header className="border-b border-b-gray-600 sticky top-0 bg-gray-700">
+    <header className="border-b border-b-gray-600 sticky top-0 bg-gray-700 z-30">
       <Container className="flex items-center justify-between" size="md">
         {session?.user?.image ? (
           <Link href="/me">

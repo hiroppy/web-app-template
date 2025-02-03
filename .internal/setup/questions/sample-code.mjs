@@ -1,3 +1,5 @@
+import { readFile } from "node:fs/promises";
+import { join } from "node:path";
 import {
   executeOptionalQuestion,
   readFileFromCopiedDir,
@@ -7,48 +9,34 @@ import {
 } from "../utils.mjs";
 
 export const removedFiles = /** @type {const} */ ([
-  // removed
-  "src/middleware.ts",
-  "src/middleware.test.ts",
   "src/app/_actions/items.ts",
   "src/app/_actions/items.test.ts",
-  "src/app/_actions/users.ts",
-  "src/app/_actions/users.test.ts",
   "src/app/_hooks/useOnlineStatus.ts",
   "src/app/_hooks/useOnlineStatus.test.ts",
   "src/app/_schemas/items.ts",
   "src/app/_schemas/items.test.ts",
-  "src/app/_schemas/users.ts",
-  "src/app/_schemas/users.test.ts",
-  "src/app/_utils/date.ts",
-  "src/app/_utils/date.test.ts",
   "src/app/forbidden.tsx",
   "src/app/unauthorized.tsx",
   "src/app/opengraph-image.tsx",
-  "src/app/favicon.ico",
 
   // e2e
-  "e2e/integrations/me.test.ts",
-  "e2e/integrations/top.test.ts",
-  "e2e/models/MePage.ts",
-  "e2e/models/TopPage.ts",
-  "e2e/models/SignInPage.ts",
+  "e2e/integrations/item.test.ts",
 
   // others
   "prisma/ERD.md",
 ]);
 
-export const removedDirs = /** @type {const} */ ([
-  "src/app/(private)/me",
-  "src/app/(public)/signin",
-  "src/app/@dialog",
-]);
+export const removedDirs = /** @type {const} */ (["src/app/@dialog"]);
 
 export const modifiedFiles = /** @type {const} */ ([
   "next.config.ts",
   "src/app/layout.tsx",
   "src/app/(public)/page.tsx",
+  "e2e/fixtures.ts",
+  "e2e/models/TopPage.ts",
   "prisma/schema.prisma",
+  "src/middleware.ts",
+  "src/middleware.test.ts",
 ]);
 
 export async function sampleCode(answer, isSkipQuestion) {
@@ -61,6 +49,8 @@ export async function sampleCode(answer, isSkipQuestion) {
     codeAndFenceList: [
       [modifiedFiles[0], fences[0]],
       [modifiedFiles[1], fences[0]],
+      [modifiedFiles[3], fences[0]],
+      [modifiedFiles[4], fences[0]],
     ],
     yesCallback: async () => {
       await Promise.all([
@@ -69,52 +59,22 @@ export async function sampleCode(answer, isSkipQuestion) {
         removeDirs(removedDirs),
         writeFileToCopiedDir(
           modifiedFiles[1],
-          `
-import { clsx } from "clsx";
-import type { Metadata, Viewport } from "next";
-import { Inter } from "next/font/google";
-import type { PropsWithChildren } from "react";
-import "./globals.css";
-
-const inter = Inter({ subsets: ["latin"] });
-
-export const metadata: Metadata = {
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL),
-  title: "",
-  description: "",
-};
-
-export const viewport: Viewport = {
-  maximumScale: 1,
-};
-
-export default function Layout({ children }: PropsWithChildren) {
-  return (
-    <html lang="en">
-      <body className={clsx("bg-gray-800 text-gray-200", inter.className)}>
-        <main>{children}</main>
-      </body>
-    </html>
-  );
-}
-        `.trim(),
+          await readReplacedCode("app-layout.tsx"),
         ),
         writeFileToCopiedDir(
           modifiedFiles[2],
-          `
-export default async function Page() {
-  return (
-    <div className="flex items-center justify-center">
-      <h1 className="text-2xl">Hello World 😄</h1>
-    </div>
-  );
-}
-
-          `.trim(),
+          await readReplacedCode("app-(public)-page.tsx"),
         ),
       ]);
     },
   });
+}
+
+async function readReplacedCode(fileName) {
+  return await readFile(
+    join(import.meta.dirname, join("..", "code", fileName)),
+    "utf-8",
+  );
 }
 
 async function removeItemModelFromPrisma() {

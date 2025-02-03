@@ -26,8 +26,8 @@ export class BaseTest {
           }
 
           // for local debug
-          // const child = exec("DEBUG=true create-app-foundation");
-          const child = exec("npx create-app-foundation@latest");
+          const child = exec("DEBUG=true create-app-foundation");
+          // const child = exec("npx create-app-foundation@latest");
 
           child.stdout.on("data", (data) => {
             function debug(message) {
@@ -224,9 +224,30 @@ export class BaseTest {
     });
   }
 
-  async testBuild() {
+  async testBuild(hasE2e = true) {
+    const command = !hasE2e ? "npm run build" : "npm run build:test";
+
     test("should build", async (t) => {
-      await execAsync("npm run build", {
+      await execAsync(command, {
+        cwd: this.outputPath,
+      });
+
+      t.assert.ok(true);
+    });
+  }
+
+  async testUnit() {
+    test("should test unit", async (t) => {
+      await execAsync("npm run test", {
+        cwd: this.outputPath,
+      });
+
+      t.assert.ok(true);
+    });
+  }
+  async testE2e() {
+    test("should test e2e", async (t) => {
+      await execAsync("npm run test:e2e", {
         cwd: this.outputPath,
       });
 

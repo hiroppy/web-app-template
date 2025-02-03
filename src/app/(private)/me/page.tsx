@@ -1,58 +1,13 @@
-"use client";
-
-import clsx from "clsx";
-import { useSession } from "next-auth/react";
 import { notFound } from "next/navigation";
-import { useActionState } from "react";
-import { updateMe } from "../../_actions/users";
-import { Button } from "../../_components/Button";
+import { auth } from "../../_clients/nextAuth";
+import { UpdateMyInfo } from "./_components/UpdateMyInfo";
 
-export default function Page() {
-  const session = useSession();
-  const [formState, formAction, isLoading] = useActionState(updateMe, {
-    success: false,
-  });
+export default async function Page() {
+  const session = await auth();
 
-  if (session.status === "loading") {
-    return <div>Loading...</div>;
-  }
-
-  if (session.status === "unauthenticated" || !session.data) {
+  if (!session?.user.id) {
     notFound();
   }
 
-  return (
-    <form className="flex flex-col gap-5 items-start" action={formAction}>
-      <div className="flex flex-col gap-2">
-        <label className="flex gap-4 items-center">
-          name
-          <input
-            type="text"
-            name="name"
-            defaultValue={formState.data?.name ?? session.data.user.name ?? ""}
-            className="border border-gray-300 rounded px-2 py-0.5 bg-gray-600"
-          />
-        </label>
-        {formState?.zodErrors?.name && (
-          <span className="text-red-300 text-sm">
-            {formState.zodErrors.name}
-          </span>
-        )}
-      </div>
-      <Button type="submit" className="bg-blue-500 px-8" disabled={isLoading}>
-        Save
-      </Button>
-      {formState.message && (
-        <span
-          className={clsx(
-            "text-sm",
-            formState.success && "text-green-300",
-            !formState.success && "text-red-300",
-          )}
-        >
-          {formState.message}
-        </span>
-      )}
-    </form>
-  );
+  return <UpdateMyInfo name={session.user.name ?? ""} />;
 }

@@ -1,19 +1,22 @@
-import type { Locator, Page } from "@playwright/test";
-import { expect } from "../fixtures";
+import { type Locator, type Page, expect } from "@playwright/test";
 import { Base } from "./Base";
 
 export class SignInPage extends Base {
-  signInWithGoogleLocator: Locator;
+  buttonSignInWithGoogleLocator: Locator;
 
   constructor(page: Page) {
     super(page);
 
-    this.signInWithGoogleLocator = this.page.locator(
+    this.buttonSignInWithGoogleLocator = this.page.locator(
       'text="Sign in with Google"',
     );
   }
 
+  async goTo() {
+    return await this.page.goto("/signin");
+  }
+
   async expectUI() {
-    await expect(this.signInWithGoogleLocator).toBeVisible();
+    await expect(this.buttonSignInWithGoogleLocator).toBeVisible();
   }
 }

@@ -1,5 +1,7 @@
 import { PrismaAdapter } from "@auth/prisma-adapter";
 import NextAuth from "next-auth";
+import type { Adapter } from "next-auth/adapters";
+import type { JWT } from "next-auth/jwt";
 import { config, configForTest } from "./nextAuthConfig";
 import { prisma } from "./prisma";
 
@@ -10,24 +12,27 @@ export const {
 } = NextAuth({
   // https://authjs.dev/getting-started/migrating-to-v5#edge-compatibility
   ...config,
-  // @ts-expect-error https://github.com/nextauthjs/next-auth/issues/9493
-  adapter: PrismaAdapter(prisma),
+  adapter: <Adapter>PrismaAdapter(prisma),
   session: {
     strategy: "jwt",
   },
   callbacks: {
     ...config.callbacks,
-    jwt: async ({ token, user, trigger }) => {
-      // user exists when only signing in
-      if (user) {
-        token.id = user.id;
-        token.role = user.role;
+    jwt: async ({
+      token,
+      /* user exists when only signing in */ user,
+      trigger,
+    }): Promise<JWT> => {
+      const userId = token.sub ?? user?.id;
+
+      if (!userId) {
+        throw new Error("Token is invalid");
       }
 
       // support for multiple devices
       const me = await prisma.user.findUnique({
         where: {
-          id: token.id as string,
+          id: userId,
         },
       });
 
@@ -37,12 +42,13 @@ export const {
       }
 
       // in favor of the user's latest data and update the token
-      if (me) {
-        token.name = me.name;
-        token.image = me.image;
-        token.email = me.email;
-        token.role = me.role;
-      }
+      token.user = {
+        id: userId,
+        name: me?.name ?? token.name,
+        email: me?.email ?? token.email,
+        role: me?.role ?? user.role,
+        image: me?.image ?? token.picture,
+      };
 
       return token;
     },

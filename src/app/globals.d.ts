@@ -1,3 +1,6 @@
+// issue: https://github.com/nextauthjs/next-auth/issues/9571
+import "next-auth/jwt";
+import type { Role } from "@prisma/client";
 import type { Schema } from "../../env";
 
 declare global {
@@ -13,7 +16,10 @@ declare global {
 declare module "next-auth" {
   interface User {
     id: string;
-    role: "user" | "admin";
+    name: string;
+    email: string;
+    image: string;
+    role: Role;
   }
 
   interface Session {
@@ -23,6 +29,6 @@ declare module "next-auth" {
 
 declare module "next-auth/jwt" {
   interface JWT {
-    id: string;
+    user: import("next-auth").Session["user"];
   }
 }

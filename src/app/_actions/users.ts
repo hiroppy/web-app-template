@@ -44,7 +44,7 @@ export async function updateMe(
       where: {
         id: session.user.id,
       },
-      data,
+      data: validatedFields.data,
     });
   });
 
