@@ -5,10 +5,10 @@ inputs:
 runs:
   using: composite
   steps:
+    - run: cp ./.env.sample ./.env
+      shell: bash
     - run: pnpm db:up && pnpm db:migrate
       if: ${{ inputs.run_db == 'true' }}
       shell: bash
     - run: pnpm generate:client
-      shell: bash
-    - run: cp ./.env.sample ./.env
       shell: bash
