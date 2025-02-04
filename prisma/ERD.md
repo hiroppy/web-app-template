@@ -1,6 +1,11 @@
 ```mermaid
 erDiagram
 
+        Role {
+            USER USER
+ADMIN ADMIN
+        }
+
   "accounts" {
     String id "🗝️"
     String user_id
@@ -26,7 +31,7 @@ erDiagram
     String image "❓"
     DateTime created_at
     DateTime updated_at
-    String role "❓"
+    Role role
     }
 
 
@@ -40,6 +45,7 @@ erDiagram
 
     "accounts" o|--|| "users" : "user"
     "users" o{--}o "accounts" : "accounts"
+    "users" o|--|| "Role" : "enum:role"
     "users" o{--}o "items" : "items"
     "items" o|--|| "users" : "user"
 ```

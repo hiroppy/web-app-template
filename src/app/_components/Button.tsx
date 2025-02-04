@@ -11,6 +11,7 @@ export function Button({ children, className, ...rest }: Props) {
         "py-2 px-4 rounded-md text-sm text-gray-100 cursor-pointer",
         className,
       )}
+      aria-disabled={rest.disabled}
       {...rest}
     >
       {children}

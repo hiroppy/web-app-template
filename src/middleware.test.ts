@@ -29,21 +29,20 @@ describe("middleware", () => {
   });
 
   test("should execute middleware when paths are specified by config", () => {
-    expect(
-      unstable_doesMiddlewareMatch({
-        config,
-        nextConfig,
-        url: "/",
-      }),
-    ).toEqual(false);
+    const fixtures: [string, boolean][] = [
+      ["/", false],
+      ["/me", true],
+    ];
 
-    expect(
-      unstable_doesMiddlewareMatch({
-        config,
-        nextConfig,
-        url: "/me",
-      }),
-    ).toEqual(true);
+    for (const [url, expected] of fixtures) {
+      expect(
+        unstable_doesMiddlewareMatch({
+          config,
+          nextConfig,
+          url,
+        }),
+      ).toEqual(expected);
+    }
   });
 
   test("should route /signin to when fallback", async () => {
@@ -58,7 +57,7 @@ describe("middleware", () => {
     const req = {
       auth: {
         user: {
-          role: "user",
+          role: "USER",
         },
         expires: "expires",
       },

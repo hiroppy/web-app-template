@@ -48,7 +48,7 @@ model User {
   createdAt     DateTime  @default(now()) @map("created_at")
   updatedAt     DateTime  @updatedAt @map("updated_at")
   // https://authjs.dev/guides/basics/role-based-access-control
-  role          String?
+  role          Role      @default(USER)
   items         Item[]
 
   @@map("users")
@@ -63,4 +63,9 @@ model Item {
   updatedAt DateTime @updatedAt @map("updated_at")
 
   @@map("items")
+}
+
+enum Role {
+  USER
+  ADMIN
 }

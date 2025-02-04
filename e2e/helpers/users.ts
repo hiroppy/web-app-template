@@ -1,43 +1,38 @@
 import type { BrowserContext, TestType } from "@playwright/test";
 import type { User } from "next-auth";
+import type { JWT } from "next-auth/jwt";
 import type { TestFixtures, WorkerFixtures } from "../fixtures";
 import { generatePrismaClient } from "./prisma";
 
 export async function registerUserToDB(user: User) {
   await using db = await generatePrismaClient();
-  const userData = {
-    ...user,
-    accounts: {
-      create: {
-        type: "oauth",
-        provider: "google",
-        providerAccountId: user.id ?? "id",
-        id_token: "id_token",
-        access_token: "access_token",
-        token_type: "Bearer",
-        scope: "scope",
+  await db.prisma.user.create({
+    data: {
+      ...user,
+      accounts: {
+        create: {
+          type: "oauth",
+          provider: "google",
+          providerAccountId: `${Math.random()}`,
+          id_token: "id_token",
+          access_token: "access_token",
+          token_type: "Bearer",
+          scope: "scope",
+        },
       },
     },
-  };
-
-  await db.prisma.user.upsert({
-    where: {
-      id: user.id,
-    },
-    create: userData,
-    update: userData,
   });
 }
 
-export async function createAuthState(context: BrowserContext, user: User) {
+export async function createUserAuthState(context: BrowserContext, jwt: JWT) {
   await context.addCookies([
     {
       name: "authjs.session-token",
       value: btoa(
         JSON.stringify({
-          ...user,
-          // google provides picture, not the image key
-          picture: user.image,
+          ...jwt,
+          // google provider attaches `sub` to the token
+          sub: jwt.user.id,
         }),
       ),
       domain: "localhost",
@@ -48,17 +43,17 @@ export async function createAuthState(context: BrowserContext, user: User) {
     },
   ]);
   await context.storageState({
-    path: getStorageStatePath(user),
+    path: getStorageStatePath(jwt.user.id ?? ""),
   });
 }
 
 export async function useUser<T extends TestType<TestFixtures, WorkerFixtures>>(
   test: T,
-  user: User,
+  userId: string,
 ) {
-  test.use({ storageState: getStorageStatePath(user) });
+  test.use({ storageState: getStorageStatePath(userId) });
 }
 
-export function getStorageStatePath(user: User) {
-  return `e2e/.auth/${user.id}.json`;
+function getStorageStatePath(id: string) {
+  return `e2e/.auth/${id}.json`;
 }

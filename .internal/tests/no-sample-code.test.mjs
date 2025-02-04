@@ -20,4 +20,6 @@ describe("no-sample-code", async () => {
   await baseTest.testRemovedFiles(removedFiles);
 
   await baseTest.testBuild();
+  await baseTest.testUnit();
+  await baseTest.testE2e();
 });

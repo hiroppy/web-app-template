@@ -15,7 +15,8 @@ export async function setup() {
     redirect: vi.fn(),
   }));
 
-  vi.mock("../_clients/prisma", () => ({
+  vi.mock("../_clients/prisma", async (actual) => ({
+    ...(await actual<typeof import("../_clients/prisma")>()),
     prisma,
   }));
 
@@ -51,15 +52,15 @@ export async function setup() {
       name: "name",
       email: "hello@a.com",
       image: "https://a.com",
-      role: "user",
+      role: "USER",
     };
-
-    mock.auth.mockReturnValue({
-      user,
-    });
 
     await prisma.user.create({
       data: user,
+    });
+
+    mock.auth.mockReturnValue({
+      user,
     });
 
     expect(await prisma.user.count()).toBe(1);
