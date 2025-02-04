@@ -5,11 +5,7 @@ import type { JWT } from "next-auth/jwt";
 import { config, configForTest } from "./nextAuthConfig";
 import { prisma } from "./prisma";
 
-export const {
-  auth,
-  unstable_update: update,
-  handlers,
-} = NextAuth({
+export const { auth, handlers } = NextAuth({
   // https://authjs.dev/getting-started/migrating-to-v5#edge-compatibility
   ...config,
   adapter: <Adapter>PrismaAdapter(prisma),
