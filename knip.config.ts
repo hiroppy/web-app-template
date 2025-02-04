@@ -1,7 +1,9 @@
 import type { KnipConfig } from "knip";
 
 const config: KnipConfig = {
+  // 👉 remove
   ignore: [".internal/**"],
+  ///////////
   playwright: {
     config: ["playwright.config.ts"],
     entry: ["e2e/**/*.ts"],

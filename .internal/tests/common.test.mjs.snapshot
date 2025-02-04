@@ -476,6 +476,24 @@ exports[`common > should update e2e/models/TopPage.ts 1`] = `
 ]
 `;
 
+exports[`common > should update knip.config.ts 1`] = `
+[
+  "import type { KnipConfig } from \\"knip\\";",
+  "",
+  "const config: KnipConfig = {",
+  "  playwright: {",
+  "    config: [\\"playwright.config.ts\\"],",
+  "    entry: [\\"e2e/**/*.ts\\"],",
+  "  },",
+  "  ignoreDependencies: [\\"postcss\\", \\"tailwindcss\\", \\"prisma-erd-generator\\"],",
+  "  ignoreBinaries: [\\"sleep\\"],",
+  "};",
+  "",
+  "export default config;",
+  ""
+]
+`;
+
 exports[`common > should update next.config.ts 1`] = `
 [
   "import type { NextConfig } from \\"next\\";",
