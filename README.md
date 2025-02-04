@@ -63,7 +63,7 @@ The following items will be asked whether they are required when the project is 
 ## Setup
 
 ```sh
-# enable git hooks and corepack
+# enable corepack
 $ npm run setup
 # install deps
 $ pnpm i
@@ -120,7 +120,6 @@ $ pnpm exec playwright install chrome
 $ pnpm build:test
 
 $ pnpm test:e2e
-# execute with UI
 $ pnpm test:e2e:ui
 ```
 
@@ -129,9 +128,7 @@ $ pnpm test:e2e:ui
 ## Database
 
 ```sh
-# create new migration
 $ pnpm db:migrate
-# reset the DB
 $ pnpm db:reset
 # view the database items
 $ pnpm db:studio

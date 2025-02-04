@@ -1,51 +1,57 @@
-import type { Locator, Page } from "@playwright/test";
+import { type Locator, type Page, expect } from "@playwright/test";
 import type { User } from "next-auth";
-import { expect } from "../fixtures";
 import { Base } from "./Base";
 
 export class TopPage extends Base {
-  userStatusLabelLocator: Locator;
-  addItemLocator: Locator;
-  deleteItemsLocator: Locator;
+  textUserStatusLabelLocator: Locator;
+  /* start: sample */
+  buttonAddItemLocator: Locator;
+  buttonDeleteItemsLocator: Locator;
+  /* end: sample */
 
   constructor(page: Page) {
     super(page);
 
-    this.userStatusLabelLocator = this.page.locator(
+    this.textUserStatusLabelLocator = this.page.locator(
       '[aria-label="User status"]',
     );
-    this.addItemLocator = this.page.getByRole("link", { name: "Add an item" });
-    this.deleteItemsLocator = this.page.getByRole("button", {
+    /* start: sample */
+    this.buttonAddItemLocator = this.page.getByRole("link", {
+      name: "Add an item",
+    });
+    this.buttonDeleteItemsLocator = this.page.getByRole("button", {
       name: "Delete my items",
     });
+    /* end: sample */
   }
 
   async goTo() {
-    await this.init();
-
     return await this.page.goto("/");
   }
 
   async expectUI(state: "signIn" | "signOut", user?: User) {
     if (state === "signIn") {
-      await expect(this.userStatusLabelLocator).toContainText(
+      await expect(this.textUserStatusLabelLocator).toContainText(
         `you are signed in as ${user?.name} 😄`,
       );
-      await expect(this.deleteItemsLocator).toBeVisible();
-      await expect(this.addItemLocator).toBeVisible();
+      /* start: sample */
+      await expect(this.buttonDeleteItemsLocator).toBeVisible();
+      await expect(this.buttonAddItemLocator).toBeVisible();
+      /* end: sample */
     }
 
     if (state === "signOut") {
-      await expect(this.userStatusLabelLocator).toContainText(
+      await expect(this.textUserStatusLabelLocator).toContainText(
         "you are not signed in 🥲",
       );
-      await expect(this.deleteItemsLocator).not.toBeVisible();
-      await expect(this.addItemLocator).not.toBeVisible();
+      /* start: sample */
+      await expect(this.buttonDeleteItemsLocator).not.toBeVisible();
+      await expect(this.buttonAddItemLocator).not.toBeVisible();
+      /* end: sample */
     }
   }
 
-  async getWelcomeLabel(userName?: string) {}
-
+  /* start: sample */
   async getItems() {
     const items = await this.page
       .getByRole("list", { name: "items" })
@@ -67,9 +73,11 @@ export class TopPage extends Base {
   }
 
   async addItem(content: string) {
-    expect(await this.addItemLocator.getAttribute("href")).toBe("/create");
+    expect(await this.buttonAddItemLocator.getAttribute("href")).toBe(
+      "/create",
+    );
 
-    await this.addItemLocator.click();
+    await this.buttonAddItemLocator.click();
     await this.page.fill("#content", content);
     await this.page.keyboard.press("Enter");
     await this.page.waitForLoadState("networkidle");
@@ -77,7 +85,17 @@ export class TopPage extends Base {
   }
 
   async deleteAllItems() {
-    await this.deleteItemsLocator.click();
+    await this.buttonDeleteItemsLocator.click();
     await this.page.waitForLoadState("networkidle");
   }
+
+  async expectItems(
+    expected: {
+      img: string;
+      title: string;
+    }[],
+  ) {
+    expect(await this.getItems()).toMatchObject(expected);
+  }
+  /* end: sample */
 }

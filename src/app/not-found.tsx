@@ -1,11 +1,5 @@
-import { Container } from "./_components/Container";
+import { ErrorPageTemplate } from "./_components/ErrorPageTemplate";
 
 export default function NotFound() {
-  return (
-    <Container>
-      <div className="w-full flex items-center justify-center">
-        <span className="text-2xl">Not Found</span>
-      </div>
-    </Container>
-  );
+  return <ErrorPageTemplate title="Not Found" />;
 }

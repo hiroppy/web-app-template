@@ -2,7 +2,7 @@
 // [auth][error] JWTSessionError: Read more at https://errors.authjs.dev#jwtsessionerror
 // [auth][cause]: Error: PrismaClient is not configured to run in Edge Runtime (Vercel Edge Functions, Vercel Edge Middleware, Next.js (Pages Router) Edge API Routes, Next.js (App Router) Edge Route Handlers or Next.js Middleware). In order to run Prisma Client on edge runtime, either:
 
-import type { NextAuthConfig, User } from "next-auth";
+import type { NextAuthConfig } from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
 
 export const configForTest = {
@@ -35,7 +35,7 @@ export const config = {
           email: profile.email,
           image: profile.picture,
           // https://authjs.dev/guides/role-based-access-control#persisting-the-role
-          role: profile.role ?? "user",
+          role: profile.role ?? "USER",
         };
       },
     }),
@@ -45,9 +45,12 @@ export const config = {
       return baseUrl;
     },
     session: ({ session, token }) => {
-      if (session?.user && token) {
-        session.user.id = token.id as string;
-        session.user.role = token.role as User["role"];
+      if (session?.user && token.user.id) {
+        session.user.id = token.user.id;
+        session.user.name = token.user.name;
+        session.user.email = token.user.email ?? "";
+        session.user.image = token.user.image;
+        session.user.role = token.user.role;
       }
 
       return session;

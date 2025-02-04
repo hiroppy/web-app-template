@@ -12,5 +12,5 @@ describe("all-opt-out", async () => {
     noOtel: true,
   });
 
-  await baseTest.testBuild();
+  await baseTest.testBuild(false);
 });

@@ -4,7 +4,6 @@ import { config } from "./env";
 config();
 
 const nextConfig: NextConfig = {
-  /* start: sample */
   async headers() {
     return [
       {
@@ -34,7 +33,7 @@ const nextConfig: NextConfig = {
       },
     ];
   },
-
+  /* start: sample */
   images: {
     remotePatterns: [
       {
@@ -43,10 +42,11 @@ const nextConfig: NextConfig = {
       },
     ],
   },
+  /* end: sample */
   experimental: {
+    typedRoutes: true,
     authInterrupts: true,
   },
-  /* end: sample */
   /* start: otel */
   webpack: (config, { isServer }) => {
     if (isServer) {

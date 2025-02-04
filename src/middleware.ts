@@ -4,10 +4,10 @@ import { config as authConfig } from "./app/_clients/nextAuthConfig";
 
 const { auth } = NextAuth(authConfig);
 
-export const config = { matcher: ["/me"] };
+export const config = { matcher: ["/me(.*)"] };
 
 export default auth(async function middleware(req) {
-  if (req.auth?.user.role === "user") {
+  if (req.auth?.user.role === "USER") {
     return NextResponse.next();
   }
 

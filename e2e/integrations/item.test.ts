@@ -1,0 +1,35 @@
+import { user1 } from "../dummyUsers";
+import { test } from "../fixtures";
+import { useUser } from "../helpers/users";
+
+test.describe("item", () => {
+  useUser(test, user1.id);
+
+  test.beforeEach(async ({ topPage, registerToDB }) => {
+    await registerToDB(user1);
+    await topPage.goTo();
+    await topPage.expectHeaderUI("signIn", user1);
+    await topPage.expectUI("signIn", user1);
+    await topPage.expectItems([]);
+  });
+
+  test("should create an item and then delete all items", async ({
+    topPage,
+  }) => {
+    await topPage.addItem("hello!");
+    await topPage.addItem("hello2!");
+    await topPage.expectItems([
+      {
+        img: user1.image ?? "",
+        title: "hello2!",
+      },
+      {
+        img: user1.image ?? "",
+        title: "hello!",
+      },
+    ]);
+
+    await topPage.deleteAllItems();
+    await topPage.expectItems([]);
+  });
+});
