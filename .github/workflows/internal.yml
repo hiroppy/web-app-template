@@ -1,0 +1,32 @@
+name: internal
+
+on:
+  pull_request:
+    branches:
+      - main
+  push:
+    branches:
+      - main
+
+jobs:
+  internal-test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        file:
+          - common
+          - all-opt-out
+          - no-docker
+          - no-e2e
+          - no-otel
+          - no-sample-code
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ./.github/actions/setup-node
+      - if: ${{ github.ref_name == 'main' }}
+        run: echo "IS_MAIN_BRANCH=true" >> $GITHUB_ENV
+      - run: pnpm exec playwright install chromium
+      - run: cd ./.internal/tests && make run-${{ matrix.file }}
+        env:
+          # to fetch this repo via CLI on main branch
+          IS_MAIN_BRANCH: ${{ env.IS_MAIN_BRANCH }}
