@@ -6,7 +6,7 @@ const config: KnipConfig = {
     config: ["playwright.config.ts"],
     entry: ["e2e/**/*.ts"],
   },
-  ignoreDependencies: ["prisma-erd-generator"],
+  ignoreDependencies: ["postcss", "tailwindcss", "prisma-erd-generator"],
   ignoreBinaries: ["sleep"],
 };
 

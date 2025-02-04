@@ -25,9 +25,10 @@ export class BaseTest {
             process.env.LOCAL_FROM_PATH = resolvePath(process.cwd(), "../..");
           }
 
-          // for local debug
-          const child = exec("DEBUG=true create-app-foundation");
-          // const child = exec("npx create-app-foundation@latest");
+          const child =
+            process.env.IS_LOCAL === "false"
+              ? exec("npx create-app-foundation@latest")
+              : exec("DEBUG=true create-app-foundation");
 
           child.stdout.on("data", (data) => {
             function debug(message) {
