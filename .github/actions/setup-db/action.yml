@@ -10,3 +10,5 @@ runs:
       shell: bash
     - run: pnpm generate:client
       shell: bash
+    - run: cp ./.env.sample ./.env
+      shell: bash
