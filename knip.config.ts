@@ -11,12 +11,7 @@ const config: KnipConfig = {
   vitest: {
     entry: ["src/**/*.test.ts", "tests/**/*.ts"],
   },
-  ignoreDependencies: [
-    "postcss",
-    "tailwindcss",
-    "prisma-erd-generator",
-    "lefthook",
-  ],
+  ignoreDependencies: ["postcss", "tailwindcss", "prisma-erd-generator"],
   ignoreBinaries: ["sleep"],
 };
 
