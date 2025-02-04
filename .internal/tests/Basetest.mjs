@@ -93,7 +93,7 @@ export class BaseTest {
           docker compose down --volumes
         `.trim(),
         );
-        // await rm(this.outputPath, { recursive: true });
+        await rm(this.outputPath, { recursive: true });
       },
       {
         timeout: 100000,
@@ -226,7 +226,7 @@ export class BaseTest {
   }
 
   async testLint() {
-    test("should test unit", async (t) => {
+    test("should test lint", async (t) => {
       await execAsync("npm run lint", {
         cwd: this.outputPath,
       });
