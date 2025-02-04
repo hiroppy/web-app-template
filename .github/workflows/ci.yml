@@ -95,6 +95,7 @@ jobs:
       - uses: ./.github/actions/setup-node
       - if: ${{ github.ref_name == 'main' }}
         run: echo "IS_MAIN_BRANCH=true" >> $GITHUB_ENV
+      - run: pnpm exec playwright install chromium
       - run: cd ./.internal/tests && make run
         env:
           # to fetch this repo via CLI on main branch
