@@ -10,8 +10,6 @@ runs:
         node-version-file: .node-version
         cache: pnpm
         cache-dependency-path: pnpm-lock.yaml
-    # Install corepack to resolve pnpm error
-    - run: npm install -g corepack
       shell: bash
     - run: npm run setup
       shell: bash
