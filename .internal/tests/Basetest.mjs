@@ -93,7 +93,7 @@ export class BaseTest {
           docker compose down --volumes
         `.trim(),
         );
-        await rm(this.outputPath, { recursive: true });
+        // await rm(this.outputPath, { recursive: true });
       },
       {
         timeout: 100000,

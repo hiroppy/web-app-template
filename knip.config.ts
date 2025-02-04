@@ -6,9 +6,17 @@ const config: KnipConfig = {
   ///////////
   playwright: {
     config: ["playwright.config.ts"],
-    entry: ["e2e/**/*.ts"],
+    entry: ["e2e/**/*.ts", "tests/**/*.ts"],
   },
-  ignoreDependencies: ["postcss", "tailwindcss", "prisma-erd-generator"],
+  vitest: {
+    entry: ["src/**/*.test.ts", "tests/**/*.ts"],
+  },
+  ignoreDependencies: [
+    "postcss",
+    "tailwindcss",
+    "prisma-erd-generator",
+    "lefthook",
+  ],
   ignoreBinaries: ["sleep"],
 };
 
