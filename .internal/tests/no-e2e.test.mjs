@@ -20,4 +20,5 @@ describe("no-e2e", async () => {
   await baseTest.testRemovedFiles(removedFiles);
   await baseTest.testDependencies();
   await baseTest.testNpmScripts();
+  await baseTest.allTests({ hasE2e: false });
 });

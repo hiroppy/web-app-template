@@ -225,6 +225,16 @@ export class BaseTest {
     });
   }
 
+  async testLint() {
+    test("should test unit", async (t) => {
+      await execAsync("npm run lint", {
+        cwd: this.outputPath,
+      });
+
+      t.assert.ok(true);
+    });
+  }
+
   async testBuild(hasE2e = true) {
     const command = !hasE2e ? "npm run build" : "npm run build:test";
 
@@ -246,6 +256,7 @@ export class BaseTest {
       t.assert.ok(true);
     });
   }
+
   async testE2e() {
     test("should test e2e", async (t) => {
       await execAsync("npm run test:e2e", {
@@ -254,6 +265,16 @@ export class BaseTest {
 
       t.assert.ok(true);
     });
+  }
+
+  async allTests({ hasE2e }) {
+    await this.testBuild(hasE2e);
+
+    await Promise.all([this.testLint(), this.testUnit()]);
+
+    if (hasE2e) {
+      await this.testE2e(hasE2e);
+    }
   }
 
   async getFileContent(filePath) {

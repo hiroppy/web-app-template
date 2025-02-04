@@ -18,4 +18,5 @@ describe("no-docker", async () => {
   await baseTest.testFileContent(modifiedFiles);
   await baseTest.testRemovedDirs(removedDirs);
   await baseTest.testRemovedFiles(removedFiles);
+  await baseTest.allTests({ hasE2e: true });
 });
