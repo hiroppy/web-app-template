@@ -87,17 +87,3 @@ jobs:
       - run: pnpm build:test
       - run: pnpm test:e2e
   # end: e2e #
-  ####### 👉 remove #######
-  internal-test:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - uses: ./.github/actions/setup-node
-      - if: ${{ github.ref_name == 'main' }}
-        run: echo "IS_MAIN_BRANCH=true" >> $GITHUB_ENV
-      - run: pnpm exec playwright install chromium
-      - run: cd ./.internal/tests && make run
-        env:
-          # to fetch this repo via CLI on main branch
-          IS_MAIN_BRANCH: ${{ env.IS_MAIN_BRANCH }}
-  ########################

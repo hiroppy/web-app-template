@@ -6,6 +6,7 @@ import { removeFiles, removeLines, title } from "./utils.mjs";
 export const removedFiles = /** @type {const} */ ([
   "LICENSE",
   ".github/workflows/site.yml",
+  ".github/workflows/internal.yml",
 ]);
 
 export const removedDirs = /** @type {const} */ ([]);
