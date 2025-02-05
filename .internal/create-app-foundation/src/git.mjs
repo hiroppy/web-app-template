@@ -25,7 +25,11 @@ export function tryGitInit(root) {
 
   try {
     execSync("git --version", { stdio: "ignore" });
-    if (isInGitRepository() || isInMercurialRepository()) {
+
+    if (
+      process.env.DEBUG !== "true" &&
+      (isInGitRepository() || isInMercurialRepository())
+    ) {
       return false;
     }
 

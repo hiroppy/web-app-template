@@ -7,10 +7,7 @@ import {
   removeNpmScripts,
 } from "../utils.mjs";
 
-export const removedFiles = /** @type {const} */ ([
-  "playwright.config.ts",
-  "./src/instrumentation.ts",
-]);
+export const removedFiles = /** @type {const} */ (["playwright.config.ts"]);
 
 export const removedDirs = /** @type {const} */ (["e2e"]);
 
@@ -27,7 +24,7 @@ export async function e2e(answer, isSkipQuestion) {
   ];
 
   await executeOptionalQuestion({
-    question: "> Do you want to remove openTelemetry files? (y/N) ",
+    question: "> Do you want to remove e2e test? (y/N) ",
     answer,
     isSkipQuestion,
     codeAndFenceList: [

@@ -1,8 +1,8 @@
 # Code Quality Automation
 
-|                                                           |                                                                 |                                                             |                                                                         |                                                                 |                                                                 |
-| :-------------------------------------------------------: | :-------------------------------------------------------------: | :---------------------------------------------------------: | :---------------------------------------------------------------------: | --------------------------------------------------------------- | --------------------------------------------------------------- |
-| <img src="/images/libs/biome.png" alt="biome" width="40"> | <img src="/images/libs/prettier.png" alt="prettier" width="40"> | <img src="/images/libs/prisma.png" alt="prisma" width="40"> | <img src="/images/libs/editorconfig.png" alt="editorconfig" width="40"> | <img src="/images/libs/lefthook.png" alt="lefthook" width="40"> | <img src="/images/libs/renovate.png" alt="renovate" width="40"> |
+|                                                           |                                                                 |                                                             |                                                         |                                                                         |                                                                 |                                                                 |
+| :-------------------------------------------------------: | :-------------------------------------------------------------: | :---------------------------------------------------------: | :-----------------------------------------------------: | ----------------------------------------------------------------------- | --------------------------------------------------------------- | --------------------------------------------------------------- |
+| <img src="/images/libs/biome.png" alt="biome" width="40"> | <img src="/images/libs/prettier.png" alt="prettier" width="40"> | <img src="/images/libs/prisma.png" alt="prisma" width="40"> | <img src="/images/libs/knip.png" alt="knip" width="40"> | <img src="/images/libs/editorconfig.png" alt="editorconfig" width="40"> | <img src="/images/libs/lefthook.png" alt="lefthook" width="40"> | <img src="/images/libs/renovate.png" alt="renovate" width="40"> |
 
 ### Code Quality
 
@@ -24,13 +24,13 @@ Lefthook deploys shell scripts to the `.githooks` directory during the postinsta
 
 No Configuration File.
 
-### EditorConfig
-
-<<< ../../../../.editorconfig
-
 ### Prisma
 
 No Configuration File.
+
+### EditorConfig
+
+<<< ../../../../.editorconfig
 
 ### Renovate
 

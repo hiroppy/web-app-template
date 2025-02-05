@@ -19,6 +19,7 @@ exports[`common > should put files 1`] = `
   "internal-tests-output-common/biome.json",
   "internal-tests-output-common/compose.yml",
   "internal-tests-output-common/env.ts",
+  "internal-tests-output-common/knip.config.ts",
   "internal-tests-output-common/lefthook.yml",
   "internal-tests-output-common/next.config.ts",
   "internal-tests-output-common/otel-collector-config.yml",
@@ -82,7 +83,7 @@ exports[`common > should update .github/workflows/ci.yml 1`] = `
   "    runs-on: ubuntu-latest",
   "    env:",
   "      # should store them to github.secrets",
-  "      DATABASE_URL: postgresql://dev:1234@172.17.0.1:5432/dev?schema=public",
+  "      DATABASE_URL: postgresql://test:1234@172.17.0.1:5432/dev?schema=public",
   "      NEXTAUTH_SECRET: UfxvOS6HetHOFkL44YTITYgc0DOuOlz5TBp3jkbnZ3w=",
   "      NEXT_PUBLIC_SITE_URL: http://localhost:3000",
   "    steps:",
@@ -282,7 +283,6 @@ exports[`common > should update dependencies 1`] = `
     "@hookform/resolvers",
     "@opentelemetry/exporter-metrics-otlp-grpc",
     "@opentelemetry/exporter-trace-otlp-grpc",
-    "@opentelemetry/exporter-trace-otlp-proto",
     "@opentelemetry/instrumentation-http",
     "@opentelemetry/resources",
     "@opentelemetry/sdk-metrics",
@@ -310,6 +310,7 @@ exports[`common > should update dependencies 1`] = `
     "@types/react-dom",
     "@vitejs/plugin-react",
     "jsdom",
+    "knip",
     "lefthook",
     "postcss",
     "prettier",
@@ -471,6 +472,27 @@ exports[`common > should update e2e/models/TopPage.ts 1`] = `
   "    expect(await this.getItems()).toMatchObject(expected);",
   "  }",
   "}",
+  ""
+]
+`;
+
+exports[`common > should update knip.config.ts 1`] = `
+[
+  "import type { KnipConfig } from \\"knip\\";",
+  "",
+  "const config: KnipConfig = {",
+  "  playwright: {",
+  "    config: [\\"playwright.config.ts\\"],",
+  "    entry: [\\"e2e/**/*.ts\\", \\"tests/**/*.ts\\"],",
+  "  },",
+  "  vitest: {",
+  "    entry: [\\"src/**/*.test.ts\\", \\"tests/**/*.ts\\"],",
+  "  },",
+  "  ignoreDependencies: [\\"postcss\\", \\"tailwindcss\\", \\"prisma-erd-generator\\"],",
+  "  ignoreBinaries: [\\"sleep\\"],",
+  "};",
+  "",
+  "export default config;",
   ""
 ]
 `;

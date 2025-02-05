@@ -19,7 +19,9 @@ export async function generateMigrationFiles() {
           resolve();
         } else {
           reject(
-            new Error(`[docker compose]: command failed with code ${code}`),
+            new Error(
+              `[docker compose]: "${command}" failed with code ${code}`,
+            ),
           );
         }
       });
