@@ -150,7 +150,10 @@ export class BaseTest {
             ) {
               return false;
             }
-            if (dirent.parentPath.startsWith(`${this.outputDir}/.git/`)) {
+            if (
+              dirent.parentPath.startsWith(`${this.outputDir}/.git`) &&
+              !dirent.parentPath.startsWith(`${this.outputDir}/.github`)
+            ) {
               return false;
             }
 
