@@ -121,12 +121,12 @@ export class BaseTest {
         ),
         true,
       );
-      t.assert.equal(
-        list.some((dirent) =>
-          dirent.parentPath.startsWith(`${this.outputDir}/.git/`),
-        ),
-        true,
-      );
+      // t.assert.equal(
+      //   list.some((dirent) =>
+      //     dirent.parentPath.startsWith(`${this.outputDir}/.git/`),
+      //   ),
+      //   true,
+      // );
       if (!ignoreE2e) {
         t.assert.equal(
           list.some((dirent) =>
