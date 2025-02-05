@@ -1,10 +1,10 @@
 import { describe, expect, test } from "vitest";
-import { type UserMeSchema, userMeSchema } from "./users";
+import { type MeSchema, meSchema } from "./users";
 
 describe("schemas/users", () => {
   describe("me", () => {
     test("should be valid", () => {
-      const fixtures: UserMeSchema[] = [
+      const fixtures: MeSchema[] = [
         {
           name: "John",
           email: "a@b.com",
@@ -13,18 +13,18 @@ describe("schemas/users", () => {
       ];
 
       for (const fixture of fixtures) {
-        expect(userMeSchema.safeParse(fixture).success).toBeTruthy();
+        expect(meSchema.safeParse(fixture).success).toBeTruthy();
       }
     });
 
     test("should be invalid", () => {
-      const base: UserMeSchema = {
+      const base: MeSchema = {
         name: "a",
         email: "a@b.com",
         image: "https://a.com",
       };
 
-      const fixtures: [UserMeSchema, string[]][] = [
+      const fixtures: [MeSchema, string[]][] = [
         // name
         [
           {
@@ -87,7 +87,7 @@ describe("schemas/users", () => {
       ];
 
       for (const [fixture, errors] of fixtures) {
-        const res = userMeSchema.safeParse(fixture);
+        const res = meSchema.safeParse(fixture);
 
         expect(res.success).toBeFalsy();
 
