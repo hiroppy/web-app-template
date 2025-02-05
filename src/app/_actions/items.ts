@@ -4,11 +4,11 @@ import type { Item } from "@prisma/client";
 import { revalidatePath } from "next/cache";
 import { auth } from "../_clients/nextAuth";
 import { prisma } from "../_clients/prisma";
-import { type ItemCreateSchema, itemCreateSchema } from "../_schemas/items";
+import { type ItemSchema, itemSchema } from "../_schemas/items";
 import { getFieldErrors } from "../_utils/zod";
 import type { Result } from "./types";
 
-export async function create(data: ItemCreateSchema): Promise<Result<Item>> {
+export async function create(data: ItemSchema): Promise<Result<Item>> {
   const session = await auth();
 
   if (!session?.user?.id) {
@@ -18,7 +18,7 @@ export async function create(data: ItemCreateSchema): Promise<Result<Item>> {
     };
   }
 
-  const validatedFields = itemCreateSchema.safeParse(data);
+  const validatedFields = itemSchema.safeParse(data);
 
   if (!validatedFields.success) {
     return {

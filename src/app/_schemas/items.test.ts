@@ -1,10 +1,10 @@
 import { describe, expect, test } from "vitest";
-import { type ItemCreateSchema, itemCreateSchema } from "./items";
+import { type ItemSchema, itemSchema } from "./items";
 
 describe("schemas/items", () => {
   describe("create", () => {
     test("should be valid", () => {
-      const fixtures: ItemCreateSchema[] = [
+      const fixtures: ItemSchema[] = [
         {
           content: "hello",
         },
@@ -12,17 +12,17 @@ describe("schemas/items", () => {
           content: "a",
         },
         {
-          content: "aaaaaaaaaaaaaaaaaaaa",
+          content: "a".repeat(20),
         },
       ];
 
       for (const fixture of fixtures) {
-        expect(itemCreateSchema.safeParse(fixture).success).toBeTruthy();
+        expect(itemSchema.safeParse(fixture).success).toBeTruthy();
       }
     });
 
     test("should be invalid", () => {
-      const fixtures: [ItemCreateSchema, string[]][] = [
+      const fixtures: [ItemSchema, string[]][] = [
         [
           {
             content: "",
@@ -31,14 +31,14 @@ describe("schemas/items", () => {
         ],
         [
           {
-            content: "aaaaaaaaaaaaaaaaaaaaa",
+            content: "a".repeat(21),
           },
           ["content is too long"],
         ],
       ];
 
       for (const [fixture, errors] of fixtures) {
-        const res = itemCreateSchema.safeParse(fixture);
+        const res = itemSchema.safeParse(fixture);
 
         expect(res.success).toBeFalsy();
 
