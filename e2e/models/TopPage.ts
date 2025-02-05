@@ -79,7 +79,9 @@ export class TopPage extends Base {
 
     await this.buttonAddItemLocator.click();
     await this.page.fill("#input-content", content);
+    await expect(this.page.locator("#input-content-error")).not.toBeVisible();
     await this.page.keyboard.press("Enter");
+
     await this.page.waitForLoadState("networkidle");
     await this.page.goto("/");
   }
