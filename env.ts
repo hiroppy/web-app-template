@@ -3,7 +3,7 @@ import { z } from "zod";
 
 export type Schema = z.infer<typeof schema>;
 
-export const schema = z.object({
+const schema = z.object({
   NODE_ENV: z
     .union([
       z.literal("development"),

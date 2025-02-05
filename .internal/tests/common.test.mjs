@@ -35,4 +35,5 @@ describe("common", async () => {
   ]);
 
   await baseTest.testFileContent(modifiedAllFiles);
+  await baseTest.allTests({ hasE2e: true });
 });
