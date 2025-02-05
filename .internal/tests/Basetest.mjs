@@ -123,7 +123,7 @@ export class BaseTest {
       );
       t.assert.equal(
         list.some((dirent) =>
-          dirent.parentPath.startsWith(`${this.outputDir}/.git`),
+          dirent.parentPath.startsWith(`${this.outputDir}/.git/`),
         ),
         true,
       );
@@ -154,6 +154,9 @@ export class BaseTest {
             if (
               dirent.parentPath.startsWith(`${this.outputDir}/node_modules`)
             ) {
+              return false;
+            }
+            if (dirent.parentPath.startsWith(`${this.outputDir}/.git/`)) {
               return false;
             }
 
