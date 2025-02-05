@@ -1,6 +1,6 @@
 import { z } from "zod";
 
-export const userMeSchema = z.object({
+export const meSchema = z.object({
   name: z.string().min(1, "name is too short").max(20, "name is too long"),
   email: z
     .string()
@@ -10,4 +10,4 @@ export const userMeSchema = z.object({
   image: z.string().url("image is invalid").max(2000, "image is too long"),
 });
 
-export type UserMeSchema = z.infer<typeof userMeSchema>;
+export type MeSchema = z.infer<typeof meSchema>;

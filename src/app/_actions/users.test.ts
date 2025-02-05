@@ -43,12 +43,17 @@ describe("actions/users", () => {
     test("should throw an error if the schema is invalid", async () => {
       const formData = new FormData();
 
-      formData.append("name", "foo".repeat(1000));
+      formData.append("name", "a".repeat(21));
 
       expect(
         await updateMe({ success: false }, formData),
       ).toMatchInlineSnapshot(`
         {
+          "data": {
+            "email": "hello@a.com",
+            "image": "https://a.com",
+            "name": "aaaaaaaaaaaaaaaaaaaaa",
+          },
           "message": "invalid fields",
           "success": false,
           "zodErrors": {

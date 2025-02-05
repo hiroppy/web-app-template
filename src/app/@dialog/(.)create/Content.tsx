@@ -5,7 +5,8 @@ import { useRouter } from "next/navigation";
 import { useTransition } from "react";
 import { type SubmitHandler, useForm } from "react-hook-form";
 import { create } from "../../_actions/items";
-import { type ItemCreateSchema, itemCreateSchema } from "../../_schemas/items";
+import { Input } from "../../_components/Input";
+import { type ItemSchema, itemSchema } from "../../_schemas/items";
 import { Dialog } from "../_components/Dialog";
 
 export function Content() {
@@ -15,12 +16,12 @@ export function Content() {
     register,
     formState: { errors },
     handleSubmit,
-  } = useForm<ItemCreateSchema>({
+  } = useForm<ItemSchema>({
     mode: "onChange",
-    resolver: zodResolver(itemCreateSchema),
+    resolver: zodResolver(itemSchema),
   });
 
-  const submit: SubmitHandler<ItemCreateSchema> = async (values) => {
+  const submit: SubmitHandler<ItemSchema> = async (values) => {
     if (isPending) {
       return;
     }
@@ -41,18 +42,12 @@ export function Content() {
       <div className="space-y-6">
         <h2 className="text-center">New memo</h2>
         <form onSubmit={handleSubmit(submit)} className="space-y-4">
-          <input
+          <Input
             {...register("content")}
-            id="content"
             disabled={isPending}
             placeholder="write your memo..."
-            className="w-full bg-gray-600 text-gray-100 focus:outline-none py-3 px-5 rounded-sm"
-            // ignore 1password
-            data-1p-ignore
+            error={errors.content?.message}
           />
-          {errors.content?.message && (
-            <span className="text-red-400">{errors.content.message}</span>
-          )}
         </form>
       </div>
     </Dialog>

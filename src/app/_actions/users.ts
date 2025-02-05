@@ -3,11 +3,11 @@
 import { revalidatePath } from "next/cache";
 import { auth } from "../_clients/nextAuth";
 import { prisma } from "../_clients/prisma";
-import { type UserMeSchema, userMeSchema } from "../_schemas/users";
+import { type MeSchema, meSchema } from "../_schemas/users";
 import { getFieldErrors } from "../_utils/zod";
 import type { Result } from "./types";
 
-type UpdateMeState = Result<PartialWithNullable<UserMeSchema>, UserMeSchema>;
+type UpdateMeState = Result<PartialWithNullable<MeSchema>, MeSchema>;
 
 export async function updateMe(
   prevState: UpdateMeState,
@@ -22,20 +22,21 @@ export async function updateMe(
     };
   }
 
-  const data: PartialWithNullable<UserMeSchema> = {
+  const data: PartialWithNullable<MeSchema> = {
     name: session.user.name,
     email: session.user.email,
     image: session.user.image,
     ...Object.fromEntries(formData.entries()),
   };
 
-  const validatedFields = userMeSchema.safeParse(data);
+  const validatedFields = meSchema.safeParse(data);
 
   if (!validatedFields.success) {
     return {
       success: false,
       message: "invalid fields",
       zodErrors: getFieldErrors(validatedFields),
+      data,
     };
   }
 
