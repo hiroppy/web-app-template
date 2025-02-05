@@ -3,6 +3,7 @@ import { join } from "node:path";
 import {
   executeOptionalQuestion,
   readFileFromCopiedDir,
+  removeDeps,
   removeDirs,
   removeFiles,
   writeFileToCopiedDir,
@@ -39,6 +40,13 @@ export const modifiedFiles = /** @type {const} */ ([
   "src/middleware.test.ts",
 ]);
 
+// TODO: need to consider keeping them or not
+const removedDeps = /** @type {const} */ [
+  "@hookform/resolvers",
+  "react-hook-form",
+  "@testing-library/react",
+];
+
 export async function sampleCode(answer, isSkipQuestion) {
   const fences = [["/* start: sample */", "/* end: sample */"]];
 
@@ -57,6 +65,7 @@ export async function sampleCode(answer, isSkipQuestion) {
         removeItemModelFromPrisma(),
         removeFiles(removedFiles),
         removeDirs(removedDirs),
+        removeDeps(removedDeps),
         writeFileToCopiedDir(
           modifiedFiles[1],
           await readReplacedCode("app-layout.tsx"),
