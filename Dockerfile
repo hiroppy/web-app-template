@@ -15,7 +15,6 @@ ENV NEXTAUTH_URL=$NEXT_PUBLIC_SITE_URL
 ENV NEXT_PUBLIC_SITE_URL=$NEXT_PUBLIC_SITE_URL
 ENV TRACE_EXPORTER_URL=$TRACE_EXPORTER_URL
 
-RUN npm install -g corepack
 RUN corepack enable
 RUN apt-get update -y && apt-get install -y openssl
 
