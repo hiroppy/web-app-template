@@ -1,14 +1,16 @@
 "use server";
 
 import type { Item } from "@prisma/client";
-import { revalidatePath } from "next/cache";
+import { revalidateTag } from "next/cache";
 import { auth } from "../_clients/nextAuth";
 import { prisma } from "../_clients/prisma";
 import { type ItemSchema, itemSchema } from "../_schemas/items";
 import { getFieldErrors } from "../_utils/zod";
 import type { Result } from "./types";
 
-export async function create(data: ItemSchema): Promise<Result<Item>> {
+export async function create(
+  data: ItemSchema,
+): Promise<Result<Pick<Item, "id" | "userId" | "content">>> {
   const session = await auth();
 
   if (!session?.user?.id) {
@@ -41,11 +43,15 @@ export async function create(data: ItemSchema): Promise<Result<Item>> {
     });
   });
 
-  revalidatePath("/");
+  revalidateTag("items");
 
   return {
     success: true,
-    data: res,
+    data: {
+      id: res.id,
+      userId: res.userId,
+      content: res.content,
+    },
   };
 }
 
@@ -64,5 +70,5 @@ export async function deleteAll() {
     });
   });
 
-  revalidatePath("/");
+  revalidateTag("items");
 }
