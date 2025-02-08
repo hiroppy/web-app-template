@@ -30,7 +30,9 @@ const schema = z.object({
   NEXTAUTH_URL: z.string().min(1),
   NEXTAUTH_SECRET: z.string().min(1),
 
+  /* start: otel */
   TRACE_EXPORTER_URL: z.string().url().optional().or(z.literal("")),
+  /* end: otel */
 });
 
 export function config() {

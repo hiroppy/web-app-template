@@ -39,6 +39,84 @@ exports[`no-otel > should put files 1`] = `
 ]
 `;
 
+exports[`no-otel > should update .env.sample 1`] = `
+[
+  "# Next.js",
+  "NEXT_PUBLIC_SITE_URL=http://localhost:3000",
+  "",
+  "# Database",
+  "DATABASE_USER=dev",
+  "DATABASE_PASSWORD=1234",
+  "DATABASE_DB=dev",
+  "DATABASE_HOST=localhost",
+  "DATABASE_PORT=5432",
+  "DATABASE_SCHEMA=public",
+  "# for prisma migration",
+  "DATABASE_URL=postgresql://\${DATABASE_USER}:\${DATABASE_PASSWORD}@\${DATABASE_HOST}:\${DATABASE_PORT}/\${DATABASE_DB}?schema=\${DATABASE_SCHEMA}",
+  "",
+  "# Google OAuth",
+  "# https://console.cloud.google.com/apis/credentials",
+  "# Set values below",
+  "# AUTHORIZED JAVASCRIPT ORIGINS: http://localhost:3000",
+  "# AUTHORIZED REDIRECT URIS: http://localhost:3000/api/auth/callback/google",
+  "GOOGLE_CLIENT_ID=xxxx",
+  "GOOGLE_CLIENT_SECRET=xxxx",
+  "",
+  "# NextAuth.js",
+  "NEXTAUTH_URL=\${NEXT_PUBLIC_SITE_URL}",
+  "# https://next-auth.js.org/configuration/options#secret",
+  "# you must generate a new secret",
+  "# error: \\"ikm\\" must be at least one byte in length'",
+  "# $ openssl rand -base64 32",
+  "NEXTAUTH_SECRET=TKDdLVjf7cTyTs5oWVpv04senu6fia4RGQbYHRQIR5Q=",
+  ""
+]
+`;
+
+exports[`no-otel > should update Dockerfile 1`] = `
+[
+  "FROM node:22.13.1-slim AS base",
+  "",
+  "WORKDIR /app",
+  "",
+  "ARG DATABASE_URL=''",
+  "ARG NEXTAUTH_SECRET=''",
+  "ARG NEXT_PUBLIC_SITE_URL=''",
+  "",
+  "ENV PNPM_HOME=\\"/pnpm\\"",
+  "ENV PATH=\\"$PNPM_HOME:$PATH\\"",
+  "ENV DATABASE_URL=$DATABASE_URL",
+  "ENV NEXTAUTH_SECRET=$NEXTAUTH_SECRET",
+  "ENV NEXTAUTH_URL=$NEXT_PUBLIC_SITE_URL",
+  "ENV NEXT_PUBLIC_SITE_URL=$NEXT_PUBLIC_SITE_URL",
+  "",
+  "RUN npm install -g corepack",
+  "RUN corepack enable",
+  "RUN apt-get update -y && apt-get install -y openssl",
+  "",
+  "COPY . /app",
+  "",
+  "FROM base AS prod-deps",
+  "",
+  "RUN --mount=type=cache,id=pnpm,target=/pnpm/store pnpm i --prod --frozen-lockfile",
+  "RUN pnpm generate:client --generator client",
+  "",
+  "FROM base AS build",
+  "",
+  "RUN --mount=type=cache,id=pnpm,target=/pnpm/store pnpm i --frozen-lockfile",
+  "RUN pnpm build",
+  "",
+  "FROM base AS app",
+  "",
+  "COPY --from=build /app/.next /app/.next",
+  "COPY --from=prod-deps /app/node_modules /app/node_modules",
+  "",
+  "EXPOSE 3000",
+  "CMD [\\"pnpm\\", \\"start\\"]",
+  ""
+]
+`;
+
 exports[`no-otel > should update README.md 1`] = `
 [
   "## Setup",
@@ -161,6 +239,55 @@ exports[`no-otel > should update dependencies 1`] = `
     "vitest"
   ]
 }
+`;
+
+exports[`no-otel > should update env.ts 1`] = `
+[
+  "import { loadEnvConfig } from \\"@next/env\\";",
+  "import { z } from \\"zod\\";",
+  "",
+  "export type Schema = z.infer<typeof schema>;",
+  "",
+  "const schema = z.object({",
+  "  NODE_ENV: z",
+  "    .union([",
+  "      z.literal(\\"development\\"),",
+  "      z.literal(\\"test\\"),",
+  "      z.literal(\\"production\\"),",
+  "    ])",
+  "    .default(\\"development\\"),",
+  "",
+  "  // for client and server",
+  "  NEXT_PUBLIC_SITE_URL: z.string().url(),",
+  "",
+  "  // for server",
+  "  DATABASE_USER: z.string().min(1),",
+  "  DATABASE_PASSWORD: z.string().min(1),",
+  "  DATABASE_DB: z.string().min(1),",
+  "  DATABASE_HOST: z.string().min(1),",
+  "  DATABASE_PORT: z.coerce.number().min(1),",
+  "  DATABASE_SCHEMA: z.string().min(1),",
+  "  DATABASE_URL: z.string().min(1),",
+  "",
+  "  GOOGLE_CLIENT_ID: z.string().min(1),",
+  "  GOOGLE_CLIENT_SECRET: z.string().min(1),",
+  "",
+  "  NEXTAUTH_URL: z.string().min(1),",
+  "  NEXTAUTH_SECRET: z.string().min(1),",
+  "});",
+  "",
+  "export function config() {",
+  "  const { combinedEnv } = loadEnvConfig(process.cwd());",
+  "  const res = schema.safeParse(combinedEnv);",
+  "",
+  "  if (res.error) {",
+  "    console.error(\\"\\\\x1b[31m%s\\\\x1b[0m\\", \\"[Errors] environment variables\\");",
+  "    console.error(JSON.stringify(res.error.errors, null, 2));",
+  "    process.exit(1);",
+  "  }",
+  "}",
+  ""
+]
 `;
 
 exports[`no-otel > should update next.config.ts 1`] = `

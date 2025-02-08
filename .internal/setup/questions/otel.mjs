@@ -17,6 +17,9 @@ export const modifiedFiles = /** @type {const} */ ([
   "compose.yml",
   "next.config.ts",
   "README.md",
+  "env.ts",
+  "Dockerfile",
+  ".env.sample",
 ]);
 
 export async function otel(answer, isSkipQuestion) {
@@ -31,9 +34,12 @@ export async function otel(answer, isSkipQuestion) {
     answer,
     isSkipQuestion,
     codeAndFenceList: [
-      ["compose.yml", fences[0]],
-      ["next.config.ts", fences[1]],
-      ["README.md", fences[2]],
+      [modifiedFiles[0], fences[0]],
+      [modifiedFiles[1], fences[1]],
+      [modifiedFiles[2], fences[2]],
+      [modifiedFiles[3], fences[1]],
+      [modifiedFiles[4], fences[0]],
+      [modifiedFiles[5], fences[0]],
     ],
     yesCallback: async () => {
       const { data } = await getPackageJson();
