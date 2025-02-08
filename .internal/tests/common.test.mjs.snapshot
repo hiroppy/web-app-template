@@ -72,7 +72,8 @@ exports[`common > should update .env.sample 1`] = `
   "NEXTAUTH_SECRET=TKDdLVjf7cTyTs5oWVpv04senu6fia4RGQbYHRQIR5Q=",
   "",
   "# OpenTelemetry",
-  "TRACE_EXPORTER_URL="
+  "TRACE_EXPORTER_URL=",
+  ""
 ]
 `;
 
