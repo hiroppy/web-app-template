@@ -8,18 +8,9 @@ import { prisma } from "../_clients/prisma";
 import { Button } from "../_components/Button";
 import { format } from "../_utils/date";
 
-/* start: stripe */
-import { Payment } from "../_components/Payment";
-/* end: stripe */
-
 export default async function Page() {
   return (
     <div className="space-y-7">
-      {/* start: stripe */}
-      {/* <Suspense fallback={<p>loading ...</p>}>
-        <Payment />
-      </Suspense> */}
-      {/* end: stripe */}
       <Suspense fallback={<p>loading ...</p>}>
         <Status />
       </Suspense>

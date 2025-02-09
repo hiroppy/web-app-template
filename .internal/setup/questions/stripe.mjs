@@ -15,7 +15,10 @@ export const removedFiles = /** @type {const} */ ([
   "./src/app/_components/PaymentCancelButton.tsx",
 ]);
 
-export const removedDirs = /** @type {const} */ (["./src/app/api/payment"]);
+export const removedDirs = /** @type {const} */ ([
+  "./src/app/api/payment",
+  "./src/app/(private)/me/payment",
+]);
 
 export const modifiedFiles = /** @type {const} */ ([
   "prisma/schema.prisma",

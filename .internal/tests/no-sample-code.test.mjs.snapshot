@@ -49,6 +49,7 @@ exports[`no-sample-code > should put files 1`] = `
   "internal-tests-output-no-sample-code/src/app/(private)/layout.tsx",
   "internal-tests-output-no-sample-code/src/app/(private)/me/_components/UpdateMyInfo.tsx",
   "internal-tests-output-no-sample-code/src/app/(private)/me/page.tsx",
+  "internal-tests-output-no-sample-code/src/app/(private)/me/payment/page.tsx",
   "internal-tests-output-no-sample-code/src/app/(public)/layout.tsx",
   "internal-tests-output-no-sample-code/src/app/(public)/page.tsx",
   "internal-tests-output-no-sample-code/src/app/(public)/signin/page.tsx",
