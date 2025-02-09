@@ -17,19 +17,6 @@ export async function checkout(): Promise<Result> {
     };
   }
 
-  const me = await prisma.user.findUnique({
-    where: {
-      id: session.user.id,
-    },
-  });
-
-  if (!me) {
-    return {
-      success: false,
-      message: "user not found",
-    };
-  }
-
   const checkoutSession = await stripe.checkout.sessions.create({
     mode: "subscription",
     line_items: [
@@ -61,16 +48,9 @@ export async function checkout(): Promise<Result> {
 }
 
 // if you set multiple subscriptions, you need to pass the subscriptionId as an argument
-export async function cancel(): Promise<Result> {
-  const session = await auth();
-
-  if (!session) {
-    return {
-      success: false,
-      message: "no session token",
-    };
-  }
-
+export async function update(
+  cancelAtPeriodEnd: boolean,
+): Promise<Result<null>> {
   const { success, data } = await status();
 
   if (!success || !data) {
@@ -81,28 +61,26 @@ export async function cancel(): Promise<Result> {
   }
 
   try {
-    const subscription = await stripe.subscriptions.update(
-      data.subscriptionId,
-      {
-        cancel_at_period_end: true,
-      },
-    );
+    await stripe.subscriptions.update(data.subscriptionId, {
+      cancel_at_period_end: cancelAtPeriodEnd,
+    });
 
-    console.log(subscription);
+    return {
+      success: true,
+      data: null,
+    };
   } catch {
     return {
       success: false,
-      message: "subscription cancel failed",
+      message: "subscription update failed",
     };
   }
 }
 
-type ReturnedStatus = Result<
-  Pick<
-    Subscription,
-    "subscriptionId" | "invoiceId" | "cancelAtPeriodEnd" | "currentPeriodEnd"
-  >
->;
+type ReturnedStatus = Result<Pick<
+  Subscription,
+  "subscriptionId" | "cancelAtPeriodEnd" | "currentPeriodEnd"
+> | null>;
 
 // this sample code assumes that the user has only one subscription
 export async function status(): Promise<ReturnedStatus> {
@@ -120,14 +98,15 @@ export async function status(): Promise<ReturnedStatus> {
       userId: session.user.id,
     },
   });
-  const activeSubscriptions = subscriptions.filter(
-    (subscription) => subscription.status === "complete",
+  const activeSubscriptions = subscriptions.filter((subscription) =>
+    ["active", "complete"].includes(subscription.status),
   );
 
   if (activeSubscriptions.length === 0) {
     return {
-      success: false,
-      message: "subscription not found",
+      success: true,
+      data: null,
+      message: "active subscription not found",
     };
   }
 
@@ -137,7 +116,6 @@ export async function status(): Promise<ReturnedStatus> {
     success: true,
     data: {
       subscriptionId: a.subscriptionId,
-      invoiceId: a.invoiceId,
       cancelAtPeriodEnd: a.cancelAtPeriodEnd,
       currentPeriodEnd: a.currentPeriodEnd,
     },

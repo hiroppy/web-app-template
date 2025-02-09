@@ -7,16 +7,18 @@ import { status } from "../_actions/payment";
 import { auth } from "../_clients/nextAuth";
 import { prisma } from "../_clients/prisma";
 import { Button } from "../_components/Button";
+import { PaymentCancelButton } from "../_components/PaymentCancelButton";
+import { PaymentCheckoutButton } from "../_components/PaymentCheckoutButton";
 import { format } from "../_utils/date";
 
 export default async function Page() {
   return (
-    <div className="space-y-5">
-      <Suspense fallback={<p>loading ...</p>}>
-        <Status />
-      </Suspense>
+    <div className="space-y-7">
       <Suspense fallback={<p>loading ...</p>}>
         <Payment />
+      </Suspense>
+      <Suspense fallback={<p>loading ...</p>}>
+        <Status />
       </Suspense>
       <Suspense fallback={<p>loading ...</p>}>
         <List />
@@ -94,17 +96,30 @@ async function List() {
 }
 
 async function Payment() {
-  const { success, data } = await status();
+  const { success, message, data } = await status();
+  const limitDate = data?.cancelAtPeriodEnd ? data?.currentPeriodEnd : null;
 
-  if (!data) {
+  if (message === "no session token") {
     return null;
   }
 
-  if (!success) {
-    return <p>error</p>;
-  }
-
-  console.log(data);
-
-  return <div className="space-y-5">aaa</div>;
+  return (
+    <div className="flex flex-col items-end">
+      <div className="flex items-center gap-2">
+        <h3 className="font-semibold">Subscription Status</h3>
+        {!success ? (
+          <p className="text-red-300">internal error</p>
+        ) : !data ? (
+          <PaymentCheckoutButton />
+        ) : (
+          <PaymentCancelButton cancelAtPeriodEnd={data.cancelAtPeriodEnd} />
+        )}
+      </div>
+      {limitDate && (
+        <p className="text-sm text-gray-400">
+          Available until {format(limitDate)}
+        </p>
+      )}
+    </div>
+  );
 }

@@ -59,7 +59,6 @@ model User {
 model Subscription {
   id                String    @id @default(cuid())
   subscriptionId    String    @unique @map("subscription_id") // sub_XXXX
-  invoiceId         String    @unique @map("invoice_id") // in_XXXX
   status            String
   currentPeriodEnd  DateTime? @map("current_period_end")
   cancelAtPeriodEnd Boolean   @default(false) @map("cancel_at_period_end")

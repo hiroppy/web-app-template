@@ -4,7 +4,7 @@ import { useTransition } from "react";
 import { checkout } from "../_actions/payment";
 import { Button } from "./Button";
 
-export function CheckoutButton() {
+export function PaymentCheckoutButton() {
   const [isPending, startTransition] = useTransition();
 
   const onClick = () => {

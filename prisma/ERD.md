@@ -39,7 +39,6 @@ ADMIN ADMIN
   "subscriptions" {
     String id "🗝️"
     String subscription_id
-    String invoice_id
     String status
     DateTime current_period_end "❓"
     Boolean cancel_at_period_end

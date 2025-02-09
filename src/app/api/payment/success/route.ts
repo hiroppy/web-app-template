@@ -33,7 +33,6 @@ export async function GET(req: NextRequest) {
               create: {
                 subscriptionId: paymentInfo.subscription as string,
                 status: paymentInfo.status as string,
-                invoiceId: paymentInfo.invoice as string,
               },
             },
           },
