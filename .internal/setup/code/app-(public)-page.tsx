@@ -1,14 +1,14 @@
-import { auth } from "../_clients/nextAuth";
+import { getSessionOrReject } from "../_actions/auth";
 
 export default async function Page() {
-  const session = await auth();
+  const session = await getSessionOrReject();
 
   return (
     <div className="space-y-10 p-10">
       <h1 className="text-2xl text-center">Hello World 😄</h1>
       <p className="text-gray-300" aria-label="User status">
-        {session?.user
-          ? `you are signed in as ${session.user.name} 😄`
+        {session?.data?.user
+          ? `you are signed in as ${session.data.user.name} 😄`
           : "you are not signed in 🥲"}
       </p>
     </div>
