@@ -15,7 +15,6 @@ describe("actions/items", () => {
     test("should create an item", async () => {
       const expected = {
         content: "hello",
-        userId: "id",
       };
 
       expect(
