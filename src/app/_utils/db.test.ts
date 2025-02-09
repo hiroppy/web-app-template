@@ -5,7 +5,7 @@ describe("utils/db", () => {
   describe("createDBUrl", () => {
     test("should create url by environment variables", () => {
       expect(createDBUrl({})).toMatchInlineSnapshot(
-        `"postgresql://test:1234@localhost:5432/test?schema=public"`,
+        `"postgresql://dev:1234@localhost:5432/dev?schema=public"`,
       );
     });
 
