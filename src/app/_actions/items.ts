@@ -2,27 +2,25 @@
 
 import type { Item } from "@prisma/client";
 import { revalidatePath } from "next/cache";
-import { auth } from "../_clients/nextAuth";
 import { prisma } from "../_clients/prisma";
 import { type ItemSchema, itemSchema } from "../_schemas/items";
 import { getFieldErrors } from "../_utils/zod";
+import { getSessionOrReject } from "./auth";
 import type { Result } from "./types";
 
 type ReturnedCreate = Result<
   Pick<Item, "id" | "content" | "createdAt" | "updatedAt">
 >;
 
-export async function create(data: ItemSchema): Promise<ReturnedCreate> {
-  const session = await auth();
+export async function create(input: ItemSchema): Promise<ReturnedCreate> {
+  const session = await getSessionOrReject();
 
-  if (!session?.user?.id) {
-    return {
-      success: false,
-      message: "no session token",
-    };
+  if (!session.success) {
+    return session;
   }
 
-  const validatedFields = itemSchema.safeParse(data);
+  const { user } = session.data;
+  const validatedFields = itemSchema.safeParse(input);
 
   if (!validatedFields.success) {
     return {
@@ -38,7 +36,7 @@ export async function create(data: ItemSchema): Promise<ReturnedCreate> {
         content: validatedFields.data.content,
         user: {
           connect: {
-            id: session.user.id,
+            id: user.id,
           },
         },
       },
@@ -59,16 +57,18 @@ export async function create(data: ItemSchema): Promise<ReturnedCreate> {
 }
 
 export async function deleteAll() {
-  const session = await auth();
+  const session = await getSessionOrReject();
 
-  if (!session?.user?.id) {
+  if (!session.success) {
     throw new Error("no session token");
   }
+
+  const { user } = session.data;
 
   await prisma.$transaction(async (prisma) => {
     await prisma.item.deleteMany({
       where: {
-        userId: session.user.id,
+        userId: user.id,
       },
     });
   });

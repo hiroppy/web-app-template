@@ -2,8 +2,8 @@ import type { Route } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { Suspense } from "react";
+import { getSessionOrReject } from "../_actions/auth";
 import { deleteAll } from "../_actions/items";
-import { auth } from "../_clients/nextAuth";
 import { prisma } from "../_clients/prisma";
 import { Button } from "../_components/Button";
 import { format } from "../_utils/date";
@@ -22,16 +22,16 @@ export default async function Page() {
 }
 
 async function Status() {
-  const session = await auth();
+  const session = await getSessionOrReject();
 
   return (
     <div className="flex justify-between gap-3 flex-col md:flex-row md:items-center">
       <p className="text-gray-300" aria-label="User status">
-        {session?.user
-          ? `you are signed in as ${session.user.name} 😄`
+        {session?.data?.user
+          ? `you are signed in as ${session.data.user.name} 😄`
           : "you are not signed in 🥲"}
       </p>
-      {session?.user && (
+      {session?.data?.user && (
         <div className="flex items-center gap-4">
           <Link href={"/create" as Route} scroll={false}>
             <Button className="bg-blue-600">Add an item</Button>
