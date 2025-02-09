@@ -13,9 +13,5 @@ export function createDBUrl({
   db?: string;
   schema?: string;
 }) {
-  console.log(
-    "ur",
-    `postgresql://${user}:${password}@${host}:${port}/${db}?schema=${schema}`,
-  );
   return `postgresql://${user}:${password}@${host}:${port}/${db}?schema=${schema}`;
 }

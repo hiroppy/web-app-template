@@ -245,7 +245,13 @@ export class BaseTest {
     const command = !hasE2e ? "npm run build" : "npm run build:test";
 
     test("should build", async (t) => {
+      await execAsync("pnpm db:up && pnpm db:deploy", {
+        cwd: this.outputPath,
+      });
       await execAsync(command, {
+        cwd: this.outputPath,
+      });
+      await execAsync("docker compose down", {
         cwd: this.outputPath,
       });
 
