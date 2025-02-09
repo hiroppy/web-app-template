@@ -52,6 +52,9 @@ jobs:
             -t app \
             -f Dockerfile \
             --add-host=host.docker.internal:host-gateway \
+            --build-arg DATABASE_URL=${{env.DATABASE_URL}} \
+            --build-arg NEXTAUTH_SECRET=${{env.NEXTAUTH_SECRET}} \
+            --build-arg NEXT_PUBLIC_SITE_URL=${{env.NEXT_PUBLIC_SITE_URL}} \
             .
         env:
           DATABASE_HOST: host.docker.internal
