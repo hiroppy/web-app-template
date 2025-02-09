@@ -47,11 +47,6 @@ jobs:
       - uses: actions/checkout@v4
       - uses: ./.github/actions/setup-node
       - uses: ./.github/actions/setup-db
-      - name: Docker Status
-        run: |
-          docker ps
-          docker compose ps
-          netstat -tupln | grep 5432 || true
       - run: |
           docker build \
             -t app \
