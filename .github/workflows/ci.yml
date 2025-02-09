@@ -52,6 +52,7 @@ jobs:
           docker build \
             -t app \
             -f Dockerfile \
+            --add-host=host.docker.internal:host-gateway \
             .
       - run: docker run -d -p 3000:3000 app
       - run: |
