@@ -1,6 +1,6 @@
 import type { typeToFlattenedError } from "zod";
 
-type SuccessResult<T, U> = {
+type SuccessResult<T> = {
   success: true;
   data: T;
   message?: string;
@@ -8,11 +8,16 @@ type SuccessResult<T, U> = {
 
 type FailureResult<T, U> = {
   success: false;
-  data?: T;
   message?: string;
-  zodErrors?: typeToFlattenedError<U>["fieldErrors"];
+  data?: U;
+  zodErrors?: typeToFlattenedError<T>["fieldErrors"];
 };
 
-export type Result<T = void, U = Record<string, unknown>> =
-  | SuccessResult<T, U>
-  | FailureResult<T, U>;
+/**
+ * @typeParam T - data to be returned if successful
+ * @typeParam U - validation error by zod
+ * @typeParam P - data to be returned if failed
+ */
+export type Result<T = void, U = Record<string, unknown>, P = never> =
+  | SuccessResult<T>
+  | FailureResult<U, P>;

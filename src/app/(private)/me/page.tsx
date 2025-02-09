@@ -1,13 +1,15 @@
 import { notFound } from "next/navigation";
-import { auth } from "../../_clients/nextAuth";
+import { getSessionOrReject } from "../../_actions/auth";
 import { UpdateMyInfo } from "./_components/UpdateMyInfo";
 
 export default async function Page() {
-  const session = await auth();
+  const session = await getSessionOrReject();
 
-  if (!session?.user.id) {
+  if (!session.success) {
     notFound();
   }
 
-  return <UpdateMyInfo name={session.user.name ?? ""} />;
+  const { user } = session.data;
+
+  return <UpdateMyInfo name={user.name ?? ""} />;
 }
