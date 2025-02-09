@@ -40,9 +40,10 @@ jobs:
     runs-on: ubuntu-latest
     env:
       # should store them to github.secrets
-      DATABASE_URL: postgresql://dev:1234@0.0.0.0:5432/dev?schema=public
-      NEXTAUTH_SECRET: TKDdLVjf7cTyTs5oWVpv04senu6fia4RGQbYHRQIR5Q=
+      # database_url: postgresql://dev:1234@0.0.0.0:5432/dev?schema=public
+      # NEXTAUTH_SECRET: TKDdLVjf7cTyTs5oWVpv04senu6fia4RGQbYHRQIR5Q=
       NEXT_PUBLIC_SITE_URL: http://localhost:3000
+      DATABASE_HOST: host.docker.internal
     steps:
       - uses: actions/checkout@v4
       - uses: ./.github/actions/setup-node
@@ -51,9 +52,6 @@ jobs:
           docker build \
             -t app \
             -f Dockerfile \
-            --build-arg DATABASE_URL=${{env.DATABASE_URL}} \
-            --build-arg NEXTAUTH_SECRET=${{env.NEXTAUTH_SECRET}} \
-            --build-arg NEXT_PUBLIC_SITE_URL=${{env.NEXT_PUBLIC_SITE_URL}} \
             .
       - run: docker run -d -p 3000:3000 app
       - run: |
