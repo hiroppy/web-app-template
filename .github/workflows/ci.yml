@@ -43,7 +43,6 @@ jobs:
       # database_url: postgresql://dev:1234@0.0.0.0:5432/dev?schema=public
       # NEXTAUTH_SECRET: TKDdLVjf7cTyTs5oWVpv04senu6fia4RGQbYHRQIR5Q=
       NEXT_PUBLIC_SITE_URL: http://localhost:3000
-      DATABASE_HOST: host.docker.internal
     steps:
       - uses: actions/checkout@v4
       - uses: ./.github/actions/setup-node
@@ -54,6 +53,8 @@ jobs:
             -f Dockerfile \
             --add-host=host.docker.internal:host-gateway \
             .
+        env:
+          DATABASE_HOST: host.docker.internal
       - run: docker run -d -p 3000:3000 app
       - run: |
           until $(curl --output /dev/null --silent --fail ${{env.NEXT_PUBLIC_SITE_URL}}); do
