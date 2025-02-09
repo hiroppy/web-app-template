@@ -20,6 +20,7 @@ export const modifiedFiles = /** @type {const} */ ([
   "env.ts",
   "Dockerfile",
   ".env.sample",
+  ".env.test",
 ]);
 
 export async function otel(answer, isSkipQuestion) {
@@ -40,6 +41,7 @@ export async function otel(answer, isSkipQuestion) {
       [modifiedFiles[3], fences[1]],
       [modifiedFiles[4], fences[0]],
       [modifiedFiles[5], fences[0]],
+      [modifiedFiles[6], fences[0]],
     ],
     yesCallback: async () => {
       const { data } = await getPackageJson();

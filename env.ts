@@ -22,7 +22,6 @@ const schema = z.object({
   DATABASE_HOST: z.string().min(1),
   DATABASE_PORT: z.coerce.number().min(1),
   DATABASE_SCHEMA: z.string().min(1),
-  DATABASE_URL: z.string().min(1),
 
   GOOGLE_CLIENT_ID: z.string().min(1),
   GOOGLE_CLIENT_SECRET: z.string().min(1),
