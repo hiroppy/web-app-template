@@ -32,6 +32,20 @@ ADMIN ADMIN
     DateTime created_at
     DateTime updated_at
     Role role
+    String stripe_id "❓"
+    }
+
+
+  "subscriptions" {
+    String id "🗝️"
+    String subscription_id
+    String invoice_id
+    String status
+    DateTime current_period_end "❓"
+    Boolean cancel_at_period_end
+    DateTime created_at
+    DateTime updated_at
+    String user_id
     }
 
 
@@ -47,5 +61,7 @@ ADMIN ADMIN
     "users" o{--}o "accounts" : "accounts"
     "users" o|--|| "Role" : "enum:role"
     "users" o{--}o "items" : "items"
+    "users" o{--}o "subscriptions" : "subscriptions"
+    "subscriptions" o|--|| "users" : "user"
     "items" o|--|| "users" : "user"
 ```

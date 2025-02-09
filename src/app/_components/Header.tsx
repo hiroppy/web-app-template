@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { auth } from "../_clients/nextAuth";
+import { CheckoutButton } from "./CheckoutButton";
 import { Container } from "./Container";
 import { SignInButton } from "./SignInButton";
 import { SignOutButton } from "./SignOutButton";
@@ -26,6 +27,7 @@ export async function Header() {
           <i className="w-10 h-10 rounded-full bg-gray-600" />
         )}
         {session ? <SignOutButton /> : <SignInButton />}
+        {session && <CheckoutButton />}
       </Container>
     </header>
   );

@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { Suspense } from "react";
 import { deleteAll } from "../_actions/items";
+import { status } from "../_actions/payment";
 import { auth } from "../_clients/nextAuth";
 import { prisma } from "../_clients/prisma";
 import { Button } from "../_components/Button";
@@ -13,6 +14,9 @@ export default async function Page() {
     <div className="space-y-5">
       <Suspense fallback={<p>loading ...</p>}>
         <Status />
+      </Suspense>
+      <Suspense fallback={<p>loading ...</p>}>
+        <Payment />
       </Suspense>
       <Suspense fallback={<p>loading ...</p>}>
         <List />
@@ -87,4 +91,20 @@ async function List() {
       ))}
     </ul>
   );
+}
+
+async function Payment() {
+  const { success, data } = await status();
+
+  if (!data) {
+    return null;
+  }
+
+  if (!success) {
+    return <p>error</p>;
+  }
+
+  console.log(data);
+
+  return <div className="space-y-5">aaa</div>;
 }
