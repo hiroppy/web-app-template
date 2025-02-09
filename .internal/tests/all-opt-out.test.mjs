@@ -10,6 +10,7 @@ describe("all-opt-out", async () => {
     noE2e: true,
     noDocker: true,
     noOtel: true,
+    noStripe: true,
   });
 
   await baseTest.allTests({ hasE2e: false });

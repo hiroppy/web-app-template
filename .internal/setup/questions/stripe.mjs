@@ -20,6 +20,7 @@ export const modifiedFiles = /** @type {const} */ ([
   "README.md",
   "env.ts",
   ".env.sample",
+  ".env.test",
 ]);
 
 export async function stripe(answer, isSkipQuestion) {
@@ -38,6 +39,7 @@ export async function stripe(answer, isSkipQuestion) {
       [modifiedFiles[1], fences[2]],
       [modifiedFiles[2], fences[1]],
       [modifiedFiles[3], fences[0]],
+      [modifiedFiles[4], fences[0]],
     ],
     yesCallback: async () => {
       const { data } = await getPackageJson();
