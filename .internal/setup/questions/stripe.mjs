@@ -10,6 +10,7 @@ import {
 export const removedFiles = /** @type {const} */ ([
   "./src/app/_actions/payment.ts",
   "./src/app/_clients/stripe.ts",
+  "./src/app/_components/Payment.tsx",
   "./src/app/_components/PaymentCheckoutButton.tsx",
   "./src/app/_components/PaymentCancelButton.tsx",
 ]);
@@ -22,6 +23,7 @@ export const modifiedFiles = /** @type {const} */ ([
   "env.ts",
   ".env.sample",
   ".env.test",
+  "./src/app/(public)/page.tsx",
 ]);
 
 export async function stripe(answer, isSkipQuestion) {
@@ -41,6 +43,7 @@ export async function stripe(answer, isSkipQuestion) {
       [modifiedFiles[2], fences[1]],
       [modifiedFiles[3], fences[0]],
       [modifiedFiles[4], fences[0]],
+      [modifiedFiles[5], fences[1]],
     ],
     yesCallback: async () => {
       const { data } = await getPackageJson();

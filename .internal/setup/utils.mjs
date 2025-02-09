@@ -7,6 +7,8 @@ export const basePath = resolve(import.meta.dirname, "../..");
 
 export const execAsync = promisify(exec);
 
+const prismaPath = "prisma/schema.prisma";
+
 export function title(title) {
   console.info("\x1b[36m%s\x1b[0m", `🎃 ${title}...`);
 }
@@ -170,8 +172,7 @@ export async function writeFileToCopiedDir(file, data) {
 }
 
 export async function removeItemModelFromPrisma(modelName) {
-  const file = join(basePath, "prisma", "schema.prisma");
-  const data = await readFileFromCopiedDir(file);
+  const data = await readFileFromCopiedDir(prismaPath);
   const modelRegex = new RegExp(
     `model\\s+${modelName}\\s+\\{[^\\}]*\\}\\n*`,
     "g",
@@ -189,5 +190,5 @@ export async function removeItemModelFromPrisma(modelName) {
   updatedSchema = updatedSchema.replace(/([^\n])(\s*@@\w+)/g, "$1\n$2"); // @@ユニークやインデックス系
   updatedSchema = updatedSchema.replace(/(\w)\s+(\/\/)/g, "$1\n$2"); // コメントの位置を修正
 
-  await writeFileToCopiedDir(file, updatedSchema);
+  await writeFileToCopiedDir(prismaPath, updatedSchema);
 }

@@ -3,20 +3,23 @@ import Image from "next/image";
 import Link from "next/link";
 import { Suspense } from "react";
 import { deleteAll } from "../_actions/items";
-import { status } from "../_actions/payment";
 import { auth } from "../_clients/nextAuth";
 import { prisma } from "../_clients/prisma";
 import { Button } from "../_components/Button";
-import { PaymentCancelButton } from "../_components/PaymentCancelButton";
-import { PaymentCheckoutButton } from "../_components/PaymentCheckoutButton";
 import { format } from "../_utils/date";
+
+/* start: stripe */
+import { Payment } from "../_components/Payment";
+/* end: stripe */
 
 export default async function Page() {
   return (
     <div className="space-y-7">
-      <Suspense fallback={<p>loading ...</p>}>
+      {/* start: stripe */}
+      {/* <Suspense fallback={<p>loading ...</p>}>
         <Payment />
-      </Suspense>
+      </Suspense> */}
+      {/* end: stripe */}
       <Suspense fallback={<p>loading ...</p>}>
         <Status />
       </Suspense>
@@ -92,34 +95,5 @@ async function List() {
         </li>
       ))}
     </ul>
-  );
-}
-
-async function Payment() {
-  const { success, message, data } = await status();
-  const limitDate = data?.cancelAtPeriodEnd ? data?.currentPeriodEnd : null;
-
-  if (message === "no session token") {
-    return null;
-  }
-
-  return (
-    <div className="flex flex-col items-end">
-      <div className="flex items-center gap-2">
-        <h3 className="font-semibold">Subscription Status</h3>
-        {!success ? (
-          <p className="text-red-300">internal error</p>
-        ) : !data ? (
-          <PaymentCheckoutButton />
-        ) : (
-          <PaymentCancelButton cancelAtPeriodEnd={data.cancelAtPeriodEnd} />
-        )}
-      </div>
-      {limitDate && (
-        <p className="text-sm text-gray-400">
-          Available until {format(limitDate)}
-        </p>
-      )}
-    </div>
   );
 }
