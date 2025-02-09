@@ -40,7 +40,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       # should store them to github.secrets
-      DATABASE_URL: postgresql://dev:1234@localhost:5432/dev?schema=public
+      DATABASE_URL: postgresql://dev:1234@0.0.0.0:5432/dev?schema=public
       NEXTAUTH_SECRET: TKDdLVjf7cTyTs5oWVpv04senu6fia4RGQbYHRQIR5Q=
       NEXT_PUBLIC_SITE_URL: http://localhost:3000
     steps:
