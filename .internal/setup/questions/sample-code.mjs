@@ -6,6 +6,7 @@ import {
   removeDeps,
   removeDirs,
   removeFiles,
+  removeItemModelFromPrisma,
   writeFileToCopiedDir,
 } from "../utils.mjs";
 
@@ -62,7 +63,7 @@ export async function sampleCode(answer, isSkipQuestion) {
     ],
     yesCallback: async () => {
       await Promise.all([
-        removeItemModelFromPrisma(),
+        removeItemModelFromPrisma("Item"),
         removeFiles(removedFiles),
         removeDirs(removedDirs),
         removeDeps(removedDeps),
@@ -84,29 +85,6 @@ async function readReplacedCode(fileName) {
     join(import.meta.dirname, join("..", "code", fileName)),
     "utf-8",
   );
-}
-
-async function removeItemModelFromPrisma() {
-  const data = await readFileFromCopiedDir(modifiedFiles[3]);
-  const modelName = "Item";
-  const modelRegex = new RegExp(
-    `model\\s+${modelName}\\s+\\{[^\\}]*\\}\\n*`,
-    "g",
-  );
-  let updatedSchema = data.replace(modelRegex, "");
-
-  const fieldRegex = new RegExp(`\\s+\\w+\\s+${modelName}\\[\\]\\s*;?`, "g");
-  updatedSchema = updatedSchema.replace(fieldRegex, "");
-
-  // @@
-  updatedSchema = updatedSchema.replace(
-    /([^\n])(\s*@@\w+\s*\(.*?\))/g,
-    "$1\n$2",
-  );
-  updatedSchema = updatedSchema.replace(/([^\n])(\s*@@\w+)/g, "$1\n$2"); // @@ユニークやインデックス系
-  updatedSchema = updatedSchema.replace(/(\w)\s+(\/\/)/g, "$1\n$2"); // コメントの位置を修正
-
-  await writeFileToCopiedDir(modifiedFiles[3], updatedSchema);
 }
 
 // async function cleanUpNextConfig() {

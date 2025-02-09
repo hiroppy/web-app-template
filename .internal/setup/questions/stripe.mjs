@@ -4,6 +4,7 @@ import {
   removeDeps,
   removeDirs,
   removeFiles,
+  removeItemModelFromPrisma,
 } from "../utils.mjs";
 
 export const removedFiles = /** @type {const} */ ([
@@ -46,6 +47,7 @@ export async function stripe(answer, isSkipQuestion) {
       const deps = ["stripe"];
 
       await Promise.all([
+        removeItemModelFromPrisma("Subscription"),
         removeFiles(removedFiles),
         removeDirs(removedDirs),
         removeDeps(deps),
