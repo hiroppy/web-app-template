@@ -16,7 +16,7 @@ export class BaseTest {
     this.outputPath = join(process.cwd(), this.outputDir);
   }
 
-  globalHook({ noSampleCode, noDocker, noE2e, noOtel } = {}) {
+  globalHook({ noSampleCode, noDocker, noE2e, noOtel, noStripe } = {}) {
     before(
       async () => {
         await execAsync("docker compose stop");
@@ -63,6 +63,13 @@ export class BaseTest {
             }
             if (data.includes("remove OpenTelemetry")) {
               if (noOtel) {
+                child.stdin.write("y\n");
+              } else {
+                child.stdin.write("N\n");
+              }
+            }
+            if (data.includes("remove Stripe")) {
+              if (noStripe) {
                 child.stdin.write("y\n");
               } else {
                 child.stdin.write("N\n");

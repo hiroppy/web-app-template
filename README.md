@@ -57,6 +57,7 @@ The following items will be asked whether they are required when the project is 
 - Dockerfile
 - E2E Testing
 - Observability feature
+- Stripe
 
 <!-- ######## -->
 
@@ -76,6 +77,16 @@ $ cp .env.sample .env
 ```sh
 $ pnpm dev
 ```
+
+<!-- start: stripe -->
+
+### Debugging Stripe
+
+```sh
+$ stripe listen --forward-to localhost:3000/api/payment/webhook
+```
+
+<!-- end: stripe -->
 
 ## Production
 

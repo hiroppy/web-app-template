@@ -160,6 +160,12 @@ exports[`no-e2e > should update README.md 1`] = `
   "$ pnpm dev",
   "\`\`\`",
   "",
+  "### Debugging Stripe",
+  "",
+  "\`\`\`sh",
+  "$ stripe listen --forward-to localhost:3000/api/payment/webhook",
+  "\`\`\`",
+  "",
   "## Production",
   "",
   "\`\`\`sh",
@@ -224,6 +230,7 @@ exports[`no-e2e > should update dependencies 1`] = `
     "react",
     "react-dom",
     "react-hook-form",
+    "stripe",
     "zod"
   ],
   "devDependencies": [

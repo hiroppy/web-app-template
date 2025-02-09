@@ -70,6 +70,11 @@ exports[`no-otel > should update .env.sample 1`] = `
   "# $ openssl rand -base64 32",
   "NEXTAUTH_SECRET=TKDdLVjf7cTyTs5oWVpv04senu6fia4RGQbYHRQIR5Q=",
   "",
+  "",
+  "# Stripe",
+  "STRIPE_SECRET_KEY=xxxx",
+  "STRIPE_WEBHOOK_SECRET=xxxx",
+  "STRIPE_PRICE_ID=xxxx",
   ""
 ]
 `;
@@ -135,6 +140,12 @@ exports[`no-otel > should update README.md 1`] = `
   "",
   "\`\`\`sh",
   "$ pnpm dev",
+  "\`\`\`",
+  "",
+  "### Debugging Stripe",
+  "",
+  "\`\`\`sh",
+  "$ stripe listen --forward-to localhost:3000/api/payment/webhook",
   "\`\`\`",
   "",
   "## Production",
@@ -215,6 +226,7 @@ exports[`no-otel > should update dependencies 1`] = `
     "react",
     "react-dom",
     "react-hook-form",
+    "stripe",
     "zod"
   ],
   "devDependencies": [
@@ -275,6 +287,10 @@ exports[`no-otel > should update env.ts 1`] = `
   "",
   "  NEXTAUTH_URL: z.string().min(1),",
   "  NEXTAUTH_SECRET: z.string().min(1),",
+  "",
+  "  STRIPE_PRICE_ID: z.string().min(1),",
+  "  STRIPE_SECRET_KEY: z.string().min(1),",
+  "  STRIPE_WEBHOOK_SECRET: z.string().min(1),",
   "});",
   "",
   "export function config() {",
