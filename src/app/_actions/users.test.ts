@@ -24,7 +24,6 @@ describe("actions/users", () => {
 
       expect(await updateMe({ success: false }, formData)).toMatchObject({
         success: true,
-        message: "updated",
         data: expected,
       });
       expect(mock.revalidatePath.mock.calls).toMatchInlineSnapshot(`

@@ -8,7 +8,11 @@ import { type ItemSchema, itemSchema } from "../_schemas/items";
 import { getFieldErrors } from "../_utils/zod";
 import type { Result } from "./types";
 
-export async function create(data: ItemSchema): Promise<Result<Item>> {
+type ReturnedCreate = Result<
+  Pick<Item, "id" | "content" | "createdAt" | "updatedAt">
+>;
+
+export async function create(data: ItemSchema): Promise<ReturnedCreate> {
   const session = await auth();
 
   if (!session?.user?.id) {
@@ -45,7 +49,12 @@ export async function create(data: ItemSchema): Promise<Result<Item>> {
 
   return {
     success: true,
-    data: res,
+    data: {
+      id: res.id,
+      content: res.content,
+      createdAt: res.createdAt,
+      updatedAt: res.updatedAt,
+    },
   };
 }
 

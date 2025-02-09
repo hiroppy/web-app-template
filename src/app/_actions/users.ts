@@ -54,7 +54,6 @@ export async function updateMe(
 
   return {
     success: true,
-    message: "updated",
     data,
   };
 }
