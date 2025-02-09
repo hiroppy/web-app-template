@@ -44,8 +44,7 @@ const nextConfig: NextConfig = {
   },
   /* end: sample */
   experimental: {
-    // https://github.com/vercel/next.js/issues/62335#issuecomment-2053666663
-    typedRoutes: false,
+    typedRoutes: true,
     authInterrupts: true,
   },
   /* start: otel */

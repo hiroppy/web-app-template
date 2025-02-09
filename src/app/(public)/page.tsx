@@ -10,7 +10,7 @@ import { format } from "../_utils/date";
 
 export default async function Page() {
   return (
-    <div className="space-y-7">
+    <div className="space-y-5">
       <Suspense fallback={<p>loading ...</p>}>
         <Status />
       </Suspense>
