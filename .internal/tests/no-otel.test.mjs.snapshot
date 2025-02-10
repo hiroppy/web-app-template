@@ -112,6 +112,11 @@ exports[`no-otel > should update .env.test 1`] = `
   "NEXTAUTH_SECRET=TKDdLVjf7cTyTs5oWVpv04senu6fia4RGQbYHRQIR5Q=",
   "NEXTAUTH_TEST_MODE=true",
   "",
+  "# Stripe",
+  "STRIPE_SECRET_KEY=dummy",
+  "STRIPE_WEBHOOK_SECRET=dummy",
+  "STRIPE_PRICE_ID=dummy",
+  "",
   ""
 ]
 `;

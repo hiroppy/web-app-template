@@ -53,12 +53,9 @@ exports[`no-sample-code > should put files 1`] = `
   "internal-tests-output-no-sample-code/src/app/(public)/layout.tsx",
   "internal-tests-output-no-sample-code/src/app/(public)/page.tsx",
   "internal-tests-output-no-sample-code/src/app/(public)/signin/page.tsx",
-<<<<<<< HEAD
-  "internal-tests-output-no-sample-code/src/app/_actions/payment.ts",
-=======
   "internal-tests-output-no-sample-code/src/app/_actions/auth.test.ts",
   "internal-tests-output-no-sample-code/src/app/_actions/auth.ts",
->>>>>>> main
+  "internal-tests-output-no-sample-code/src/app/_actions/payment.ts",
   "internal-tests-output-no-sample-code/src/app/_actions/test.helper.ts",
   "internal-tests-output-no-sample-code/src/app/_actions/types.ts",
   "internal-tests-output-no-sample-code/src/app/_actions/users.test.ts",
