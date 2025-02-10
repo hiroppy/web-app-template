@@ -27,7 +27,7 @@ export class BaseTest {
 
           const child =
             process.env.IS_LOCAL === "false"
-              ? exec("npx create-app-foundation@latest")
+              ? exec("npx create-app-foundation@1.0.15")
               : exec("DEBUG=true create-app-foundation");
 
           child.stdout.on("data", (data) => {
@@ -252,6 +252,16 @@ export class BaseTest {
     const command = !hasE2e ? "npm run build" : "npm run build:test";
 
     test("should build", async (t) => {
+      await execAsync("docker compose down", {
+        cwd: this.outputPath,
+      });
+
+      if (!hasE2e) {
+        await execAsync("pnpm db:up && pnpm db:deploy", {
+          cwd: this.outputPath,
+        });
+      }
+
       await execAsync(command, {
         cwd: this.outputPath,
       });

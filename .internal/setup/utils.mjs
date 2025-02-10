@@ -30,8 +30,8 @@ export async function executeOptionalQuestion({
           } else {
             await removeLines([[file, fence]]);
           }
-        } catch (error) {
-          console.error(error);
+        } catch {
+          // ignore
         }
       }),
     );
@@ -130,8 +130,8 @@ export async function removeLines(files) {
         }
 
         await writeFileToCopiedDir(file, res.join("\n"));
-      } catch (error) {
-        console.error(error);
+      } catch {
+        // ignore
       }
     }),
   );
