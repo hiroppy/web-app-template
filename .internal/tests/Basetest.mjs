@@ -27,7 +27,7 @@ export class BaseTest {
 
           const child =
             process.env.IS_LOCAL === "false"
-              ? exec("npx create-app-foundation@1.0.15")
+              ? exec("npx create-app-foundation@latest")
               : exec("DEBUG=true create-app-foundation");
 
           child.stdout.on("data", (data) => {
