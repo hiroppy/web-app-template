@@ -99,7 +99,7 @@ export async function removeWords(file, words) {
     }
 
     for (const word of words) {
-      if (line.trim().includes(word)) {
+      if (line.includes(word)) {
         str = str.replace(word, "");
       }
     }

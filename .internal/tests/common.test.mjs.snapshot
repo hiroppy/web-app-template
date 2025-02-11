@@ -195,6 +195,7 @@ exports[`common > should update .github/workflows/ci.yml 1`] = `
   "            --build-arg STRIPE_WEBHOOK_SECRET=\${{env.STRIPE_WEBHOOK_SECRET}} \\\\",
   "            .",
   "        env:",
+  "          # please set the following environment variables as github secrets",
   "          DATABASE_USER: local",
   "          DATABASE_PASSWORD: 1234",
   "          DATABASE_DB: database",

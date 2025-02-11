@@ -243,6 +243,7 @@ exports[`no-stripe > should update .github/workflows/ci.yml 1`] = `
   "            --build-arg TRACE_EXPORTER_URL=\${{env.TRACE_EXPORTER_URL}} \\\\",
   "            .",
   "        env:",
+  "          # please set the following environment variables as github secrets",
   "          DATABASE_USER: local",
   "          DATABASE_PASSWORD: 1234",
   "          DATABASE_DB: database",

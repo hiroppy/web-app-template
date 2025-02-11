@@ -5,6 +5,7 @@ import {
   removeDirs,
   removeFiles,
   removeItemModelFromPrisma,
+  removeWords,
 } from "../utils.mjs";
 
 export const removedFiles = /** @type {const} */ ([
@@ -61,6 +62,11 @@ export async function stripe(answer, isSkipQuestion) {
         removeFiles(removedFiles),
         removeDirs(removedDirs),
         removeDeps(deps),
+        removeWords(modifiedFiles[6], [
+          "--build-arg STRIPE_PRICE_ID=${{env.STRIPE_PRICE_ID}} \\",
+          "--build-arg STRIPE_SECRET_KEY=${{env.STRIPE_SECRET_KEY}} \\",
+          "--build-arg STRIPE_WEBHOOK_SECRET=${{env.STRIPE_WEBHOOK_SECRET}} \\",
+        ]),
       ]);
     },
   });

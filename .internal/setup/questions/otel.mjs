@@ -59,7 +59,7 @@ export async function otel(answer, isSkipQuestion) {
         removeFiles(removedFiles),
         removeDirs(removedDirs),
         removeDeps(deps),
-        removeWords(modifiedFiles[4], [
+        removeWords(modifiedFiles[7], [
           "--build-arg TRACE_EXPORTER_URL=${{env.TRACE_EXPORTER_URL}} \\",
         ]),
       ]);
