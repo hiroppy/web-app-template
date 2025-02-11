@@ -34,6 +34,7 @@ exports[`common > should put files 1`] = `
   "internal-tests-output-common/renovate.json",
   "internal-tests-output-common/tests/build.mjs",
   "internal-tests-output-common/tests/db.setup.ts",
+  "internal-tests-output-common/tests/vitest.helper.ts",
   "internal-tests-output-common/tests/vitest.setup.ts",
   "internal-tests-output-common/tsconfig.json",
   "internal-tests-output-common/vitest.config.ts",

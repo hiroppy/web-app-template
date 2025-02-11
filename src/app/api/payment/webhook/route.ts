@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import type Stripe from "stripe";
 import { prisma } from "../../../_clients/prisma";
 import { stripe } from "../../../_clients/stripe";
+import { handleSubscriptionUpsert } from "../../../_utils/payment";
 
 export async function POST(req: Request) {
   const sig = req.headers.get("stripe-signature");
@@ -48,47 +49,36 @@ export async function POST(req: Request) {
       break;
     }
 
+    case "customer.deleted": {
+      const customer = event.data.object as Stripe.Customer;
+
+      try {
+        await prisma.$transaction(async (prisma) => {
+          await prisma.user.update({
+            where: {
+              stripeId: customer.id,
+            },
+            data: {
+              stripeId: null,
+              subscriptions: {
+                deleteMany: {},
+              },
+            },
+          });
+        });
+      } catch {
+        return new NextResponse("Error deleting customer", {
+          status: 500,
+        });
+      }
+
+      break;
+    }
+
     default: {
       console.log(`Unhandled event type: ${event.type}`);
     }
   }
 
-  return NextResponse.json({ received: true }, { status: 200 });
-}
-
-async function handleSubscriptionUpsert(subscription: Stripe.Subscription) {
-  await prisma.$transaction(async (prisma) => {
-    const user = await prisma.user.findUnique({
-      where: {
-        stripeId: subscription.customer as string,
-      },
-    });
-
-    if (!user) {
-      // console.warn(
-      //   `No user found for stripeCustomerId = ${}. Skipped.`,
-      // );
-      return;
-    }
-
-    const currentPeriodEnd = new Date(subscription.current_period_end * 1000);
-
-    await prisma.subscription.upsert({
-      where: {
-        subscriptionId: subscription.id,
-      },
-      create: {
-        userId: user.id,
-        subscriptionId: subscription.id,
-        status: subscription.status,
-        currentPeriodEnd,
-        cancelAtPeriodEnd: subscription.cancel_at_period_end,
-      },
-      update: {
-        status: subscription.status,
-        currentPeriodEnd,
-        cancelAtPeriodEnd: subscription.cancel_at_period_end,
-      },
-    });
-  });
+  return new NextResponse("received", { status: 200 });
 }

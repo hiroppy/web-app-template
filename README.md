@@ -100,7 +100,7 @@ STRIPE_PRICE_ID=
 $ stripe listen --forward-to localhost:3000/api/payment/webhook
 ```
 
-5. After signing in, you can go to the `/me/payment` page to see how to make a payment.
+5. After signing in, you can go to the `http://localhost:3000/me/payment` page to see how to make a payment.
 
 <!-- end: stripe -->
 

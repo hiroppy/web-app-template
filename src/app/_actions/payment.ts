@@ -2,19 +2,17 @@
 
 import type { Subscription } from "@prisma/client";
 import { redirect } from "next/navigation";
-import { auth } from "../_clients/nextAuth";
 import { prisma } from "../_clients/prisma";
 import { cancelUrl, stripe, successUrl } from "../_clients/stripe";
+import { handleSubscriptionUpsert } from "../_utils/payment";
+import { getSessionOrReject } from "./auth";
 import type { Result } from "./types";
 
 export async function checkout(): Promise<Result> {
-  const session = await auth();
+  const session = await getSessionOrReject();
 
-  if (!session) {
-    return {
-      success: false,
-      message: "no session token",
-    };
+  if (!session.success) {
+    return session;
   }
 
   const checkoutSession = await stripe.checkout.sessions.create({
@@ -47,10 +45,17 @@ export async function checkout(): Promise<Result> {
   redirect(checkoutSession.url);
 }
 
+type ReturnedUpdate = Result<
+  Pick<
+    Subscription,
+    "subscriptionId" | "currentPeriodEnd" | "cancelAtPeriodEnd"
+  >
+>;
+
 // if you set multiple subscriptions, you need to pass the subscriptionId as an argument
 export async function update(
   cancelAtPeriodEnd: boolean,
-): Promise<Result<null>> {
+): Promise<ReturnedUpdate> {
   const { success, data } = await status();
 
   if (!success || !data) {
@@ -61,13 +66,25 @@ export async function update(
   }
 
   try {
-    await stripe.subscriptions.update(data.subscriptionId, {
-      cancel_at_period_end: cancelAtPeriodEnd,
-    });
+    const subscription = await stripe.subscriptions.update(
+      data.subscriptionId,
+      {
+        cancel_at_period_end: cancelAtPeriodEnd,
+      },
+    );
+    const res = await handleSubscriptionUpsert(subscription);
+
+    if (!res) {
+      throw new Error("subscription update failed");
+    }
 
     return {
       success: true,
-      data: null,
+      data: {
+        subscriptionId: res.subscriptionId,
+        currentPeriodEnd: res.currentPeriodEnd,
+        cancelAtPeriodEnd: res.cancelAtPeriodEnd,
+      },
     };
   } catch {
     return {
@@ -84,18 +101,16 @@ type ReturnedStatus = Result<Pick<
 
 // this sample code assumes that the user has only one subscription
 export async function status(): Promise<ReturnedStatus> {
-  const session = await auth();
+  const session = await getSessionOrReject();
 
-  if (!session) {
-    return {
-      success: false,
-      message: "no session token",
-    };
+  if (!session.success) {
+    return session;
   }
 
+  const { user } = session.data;
   const subscriptions = await prisma.subscription.findMany({
     where: {
-      userId: session.user.id,
+      userId: user.id,
     },
   });
   const activeSubscriptions = subscriptions.filter((subscription) =>
@@ -106,18 +121,18 @@ export async function status(): Promise<ReturnedStatus> {
     return {
       success: true,
       data: null,
-      message: "active subscription not found",
+      message: "subscription not found",
     };
   }
 
-  const a = activeSubscriptions[0];
+  const subscription = activeSubscriptions[0];
 
   return {
     success: true,
     data: {
-      subscriptionId: a.subscriptionId,
-      cancelAtPeriodEnd: a.cancelAtPeriodEnd,
-      currentPeriodEnd: a.currentPeriodEnd,
+      subscriptionId: subscription.subscriptionId,
+      cancelAtPeriodEnd: subscription.cancelAtPeriodEnd,
+      currentPeriodEnd: subscription.currentPeriodEnd,
     },
   };
 }

@@ -1,7 +1,7 @@
 import { beforeEach, describe, expect, test } from "vitest";
-import { setup } from "./test.helper";
+import { setup } from "../../../tests/vitest.helper";
 
-// need to import after test.helper
+// need to import after vitest.helper
 import { create, deleteAll } from "./items";
 
 const { prisma, mock, createUser } = await setup();

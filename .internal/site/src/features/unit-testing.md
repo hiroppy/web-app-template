@@ -13,10 +13,10 @@ As a result, this template were able to significantly reduce the overall test co
 ::: code-group
 
 <!-- prettier-ignore -->
-<<< ../../../../src/app/_actions/test.helper.ts{5-9}
+<<< ../../../../src/app/_actions/vitest.helper.ts{5-9}
 
 <<< ../../../../tests/db.setup.ts
 :::
 
 > [!IMPORTANT]
-> When using this feature with Vitest, you need to perform a dynamic import within `vi.hoisted`. Please check `test.helper.ts`
+> When using this feature with Vitest, you need to perform a dynamic import within `vi.hoisted`. Please check `vitest.helper.ts`
