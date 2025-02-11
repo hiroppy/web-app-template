@@ -10,6 +10,7 @@ ARG NEXT_PUBLIC_SITE_URL=''
 ARG TRACE_EXPORTER_URL=''
 # end: otel #
 
+ENV COREPACK_DEFAULT_TO_LATEST=0
 ENV PNPM_HOME="/pnpm"
 ENV PATH="$PNPM_HOME:$PATH"
 ENV DATABASE_HOST=$DATABASE_HOST
@@ -21,7 +22,6 @@ ENV NEXT_PUBLIC_SITE_URL=$NEXT_PUBLIC_SITE_URL
 ENV TRACE_EXPORTER_URL=$TRACE_EXPORTER_URL
 # end: otel #
 
-RUN npm install -g corepack
 RUN corepack enable
 RUN apt-get update -y && apt-get install -y openssl
 
