@@ -17,6 +17,28 @@ $ pnpm build
 $ pnpm start
 ```
 
+## Payment <Badge type="warning" text="Optional" />
+
+1. Create a subscription [here](https://dashboard.stripe.com/test/products?active=true&create=product&source=product_list) and get `price_id`.
+
+2. Modify the environment variables. The test API key is [here](https://dashboard.stripe.com/test/apikeys).
+
+```
+STRIPE_SECRET_KEY=
+STRIPE_WEBHOOK_SECRET=
+STRIPE_PRICE_ID=
+```
+
+3. [Install stripe CLI](https://docs.stripe.com/stripe-cli) to bypass the webhook.
+
+4. Execute the following command in another terminal.
+
+```sh
+$ stripe listen --forward-to localhost:3000/api/payment/webhook
+```
+
+5. After signing in, you can go to the `http://localhost:3000/me/payment` page to see how to make a payment.
+
 ### Observability <Badge type="warning" text="Optional" />
 
 This template uses [Jaeger](https://www.jaegertracing.io/) as a tracing platform. The local environment doesn't require `TRACE_EXPORTER_URL` environment value.

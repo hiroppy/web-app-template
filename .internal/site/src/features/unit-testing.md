@@ -13,7 +13,7 @@ As a result, this template were able to significantly reduce the overall test co
 ::: code-group
 
 <!-- prettier-ignore -->
-<<< ../../../../src/app/_actions/vitest.helper.ts{5-9}
+<<< ../../../../tests/vitest.helper.ts{5-9}
 
 <<< ../../../../tests/db.setup.ts
 :::

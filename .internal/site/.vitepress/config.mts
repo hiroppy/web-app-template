@@ -76,6 +76,10 @@ export default defineConfig({
             link: "/features/e2e-testing",
           },
           {
+            text: "Stripe",
+            link: "/features/stripe",
+          },
+          {
             text: "Observability",
             link: "/features/observability",
           },
