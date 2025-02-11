@@ -69,6 +69,15 @@ const args = [];
     args.push("--remove-otel");
   }
 }
+{
+  const answer = await rl.question(
+    question("Do you want to remove Stripe for app? (y/N)"),
+  );
+
+  if (answer === "y" || answer === "Y") {
+    args.push("--remove-stripe");
+  }
+}
 
 rl.close();
 

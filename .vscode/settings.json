@@ -29,7 +29,8 @@
     "otlp",
     "clsx",
     "vitest",
-    "knip"
+    "knip",
+    "cuid"
   ],
   "cSpell.allowCompoundWords": true,
   "cSpell.ignorePaths": ["**/node_modules/**", "**/vscode-extension/**"]

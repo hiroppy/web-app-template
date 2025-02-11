@@ -173,22 +173,29 @@ export async function writeFileToCopiedDir(file, data) {
 
 export async function removeItemModelFromPrisma(modelName) {
   const data = await readFileFromCopiedDir(prismaPath);
+
+  // 1. モデルブロック（model Foo { ... }）を丸ごと削除
+  //    - [\s\S]*? で改行込みですべてマッチ
+  //    - ブロック直後の余計な空白や改行は \s*\n? などで最小限だけ削除
   const modelRegex = new RegExp(
-    `model\\s+${modelName}\\s+\\{[^\\}]*\\}\\n*`,
-    "g",
+    `model\\s+${modelName}\\s+\\{[\\s\\S]*?\\}\\s*\\n?`,
+    "gm",
   );
   let updatedSchema = data.replace(modelRegex, "");
 
-  const fieldRegex = new RegExp(`\\s+\\w+\\s+${modelName}\\[\\]\\s*;?`, "g");
+  // 2. モデル参照（Foo[]など）を行単位で削除
+  //    - マルチラインフラグ m を使って ^ と $ を行頭・行末に対応
+  //    - これで該当行をまるごと消せば、途中で行が潰れるのを防げる
+  const fieldRegex = new RegExp(`^\\s*\\w+\\s+${modelName}\\[\\].*?\\n?`, "gm");
   updatedSchema = updatedSchema.replace(fieldRegex, "");
 
-  // @@
+  // 3. @@系やコメント位置の整形
   updatedSchema = updatedSchema.replace(
     /([^\n])(\s*@@\w+\s*\(.*?\))/g,
     "$1\n$2",
   );
-  updatedSchema = updatedSchema.replace(/([^\n])(\s*@@\w+)/g, "$1\n$2"); // @@ユニークやインデックス系
-  updatedSchema = updatedSchema.replace(/(\w)\s+(\/\/)/g, "$1\n$2"); // コメントの位置を修正
+  updatedSchema = updatedSchema.replace(/([^\n])(\s*@@\w+)/g, "$1\n$2");
+  updatedSchema = updatedSchema.replace(/(\w)\s+(\/\/)/g, "$1\n$2");
 
   await writeFileToCopiedDir(prismaPath, updatedSchema);
 }

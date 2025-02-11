@@ -16,7 +16,7 @@ export class BaseTest {
     this.outputPath = join(process.cwd(), this.outputDir);
   }
 
-  globalHook({ noSampleCode, noDocker, noE2e, noOtel } = {}) {
+  globalHook({ noSampleCode, noDocker, noE2e, noOtel, noStripe } = {}) {
     before(
       async () => {
         await execAsync("docker compose stop");
@@ -27,7 +27,7 @@ export class BaseTest {
 
           const child =
             process.env.IS_LOCAL === "false"
-              ? exec("npx create-app-foundation@1.0.15")
+              ? exec("npx create-app-foundation@latest")
               : exec("DEBUG=true create-app-foundation");
 
           child.stdout.on("data", (data) => {
@@ -63,6 +63,13 @@ export class BaseTest {
             }
             if (data.includes("remove OpenTelemetry")) {
               if (noOtel) {
+                child.stdin.write("y\n");
+              } else {
+                child.stdin.write("N\n");
+              }
+            }
+            if (data.includes("remove Stripe")) {
+              if (noStripe) {
                 child.stdin.write("y\n");
               } else {
                 child.stdin.write("N\n");

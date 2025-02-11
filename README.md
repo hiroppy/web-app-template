@@ -15,7 +15,8 @@ Installing this template automatically sets up the following libraries/tools. By
 |             |                                                                                                                                            |                                                                                                                                                      |                                                                                                                                       |                                                                                                                                                     |
 | ----------- | ------------------------------------------------------------------------------------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------- |
 | **App**     | <div align="center"><img src=".internal/site/src/public/images/libs/nextjs.png" alt="nextjs" width="44"><br>Next.js</div>                  | <div align="center"><img src=".internal/site/src/public/images/libs/tailwind.png" alt="tailwind" width="44"><br>Tailwind CSS</div>                   | <div align="center"><img src=".internal/site/src/public/images/libs/next-auth.png" alt="next-auth" width="44"><br>NextAuth.js</div>   | <div align="center"><img src=".internal/site/src/public/images/libs/react-hook-form.png" alt="react-hook-form" width="44"><br>React Hook Form</div> |
-|             | <div align="center"><img src=".internal/site/src/public/images/libs/zod.svg" alt="zod" width="44"><br>Zod </div>                           | <div align="center"><img src=".internal/site/src/public/images/libs/otel.png" alt="otel" width="44"><br>OpenTelemetry </div>                         | <div align="center"><img src=".internal/site/src/public/images/libs/prisma.png" alt="prisma" width="44"><br>Prisma </div>             | <div align="center"><img src=".internal/site/src/public/images/libs/postgresql.png" alt="prisma" width="44"><br>PostgreSQL</div>                    |
+|             | <div align="center"><img src=".internal/site/src/public/images/libs/zod.svg" alt="zod" width="44"><br>Zod </div>                           | <div align="center"><img src=".internal/site/src/public/images/libs/otel.png" alt="otel" width="44"><br>OpenTelemetry</div>                          | <div align="center"><img src=".internal/site/src/public/images/libs/prisma.png" alt="prisma" width="44"><br>Prisma</div>              | <div align="center"><img src=".internal/site/src/public/images/libs/postgresql.png" alt="postgresql" width="44"><br>PostgreSQL</div>                |
+|             | <div align="center"><img src=".internal/site/src/public/images/libs/stripe.png" alt="stripe" width="44"><br>Stripe</div>                   |                                                                                                                                                      |                                                                                                                                       |
 |             |                                                                                                                                            |                                                                                                                                                      |                                                                                                                                       |
 | **Tools**   | <div align="center"><img src=".internal/site/src/public/images/libs/typescript.png" alt="typescirpt" width="44"><br>TypeScript</div>       | <div align="center"><img src=".internal/site/src/public/images/libs/pnpm.svg" alt="pnpm" width="44"><br>pnpm</div>                                   | <div align="center"><img src=".internal/site/src/public/images/libs/biome.png" alt="biome" width="44"><br>Biome </div>                | <div align="center"><img src=".internal/site/src/public/images/libs/prettier.png" alt="prettier" width="44"><br> Prettier</div>                     |
 |             | <div align="center"><img src=".internal/site/src/public/images/libs/knip.png" alt="knip" width="44"><br>Knip</div>                         | <div align="center"><img src=".internal/site/src/public/images/libs/editorconfig.png" alt="editorconfig" width="44"><br> EditorConfig </div>         | <div align="center"><img src=".internal/site/src/public/images/libs/lefthook.png" alt="lefthook" width="44"><br> lefthook</div>       | <div align="center"><img src=".internal/site/src/public/images/libs/docker.png" alt="docker" width="44"><br> Docker </div>                          |
@@ -57,6 +58,7 @@ The following items will be asked whether they are required when the project is 
 - Dockerfile
 - E2E Testing
 - Observability feature
+- Stripe
 
 <!-- ######## -->
 
@@ -76,6 +78,32 @@ $ cp .env.sample .env
 ```sh
 $ pnpm dev
 ```
+
+<!-- start: stripe -->
+
+### Debugging Stripe
+
+1. Create a subscription [here](https://dashboard.stripe.com/test/products?active=true&create=product&source=product_list) and get `price_id`.
+
+2. Modify the environment variables. The test API key is [here](https://dashboard.stripe.com/test/apikeys).
+
+```
+STRIPE_SECRET_KEY=
+STRIPE_WEBHOOK_SECRET=
+STRIPE_PRICE_ID=
+```
+
+3. [Install stripe CLI](https://docs.stripe.com/stripe-cli) to bypass the webhook.
+
+4. Execute the following command in another terminal.
+
+```sh
+$ stripe listen --forward-to localhost:3000/api/payment/webhook
+```
+
+5. After signing in, you can go to the `http://localhost:3000/me/payment` page to see how to make a payment.
+
+<!-- end: stripe -->
 
 ## Production
 

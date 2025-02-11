@@ -3,7 +3,7 @@ import { afterAll, afterEach, expect, vi } from "vitest";
 
 export async function setup() {
   const { container, prisma, truncate, down } = await vi.hoisted(async () => {
-    const { setupDB } = await import("../../../tests/db.setup");
+    const { setupDB } = await import("./db.setup");
 
     return await setupDB({ port: "random" });
   });
@@ -15,8 +15,8 @@ export async function setup() {
     redirect: vi.fn(),
   }));
 
-  vi.mock("../_clients/prisma", async (actual) => ({
-    ...(await actual<typeof import("../_clients/prisma")>()),
+  vi.mock("../src/app/_clients/prisma", async (actual) => ({
+    ...(await actual<typeof import("../src/app/_clients/prisma")>()),
     prisma,
   }));
 
@@ -68,6 +68,18 @@ export async function setup() {
     return user;
   }
 
+  async function getUser() {
+    const me = await prisma.user.findFirst();
+
+    if (!me) {
+      throw new Error("User not found");
+    }
+
+    const { createdAt, updatedAt, ...rest } = me;
+
+    return rest;
+  }
+
   return <const>{
     container,
     prisma,
@@ -75,5 +87,6 @@ export async function setup() {
     down,
     mock,
     createUser,
+    getUser,
   };
 }
