@@ -4,6 +4,7 @@ import {
   removeDeps,
   removeDirs,
   removeFiles,
+  removeWords,
 } from "../utils.mjs";
 
 export const removedFiles = /** @type {const} */ ([
@@ -58,6 +59,9 @@ export async function otel(answer, isSkipQuestion) {
         removeFiles(removedFiles),
         removeDirs(removedDirs),
         removeDeps(deps),
+        removeWords(modifiedFiles[4], [
+          "--build-arg TRACE_EXPORTER_URL=${{env.TRACE_EXPORTER_URL}} \\",
+        ]),
       ]);
     },
   });

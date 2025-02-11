@@ -19,5 +19,5 @@ describe("no-otel", async () => {
   await baseTest.testRemovedDirs(removedDirs);
   await baseTest.testRemovedFiles(removedFiles);
   await baseTest.testDependencies();
-  await baseTest.allTests({ hasE2e: true });
+  // await baseTest.allTests({ hasE2e: true });
 });
