@@ -24,14 +24,18 @@ export async function executeOptionalQuestion({
   async function removeCodeOrFence(answer) {
     return Promise.all(
       codeAndFenceList?.map(async ([file, fence]) => {
-        try {
-          if (!answer) {
-            await removeWords(file, fence);
-          } else {
-            await removeLines([[file, fence]]);
+        const fences = Array.isArray(fence[0]) ? fence : [fence];
+
+        for (const fence of fences) {
+          try {
+            if (!answer) {
+              await removeWords(file, fence);
+            } else {
+              await removeLines([[file, fence]]);
+            }
+          } catch {
+            // ignore
           }
-        } catch {
-          // ignore
         }
       }),
     );

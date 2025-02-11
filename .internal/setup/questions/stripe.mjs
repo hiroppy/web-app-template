@@ -5,6 +5,7 @@ import {
   removeDirs,
   removeFiles,
   removeItemModelFromPrisma,
+  removeWords,
 } from "../utils.mjs";
 
 export const removedFiles = /** @type {const} */ ([
@@ -28,6 +29,8 @@ export const modifiedFiles = /** @type {const} */ ([
   "env.ts",
   ".env.sample",
   ".env.test",
+  "Dockerfile",
+  ".github/workflows/ci.yml",
 ]);
 
 export async function stripe(answer, isSkipQuestion) {
@@ -47,6 +50,8 @@ export async function stripe(answer, isSkipQuestion) {
       [modifiedFiles[2], fences[1]],
       [modifiedFiles[3], fences[0]],
       [modifiedFiles[4], fences[0]],
+      [modifiedFiles[5], fences[0]],
+      [modifiedFiles[6], fences[0]],
     ],
     yesCallback: async () => {
       const { data } = await getPackageJson();
@@ -57,6 +62,11 @@ export async function stripe(answer, isSkipQuestion) {
         removeFiles(removedFiles),
         removeDirs(removedDirs),
         removeDeps(deps),
+        removeWords(modifiedFiles[6], [
+          "--build-arg STRIPE_PRICE_ID=${{env.STRIPE_PRICE_ID}} \\",
+          "--build-arg STRIPE_SECRET_KEY=${{env.STRIPE_SECRET_KEY}} \\",
+          "--build-arg STRIPE_WEBHOOK_SECRET=${{env.STRIPE_WEBHOOK_SECRET}} \\",
+        ]),
       ]);
     },
   });

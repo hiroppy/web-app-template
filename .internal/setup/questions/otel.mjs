@@ -4,6 +4,7 @@ import {
   removeDeps,
   removeDirs,
   removeFiles,
+  removeWords,
 } from "../utils.mjs";
 
 export const removedFiles = /** @type {const} */ ([
@@ -21,6 +22,7 @@ export const modifiedFiles = /** @type {const} */ ([
   "Dockerfile",
   ".env.sample",
   ".env.test",
+  ".github/workflows/ci.yml",
 ]);
 
 export async function otel(answer, isSkipQuestion) {
@@ -42,6 +44,7 @@ export async function otel(answer, isSkipQuestion) {
       [modifiedFiles[4], fences[0]],
       [modifiedFiles[5], fences[0]],
       [modifiedFiles[6], fences[0]],
+      [modifiedFiles[7], fences[0]],
     ],
     yesCallback: async () => {
       const { data } = await getPackageJson();
@@ -56,6 +59,9 @@ export async function otel(answer, isSkipQuestion) {
         removeFiles(removedFiles),
         removeDirs(removedDirs),
         removeDeps(deps),
+        removeWords(modifiedFiles[7], [
+          "--build-arg TRACE_EXPORTER_URL=${{env.TRACE_EXPORTER_URL}} \\",
+        ]),
       ]);
     },
   });
