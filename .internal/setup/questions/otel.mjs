@@ -29,7 +29,6 @@ export async function otel(answer, isSkipQuestion) {
     ["# start: otel #", "# end: otel #"],
     ["/* start: otel */", "/* end: otel */"],
     ["<!-- start: otel -->", "<!-- end: otel -->"],
-    [": # start: otel", ": # end: otel"],
   ];
 
   await executeOptionalQuestion({
@@ -44,7 +43,7 @@ export async function otel(answer, isSkipQuestion) {
       [modifiedFiles[4], fences[0]],
       [modifiedFiles[5], fences[0]],
       [modifiedFiles[6], fences[0]],
-      [modifiedFiles[7], [fences[0], fences[3]]],
+      [modifiedFiles[7], fences[0]],
     ],
     yesCallback: async () => {
       const { data } = await getPackageJson();
