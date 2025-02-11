@@ -79,8 +79,6 @@ export async function update(
       throw new Error("subscription update failed");
     }
 
-    revalidatePath("/me/payment");
-
     return {
       success: true,
       data: {

@@ -1,4 +1,4 @@
-import { afterEach, beforeEach, describe, expect, test, vi } from "vitest";
+import { beforeEach, describe, expect, test, vi } from "vitest";
 import { setup } from "../../../tests/vitest.helper";
 
 // need to import after vitest.helper
@@ -151,13 +151,6 @@ describe("actions/payment", () => {
 
       const res = await update(true);
 
-      expect(mock.revalidatePath.mock.calls).toMatchInlineSnapshot(`
-        [
-          [
-            "/me/payment",
-          ],
-        ]
-      `);
       expect(updateSubscription.mock.calls).toMatchInlineSnapshot(`
         [
           [
