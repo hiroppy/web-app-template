@@ -57,15 +57,18 @@ jobs:
             -t app \
             -f Dockerfile \
             --add-host=host.docker.internal:host-gateway \
-            --build-arg DATABASE_URL=${{env.DATABASE_URL}} \
             --build-arg DATABASE_HOST=${{env.DATABASE_HOST}} \
-            --build-arg NEXTAUTH_SECRET=${{env.NEXTAUTH_SECRET}} \
-            --build-arg NEXT_PUBLIC_SITE_URL=${{env.NEXT_PUBLIC_SITE_URL}} \
             .
         env:
+          # DATABASE_USER: dev
+          # DATABASE_PASSWORD: 1234
+          # DATABASE_DB: dev
           DATABASE_HOST: host.docker.internal
-          DATABASE_URL: postgresql://dev:1234@0.0.0.0:5432/dev?schema=public
-          NEXTAUTH_SECRET: TKDdLVjf7cTyTs5oWVpv04senu6fia4RGQbYHRQIR5Q=
+          # DATABASE_PORT: 5432
+          # DATABASE_SCHEMA: public
+          # NEXTAUTH_SECRET: TKDdLVjf7cTyTs5oWVpv04senu6fia4RGQbYHRQIR5Q=
+          # GOOGLE_CLIENT_ID: dummy
+          # GOOGLE_CLIENT_SECRET: dummy
       - run: docker run -d -p 3000:3000 app
       - run: |
           until $(curl --output /dev/null --silent --fail ${{env.NEXT_PUBLIC_SITE_URL}}); do

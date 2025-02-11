@@ -69,7 +69,7 @@ The following items will be asked whether they are required when the project is 
 $ npm run setup
 # install deps
 $ pnpm i
-# create ".env" and modifying environment variables
+# create ".env" and modify environment variables
 $ cp .env.sample .env
 ```
 
