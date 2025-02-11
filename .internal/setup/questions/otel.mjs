@@ -21,6 +21,7 @@ export const modifiedFiles = /** @type {const} */ ([
   "Dockerfile",
   ".env.sample",
   ".env.test",
+  ".github/workflows/ci.yml",
 ]);
 
 export async function otel(answer, isSkipQuestion) {
@@ -28,6 +29,7 @@ export async function otel(answer, isSkipQuestion) {
     ["# start: otel #", "# end: otel #"],
     ["/* start: otel */", "/* end: otel */"],
     ["<!-- start: otel -->", "<!-- end: otel -->"],
+    [": # start: otel", ": # end: otel"],
   ];
 
   await executeOptionalQuestion({
@@ -42,6 +44,7 @@ export async function otel(answer, isSkipQuestion) {
       [modifiedFiles[4], fences[0]],
       [modifiedFiles[5], fences[0]],
       [modifiedFiles[6], fences[0]],
+      [modifiedFiles[7], [fences[0], fences[3]]],
     ],
     yesCallback: async () => {
       const { data } = await getPackageJson();
