@@ -14,7 +14,7 @@ runs:
     - run: npm run setup
       shell: bash
       # https://github.com/pnpm/pnpm/issues/9029
-      ENV:
+      env:
         COREPACK_DEFAULT_TO_LATEST: 0
     - run: pnpm i
       shell: bash
