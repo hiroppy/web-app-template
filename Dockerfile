@@ -21,6 +21,7 @@ ARG STRIPE_SECRET_KEY=''
 ARG STRIPE_WEBHOOK_SECRET=''
 # end: stripe #
 
+ENV COREPACK_DEFAULT_TO_LATEST=0
 ENV PNPM_HOME="/pnpm"
 ENV PATH="$PNPM_HOME:$PATH"
 ENV DATABASE_USER=$DATABASE_USER
@@ -43,7 +44,6 @@ ENV STRIPE_SECRET_KEY=$STRIPE_SECRET_KEY
 ENV STRIPE_WEBHOOK_SECRET=$STRIPE_WEBHOOK_SECRET
 # end: stripe #
 
-RUN npm install -g corepack
 RUN corepack enable
 RUN apt-get update -y && apt-get install -y openssl
 
