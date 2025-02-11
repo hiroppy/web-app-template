@@ -171,9 +171,9 @@ exports[`no-stripe > should update .env.test 1`] = `
   "NEXTAUTH_SECRET=TKDdLVjf7cTyTs5oWVpv04senu6fia4RGQbYHRQIR5Q=",
   "NEXTAUTH_TEST_MODE=true",
   "",
-  "",
   "# OpenTelemetry",
   "TRACE_EXPORTER_URL=",
+  "",
   ""
 ]
 `;

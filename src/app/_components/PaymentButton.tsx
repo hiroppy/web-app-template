@@ -1,19 +1,22 @@
 "use client";
 
 import { useTransition } from "react";
-import { update } from "../_actions/payment";
+import { checkout, update } from "../_actions/payment";
 import { Button } from "./Button";
 
 type Props = {
+  hasSubscription: boolean;
   cancelAtPeriodEnd: boolean;
 };
 
-export function PaymentCancelButton({ cancelAtPeriodEnd }: Props) {
+export function PaymentButton({ hasSubscription, cancelAtPeriodEnd }: Props) {
   const [isPending, startTransition] = useTransition();
 
   const onClick = () => {
     startTransition(async () => {
-      const { success } = await update(!cancelAtPeriodEnd);
+      const { success } = hasSubscription
+        ? await update(!cancelAtPeriodEnd)
+        : await checkout();
 
       if (!success) {
         alert("internal error");
@@ -23,7 +26,7 @@ export function PaymentCancelButton({ cancelAtPeriodEnd }: Props) {
 
   return (
     <Button onClick={onClick} disabled={isPending}>
-      {cancelAtPeriodEnd ? "Resume" : "Cancel"}
+      {hasSubscription ? (cancelAtPeriodEnd ? "Resume" : "Cancel") : "Checkout"}
     </Button>
   );
 }

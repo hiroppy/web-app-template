@@ -151,6 +151,13 @@ describe("actions/payment", () => {
 
       const res = await update(true);
 
+      expect(mock.revalidatePath.mock.calls).toMatchInlineSnapshot(`
+        [
+          [
+            "/me/payment",
+          ],
+        ]
+      `);
       expect(updateSubscription.mock.calls).toMatchInlineSnapshot(`
         [
           [

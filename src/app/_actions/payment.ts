@@ -1,6 +1,7 @@
 "use server";
 
 import type { Subscription } from "@prisma/client";
+import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { prisma } from "../_clients/prisma";
 import { cancelUrl, stripe, successUrl } from "../_clients/stripe";
@@ -77,6 +78,8 @@ export async function update(
     if (!res) {
       throw new Error("subscription update failed");
     }
+
+    revalidatePath("/me/payment");
 
     return {
       success: true,

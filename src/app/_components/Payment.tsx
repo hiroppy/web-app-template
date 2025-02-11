@@ -1,7 +1,6 @@
 import { status } from "../_actions/payment";
 import { format } from "../_utils/date";
-import { PaymentCancelButton } from "./PaymentCancelButton";
-import { PaymentCheckoutButton } from "./PaymentCheckoutButton";
+import { PaymentButton } from "./PaymentButton";
 
 export async function Payment() {
   const { success, message, data } = await status();
@@ -17,12 +16,14 @@ export async function Payment() {
         <h3 className="font-semibold">Subscription Status</h3>
         {!success ? (
           <p className="text-red-300">internal error</p>
-        ) : !data ? (
-          <PaymentCheckoutButton />
         ) : (
-          <PaymentCancelButton cancelAtPeriodEnd={data.cancelAtPeriodEnd} />
+          <PaymentButton
+            hasSubscription={!!data}
+            cancelAtPeriodEnd={!!data?.cancelAtPeriodEnd}
+          />
         )}
       </div>
+      {data?.subscriptionId && <p className="text-sm">{data.subscriptionId}</p>}
       {limitDate && (
         <p className="text-sm text-gray-400">
           Available until {format(limitDate)}

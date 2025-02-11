@@ -116,13 +116,13 @@ exports[`common > should update .env.test 1`] = `
   "NEXTAUTH_SECRET=TKDdLVjf7cTyTs5oWVpv04senu6fia4RGQbYHRQIR5Q=",
   "NEXTAUTH_TEST_MODE=true",
   "",
+  "# OpenTelemetry",
+  "TRACE_EXPORTER_URL=",
+  "",
   "# Stripe",
   "STRIPE_SECRET_KEY=dummy",
   "STRIPE_WEBHOOK_SECRET=dummy",
   "STRIPE_PRICE_ID=dummy",
-  "",
-  "# OpenTelemetry",
-  "TRACE_EXPORTER_URL=",
   ""
 ]
 `;
@@ -335,7 +335,7 @@ exports[`common > should update README.md 1`] = `
   "$ stripe listen --forward-to localhost:3000/api/payment/webhook",
   "\`\`\`",
   "",
-  "5. After signing in, you can go to the \`/me/payment\` page to see how to make a payment.",
+  "5. After signing in, you can go to the \`http://localhost:3000/me/payment\` page to see how to make a payment.",
   "",
   "## Production",
   "",
