@@ -13,6 +13,9 @@ runs:
       shell: bash
     - run: npm run setup
       shell: bash
+      # https://github.com/pnpm/pnpm/issues/9029
+      ENV:
+        COREPACK_DEFAULT_TO_LATEST: 0
     - run: pnpm i
       shell: bash
     - run: cp ./.env.test ./.env
