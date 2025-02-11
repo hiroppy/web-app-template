@@ -85,9 +85,9 @@ jobs:
           TRACE_EXPORTER_URL: ""
           # end: otel #
           # start: stripe #
-          STRIPE_PRICE_ID: price_1JG5ZzJZ6eZ6ZzJZ
-          STRIPE_SECRET_KEY: pk_test_51JG5zJZ6eZ6ZzJZ
-          STRIPE_WEBHOOK_SECRET: whsec_1JG5zJZ6eZ6ZzJZ
+          STRIPE_PRICE_ID: price_1
+          STRIPE_SECRET_KEY: pk_test_1
+          STRIPE_WEBHOOK_SECRET: whsec_1
           # end: stripe #
       - run: docker run -d -p 3000:3000 app
       - run: |
