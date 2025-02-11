@@ -55,7 +55,7 @@
     "@types/react-dom": "19.0.3",
     "@vitejs/plugin-react": "4.3.4",
     "jsdom": "26.0.0",
-    "knip": "5.43.6",
+    "knip": "5.44.0",
     "lefthook": "1.10.10",
     "postcss": "8.5.2",
     "prettier": "3.5.0",
