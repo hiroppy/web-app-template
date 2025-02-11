@@ -5,20 +5,28 @@ on:
     branches:
       - main
     paths:
+      - .github/workflows/ci.yml
       - package.json
       - src/**
+      # start: e2e #
       - e2e/**
-      - .github/workflows/ci.yml
+      # end: e2e #
+      # start: docker #
       - Dockerfile
+      # end: docker #
   push:
     branches:
       - main
     paths:
+      - .github/workflows/ci.yml
       - package.json
       - src/**
+      # start: e2e #
       - e2e/**
-      - .github/workflows/ci.yml
+      # end: e2e #
+      # start: docker #
       - Dockerfile
+      # end: docker #
 
 jobs:
   lint:
