@@ -25,6 +25,11 @@ run-no-otel:
 update-no-otel:
 	$(NODE_CMD) --test-update-snapshots no-otel.test.mjs
 
+run-no-stripe:
+	$(NODE_CMD) no-stripe.test.mjs
+update-no-stripe:
+	$(NODE_CMD) --test-update-snapshots no-stripe.test.mjs
+
 run-no-sample-code:
 	$(NODE_CMD) no-sample-code.test.mjs
 update-no-sample-code:

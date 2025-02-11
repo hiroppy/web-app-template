@@ -10,8 +10,9 @@
   - Client Components + `useActionState` + Form + Server Actions
   - Parallel Route + intercepting route
 - Adding tests including middleware, server actions, etc
-- Supporting instrumentation
+- Supporting Instrumentations
 - Supporting `Dockerfile`
+- Supporting Stripe using Server Actions and Route Handlers
 
 > [!NOTE]
 > This repository will use [dynamicIO](https://nextjs.org/docs/app/api-reference/directives/use-cache) so the code will be changed when the canary version will be stable from now on
@@ -47,6 +48,11 @@
 - Setting up OpenTelemetry on Next.js
 - Building [Opentelemetry Collector](https://opentelemetry.io/docs/collector/) and [Jaeger](https://www.jaegertracing.io/)
 
+## Payment <Badge type="warning" text="Optional" />
+
+- Building payment codebase and database schema using Stripe
+- Supporting webhook to change status by Stripe for example expired subscription
+
 ## Git
 
 - Setting up pre-commit as git hook
@@ -55,6 +61,7 @@
 ## Linter and Formatter
 
 - Setting up editorconfig, biome, and prettier
+- Removing unused variables, functions, etc by Knip
 
 ## CI
 

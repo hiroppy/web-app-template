@@ -86,6 +86,7 @@ async function readReplacedCode(fileName) {
     "utf-8",
   );
 }
+
 // async function cleanUpNextConfig() {
 //   const data = await readFileFromCopiedDir("next.config.ts");
 //   const sourceFile = ts.createSourceFile(

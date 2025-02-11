@@ -1,6 +1,6 @@
 {
   "name": "create-app-foundation",
-  "version": "1.0.15",
+  "version": "1.0.16",
   "description": "Create a web app template using Next.js, NextAuth, Prisma, etc. An easy way to begin development 🐕",
   "bin": {
     "create-app-foundation": "src/index.mjs"

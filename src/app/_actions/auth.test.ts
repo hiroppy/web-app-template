@@ -1,7 +1,7 @@
 import { describe, expect, test } from "vitest";
-import { setup } from "./test.helper";
+import { setup } from "../../../tests/vitest.helper";
 
-// need to import after test.helper
+// need to import after vitest.helper
 import { getSessionOrReject } from "./auth";
 
 const { createUser } = await setup();

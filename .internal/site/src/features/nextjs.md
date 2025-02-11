@@ -16,7 +16,7 @@ If you throw an Error in a server action, it will be caught by ErrorBoundary and
 <<< ../../../../src/app/_actions/types.ts
 
 <!-- prettier-ignore -->
-<<< ../../../../src/app/_actions/users.ts{18-21}
+<<< ../../../../src/app/_actions/auth.ts
 :::
 
 ::: warning

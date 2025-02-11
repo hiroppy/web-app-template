@@ -24,8 +24,14 @@
 
 In development, prisma requires avoiding multiple Prisma Client instances but Hot Module Replacement creates them. So this template prepares code to resolve this issue.
 
+::: code-group
+
 <!-- prettier-ignore -->
 <<< ../../../../src/app/_clients/prisma.ts
+
+<!-- prettier-ignore -->
+<<< ../../../../src/app/_utils/db.ts
+:::
 
 > [!TIP] > `datasources.db.url` is always set for parallel execution by testing
 

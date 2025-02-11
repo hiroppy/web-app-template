@@ -19,6 +19,7 @@ jobs:
           - no-docker
           - no-e2e
           - no-otel
+          - no-stripe
           - no-sample-code
     steps:
       - uses: actions/checkout@v4

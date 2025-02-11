@@ -1,10 +1,10 @@
 import { beforeEach, describe, expect, test } from "vitest";
-import { setup } from "./test.helper";
+import { setup } from "../../../tests/vitest.helper";
 
-// need to import after test.helper
+// need to import after vitest.helper
 import { updateMe } from "./users";
 
-const { prisma, mock, createUser } = await setup();
+const { mock, createUser, getUser } = await setup();
 
 describe("actions/users", () => {
   beforeEach(async () => {
@@ -36,7 +36,17 @@ describe("actions/users", () => {
           ],
         ]
       `);
-      expect(await prisma.user.findMany()).toMatchObject([expected]);
+      expect(await getUser()).toMatchInlineSnapshot(`
+        {
+          "email": "b@c.com",
+          "emailVerified": null,
+          "id": "id",
+          "image": "https://a.com",
+          "name": "foo",
+          "role": "USER",
+          "stripeId": null,
+        }
+      `);
     });
 
     test("should throw an error if the schema is invalid", async () => {
