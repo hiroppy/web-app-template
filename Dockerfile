@@ -43,11 +43,10 @@ ENV STRIPE_SECRET_KEY=$STRIPE_SECRET_KEY
 ENV STRIPE_WEBHOOK_SECRET=$STRIPE_WEBHOOK_SECRET
 # end: stripe #
 
-RUN npm install -g corepack
-RUN corepack enable
-RUN apt-get update -y && apt-get install -y openssl
-
 COPY . /app
+
+RUN npm run setup
+RUN apt-get update -y && apt-get install -y openssl
 
 FROM base AS prod-deps
 
@@ -61,8 +60,8 @@ RUN pnpm build
 
 FROM base AS app
 
-COPY --from=build /app/.next /app/.next
 COPY --from=prod-deps /app/node_modules /app/node_modules
+COPY --from=build /app/.next /app/.next
 
 EXPOSE 3000
 CMD ["pnpm", "start"]

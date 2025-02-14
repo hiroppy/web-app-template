@@ -272,7 +272,6 @@ exports[`no-otel > should update Dockerfile 1`] = `
   "ENV STRIPE_SECRET_KEY=$STRIPE_SECRET_KEY",
   "ENV STRIPE_WEBHOOK_SECRET=$STRIPE_WEBHOOK_SECRET",
   "",
-  "RUN npm install -g corepack",
   "RUN corepack enable",
   "RUN apt-get update -y && apt-get install -y openssl",
   "",
