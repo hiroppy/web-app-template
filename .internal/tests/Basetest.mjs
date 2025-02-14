@@ -291,6 +291,10 @@ export class BaseTest {
   }
 
   async allTests({ hasE2e }) {
+    if (process.env.SKIP_TESTS === "true") {
+      return;
+    }
+
     await this.testBuild(hasE2e);
 
     await Promise.all([this.testLint(), this.testUnit()]);

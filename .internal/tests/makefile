@@ -39,3 +39,6 @@ run:
 	$(NODE_CMD) *.test.mjs
 update:
 	$(NODE_CMD) --test-update-snapshots *.test.mjs
+
+skip-tests-update:
+	SKIP_TESTS=true $(NODE_CMD) --test-update-snapshots *.test.mjs
