@@ -447,6 +447,7 @@ exports[`no-stripe > should update dependencies 1`] = `
     "zod"
   ],
   "devDependencies": [
+    "@axe-core/playwright",
     "@biomejs/biome",
     "@next/env",
     "@playwright/test",
