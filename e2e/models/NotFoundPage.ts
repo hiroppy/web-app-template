@@ -16,6 +16,10 @@ export class NotFoundPage extends Base {
     });
   }
 
+  async goTo() {
+    return await this.page.goto("/404");
+  }
+
   async expectUI() {
     await expect(this.textNotFoundLocator).toBeVisible();
     await expect(this.linkGoToHomeLocator).toBeVisible();

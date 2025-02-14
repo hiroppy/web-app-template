@@ -1,3 +1,4 @@
+import AxeBuilder from "@axe-core/playwright";
 import { test as base } from "@playwright/test";
 import type { User } from "next-auth";
 import { truncate } from "../tests/db.setup";
@@ -16,6 +17,7 @@ export type TestFixtures = {
   storageState: string;
   registerToDB: (user: User) => Promise<void>;
   reset: () => Promise<void>;
+  a11y: () => AxeBuilder;
 };
 
 // biome-ignore lint: lint/complexity/noBannedTypes
@@ -45,5 +47,14 @@ export const test = base.extend<TestFixtures, WorkerFixtures>({
       await using db = await generatePrismaClient();
       await Promise.all([truncate(db.prisma), context.clearCookies()]);
     });
+  },
+  a11y: async ({ page }, use) => {
+    const makeAxeBuilder = () =>
+      new AxeBuilder({ page })
+        .withTags(["wcag2a", "wcag2aa", "wcag21a", "wcag21aa"])
+        // global disabled rules
+        .disableRules(["meta-viewport"]);
+
+    await use(makeAxeBuilder);
   },
 });

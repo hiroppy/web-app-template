@@ -30,7 +30,7 @@ export function UpdateMyInfo({ name }: Props) {
       />
       <Button
         type="submit"
-        className="bg-blue-500 px-8 w-full"
+        className="bg-blue-600 px-8 w-full"
         disabled={isLoading}
       >
         Save

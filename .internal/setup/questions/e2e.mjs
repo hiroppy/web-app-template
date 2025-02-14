@@ -34,7 +34,7 @@ export async function e2e(answer, isSkipQuestion) {
     ],
     yesCallback: async () => {
       const { data } = await getPackageJson();
-      const deps = ["@playwright/test"];
+      const deps = ["@playwright/test", "@axe-core/playwright"];
 
       await Promise.all([
         removeFiles(removedFiles),
