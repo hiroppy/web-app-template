@@ -43,19 +43,18 @@ ENV STRIPE_SECRET_KEY=$STRIPE_SECRET_KEY
 ENV STRIPE_WEBHOOK_SECRET=$STRIPE_WEBHOOK_SECRET
 # end: stripe #
 
+RUN corepack enable
 RUN apt-get update -y && apt-get install -y openssl
 
 COPY . /app
 
 FROM base AS prod-deps
 
-RUN npm run setup
 RUN --mount=type=cache,id=pnpm,target=/pnpm/store pnpm i --prod --frozen-lockfile
 RUN pnpm generate:client --generator client
 
 FROM base AS build
 
-RUN npm run setup
 RUN --mount=type=cache,id=pnpm,target=/pnpm/store pnpm i --frozen-lockfile
 RUN pnpm build
 
