@@ -50,7 +50,7 @@ RUN apt-get update -y && apt-get install -y openssl
 FROM base AS prod-deps
 
 RUN --mount=type=cache,id=pnpm,target=/pnpm/store pnpm i --prod --frozen-lockfile
-RUN pnpm generate:client --generator client
+RUN pnpm prisma generate --generator client
 
 FROM base AS build
 
