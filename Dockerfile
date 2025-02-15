@@ -44,8 +44,8 @@ ENV STRIPE_WEBHOOK_SECRET=$STRIPE_WEBHOOK_SECRET
 COPY . /app
 WORKDIR /app
 RUN npm run setup
-
-# RUN apt-get update -y && apt-get install -y openssl
+# for prisma
+RUN apt-get update -y && apt-get install -y openssl
 
 FROM base AS prod-deps
 
