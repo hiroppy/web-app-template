@@ -53,6 +53,9 @@ importers:
       next-auth:
         specifier: 5.0.0-beta.25
         version: 5.0.0-beta.25(next@15.1.7(@babel/core@7.26.0)(@opentelemetry/api@1.8.0)(@playwright/test@1.50.1)(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(react@19.0.0)
+      prisma:
+        specifier: 6.3.1
+        version: 6.3.1(typescript@5.7.3)
       react:
         specifier: 19.0.0
         version: 19.0.0
@@ -114,9 +117,6 @@ importers:
       prettier:
         specifier: 3.5.1
         version: 3.5.1
-      prisma:
-        specifier: 6.3.1
-        version: 6.3.1(typescript@5.7.3)
       prisma-erd-generator:
         specifier: 2.0.4
         version: 2.0.4(@prisma/client@6.3.1(prisma@6.3.1(typescript@5.7.3))(typescript@5.7.3))(puppeteer@19.11.1(typescript@5.7.3))(typescript@5.7.3)

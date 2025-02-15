@@ -1,7 +1,5 @@
 FROM node:22.14.0-slim AS base
 
-WORKDIR /app
-
 ARG DATABASE_USER=''
 ARG DATABASE_PASSWORD=''
 ARG DATABASE_DB=''
@@ -44,6 +42,11 @@ ENV STRIPE_WEBHOOK_SECRET=$STRIPE_WEBHOOK_SECRET
 # end: stripe #
 
 COPY . /app
+WORKDIR /app
+
+RUN npm run setup
+# for prisma
+RUN apt-get update -y && apt-get install -y openssl
 
 RUN npm run setup
 RUN apt-get update -y && apt-get install -y openssl
@@ -51,7 +54,7 @@ RUN apt-get update -y && apt-get install -y openssl
 FROM base AS prod-deps
 
 RUN --mount=type=cache,id=pnpm,target=/pnpm/store pnpm i --prod --frozen-lockfile
-RUN pnpm generate:client --generator client
+RUN pnpm prisma generate --generator client
 
 FROM base AS build
 

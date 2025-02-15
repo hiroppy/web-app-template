@@ -1,5 +1,6 @@
 exports[`no-sample-code > should put files 1`] = `
 [
+  "internal-tests-output-no-sample-code/.dockerignore",
   "internal-tests-output-no-sample-code/.editorconfig",
   "internal-tests-output-no-sample-code/.env",
   "internal-tests-output-no-sample-code/.env.sample",

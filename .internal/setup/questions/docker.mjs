@@ -1,6 +1,9 @@
 import { executeOptionalQuestion, removeFiles } from "../utils.mjs";
 
-export const removedFiles = /** @type {const} */ (["Dockerfile"]);
+export const removedFiles = /** @type {const} */ ([
+  "Dockerfile",
+  ".dockerignore",
+]);
 
 export const removedDirs = /** @type {const} */ ([]);
 
