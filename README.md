@@ -25,6 +25,9 @@ Installing this template automatically sets up the following libraries/tools. By
 |             |                                                                                                                                            |                                                                                                                                                      |
 | **Others**  | <div align="center"><img src=".internal/site/src/public/images/libs/github-actions.png" alt="actions" width="44"><br> GitHub Actions</div> | <div align="center"><img src=".internal/site/src/public/images/libs/renovate.png" alt="renovate" width="44"><br> Renovate</div>                      | <div align="center"><img src=".internal/site/src/public/images/libs/vscode.png" alt="vscode" width="44"><br> VSCode</div>             | <div align="center"><img src=".internal/site/src/public/images/libs/copilot.png" alt="copilot edits" width="44"><br> Copilot Edits</div>            |
 
+Please read the features provided by this template first! 👉
+[Challenges Solved](https://hiroppy.github.io/web-app-template/introduction/challenges-solved.html)
+
 ## Prerequisites
 
 - Node.js v20 or higher

@@ -43,6 +43,10 @@
 - Mocking and working around next-auth's JWT strategy
 - Writing code using [Page Object Models](https://playwright.dev/docs/pom) suggested by Playwright
 
+## Accessibility Test <Badge type="warning" text="Optional" />
+
+- Checking all pages's accessibility via Playwright
+
 ## Observability <Badge type="warning" text="Optional" />
 
 - Setting up OpenTelemetry on Next.js
