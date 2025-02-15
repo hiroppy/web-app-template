@@ -48,9 +48,6 @@ RUN npm run setup
 # for prisma
 RUN apt-get update -y && apt-get install -y openssl
 
-RUN npm run setup
-RUN apt-get update -y && apt-get install -y openssl
-
 FROM base AS prod-deps
 
 RUN --mount=type=cache,id=pnpm,target=/pnpm/store pnpm i --prod --frozen-lockfile
