@@ -1,0 +1,6 @@
+.githooks
+node_modules
+.next
+.git
+.gitignore
+dist

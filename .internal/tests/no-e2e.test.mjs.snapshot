@@ -1,5 +1,6 @@
 exports[`no-e2e > should put files 1`] = `
 [
+  "internal-tests-output-no-e2e/.dockerignore",
   "internal-tests-output-no-e2e/.editorconfig",
   "internal-tests-output-no-e2e/.env",
   "internal-tests-output-no-e2e/.env.sample",
@@ -267,6 +268,7 @@ exports[`no-e2e > should update dependencies 1`] = `
     "clsx",
     "next",
     "next-auth",
+    "prisma",
     "react",
     "react-dom",
     "react-hook-form",
@@ -287,7 +289,6 @@ exports[`no-e2e > should update dependencies 1`] = `
     "lefthook",
     "postcss",
     "prettier",
-    "prisma",
     "prisma-erd-generator",
     "tailwindcss",
     "testcontainers",
