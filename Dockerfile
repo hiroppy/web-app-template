@@ -1,7 +1,5 @@
 FROM node:22.14.0-slim AS base
 
-WORKDIR /app
-
 ARG DATABASE_USER=''
 ARG DATABASE_PASSWORD=''
 ARG DATABASE_DB=''
@@ -43,11 +41,11 @@ ENV STRIPE_SECRET_KEY=$STRIPE_SECRET_KEY
 ENV STRIPE_WEBHOOK_SECRET=$STRIPE_WEBHOOK_SECRET
 # end: stripe #
 
-RUN npm install -g corepack
-RUN corepack enable
-RUN apt-get update -y && apt-get install -y openssl
-
 COPY . /app
+WORKDIR /app
+RUN npm run setup
+
+# RUN apt-get update -y && apt-get install -y openssl
 
 FROM base AS prod-deps
 
