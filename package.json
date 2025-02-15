@@ -42,6 +42,7 @@
     "react-dom": "19.0.0",
     "react-hook-form": "7.54.2",
     "stripe": "17.6.0",
+    "prisma": "6.3.1",
     "zod": "3.24.2"
   },
   "devDependencies": {
@@ -60,7 +61,6 @@
     "lefthook": "1.10.10",
     "postcss": "8.5.2",
     "prettier": "3.5.1",
-    "prisma": "6.3.1",
     "prisma-erd-generator": "2.0.4",
     "tailwindcss": "4.0.6",
     "testcontainers": "10.18.0",
