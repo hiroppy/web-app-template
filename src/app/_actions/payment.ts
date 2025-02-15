@@ -1,7 +1,6 @@
 "use server";
 
 import type { Subscription } from "@prisma/client";
-import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { prisma } from "../_clients/prisma";
 import { cancelUrl, stripe, successUrl } from "../_clients/stripe";
@@ -109,24 +108,22 @@ export async function status(): Promise<ReturnedStatus> {
   }
 
   const { user } = session.data;
-  const subscriptions = await prisma.subscription.findMany({
+  const subscription = await prisma.subscription.findFirst({
     where: {
       userId: user.id,
+      status: {
+        in: ["active", "complete"],
+      },
     },
   });
-  const activeSubscriptions = subscriptions.filter((subscription) =>
-    ["active", "complete"].includes(subscription.status),
-  );
 
-  if (activeSubscriptions.length === 0) {
+  if (!subscription) {
     return {
       success: true,
       data: null,
       message: "subscription not found",
     };
   }
-
-  const subscription = activeSubscriptions[0];
 
   return {
     success: true,
