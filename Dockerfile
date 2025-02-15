@@ -60,8 +60,8 @@ RUN pnpm build
 
 FROM base AS app
 
-COPY --from=build /app/.next /app/.next
 COPY --from=prod-deps /app/node_modules /app/node_modules
+COPY --from=build /app/.next /app/.next
 
 EXPOSE 3000
 CMD ["pnpm", "start"]
