@@ -6,29 +6,27 @@ import { checkout, status, update } from "./payment";
 
 const { mock, createUser, getUser, prisma } = await setup();
 
-const { createSession, updateSubscription } = vi.hoisted(() => ({
-  createSession: vi.fn(),
-  updateSubscription: vi.fn(),
-}));
+const { createCustomer, createSession, updateSubscription } = vi.hoisted(
+  () => ({
+    createCustomer: vi.fn(),
+    createSession: vi.fn(),
+    updateSubscription: vi.fn(),
+  }),
+);
 
 const stripeId = "cus_1";
 
 describe("actions/payment", () => {
   beforeEach(async () => {
-    const user = await createUser();
-    await prisma.user.update({
-      where: {
-        id: user.id,
-      },
-      data: {
-        stripeId,
-      },
-    });
+    await createUser();
 
     vi.mock("../_clients/stripe", async (actual) => {
       return {
         ...(await actual<typeof import("../_clients/stripe")>()),
         stripe: {
+          customers: {
+            create: createCustomer,
+          },
           checkout: {
             sessions: {
               create: createSession,
@@ -54,7 +52,21 @@ describe("actions/payment", () => {
       `);
     });
 
+    test("should throw an error if the user is not found", async () => {
+      await prisma.user.deleteMany();
+
+      expect(await checkout()).toMatchInlineSnapshot(`
+        {
+          "message": "user not found",
+          "success": false,
+        }
+      `);
+    });
+
     test("should throw an error if there is no checkout session", async () => {
+      createCustomer.mockResolvedValueOnce({
+        id: stripeId,
+      });
       createSession.mockResolvedValueOnce({});
 
       expect(await checkout()).toMatchInlineSnapshot(`
@@ -66,9 +78,24 @@ describe("actions/payment", () => {
     });
 
     test("should redirect to the checkout session url", async () => {
+      createCustomer.mockResolvedValueOnce({
+        id: stripeId,
+      });
       createSession.mockResolvedValueOnce({
         url: "https://example.com",
       });
+
+      expect(await getUser()).toMatchInlineSnapshot(`
+        {
+          "email": "hello@a.com",
+          "emailVerified": null,
+          "id": "id",
+          "image": "https://a.com",
+          "name": "name",
+          "role": "USER",
+          "stripeId": null,
+        }
+      `);
 
       await checkout();
 
@@ -81,6 +108,10 @@ describe("actions/payment", () => {
               },
               "cancel_url": "http://localhost:3000",
               "currency": "jpy",
+              "customer": "cus_1",
+              "customer_update": {
+                "shipping": "auto",
+              },
               "line_items": [
                 {
                   "price": "dummy",
@@ -105,10 +136,32 @@ describe("actions/payment", () => {
           ],
         ]
       `);
+      expect(await getUser()).toMatchInlineSnapshot(`
+        {
+          "email": "hello@a.com",
+          "emailVerified": null,
+          "id": "id",
+          "image": "https://a.com",
+          "name": "name",
+          "role": "USER",
+          "stripeId": "cus_1",
+        }
+      `);
     });
   });
 
   describe("update", () => {
+    beforeEach(async () => {
+      await prisma.user.update({
+        where: {
+          id: "id",
+        },
+        data: {
+          stripeId,
+        },
+      });
+    });
+
     test("should throw an error if there is no session token", async () => {
       mock.auth.mockReturnValueOnce(null);
 
@@ -170,6 +223,13 @@ describe("actions/payment", () => {
           },
           "success": true,
         }
+      `);
+      expect(mock.revalidatePath.mock.calls).toMatchInlineSnapshot(`
+        [
+          [
+            "/me/payment",
+          ],
+        ]
       `);
     });
 

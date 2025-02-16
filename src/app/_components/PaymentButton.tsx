@@ -25,7 +25,11 @@ export function PaymentButton({ hasSubscription, cancelAtPeriodEnd }: Props) {
   };
 
   return (
-    <Button onClick={onClick} disabled={isPending}>
+    <Button
+      onClick={onClick}
+      disabled={isPending}
+      className="border border-gray-300 rounded"
+    >
       {hasSubscription ? (cancelAtPeriodEnd ? "Resume" : "Cancel") : "Checkout"}
     </Button>
   );

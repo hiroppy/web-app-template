@@ -1,6 +1,7 @@
 "use server";
 
 import type { Subscription } from "@prisma/client";
+import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { prisma } from "../_clients/prisma";
 import { cancelUrl, stripe, successUrl } from "../_clients/stripe";
@@ -15,6 +16,23 @@ export async function checkout(): Promise<Result> {
     return session;
   }
 
+  const me = await prisma.user.findUnique({
+    where: {
+      id: session.data.user.id,
+    },
+  });
+
+  if (!me?.email) {
+    return {
+      success: false,
+      message: "user not found",
+    };
+  }
+
+  const customer = await stripe.customers.create({
+    email: me.email,
+    name: me.name ?? "-",
+  });
   const checkoutSession = await stripe.checkout.sessions.create({
     mode: "subscription",
     line_items: [
@@ -26,6 +44,11 @@ export async function checkout(): Promise<Result> {
     automatic_tax: {
       enabled: true,
     },
+    customer: customer.id,
+    customer_update: {
+      // for automatic_tax
+      shipping: "auto",
+    },
     shipping_address_collection: {
       // for automatic_tax
       allowed_countries: ["JP"],
@@ -33,6 +56,15 @@ export async function checkout(): Promise<Result> {
     currency: "jpy",
     success_url: successUrl,
     cancel_url: cancelUrl,
+  });
+
+  await prisma.user.update({
+    where: {
+      id: me.id,
+    },
+    data: {
+      stripeId: customer.id,
+    },
   });
 
   if (!checkoutSession.url) {
@@ -77,6 +109,8 @@ export async function update(
     if (!res) {
       throw new Error("subscription update failed");
     }
+
+    revalidatePath("/me/payment");
 
     return {
       success: true,
