@@ -111,9 +111,6 @@ importers:
       lefthook:
         specifier: 1.10.11
         version: 1.10.11
-      postcss:
-        specifier: 8.5.3
-        version: 8.5.3
       prettier:
         specifier: 3.5.2
         version: 3.5.2

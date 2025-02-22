@@ -436,7 +436,6 @@ exports[`no-otel > should update dependencies 1`] = `
     "jsdom",
     "knip",
     "lefthook",
-    "postcss",
     "prettier",
     "prisma-erd-generator",
     "tailwindcss",
