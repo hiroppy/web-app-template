@@ -68,6 +68,19 @@
     "vitest": "3.0.6"
   },
   "pnpm": {
-    "neverBuiltDependencies": []
+    "onlyBuiltDependencies": [
+      "@biomejs/biome",
+      "@prisma/client",
+      "@prisma/engines",
+      "cpu-features",
+      "esbuild",
+      "lefthook",
+      "prisma",
+      "protobufjs",
+      "puppeteer",
+      "sharp",
+      "ssh2",
+      "vue-demi"
+    ]
   }
 }
