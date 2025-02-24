@@ -1,6 +1,6 @@
 ---
 description: This rule is for react components and hooks
-globs: *.tsx
+globs: src/app/**/*.tsx, src/app/_hooks/*.tsx?
 ---
 
 ## Components
@@ -9,14 +9,14 @@ globs: *.tsx
 - Define a type for the component's props.
 - Use `PropsWithChildren` if the component has children.
 - File names should follow UpperCamelCase naming convention.
-- To access session information, use \_clients/nextAuth.
+- To access session information, use `_clients/nextAuth`.
 - Use `Tailwind CSS` for styling, and `clsx` for combining classes.
-- For shared components, place them in src/app/\_components. Components that are likely to be used only on a specific page should be placed in the \_components directory within that page. If the directory does not exist, create it.
+- For shared components, place them in `src/app/_components`. Components that are likely to be used only on a specific page should be placed in the `_components` directory within that page. If the directory does not exist, create it.
 
 ## Hooks
 
 - Hooks should be defined using the `function` keyword, not arrow functions.
-- Hooks should be created in the src/app/\_hooks directory.
+- Hooks should be created in the `src/app/_hooks` directory.
 - The file name and function name should match, and the function name should start with the prefix use.
 - Avoid default exports; instead, use named exports.
 - Use useMemo or useCallback to memoize variables and functions when necessary.
