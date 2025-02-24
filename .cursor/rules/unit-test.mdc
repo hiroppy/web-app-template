@@ -1,0 +1,17 @@
+---
+description: This rule for unit test
+globs: vitest.config.ts,src/**/*.tsx?
+---
+# Common
+
+- Use `vitest`.
+- Use `@testing-library/react`.
+- Tests should be created in the same directory, and the file name should be the hook name followed by `.test.ts`.
+
+# Server Actions
+
+directory: `src/app/_actions`
+
+- Import `tests/vitest.helper.ts` and then call `setup` function to boot a real database
+- Avoid mocking and run tests using a real database.
+- The file to be tested should be imported below `vitest.helper.ts`, and a space should be left between each line to avoid rewriting by the formatter.

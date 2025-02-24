@@ -1,0 +1,8 @@
+---
+description: This rule is for typescript code
+globs: *.tsx?, tsconfig.json
+---
+# Common
+
+- When importing types, always use the `type` keyword.
+- Don't use import alias like `@`.

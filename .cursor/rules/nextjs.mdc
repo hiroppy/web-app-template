@@ -2,21 +2,40 @@
 description: This rule is for Next.js code
 globs: src/**/*
 ---
-## Common
+# Common
 
-If authentication is required, retrieve the session information using `getSessionOrReject` in `src/app/_actions/auth.ts`. Make sure to do this if server components and server actions require authentication.
+- If authentication is required, retrieve the session information using `getSessionOrReject` in `src/app/_actions/auth.ts`. Make sure to do this if server components and server actions require authentication.
 
-## Pages
+# Pages
 
 directory: `src/app/(private)`, `src/app/(public)`
 
-If a page requires authentication, create it in `(private)` directory, otherwise create it in `(public)` directory.
+- If a page requires authentication, create it in `(private)` directory, otherwise create it in `(public)` directory.
+- Whenever possible, avoid client components in favor of server components.
+- If it is a common layout UI, modify `layout.tsx` closest to that page.
+- Don't import `src/app/_clients/nextAuth.ts` directly.
 
-## Server Actions
+# Server Actions
 
 directory: `src/app/_actions`
 
-rules:
-  - Use the `Result` type for return values, and if there is a result, store it in data.
-    - the `Result` type is src/app/\_actions/types.ts
-  - Always enforce authentication.
+- Use the `Result` type in `src/app/_actions/types.ts` for return values.
+- Always enforce authentication.
+
+## `getSessionOrReject` function
+
+- If it fails, just return it like below.
+
+```ts
+const session = await getSessionOrReject();
+
+if (!session.success) {
+  return session;
+}
+```
+
+- If want to use user data in Session, `session.data` has the result.
+
+# Middleware
+
+- If a page path requires authentication, add it to the `matcher` in the `config` variable.
