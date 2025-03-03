@@ -59,7 +59,7 @@
     "jsdom": "26.0.0",
     "knip": "5.45.0",
     "lefthook": "1.11.2",
-    "prettier": "3.5.2",
+    "prettier": "3.5.3",
     "prisma-erd-generator": "2.0.4",
     "tailwindcss": "4.0.9",
     "testcontainers": "10.18.0",
