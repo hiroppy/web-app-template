@@ -8,7 +8,15 @@
 
 [@auth/prisma-adapter](https://authjs.dev/getting-started/adapters/prisma) requires some models for PostgreSQL but some models like `Session`, `VerificationToken` are unused when using JWT strategy of next-auth. This template pre-deletes them.
 
-<<< ../../../../prisma/schema.prisma
+::: code-group
+
+<<< ../../../../prisma/schema/schema.prisma
+
+<<< ../../../../prisma/schema/user.prisma
+
+<<< ../../../../prisma/schema/item.prisma
+
+:::
 
 - [Prisma Adapter#schema](https://authjs.dev/getting-started/adapters/prisma#schema)
 
