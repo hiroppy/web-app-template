@@ -48,7 +48,8 @@ exports[`no-sample-code > should put files 1`] = `
   "internal-tests-output-no-sample-code/pnpm-lock.yaml",
   "internal-tests-output-no-sample-code/postcss.config.mjs",
   "internal-tests-output-no-sample-code/prisma/migrations/migration_lock.toml",
-  "internal-tests-output-no-sample-code/prisma/schema.prisma",
+  "internal-tests-output-no-sample-code/prisma/schema/schema.prisma",
+  "internal-tests-output-no-sample-code/prisma/schema/user.prisma",
   "internal-tests-output-no-sample-code/public/.gitkeep",
   "internal-tests-output-no-sample-code/renovate.json",
   "internal-tests-output-no-sample-code/src/app/(private)/layout.tsx",
@@ -279,25 +280,11 @@ exports[`no-sample-code > should update next.config.ts 1`] = `
 ]
 `;
 
-exports[`no-sample-code > should update prisma/schema.prisma 1`] = `
+exports[`no-sample-code > should update prisma/schema/user.prisma 1`] = `
 [
-  "// https://pris.ly/d/prisma-schema",
-  "",
-  "datasource db {",
-  "  provider = \\"postgresql\\"",
-  "  url      = env(\\"DATABASE_URL\\")",
-  "}",
-  "",
-  "generator client {",
-  "  provider        = \\"prisma-client-js\\"",
-  "  previewFeatures = [\\"fullTextSearchPostgres\\"]",
-  "}",
-  "",
-  "generator erd {",
-  "  provider                  = \\"prisma-erd-generator\\"",
-  "  theme                     = \\"forest\\"",
-  "  output                    = \\"ERD.md\\"",
-  "  includeRelationFromFields = true",
+  "enum Role {",
+  "  USER",
+  "  ADMIN",
   "}",
   "",
   "// https://authjs.dev/getting-started/adapters/prisma#schema",
@@ -350,11 +337,6 @@ exports[`no-sample-code > should update prisma/schema.prisma 1`] = `
   "  user              User      @relation(fields: [userId], references: [id])",
   "",
   "  @@map(\\"subscriptions\\")",
-  "}",
-  "",
-  "enum Role {",
-  "  USER",
-  "  ADMIN",
   "}",
   ""
 ]

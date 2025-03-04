@@ -1,20 +1,6 @@
-// https://pris.ly/d/prisma-schema
-
-datasource db {
-  provider = "postgresql"
-  url      = env("DATABASE_URL")
-}
-
-generator client {
-  provider        = "prisma-client-js"
-  previewFeatures = ["fullTextSearchPostgres"]
-}
-
-generator erd {
-  provider                  = "prisma-erd-generator"
-  theme                     = "forest"
-  output                    = "ERD.md"
-  includeRelationFromFields = true
+enum Role {
+  USER
+  ADMIN
 }
 
 // https://authjs.dev/getting-started/adapters/prisma#schema
@@ -49,7 +35,9 @@ model User {
   updatedAt     DateTime       @updatedAt @map("updated_at")
   // https://authjs.dev/guides/basics/role-based-access-control
   role          Role           @default(USER)
+  // start: sample
   items         Item[]
+  // end: sample
   stripeId      String?        @unique @map("stripe_id") // cus_XXXX
   subscriptions Subscription[]
 
@@ -68,20 +56,4 @@ model Subscription {
   user              User      @relation(fields: [userId], references: [id])
 
   @@map("subscriptions")
-}
-
-model Item {
-  id        String   @id @default(cuid())
-  content   String
-  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
-  userId    String   @map("user_id")
-  createdAt DateTime @default(now()) @map("created_at")
-  updatedAt DateTime @updatedAt @map("updated_at")
-
-  @@map("items")
-}
-
-enum Role {
-  USER
-  ADMIN
 }

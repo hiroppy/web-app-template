@@ -18,7 +18,7 @@
     "db:reset": "prisma migrate reset -f",
     "db:deploy": "prisma migrate deploy",
     "db:studio": "prisma studio",
-    "generate:client": "prisma generate && prettier -w ./prisma/ERD.md",
+    "generate:client": "prisma generate && prettier -w ./prisma/schema/ERD.md",
     "lint": "biome lint --write . && knip",
     "fmt": "prettier -w './**/*.{md,yml}' && biome format --write . && prisma format"
   },

@@ -6,6 +6,15 @@ erDiagram
 ADMIN ADMIN
         }
 
+  "items" {
+    String id "🗝️"
+    String content
+    String user_id
+    DateTime created_at
+    DateTime updated_at
+    }
+
+
   "accounts" {
     String id "🗝️"
     String user_id
@@ -47,20 +56,11 @@ ADMIN ADMIN
     String user_id
     }
 
-
-  "items" {
-    String id "🗝️"
-    String content
-    String user_id
-    DateTime created_at
-    DateTime updated_at
-    }
-
+    "items" o|--|| "users" : "user"
     "accounts" o|--|| "users" : "user"
     "users" o{--}o "accounts" : "accounts"
     "users" o|--|| "Role" : "enum:role"
     "users" o{--}o "items" : "items"
     "users" o{--}o "subscriptions" : "subscriptions"
     "subscriptions" o|--|| "users" : "user"
-    "items" o|--|| "users" : "user"
 ```

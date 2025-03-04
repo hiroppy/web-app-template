@@ -24,7 +24,7 @@ export const removedDirs = /** @type {const} */ ([
 ]);
 
 export const modifiedFiles = /** @type {const} */ ([
-  "prisma/schema.prisma",
+  "prisma/schema/user.prisma",
   "README.md",
   "env.ts",
   ".env.sample",
@@ -45,7 +45,8 @@ export async function stripe(answer, isSkipQuestion) {
     answer,
     isSkipQuestion,
     codeAndFenceList: [
-      [modifiedFiles[0], fences[0]],
+      // TODO:
+      // [modifiedFiles[0], fences[0]],
       [modifiedFiles[1], fences[2]],
       [modifiedFiles[2], fences[1]],
       [modifiedFiles[3], fences[0]],
@@ -58,7 +59,7 @@ export async function stripe(answer, isSkipQuestion) {
       const deps = ["stripe"];
 
       await Promise.all([
-        removeItemModelFromPrisma("Subscription"),
+        removeItemModelFromPrisma("user", "Subscription"),
         removeFiles(removedFiles),
         removeDirs(removedDirs),
         removeDeps(deps),

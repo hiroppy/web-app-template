@@ -17,7 +17,7 @@
 [prisma-erd-generator](https://github.com/keonik/prisma-erd-generator) can generate ERD from the schema. The current template ERD is [here](https://github.com/hiroppy/web-app-template/blob/main/prisma/ERD.md).
 
 ::: details See Full Code
-<<< ../../../../prisma/ERD.md
+<<< ../../../../prisma/schema/ERD.md
 :::
 
 ## Making single client instance in Development <Badge type="tip" text="Best Practice" />
