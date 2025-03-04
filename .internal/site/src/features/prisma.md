@@ -8,7 +8,15 @@
 
 [@auth/prisma-adapter](https://authjs.dev/getting-started/adapters/prisma) requires some models for PostgreSQL but some models like `Session`, `VerificationToken` are unused when using JWT strategy of next-auth. This template pre-deletes them.
 
-<<< ../../../../prisma/schema.prisma
+::: code-group
+
+<<< ../../../../prisma/schema/schema.prisma
+
+<<< ../../../../prisma/schema/user.prisma
+
+<<< ../../../../prisma/schema/item.prisma
+
+:::
 
 - [Prisma Adapter#schema](https://authjs.dev/getting-started/adapters/prisma#schema)
 
@@ -17,7 +25,7 @@
 [prisma-erd-generator](https://github.com/keonik/prisma-erd-generator) can generate ERD from the schema. The current template ERD is [here](https://github.com/hiroppy/web-app-template/blob/main/prisma/ERD.md).
 
 ::: details See Full Code
-<<< ../../../../prisma/ERD.md
+<<< ../../../../prisma/schema/ERD.md
 :::
 
 ## Making single client instance in Development <Badge type="tip" text="Best Practice" />

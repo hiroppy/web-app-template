@@ -6,7 +6,6 @@ import {
   removeDeps,
   removeDirs,
   removeFiles,
-  removeItemModelFromPrisma,
   writeFileToCopiedDir,
 } from "../utils.mjs";
 
@@ -25,7 +24,8 @@ export const removedFiles = /** @type {const} */ ([
   "e2e/integrations/item.test.ts",
 
   // others
-  "prisma/ERD.md",
+  "prisma/schema/ERD.md",
+  "prisma/schema/item.prisma",
 ]);
 
 export const removedDirs = /** @type {const} */ (["src/app/@dialog"]);
@@ -36,9 +36,9 @@ export const modifiedFiles = /** @type {const} */ ([
   "src/app/(public)/page.tsx",
   "e2e/fixtures.ts",
   "e2e/models/TopPage.ts",
-  "prisma/schema.prisma",
   "src/middleware.ts",
   "src/middleware.test.ts",
+  "prisma/schema/user.prisma",
 ]);
 
 // TODO: need to consider keeping them or not
@@ -49,7 +49,10 @@ const removedDeps = /** @type {const} */ [
 ];
 
 export async function sampleCode(answer, isSkipQuestion) {
-  const fences = [["/* start: sample */", "/* end: sample */"]];
+  const fences = [
+    ["/* start: sample */", "/* end: sample */"],
+    ["// start: sample", "// end: sample"],
+  ];
 
   await executeOptionalQuestion({
     question: "> Do you want to remove sample application code? (y/N) ",
@@ -60,10 +63,10 @@ export async function sampleCode(answer, isSkipQuestion) {
       [modifiedFiles[1], fences[0]],
       [modifiedFiles[3], fences[0]],
       [modifiedFiles[4], fences[0]],
+      [modifiedFiles[7], fences[1]],
     ],
     yesCallback: async () => {
       await Promise.all([
-        removeItemModelFromPrisma("Item"),
         removeFiles(removedFiles),
         removeDirs(removedDirs),
         removeDeps(removedDeps),

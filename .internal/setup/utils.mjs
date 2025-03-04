@@ -7,8 +7,6 @@ export const basePath = resolve(import.meta.dirname, "../..");
 
 export const execAsync = promisify(exec);
 
-const prismaPath = "prisma/schema.prisma";
-
 export function title(title) {
   console.info("\x1b[36m%s\x1b[0m", `🎃 ${title}...`);
 }
@@ -175,7 +173,9 @@ export async function writeFileToCopiedDir(file, data) {
   await writeFile(target, data);
 }
 
-export async function removeItemModelFromPrisma(modelName) {
+export async function removeItemModelFromPrisma(fileName, modelName) {
+  const prismaPath = join("prisma", "schema", `${fileName}.prisma`);
+
   const data = await readFileFromCopiedDir(prismaPath);
 
   // 1. モデルブロック（model Foo { ... }）を丸ごと削除
