@@ -15,6 +15,7 @@ exports[`no-sample-code > should put files 1`] = `
   "internal-tests-output-no-sample-code/.npmrc",
   "internal-tests-output-no-sample-code/.vscode/extensions.json",
   "internal-tests-output-no-sample-code/.vscode/settings.json",
+  "internal-tests-output-no-sample-code/CLAUDE.md",
   "internal-tests-output-no-sample-code/Dockerfile",
   "internal-tests-output-no-sample-code/README.md",
   "internal-tests-output-no-sample-code/biome.json",
