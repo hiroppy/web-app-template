@@ -67,6 +67,8 @@ exports[`no-stripe > should put files 1`] = `
   "internal-tests-output-no-stripe/src/app/_components/Input.tsx",
   "internal-tests-output-no-stripe/src/app/_components/SignInButton.tsx",
   "internal-tests-output-no-stripe/src/app/_components/SignOutButton.tsx",
+  "internal-tests-output-no-stripe/src/app/_hooks/useFormId.test.ts",
+  "internal-tests-output-no-stripe/src/app/_hooks/useFormId.ts",
   "internal-tests-output-no-stripe/src/app/_hooks/useOnlineStatus.test.ts",
   "internal-tests-output-no-stripe/src/app/_hooks/useOnlineStatus.ts",
   "internal-tests-output-no-stripe/src/app/_schemas/items.test.ts",

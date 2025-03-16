@@ -82,6 +82,8 @@ exports[`no-sample-code > should put files 1`] = `
   "internal-tests-output-no-sample-code/src/app/_components/PaymentButton.tsx",
   "internal-tests-output-no-sample-code/src/app/_components/SignInButton.tsx",
   "internal-tests-output-no-sample-code/src/app/_components/SignOutButton.tsx",
+  "internal-tests-output-no-sample-code/src/app/_hooks/useFormId.test.ts",
+  "internal-tests-output-no-sample-code/src/app/_hooks/useFormId.ts",
   "internal-tests-output-no-sample-code/src/app/_schemas/users.test.ts",
   "internal-tests-output-no-sample-code/src/app/_schemas/users.ts",
   "internal-tests-output-no-sample-code/src/app/_utils/date.test.ts",

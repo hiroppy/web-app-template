@@ -45,7 +45,6 @@ export const modifiedFiles = /** @type {const} */ ([
 const removedDeps = /** @type {const} */ [
   "@hookform/resolvers",
   "react-hook-form",
-  "@testing-library/react",
 ];
 
 export async function sampleCode(answer, isSkipQuestion) {

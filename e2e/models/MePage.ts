@@ -3,14 +3,12 @@ import { Base } from "./Base";
 
 export class MePage extends Base {
   inputNameLocator: Locator;
-  inputNameErrorLocator: Locator;
   buttonSubmitLocator: Locator;
 
   constructor(page: Page) {
     super(page);
 
     this.inputNameLocator = this.page.locator('input[name="name"]');
-    this.inputNameErrorLocator = this.page.locator("#input-name-error");
     this.buttonSubmitLocator = this.page.locator('button[type="submit"]');
   }
 
@@ -33,7 +31,10 @@ export class MePage extends Base {
   }
 
   async expectInputNameErrorUI() {
-    await expect(this.inputNameErrorLocator).toBeVisible();
-    await expect(this.inputNameErrorLocator).toHaveText("name is too short");
+    const id = await this.inputNameLocator.getAttribute("id");
+    const inputNameErrorLocator = this.page.locator(`#${id}-error`);
+
+    await expect(inputNameErrorLocator).toBeVisible();
+    await expect(inputNameErrorLocator).toHaveText("name is too short");
   }
 }
