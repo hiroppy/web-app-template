@@ -1,15 +1,15 @@
 "use client";
 
 import clsx from "clsx";
-import { type JSX, useId } from "react";
+import type { JSX } from "react";
+import { useFormId } from "../_hooks/useFormId";
 import { FormBox, type Props as FormBoxProps } from "./FormBox";
 
 type Props = JSX.IntrinsicElements["input"] &
   Omit<FormBoxProps, "id" | "errorId">;
 
 export function Input({ className, error, label, ...rest }: Props) {
-  const id = useId();
-  const errorId = `${id}-error`;
+  const { id, errorId } = useFormId();
 
   return (
     <FormBox id={id} errorId={errorId} error={error} label={label}>
