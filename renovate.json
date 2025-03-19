@@ -49,7 +49,7 @@
     {
       "matchManagers": ["npm"],
       "groupName": "opentelemetry",
-      "matchPackagePatterns": ["^@opentelemetry/"],
+      "matchPackagePatterns": ["^@opentelemetry/*"],
       "automerge": true,
       "major": {
         "automerge": false
