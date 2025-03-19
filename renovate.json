@@ -10,27 +10,53 @@
     "group:test"
   ],
   "rangeStrategy": "pin",
-  "labels": ["deps"],
+  "labels": [
+    "deps"
+  ],
   "packageRules": [
     {
       "groupName": "npm patch dependencies",
-      "matchManagers": ["npm"],
-      "matchUpdateTypes": ["patch"],
-      "matchDepTypes": ["dependencies", "devDependencies", "peerDependencies"],
-      "matchPackageNames": ["*"],
+      "matchManagers": [
+        "npm"
+      ],
+      "matchUpdateTypes": [
+        "patch"
+      ],
+      "matchDepTypes": [
+        "dependencies",
+        "devDependencies",
+        "peerDependencies"
+      ],
+      "matchPackageNames": [
+        "*"
+      ],
       "automerge": true
     },
     {
       "groupName": "npm minor dependencies",
-      "matchManagers": ["npm"],
-      "matchUpdateTypes": ["minor"],
-      "matchDepTypes": ["dependencies", "devDependencies", "peerDependencies"],
-      "matchPackageNames": ["*"]
+      "matchManagers": [
+        "npm"
+      ],
+      "matchUpdateTypes": [
+        "minor"
+      ],
+      "matchDepTypes": [
+        "dependencies",
+        "devDependencies",
+        "peerDependencies"
+      ],
+      "matchPackageNames": [
+        "*"
+      ]
     },
     {
       "groupName": "npm @types",
-      "matchManagers": ["npm"],
-      "matchPackageNames": ["@types/{/,}**"],
+      "matchManagers": [
+        "npm"
+      ],
+      "matchPackageNames": [
+        "@types/{/,}**"
+      ],
       "automerge": true,
       "major": {
         "automerge": false
@@ -38,22 +64,33 @@
     },
     {
       "groupName": "linter deps",
-      "matchManagers": ["npm"],
-      "matchPackageNames": ["/^@biomejs/", "/^prettier/"],
-      "extends": ["packages:linters"],
+      "matchManagers": [
+        "npm"
+      ],
+      "matchPackageNames": [
+        "/^@biomejs/",
+        "/^prettier/"
+      ],
+      "extends": [
+        "packages:linters"
+      ],
       "automerge": true,
       "major": {
         "automerge": false
       }
     },
     {
-      "matchManagers": ["npm"],
+      "matchManagers": [
+        "npm"
+      ],
       "groupName": "opentelemetry",
-      "matchPackagePatterns": ["^@opentelemetry/*"],
       "automerge": true,
       "major": {
         "automerge": false
-      }
+      },
+      "matchPackageNames": [
+        "/^@opentelemetry/*/"
+      ]
     }
   ],
   "ignoreDeps": []
