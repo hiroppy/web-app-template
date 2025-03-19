@@ -13,38 +13,47 @@
   "labels": ["deps"],
   "packageRules": [
     {
+      "groupName": "npm patch dependencies",
       "matchManagers": ["npm"],
       "matchUpdateTypes": ["patch"],
       "matchDepTypes": ["dependencies", "devDependencies", "peerDependencies"],
-      "groupName": "npm patch dependencies",
-      "automerge": true,
-      "matchPackageNames": ["*"]
+      "matchPackageNames": ["*"],
+      "automerge": true
     },
     {
+      "groupName": "npm minor dependencies",
       "matchManagers": ["npm"],
       "matchUpdateTypes": ["minor"],
       "matchDepTypes": ["dependencies", "devDependencies", "peerDependencies"],
-      "groupName": "npm minor dependencies",
       "matchPackageNames": ["*"]
     },
     {
-      "matchManagers": ["npm"],
-      "automerge": true,
       "groupName": "npm @types",
+      "matchManagers": ["npm"],
+      "matchPackageNames": ["@types/{/,}**"],
+      "automerge": true,
       "major": {
         "automerge": false
-      },
-      "matchPackageNames": ["@types/{/,}**"]
+      }
     },
     {
-      "matchManagers": ["npm"],
       "groupName": "linter deps",
+      "matchManagers": ["npm"],
+      "matchPackageNames": ["/^@biomejs/", "/^prettier/"],
       "extends": ["packages:linters"],
       "automerge": true,
       "major": {
         "automerge": false
-      },
-      "matchPackageNames": ["/^@biomejs/", "/^prettier/"]
+      }
+    },
+    {
+      "matchManagers": ["npm"],
+      "groupName": "opentelemetry",
+      "matchPackagePatterns": ["^@opentelemetry/"],
+      "automerge": true,
+      "major": {
+        "automerge": false
+      }
     }
   ],
   "ignoreDeps": []
