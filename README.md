@@ -167,5 +167,5 @@ $ pnpm db:studio
 
 ## Links
 
-- [Database ER diagram](/prisma/ERD.md)
+- [Database ER diagram](/prisma/schema/ERD.md)
 - [Web App Template](https://hiroppy.github.io/web-app-template/)
