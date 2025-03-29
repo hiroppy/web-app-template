@@ -7,9 +7,11 @@ runs:
       with:
         node-version-file: .node-version
         cache: pnpm
+    - run: cp ./.env.test ./.env
+      shell: bash
     - run: npm run setup
       shell: bash
     - run: pnpm i
       shell: bash
-    - run: cp ./.env.test ./.env
+    - run: pnpm generate:client
       shell: bash

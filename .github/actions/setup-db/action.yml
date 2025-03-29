@@ -1,14 +1,6 @@
 name: Setup DB
-inputs:
-  run_db:
-    default: "true"
 runs:
   using: composite
   steps:
-    - run: cp ./.env.test ./.env
-      shell: bash
     - run: pnpm db:up && pnpm db:migrate
-      if: ${{ inputs.run_db == 'true' }}
-      shell: bash
-    - run: pnpm generate:client
       shell: bash
