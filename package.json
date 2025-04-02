@@ -51,7 +51,7 @@
     "@next/env": "15.2.4",
     "@playwright/test": "1.51.1",
     "@tailwindcss/postcss": "4.1.0",
-    "@testing-library/react": "16.2.0",
+    "@testing-library/react": "16.3.0",
     "@types/node": "22.13.17",
     "@types/react": "19.0.12",
     "@types/react-dom": "19.0.4",
