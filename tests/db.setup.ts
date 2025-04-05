@@ -37,7 +37,7 @@ export async function setupDB({ port }: { port: "random" | number }) {
     await container.down();
   }
 
-  return <const>{
+  return {
     container,
     port,
     prisma,
@@ -46,7 +46,7 @@ export async function setupDB({ port }: { port: "random" | number }) {
     async [Symbol.asyncDispose]() {
       await down();
     },
-  };
+  } as const;
 }
 
 export async function truncate(prisma: PrismaClient) {

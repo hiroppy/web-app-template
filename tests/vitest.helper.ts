@@ -80,7 +80,7 @@ export async function setup() {
     return rest;
   }
 
-  return <const>{
+  return {
     container,
     prisma,
     truncate,
@@ -88,5 +88,5 @@ export async function setup() {
     mock,
     createUser,
     getUser,
-  };
+  } as const;
 }
