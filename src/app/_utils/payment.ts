@@ -18,8 +18,8 @@ export async function handleSubscriptionUpsert(
     }
 
     // support only one subscription for now
-    const a = subscription.items.data[0];
-    const currentPeriodEnd = new Date(a.current_period_end * 1000);
+    const item = subscription.items.data[0];
+    const currentPeriodEnd = new Date(item.current_period_end * 1000);
     const { id, status, cancel_at_period_end } = subscription;
     const res = await prisma.subscription.upsert({
       where: {
