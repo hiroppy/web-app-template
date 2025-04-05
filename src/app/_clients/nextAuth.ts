@@ -8,7 +8,7 @@ import { prisma } from "./prisma";
 export const { auth, handlers } = NextAuth({
   // https://authjs.dev/getting-started/migrating-to-v5#edge-compatibility
   ...config,
-  adapter: <Adapter>PrismaAdapter(prisma),
+  adapter: PrismaAdapter(prisma) as Adapter,
   session: {
     strategy: "jwt",
   },

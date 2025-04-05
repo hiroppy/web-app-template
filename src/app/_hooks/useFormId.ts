@@ -4,8 +4,8 @@ export function useFormId() {
   const id = useId();
   const errorId = `${id}-error`;
 
-  return <const>{
+  return {
     id,
     errorId,
-  };
+  } as const;
 }

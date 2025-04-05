@@ -18,5 +18,5 @@ export function useOnlineStatus() {
     };
   }
 
-  return <const>{ isOnline };
+  return { isOnline } as const;
 }
