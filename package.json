@@ -65,21 +65,5 @@
     "testcontainers": "10.24.0",
     "typescript": "5.8.3",
     "vitest": "3.1.1"
-  },
-  "pnpm": {
-    "onlyBuiltDependencies": [
-      "@biomejs/biome",
-      "@prisma/client",
-      "@prisma/engines",
-      "cpu-features",
-      "esbuild",
-      "lefthook",
-      "prisma",
-      "protobufjs",
-      "puppeteer",
-      "sharp",
-      "ssh2",
-      "vue-demi"
-    ]
   }
 }

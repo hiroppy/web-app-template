@@ -1,0 +1,7 @@
+onlyBuiltDependencies:
+  - '@biomejs/biome'
+  - cpu-features
+  - lefthook
+  - puppeteer
+  - ssh2
+  - vue-demi
