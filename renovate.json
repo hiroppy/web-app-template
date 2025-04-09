@@ -7,8 +7,7 @@
     ":separateMajorReleases",
     "group:definitelyTyped",
     "group:monorepos",
-    "group:test",
-    "monorepo:prisma"
+    "group:test"
   ],
   "rangeStrategy": "pin",
   "labels": ["deps"],
@@ -55,6 +54,16 @@
         "automerge": false
       },
       "matchPackageNames": ["/^@opentelemetry/*/"]
+    },
+    {
+      "matchManagers": ["npm"],
+      "groupName": "prisma",
+      "matchUpdateTypes": ["patch", "minor", "major"],
+      "automerge": true,
+      "major": {
+        "automerge": false
+      },
+      "matchPackageNames": ["/^@prisma/*/", "prisma"]
     }
   ],
   "ignoreDeps": []
