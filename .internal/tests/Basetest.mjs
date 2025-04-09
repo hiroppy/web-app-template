@@ -158,6 +158,13 @@ export class BaseTest {
               return false;
             }
             if (
+              dirent.parentPath.startsWith(
+                `${this.outputDir}/src/app/__generated__`,
+              )
+            ) {
+              return false;
+            }
+            if (
               dirent.parentPath.startsWith(`${this.outputDir}/.git`) &&
               !dirent.parentPath.startsWith(`${this.outputDir}/.github`)
             ) {
