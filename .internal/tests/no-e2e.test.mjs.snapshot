@@ -28,9 +28,11 @@ exports[`no-e2e > should put files 1`] = `
   "internal-tests-output-no-e2e/pnpm-lock.yaml",
   "internal-tests-output-no-e2e/pnpm-workspace.yaml",
   "internal-tests-output-no-e2e/postcss.config.mjs",
-  "internal-tests-output-no-e2e/prisma/migrations/migration_lock.toml",
+  "internal-tests-output-no-e2e/prisma.config.ts",
   "internal-tests-output-no-e2e/prisma/schema/ERD.md",
   "internal-tests-output-no-e2e/prisma/schema/item.prisma",
+  "internal-tests-output-no-e2e/prisma/schema/migrations/20250409132415_init/migration.sql",
+  "internal-tests-output-no-e2e/prisma/schema/migrations/migration_lock.toml",
   "internal-tests-output-no-e2e/prisma/schema/schema.prisma",
   "internal-tests-output-no-e2e/prisma/schema/user.prisma",
   "internal-tests-output-no-e2e/public/.gitkeep",
@@ -40,8 +42,7 @@ exports[`no-e2e > should put files 1`] = `
   "internal-tests-output-no-e2e/tests/vitest.helper.ts",
   "internal-tests-output-no-e2e/tests/vitest.setup.ts",
   "internal-tests-output-no-e2e/tsconfig.json",
-  "internal-tests-output-no-e2e/vitest.config.ts",
-  "mocked/migration.sql"
+  "internal-tests-output-no-e2e/vitest.config.ts"
 ]
 `;
 
@@ -161,6 +162,8 @@ exports[`no-e2e > should update .gitignore 1`] = `
   "",
   "*.tsbuildinfo",
   "next-env.d.ts",
+  "",
+  "__generated__",
   "",
   ""
 ]

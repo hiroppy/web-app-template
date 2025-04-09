@@ -6,6 +6,7 @@ const config: KnipConfig = {
     ".internal/**",
     ///////////
     "tests/build.mjs",
+    "prisma.config.ts",
   ],
   playwright: {
     config: ["playwright.config.ts"],

@@ -150,6 +150,7 @@ async function copyDir(from, to) {
     /\.auth/,
     /next-env\.d\.ts$/,
     /prisma\/migrations/,
+    /__generated__/,
   ]);
   await cp(tmpDir, to, { recursive: true });
   await rm(tmpDir, { recursive: true });

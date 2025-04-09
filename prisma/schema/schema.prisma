@@ -8,6 +8,8 @@ datasource db {
 generator client {
   provider        = "prisma-client-js"
   previewFeatures = ["fullTextSearchPostgres", "prismaSchemaFolder"]
+  output          = "../../src/app/__generated__/prisma"
+  moduleFormat    = "esm"
 }
 
 generator erd {

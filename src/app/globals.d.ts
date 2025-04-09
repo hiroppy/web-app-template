@@ -1,7 +1,7 @@
 // issue: https://github.com/nextauthjs/next-auth/issues/9571
 import "next-auth/jwt";
-import type { Role } from "@prisma/client";
 import type { Schema } from "../../env";
+import type { Role } from "./__generated__/prisma";
 
 declare global {
   namespace NodeJS {

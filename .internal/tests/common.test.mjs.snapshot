@@ -29,9 +29,11 @@ exports[`common > should put files 1`] = `
   "internal-tests-output-common/pnpm-lock.yaml",
   "internal-tests-output-common/pnpm-workspace.yaml",
   "internal-tests-output-common/postcss.config.mjs",
-  "internal-tests-output-common/prisma/migrations/migration_lock.toml",
+  "internal-tests-output-common/prisma.config.ts",
   "internal-tests-output-common/prisma/schema/ERD.md",
   "internal-tests-output-common/prisma/schema/item.prisma",
+  "internal-tests-output-common/prisma/schema/migrations/20250409132415_init/migration.sql",
+  "internal-tests-output-common/prisma/schema/migrations/migration_lock.toml",
   "internal-tests-output-common/prisma/schema/schema.prisma",
   "internal-tests-output-common/prisma/schema/user.prisma",
   "internal-tests-output-common/public/.gitkeep",
@@ -41,8 +43,7 @@ exports[`common > should put files 1`] = `
   "internal-tests-output-common/tests/vitest.helper.ts",
   "internal-tests-output-common/tests/vitest.setup.ts",
   "internal-tests-output-common/tsconfig.json",
-  "internal-tests-output-common/vitest.config.ts",
-  "mocked/migration.sql"
+  "internal-tests-output-common/vitest.config.ts"
 ]
 `;
 
@@ -262,6 +263,8 @@ exports[`common > should update .gitignore 1`] = `
   "",
   "*.tsbuildinfo",
   "next-env.d.ts",
+  "",
+  "__generated__",
   "",
   ""
 ]
@@ -760,7 +763,7 @@ exports[`common > should update knip.config.ts 1`] = `
   "import type { KnipConfig } from \\"knip\\";",
   "",
   "const config: KnipConfig = {",
-  "  ignore: [\\"tests/build.mjs\\"],",
+  "  ignore: [\\"tests/build.mjs\\", \\"prisma.config.ts\\"],",
   "  playwright: {",
   "    config: [\\"playwright.config.ts\\"],",
   "    entry: [\\"e2e/**/*.ts\\", \\"tests/**/*.ts\\"],",
