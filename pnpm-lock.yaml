@@ -14,6 +14,9 @@ importers:
       '@hookform/resolvers':
         specifier: 5.0.1
         version: 5.0.1(react-hook-form@7.55.0(react@19.1.0))
+      '@next/env':
+        specifier: 15.2.5
+        version: 15.2.5
       '@opentelemetry/exporter-metrics-otlp-grpc':
         specifier: 0.200.0
         version: 0.200.0(@opentelemetry/api@1.8.0)
@@ -78,9 +81,6 @@ importers:
       '@biomejs/biome':
         specifier: 1.9.4
         version: 1.9.4
-      '@next/env':
-        specifier: 15.2.5
-        version: 15.2.5
       '@playwright/test':
         specifier: 1.51.1
         version: 1.51.1
