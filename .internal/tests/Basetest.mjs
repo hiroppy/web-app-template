@@ -180,7 +180,10 @@ export class BaseTest {
         // dynamic
         .map((file) => {
           // e.g. 'internal-tests-output/prisma/migrations/20241231003842_initial_migration/migration.sql'
-          if (file.includes("_init/migration.sql")) {
+          if (
+            file.includes("_init/migration.sql") ||
+            file.includes("_initial_migration/migration.sql")
+          ) {
             return "mocked/migration.sql";
           }
 
