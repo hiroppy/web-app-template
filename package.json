@@ -2,7 +2,7 @@
   "name": "web-app-template",
   "version": "0.0.1",
   "description": "",
-  "packageManager": "pnpm@10.7.1",
+  "packageManager": "pnpm@10.8.0",
   "scripts": {
     "setup": "corepack enable pnpm",
     "dev": "pnpm db:up && pnpm db:migrate && pnpm generate:client && next dev",
@@ -65,21 +65,5 @@
     "testcontainers": "10.24.0",
     "typescript": "5.8.3",
     "vitest": "3.1.1"
-  },
-  "pnpm": {
-    "onlyBuiltDependencies": [
-      "@biomejs/biome",
-      "@prisma/client",
-      "@prisma/engines",
-      "cpu-features",
-      "esbuild",
-      "lefthook",
-      "prisma",
-      "protobufjs",
-      "puppeteer",
-      "sharp",
-      "ssh2",
-      "vue-demi"
-    ]
   }
 }

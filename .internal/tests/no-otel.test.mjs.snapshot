@@ -26,6 +26,7 @@ exports[`no-otel > should put files 1`] = `
   "internal-tests-output-no-otel/package.json",
   "internal-tests-output-no-otel/playwright.config.ts",
   "internal-tests-output-no-otel/pnpm-lock.yaml",
+  "internal-tests-output-no-otel/pnpm-workspace.yaml",
   "internal-tests-output-no-otel/postcss.config.mjs",
   "internal-tests-output-no-otel/prisma/migrations/migration_lock.toml",
   "internal-tests-output-no-otel/prisma/schema/ERD.md",

@@ -46,6 +46,7 @@ exports[`no-sample-code > should put files 1`] = `
   "internal-tests-output-no-sample-code/package.json",
   "internal-tests-output-no-sample-code/playwright.config.ts",
   "internal-tests-output-no-sample-code/pnpm-lock.yaml",
+  "internal-tests-output-no-sample-code/pnpm-workspace.yaml",
   "internal-tests-output-no-sample-code/postcss.config.mjs",
   "internal-tests-output-no-sample-code/prisma/migrations/migration_lock.toml",
   "internal-tests-output-no-sample-code/prisma/schema/schema.prisma",
