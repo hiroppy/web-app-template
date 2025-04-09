@@ -21,6 +21,8 @@ test-results
 *.tsbuildinfo
 next-env.d.ts
 
+__generated__
+
 ####### 👉 remove #######
 migrations
 ########################

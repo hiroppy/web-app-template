@@ -28,9 +28,10 @@ exports[`no-otel > should put files 1`] = `
   "internal-tests-output-no-otel/pnpm-lock.yaml",
   "internal-tests-output-no-otel/pnpm-workspace.yaml",
   "internal-tests-output-no-otel/postcss.config.mjs",
-  "internal-tests-output-no-otel/prisma/migrations/migration_lock.toml",
+  "internal-tests-output-no-otel/prisma.config.ts",
   "internal-tests-output-no-otel/prisma/schema/ERD.md",
   "internal-tests-output-no-otel/prisma/schema/item.prisma",
+  "internal-tests-output-no-otel/prisma/schema/migrations/migration_lock.toml",
   "internal-tests-output-no-otel/prisma/schema/schema.prisma",
   "internal-tests-output-no-otel/prisma/schema/user.prisma",
   "internal-tests-output-no-otel/public/.gitkeep",
@@ -408,6 +409,7 @@ exports[`no-otel > should update dependencies 1`] = `
   "dependencies": [
     "@auth/prisma-adapter",
     "@hookform/resolvers",
+    "@next/env",
     "@prisma/client",
     "clsx",
     "next",
@@ -422,7 +424,6 @@ exports[`no-otel > should update dependencies 1`] = `
   "devDependencies": [
     "@axe-core/playwright",
     "@biomejs/biome",
-    "@next/env",
     "@playwright/test",
     "@tailwindcss/postcss",
     "@testing-library/react",

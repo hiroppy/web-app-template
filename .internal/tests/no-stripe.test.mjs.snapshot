@@ -29,9 +29,10 @@ exports[`no-stripe > should put files 1`] = `
   "internal-tests-output-no-stripe/pnpm-lock.yaml",
   "internal-tests-output-no-stripe/pnpm-workspace.yaml",
   "internal-tests-output-no-stripe/postcss.config.mjs",
-  "internal-tests-output-no-stripe/prisma/migrations/migration_lock.toml",
+  "internal-tests-output-no-stripe/prisma.config.ts",
   "internal-tests-output-no-stripe/prisma/schema/ERD.md",
   "internal-tests-output-no-stripe/prisma/schema/item.prisma",
+  "internal-tests-output-no-stripe/prisma/schema/migrations/migration_lock.toml",
   "internal-tests-output-no-stripe/prisma/schema/schema.prisma",
   "internal-tests-output-no-stripe/prisma/schema/user.prisma",
   "internal-tests-output-no-stripe/public/.gitkeep",
@@ -427,6 +428,7 @@ exports[`no-stripe > should update dependencies 1`] = `
   "dependencies": [
     "@auth/prisma-adapter",
     "@hookform/resolvers",
+    "@next/env",
     "@opentelemetry/exporter-metrics-otlp-grpc",
     "@opentelemetry/exporter-trace-otlp-grpc",
     "@opentelemetry/instrumentation-http",
@@ -449,7 +451,6 @@ exports[`no-stripe > should update dependencies 1`] = `
   "devDependencies": [
     "@axe-core/playwright",
     "@biomejs/biome",
-    "@next/env",
     "@playwright/test",
     "@tailwindcss/postcss",
     "@testing-library/react",

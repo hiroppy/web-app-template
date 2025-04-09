@@ -1,7 +1,10 @@
 onlyBuiltDependencies:
   - '@biomejs/biome'
+  - '@prisma/client'
+  - '@prisma/engines'
   - cpu-features
   - lefthook
+  - prisma
   - puppeteer
   - ssh2
   - vue-demi
