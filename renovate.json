@@ -7,7 +7,8 @@
     ":separateMajorReleases",
     "group:definitelyTyped",
     "group:monorepos",
-    "group:test"
+    "group:test",
+    "monorepo:prisma"
   ],
   "rangeStrategy": "pin",
   "labels": ["deps"],
