@@ -39,8 +39,8 @@ importers:
         specifier: 2.0.0
         version: 2.0.0(@opentelemetry/api@1.8.0)
       '@opentelemetry/semantic-conventions':
-        specifier: 1.30.0
-        version: 1.30.0
+        specifier: 1.31.0
+        version: 1.31.0
       '@prisma/client':
         specifier: 6.6.0
         version: 6.6.0(prisma@6.6.0(typescript@5.8.3))(typescript@5.8.3)
@@ -958,8 +958,8 @@ packages:
     peerDependencies:
       '@opentelemetry/api': '>=1.0.0 <1.10.0'
 
-  '@opentelemetry/semantic-conventions@1.30.0':
-    resolution: {integrity: sha512-4VlGgo32k2EQ2wcCY3vEU28A0O13aOtHz3Xt2/2U5FAh9EfhD6t6DqL5Z6yAnRCntbTFDU4YfbpyzSlHNWycPw==}
+  '@opentelemetry/semantic-conventions@1.31.0':
+    resolution: {integrity: sha512-cYJeP+6qN0UnBv1r09hXl0YorB8kXHv61BC0NUlBA8vxrylZ4/C8lnva3gd1E8n33DNYSaiGW+DuGoSt0QQ7Dw==}
     engines: {node: '>=14'}
 
   '@panva/hkdf@1.2.1':
@@ -4250,7 +4250,7 @@ snapshots:
   '@opentelemetry/core@2.0.0(@opentelemetry/api@1.8.0)':
     dependencies:
       '@opentelemetry/api': 1.8.0
-      '@opentelemetry/semantic-conventions': 1.30.0
+      '@opentelemetry/semantic-conventions': 1.31.0
 
   '@opentelemetry/exporter-logs-otlp-grpc@0.200.0(@opentelemetry/api@1.8.0)':
     dependencies:
@@ -4355,14 +4355,14 @@ snapshots:
       '@opentelemetry/core': 2.0.0(@opentelemetry/api@1.8.0)
       '@opentelemetry/resources': 2.0.0(@opentelemetry/api@1.8.0)
       '@opentelemetry/sdk-trace-base': 2.0.0(@opentelemetry/api@1.8.0)
-      '@opentelemetry/semantic-conventions': 1.30.0
+      '@opentelemetry/semantic-conventions': 1.31.0
 
   '@opentelemetry/instrumentation-http@0.200.0(@opentelemetry/api@1.8.0)':
     dependencies:
       '@opentelemetry/api': 1.8.0
       '@opentelemetry/core': 2.0.0(@opentelemetry/api@1.8.0)
       '@opentelemetry/instrumentation': 0.200.0(@opentelemetry/api@1.8.0)
-      '@opentelemetry/semantic-conventions': 1.30.0
+      '@opentelemetry/semantic-conventions': 1.31.0
       forwarded-parse: 2.1.2
     transitivePeerDependencies:
       - supports-color
@@ -4429,7 +4429,7 @@ snapshots:
     dependencies:
       '@opentelemetry/api': 1.8.0
       '@opentelemetry/core': 2.0.0(@opentelemetry/api@1.8.0)
-      '@opentelemetry/semantic-conventions': 1.30.0
+      '@opentelemetry/semantic-conventions': 1.31.0
 
   '@opentelemetry/sdk-logs@0.200.0(@opentelemetry/api@1.8.0)':
     dependencies:
@@ -4468,7 +4468,7 @@ snapshots:
       '@opentelemetry/sdk-metrics': 2.0.0(@opentelemetry/api@1.8.0)
       '@opentelemetry/sdk-trace-base': 2.0.0(@opentelemetry/api@1.8.0)
       '@opentelemetry/sdk-trace-node': 2.0.0(@opentelemetry/api@1.8.0)
-      '@opentelemetry/semantic-conventions': 1.30.0
+      '@opentelemetry/semantic-conventions': 1.31.0
     transitivePeerDependencies:
       - supports-color
 
@@ -4477,7 +4477,7 @@ snapshots:
       '@opentelemetry/api': 1.8.0
       '@opentelemetry/core': 2.0.0(@opentelemetry/api@1.8.0)
       '@opentelemetry/resources': 2.0.0(@opentelemetry/api@1.8.0)
-      '@opentelemetry/semantic-conventions': 1.30.0
+      '@opentelemetry/semantic-conventions': 1.31.0
 
   '@opentelemetry/sdk-trace-node@2.0.0(@opentelemetry/api@1.8.0)':
     dependencies:
@@ -4486,7 +4486,7 @@ snapshots:
       '@opentelemetry/core': 2.0.0(@opentelemetry/api@1.8.0)
       '@opentelemetry/sdk-trace-base': 2.0.0(@opentelemetry/api@1.8.0)
 
-  '@opentelemetry/semantic-conventions@1.30.0': {}
+  '@opentelemetry/semantic-conventions@1.31.0': {}
 
   '@panva/hkdf@1.2.1': {}
 
