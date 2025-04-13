@@ -27,7 +27,6 @@ exports[`no-e2e > should put files 1`] = `
   "internal-tests-output-no-e2e/otel-collector-config.yml",
   "internal-tests-output-no-e2e/package.json",
   "internal-tests-output-no-e2e/pnpm-lock.yaml",
-  "internal-tests-output-no-e2e/pnpm-workspace.yaml",
   "internal-tests-output-no-e2e/postcss.config.mjs",
   "internal-tests-output-no-e2e/prisma.config.ts",
   "internal-tests-output-no-e2e/prisma/schema/ERD.md",
