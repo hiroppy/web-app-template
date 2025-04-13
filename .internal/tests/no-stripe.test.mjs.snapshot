@@ -13,6 +13,7 @@ exports[`no-stripe > should put files 1`] = `
   "internal-tests-output-no-stripe/.node-version",
   "internal-tests-output-no-stripe/.npmrc",
   "internal-tests-output-no-stripe/.vscode/extensions.json",
+  "internal-tests-output-no-stripe/.vscode/mcp.json",
   "internal-tests-output-no-stripe/.vscode/settings.json",
   "internal-tests-output-no-stripe/CLAUDE.md",
   "internal-tests-output-no-stripe/Dockerfile",

@@ -13,6 +13,7 @@ exports[`no-e2e > should put files 1`] = `
   "internal-tests-output-no-e2e/.node-version",
   "internal-tests-output-no-e2e/.npmrc",
   "internal-tests-output-no-e2e/.vscode/extensions.json",
+  "internal-tests-output-no-e2e/.vscode/mcp.json",
   "internal-tests-output-no-e2e/.vscode/settings.json",
   "internal-tests-output-no-e2e/CLAUDE.md",
   "internal-tests-output-no-e2e/Dockerfile",

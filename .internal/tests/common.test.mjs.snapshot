@@ -13,6 +13,7 @@ exports[`common > should put files 1`] = `
   "internal-tests-output-common/.node-version",
   "internal-tests-output-common/.npmrc",
   "internal-tests-output-common/.vscode/extensions.json",
+  "internal-tests-output-common/.vscode/mcp.json",
   "internal-tests-output-common/.vscode/settings.json",
   "internal-tests-output-common/CLAUDE.md",
   "internal-tests-output-common/Dockerfile",

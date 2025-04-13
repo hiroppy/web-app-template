@@ -12,6 +12,7 @@ exports[`no-docker > should put files 1`] = `
   "internal-tests-output-no-docker/.node-version",
   "internal-tests-output-no-docker/.npmrc",
   "internal-tests-output-no-docker/.vscode/extensions.json",
+  "internal-tests-output-no-docker/.vscode/mcp.json",
   "internal-tests-output-no-docker/.vscode/settings.json",
   "internal-tests-output-no-docker/CLAUDE.md",
   "internal-tests-output-no-docker/README.md",
