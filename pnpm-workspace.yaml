@@ -6,5 +6,6 @@ onlyBuiltDependencies:
   - lefthook
   - prisma
   - puppeteer
+  - sharp
   - ssh2
   - vue-demi
