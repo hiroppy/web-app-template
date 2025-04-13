@@ -27,6 +27,13 @@ describe("utils/payment", () => {
       const subscription = {
         id: "sub_123",
         customer: "cus_12345",
+        items: {
+          data: [
+            {
+              current_period_end: null,
+            },
+          ],
+        },
       };
 
       // @ts-expect-error don't need to pass all the properties
@@ -39,7 +46,13 @@ describe("utils/payment", () => {
       const subscription = {
         id: "sub_123",
         customer: stripeId,
-        current_period_end: null,
+        items: {
+          data: [
+            {
+              current_period_end: null,
+            },
+          ],
+        },
         status: "active",
         cancel_at_period_end: false,
       };
@@ -92,7 +105,13 @@ describe("utils/payment", () => {
       const subscription = {
         id: "sub_123",
         customer: stripeId,
-        current_period_end: null,
+        items: {
+          data: [
+            {
+              current_period_end: null,
+            },
+          ],
+        },
         status: "active",
         cancel_at_period_end: false,
       };
@@ -108,7 +127,13 @@ describe("utils/payment", () => {
         const updatedSubscription = {
           ...subscription,
           status: "canceled",
-          current_period_end: 123456789,
+          items: {
+            data: [
+              {
+                current_period_end: 123456789,
+              },
+            ],
+          },
           cancel_at_period_end: true,
         };
 
