@@ -185,7 +185,13 @@ describe("actions/payment", () => {
     test('should update the subscription with "cancelAtPeriodEnd"', async () => {
       updateSubscription.mockResolvedValueOnce({
         id: "sub_1",
-        current_period_end: 123456789,
+        items: {
+          data: [
+            {
+              current_period_end: 123456789,
+            },
+          ],
+        },
         cancel_at_period_end: true,
         customer: stripeId,
         status: "active",
