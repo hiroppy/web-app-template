@@ -1,7 +1,7 @@
 "use server";
 
-import type { Item } from "@prisma/client";
 import { revalidatePath } from "next/cache";
+import type { Item } from "../__generated__/prisma";
 import { prisma } from "../_clients/prisma";
 import { type ItemSchema, itemSchema } from "../_schemas/items";
 import { getFieldErrors } from "../_utils/zod";

@@ -13,6 +13,7 @@ exports[`no-e2e > should put files 1`] = `
   "internal-tests-output-no-e2e/.node-version",
   "internal-tests-output-no-e2e/.npmrc",
   "internal-tests-output-no-e2e/.vscode/extensions.json",
+  "internal-tests-output-no-e2e/.vscode/mcp.json",
   "internal-tests-output-no-e2e/.vscode/settings.json",
   "internal-tests-output-no-e2e/CLAUDE.md",
   "internal-tests-output-no-e2e/Dockerfile",
@@ -26,10 +27,12 @@ exports[`no-e2e > should put files 1`] = `
   "internal-tests-output-no-e2e/otel-collector-config.yml",
   "internal-tests-output-no-e2e/package.json",
   "internal-tests-output-no-e2e/pnpm-lock.yaml",
+  "internal-tests-output-no-e2e/pnpm-workspace.yaml",
   "internal-tests-output-no-e2e/postcss.config.mjs",
-  "internal-tests-output-no-e2e/prisma/migrations/migration_lock.toml",
+  "internal-tests-output-no-e2e/prisma.config.ts",
   "internal-tests-output-no-e2e/prisma/schema/ERD.md",
   "internal-tests-output-no-e2e/prisma/schema/item.prisma",
+  "internal-tests-output-no-e2e/prisma/schema/migrations/migration_lock.toml",
   "internal-tests-output-no-e2e/prisma/schema/schema.prisma",
   "internal-tests-output-no-e2e/prisma/schema/user.prisma",
   "internal-tests-output-no-e2e/public/.gitkeep",
@@ -161,6 +164,8 @@ exports[`no-e2e > should update .gitignore 1`] = `
   "*.tsbuildinfo",
   "next-env.d.ts",
   "",
+  "__generated__",
+  "",
   ""
 ]
 `;
@@ -254,6 +259,7 @@ exports[`no-e2e > should update dependencies 1`] = `
   "dependencies": [
     "@auth/prisma-adapter",
     "@hookform/resolvers",
+    "@next/env",
     "@opentelemetry/exporter-metrics-otlp-grpc",
     "@opentelemetry/exporter-trace-otlp-grpc",
     "@opentelemetry/instrumentation-http",
@@ -276,7 +282,6 @@ exports[`no-e2e > should update dependencies 1`] = `
   ],
   "devDependencies": [
     "@biomejs/biome",
-    "@next/env",
     "@tailwindcss/postcss",
     "@testing-library/react",
     "@types/node",

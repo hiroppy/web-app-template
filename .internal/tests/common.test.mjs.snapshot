@@ -13,6 +13,7 @@ exports[`common > should put files 1`] = `
   "internal-tests-output-common/.node-version",
   "internal-tests-output-common/.npmrc",
   "internal-tests-output-common/.vscode/extensions.json",
+  "internal-tests-output-common/.vscode/mcp.json",
   "internal-tests-output-common/.vscode/settings.json",
   "internal-tests-output-common/CLAUDE.md",
   "internal-tests-output-common/Dockerfile",
@@ -27,10 +28,12 @@ exports[`common > should put files 1`] = `
   "internal-tests-output-common/package.json",
   "internal-tests-output-common/playwright.config.ts",
   "internal-tests-output-common/pnpm-lock.yaml",
+  "internal-tests-output-common/pnpm-workspace.yaml",
   "internal-tests-output-common/postcss.config.mjs",
-  "internal-tests-output-common/prisma/migrations/migration_lock.toml",
+  "internal-tests-output-common/prisma.config.ts",
   "internal-tests-output-common/prisma/schema/ERD.md",
   "internal-tests-output-common/prisma/schema/item.prisma",
+  "internal-tests-output-common/prisma/schema/migrations/migration_lock.toml",
   "internal-tests-output-common/prisma/schema/schema.prisma",
   "internal-tests-output-common/prisma/schema/user.prisma",
   "internal-tests-output-common/public/.gitkeep",
@@ -262,6 +265,8 @@ exports[`common > should update .gitignore 1`] = `
   "*.tsbuildinfo",
   "next-env.d.ts",
   "",
+  "__generated__",
+  "",
   ""
 ]
 `;
@@ -476,6 +481,7 @@ exports[`common > should update dependencies 1`] = `
   "dependencies": [
     "@auth/prisma-adapter",
     "@hookform/resolvers",
+    "@next/env",
     "@opentelemetry/exporter-metrics-otlp-grpc",
     "@opentelemetry/exporter-trace-otlp-grpc",
     "@opentelemetry/instrumentation-http",
@@ -499,7 +505,6 @@ exports[`common > should update dependencies 1`] = `
   "devDependencies": [
     "@axe-core/playwright",
     "@biomejs/biome",
-    "@next/env",
     "@playwright/test",
     "@tailwindcss/postcss",
     "@testing-library/react",
@@ -759,7 +764,7 @@ exports[`common > should update knip.config.ts 1`] = `
   "import type { KnipConfig } from \\"knip\\";",
   "",
   "const config: KnipConfig = {",
-  "  ignore: [\\"tests/build.mjs\\"],",
+  "  ignore: [\\"tests/build.mjs\\", \\"prisma.config.ts\\"],",
   "  playwright: {",
   "    config: [\\"playwright.config.ts\\"],",
   "    entry: [\\"e2e/**/*.ts\\", \\"tests/**/*.ts\\"],",

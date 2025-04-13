@@ -158,6 +158,13 @@ export class BaseTest {
               return false;
             }
             if (
+              dirent.parentPath.startsWith(
+                `${this.outputDir}/src/app/__generated__`,
+              )
+            ) {
+              return false;
+            }
+            if (
               dirent.parentPath.startsWith(`${this.outputDir}/.git`) &&
               !dirent.parentPath.startsWith(`${this.outputDir}/.github`)
             ) {
@@ -173,7 +180,10 @@ export class BaseTest {
         // dynamic
         .map((file) => {
           // e.g. 'internal-tests-output/prisma/migrations/20241231003842_initial_migration/migration.sql'
-          if (file.includes("_initial_migration/migration.sql")) {
+          if (
+            file.includes("_init/migration.sql") ||
+            file.includes("_initial_migration/migration.sql")
+          ) {
             return "mocked/migration.sql";
           }
 
