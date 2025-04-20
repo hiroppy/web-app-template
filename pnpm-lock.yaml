@@ -9,11 +9,11 @@ importers:
   .:
     dependencies:
       '@auth/prisma-adapter':
-        specifier: 2.8.0
-        version: 2.8.0(@prisma/client@6.6.0(prisma@6.6.0(typescript@5.8.3))(typescript@5.8.3))
+        specifier: 2.9.0
+        version: 2.9.0(@prisma/client@6.6.0(prisma@6.6.0(typescript@5.8.3))(typescript@5.8.3))
       '@hookform/resolvers':
         specifier: 5.0.1
-        version: 5.0.1(react-hook-form@7.55.0(react@19.1.0))
+        version: 5.0.1(react-hook-form@7.56.0(react@19.1.0))
       '@next/env':
         specifier: 15.3.1
         version: 15.3.1
@@ -66,8 +66,8 @@ importers:
         specifier: 19.1.0
         version: 19.1.0(react@19.1.0)
       react-hook-form:
-        specifier: 7.55.0
-        version: 7.55.0(react@19.1.0)
+        specifier: 7.56.0
+        version: 7.56.0(react@19.1.0)
       stripe:
         specifier: 18.0.0
         version: 18.0.0
@@ -163,8 +163,8 @@ packages:
       nodemailer:
         optional: true
 
-  '@auth/core@0.38.0':
-    resolution: {integrity: sha512-ClHl44x4cY3wfJmHLpW+XrYqED0fZIzbHmwbExltzroCjR5ts3DLTWzADRba8mJFYZ8JIEJDa+lXnGl0E9Bl7Q==}
+  '@auth/core@0.39.0':
+    resolution: {integrity: sha512-jusviw/sUSfAh6S/wjY5tRmJOq0Itd3ImF+c/b4HB9DfmfChtcfVJTNJeqCeExeCG8oh4PBKRsMQJsn2W6NhFQ==}
     peerDependencies:
       '@simplewebauthn/browser': ^9.0.1
       '@simplewebauthn/server': ^9.0.2
@@ -177,8 +177,8 @@ packages:
       nodemailer:
         optional: true
 
-  '@auth/prisma-adapter@2.8.0':
-    resolution: {integrity: sha512-g0Bmq3l5xUDyBBiDgm/y3Zqb582CnRHzFqbloV7scrLia5AbVC0xy+ntn+CQCAWW9ibpwiqJrQKKboIWN1oGqw==}
+  '@auth/prisma-adapter@2.9.0':
+    resolution: {integrity: sha512-Vo/o3YJOa6x2gklQ+XE/JfUf8+CVSDci/nvlOc6psiIiUGigqnQpap2DAxD8brNNYGYKOJ4OAiSt6kQyk3WP3g==}
     peerDependencies:
       '@prisma/client': '>=2.26.0 || >=3 || >=4 || >=5 || >=6'
 
@@ -3021,8 +3021,8 @@ packages:
     peerDependencies:
       react: ^19.1.0
 
-  react-hook-form@7.55.0:
-    resolution: {integrity: sha512-XRnjsH3GVMQz1moZTW53MxfoWN7aDpUg/GpVNc4A3eXRVNdGXfbzJ4vM4aLQ8g6XCUh1nIbx70aaNCl7kxnjog==}
+  react-hook-form@7.56.0:
+    resolution: {integrity: sha512-U2QQgx5z2Y8Z0qlXv3W19hWHJgfKdWMz0O/osuY+o+CYq568V2R/JhzC6OAXfR8k24rIN0Muan2Qliaq9eKs/g==}
     engines: {node: '>=18.0.0'}
     peerDependencies:
       react: ^16.8.0 || ^17 || ^18 || ^19
@@ -3693,7 +3693,7 @@ snapshots:
       preact: 10.11.3
       preact-render-to-string: 5.2.3(preact@10.11.3)
 
-  '@auth/core@0.38.0':
+  '@auth/core@0.39.0':
     dependencies:
       '@panva/hkdf': 1.2.1
       jose: 6.0.8
@@ -3701,9 +3701,9 @@ snapshots:
       preact: 10.24.3
       preact-render-to-string: 6.5.11(preact@10.24.3)
 
-  '@auth/prisma-adapter@2.8.0(@prisma/client@6.6.0(prisma@6.6.0(typescript@5.8.3))(typescript@5.8.3))':
+  '@auth/prisma-adapter@2.9.0(@prisma/client@6.6.0(prisma@6.6.0(typescript@5.8.3))(typescript@5.8.3))':
     dependencies:
-      '@auth/core': 0.38.0
+      '@auth/core': 0.39.0
       '@prisma/client': 6.6.0(prisma@6.6.0(typescript@5.8.3))(typescript@5.8.3)
     transitivePeerDependencies:
       - '@simplewebauthn/browser'
@@ -4044,10 +4044,10 @@ snapshots:
       '@tanstack/vue-virtual': 3.11.3(vue@3.5.13(typescript@5.8.3))
       vue: 3.5.13(typescript@5.8.3)
 
-  '@hookform/resolvers@5.0.1(react-hook-form@7.55.0(react@19.1.0))':
+  '@hookform/resolvers@5.0.1(react-hook-form@7.56.0(react@19.1.0))':
     dependencies:
       '@standard-schema/utils': 0.3.0
-      react-hook-form: 7.55.0(react@19.1.0)
+      react-hook-form: 7.56.0(react@19.1.0)
 
   '@iconify/types@2.0.0': {}
 
@@ -6607,7 +6607,7 @@ snapshots:
       react: 19.1.0
       scheduler: 0.26.0
 
-  react-hook-form@7.55.0(react@19.1.0):
+  react-hook-form@7.56.0(react@19.1.0):
     dependencies:
       react: 19.1.0
 
