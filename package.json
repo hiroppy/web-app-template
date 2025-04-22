@@ -23,7 +23,7 @@
     "fmt": "prettier -w './**/*.{md,yml}' && biome format --write . && prisma format"
   },
   "dependencies": {
-    "@auth/prisma-adapter": "2.8.0",
+    "@auth/prisma-adapter": "2.9.0",
     "@hookform/resolvers": "5.0.1",
     "@next/env": "15.3.1",
     "@opentelemetry/exporter-metrics-otlp-grpc": "0.200.0",
@@ -41,7 +41,7 @@
     "next-auth": "5.0.0-beta.25",
     "react": "19.1.0",
     "react-dom": "19.1.0",
-    "react-hook-form": "7.55.0",
+    "react-hook-form": "7.56.0",
     "stripe": "18.0.0",
     "prisma": "6.6.0",
     "zod": "3.24.3"
