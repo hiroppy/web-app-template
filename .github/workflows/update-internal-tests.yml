@@ -1,0 +1,71 @@
+name: internal-tests
+
+on:
+  issue_comment:
+    types: [created]
+
+jobs:
+  update:
+    name: Update Tests
+    if: ${{ github.event.issue.pull_request && contains(github.event.comment.body, '/update') }}
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ./.github/actions/setup-node
+      - uses: actions/github-script@v7
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            github.rest.reactions.createForIssueComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              comment_id: context.payload.comment.id,
+              content: 'eyes'
+            });
+      - run: cd .internal/tests && make skip-tests-update
+        env:
+          IS_LOCAL: false
+      - name: Check for changes
+        id: git-check
+        run: |
+          if [[ -n "$(git status --porcelain)" ]]; then
+            echo "changes=true" >> $GITHUB_OUTPUT
+          else
+            echo "changes=false" >> $GITHUB_OUTPUT
+          fi
+      - name: Commit changes
+        if: steps.git-check.outputs.changes == 'true'
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git add .
+          git commit -m "Update test snapshots"
+          git push
+      - name: Add comment to PR
+        if: steps.git-check.outputs.changes == 'true'
+        uses: actions/github-script@v7
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: '✅ Test snapshots have been updated and committed to this PR.'
+            })
+      - name: Add comment if no changes
+        if: steps.git-check.outputs.changes == 'false'
+        uses: actions/github-script@v7
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: '📝 No changes were detected in test snapshots.'
+            })

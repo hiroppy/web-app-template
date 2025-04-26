@@ -7,6 +7,7 @@ export const removedFiles = /** @type {const} */ ([
   "LICENSE",
   ".github/workflows/site.yml",
   ".github/workflows/internal.yml",
+  ".github/workflows/update-internal-tests.yml",
 ]);
 
 export const removedDirs = /** @type {const} */ ([]);
