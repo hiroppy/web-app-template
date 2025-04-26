@@ -15,7 +15,6 @@ exports[`no-otel > should put files 1`] = `
   "internal-tests-output-no-otel/.vscode/extensions.json",
   "internal-tests-output-no-otel/.vscode/mcp.json",
   "internal-tests-output-no-otel/.vscode/settings.json",
-  "internal-tests-output-no-otel/CLAUDE.md",
   "internal-tests-output-no-otel/Dockerfile",
   "internal-tests-output-no-otel/README.md",
   "internal-tests-output-no-otel/biome.json",

@@ -17,6 +17,7 @@ test-results
 .env
 
 .vercel
+.claude
 
 *.tsbuildinfo
 next-env.d.ts

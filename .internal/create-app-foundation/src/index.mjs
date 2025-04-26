@@ -148,6 +148,7 @@ async function copyDir(from, to) {
     /test-results/,
     /\.env$/,
     /\.auth/,
+    /\.claude/,
     /next-env\.d\.ts$/,
     /prisma\/migrations/,
     /__generated__/,
