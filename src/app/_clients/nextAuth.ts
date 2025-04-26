@@ -40,10 +40,10 @@ export const { auth, handlers } = NextAuth({
       // in favor of the user's latest data and update the token
       token.user = {
         id: userId,
-        name: me?.name ?? token.name,
-        email: me?.email ?? token.email,
+        name: me?.name ?? token.name ?? "",
+        email: me?.email ?? token.email ?? "",
         role: me?.role ?? user.role,
-        image: me?.image ?? token.picture,
+        image: me?.image ?? token.picture ?? "",
       };
 
       return token;
