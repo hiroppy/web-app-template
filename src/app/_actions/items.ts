@@ -1,6 +1,6 @@
 "use server";
 
-import { revalidatePath } from "next/cache";
+import { revalidateTag } from "next/cache";
 import type { Item } from "../__generated__/prisma";
 import { prisma } from "../_clients/prisma";
 import { type ItemSchema, itemSchema } from "../_schemas/items";
@@ -43,7 +43,7 @@ export async function create(input: ItemSchema): Promise<ReturnedCreate> {
     });
   });
 
-  revalidatePath("/");
+  revalidateTag("items");
 
   return {
     success: true,
@@ -73,5 +73,5 @@ export async function deleteAll() {
     });
   });
 
-  revalidatePath("/");
+  revalidateTag("items");
 }
