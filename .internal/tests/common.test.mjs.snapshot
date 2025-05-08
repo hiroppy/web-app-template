@@ -776,7 +776,7 @@ exports[`common > should update knip.config.ts 1`] = `
   "  vitest: {",
   "    entry: [\\"src/**/*.test.ts\\", \\"tests/**/*.ts\\"],",
   "  },",
-  "  ignoreDependencies: [\\"tailwindcss\\", \\"prisma-erd-generator\\"],",
+  "  ignoreDependencies: [\\"postcss\\", \\"tailwindcss\\", \\"prisma-erd-generator\\"],",
   "  ignoreBinaries: [],",
   "};",
   "",
