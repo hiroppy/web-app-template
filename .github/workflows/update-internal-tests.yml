@@ -14,9 +14,36 @@ jobs:
       pull-requests: write
 
     steps:
+      - name: Get PR details
+        id: pr
+        uses: actions/github-script@v7
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const { owner, repo } = context.repo;
+            const issue_number = context.payload.issue.number;
+
+            const { data: pullRequest } = await github.rest.pulls.get({
+              owner,
+              repo,
+              pull_number: issue_number
+            });
+
+            console.log(`PR Head Ref: ${pullRequest.head.ref}`);
+            console.log(`PR Head SHA: ${pullRequest.head.sha}`);
+            console.log(`PR is from fork: ${pullRequest.head.repo.fork}`);
+
+            return {
+              headRef: pullRequest.head.ref,
+              headSha: pullRequest.head.sha,
+              fromFork: pullRequest.head.repo.fork
+            };
+          result-encoding: json
+
       - uses: actions/checkout@v4
         with:
-          ref: ${{ github.event_name == 'issue_comment' && format('refs/pull/{0}/head', github.event.issue.number) || '' }}
+          ref: ${{ github.event.pull_request.head.sha }}
+          fetch-depth: 0
       - uses: ./.github/actions/setup-node
       - uses: actions/github-script@v7
         with:
@@ -32,6 +59,11 @@ jobs:
         env:
           IS_LOCAL: false
           IS_MAIN_BRANCH: false
+      - name: Debug git status
+        run: |
+          git status
+          git branch
+          git log -n 3 --oneline
       - name: Check for changes
         id: git-check
         run: |
@@ -47,18 +79,51 @@ jobs:
           git config --local user.name "github-actions[bot]"
           git add .
           git commit -m "Update test snapshots"
-          git push
-      - name: Add comment to PR
-        if: steps.git-check.outputs.changes == 'true'
+          # Use GITHUB_TOKEN for authentication
+          git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}
+
+          # Debug info before push
+          echo "Pushing to branch: ${{ steps.pr.outputs.result.headRef }}"
+          echo "Is fork: ${{ steps.pr.outputs.result.fromFork }}"
+
+          # Handle differently based on whether PR is from a fork
+          if [[ "${{ steps.pr.outputs.result.fromFork }}" == "true" ]]; then
+            echo "PR is from a fork. Creating a new branch in the main repository."
+            # For forks, create a new branch in the main repo
+            BRANCH_NAME="update-tests-pr-${{ github.event.issue.number }}"
+            git checkout -b $BRANCH_NAME
+            git push origin $BRANCH_NAME
+
+            # Add a comment to the PR about the new branch
+            echo "BRANCH_NAME=$BRANCH_NAME" >> $GITHUB_ENV
+          else
+            # For PRs from the same repo, push directly to the PR branch
+            git push origin HEAD:${{ steps.pr.outputs.result.headRef }}
+          fi
+      - name: Add comment to PR (non-fork)
+        if: steps.git-check.outputs.changes == 'true' && steps.pr.outputs.result.fromFork != 'true'
         uses: actions/github-script@v7
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
             github.rest.issues.createComment({
-              issue_number: context.issue.number,
+              issue_number: context.payload.issue.number,
               owner: context.repo.owner,
               repo: context.repo.repo,
               body: '✅ Test snapshots have been updated and committed to this PR.'
+            })
+
+      - name: Add comment to PR (fork)
+        if: steps.git-check.outputs.changes == 'true' && steps.pr.outputs.result.fromFork == 'true'
+        uses: actions/github-script@v7
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            github.rest.issues.createComment({
+              issue_number: context.payload.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: '✅ Test snapshots have been updated and committed to a new branch: `${{ env.BRANCH_NAME }}`. Since this PR is from a fork, we cannot push directly to your branch. Please pull these changes into your PR branch.'
             })
       - name: Add comment if no changes
         if: steps.git-check.outputs.changes == 'false'
@@ -67,7 +132,7 @@ jobs:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
             github.rest.issues.createComment({
-              issue_number: context.issue.number,
+              issue_number: context.payload.issue.number,
               owner: context.repo.owner,
               repo: context.repo.repo,
               body: '📝 No changes were detected in test snapshots.'
