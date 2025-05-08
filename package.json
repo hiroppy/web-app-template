@@ -13,7 +13,7 @@
     "test:watch": "NODE_ENV=test vitest watch",
     "test:e2e": "NODE_ENV=test playwright test",
     "test:e2e:ui": "pnpm test:e2e --ui",
-    "db:up": "docker compose up -d && sleep 0.5",
+    "db:up": "docker compose up -d --wait",
     "db:migrate": "prisma migrate dev",
     "db:reset": "prisma migrate reset -f",
     "db:deploy": "prisma migrate deploy",

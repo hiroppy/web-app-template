@@ -399,6 +399,11 @@ exports[`no-otel > should update compose.yml 1`] = `
   "      - POSTGRES_USER=\${DATABASE_USER}",
   "      - POSTGRES_PASSWORD=\${DATABASE_PASSWORD}",
   "      - POSTGRES_DB=\${DATABASE_DB}",
+  "    healthcheck:",
+  "      test: [\\"CMD-SHELL\\", \\"pg_isready\\"]",
+  "      interval: 1s",
+  "      timeout: 5s",
+  "      retries: 10",
   ""
 ]
 `;
