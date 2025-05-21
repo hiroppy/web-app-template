@@ -44,7 +44,7 @@
     "react-hook-form": "7.56.4",
     "stripe": "18.1.1",
     "prisma": "6.8.2",
-    "zod": "3.25.13"
+    "zod": "3.25.20"
   },
   "devDependencies": {
     "@axe-core/playwright": "4.10.1",
@@ -57,7 +57,7 @@
     "@types/react-dom": "19.1.5",
     "@vitejs/plugin-react": "4.4.1",
     "jsdom": "26.1.0",
-    "knip": "5.57.0",
+    "knip": "5.57.1",
     "lefthook": "1.11.13",
     "prettier": "3.5.3",
     "prisma-erd-generator": "2.0.4",
