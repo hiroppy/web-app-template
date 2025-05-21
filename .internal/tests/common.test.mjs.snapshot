@@ -27,6 +27,7 @@ exports[`common > should put files 1`] = `
   "internal-tests-output-common/package.json",
   "internal-tests-output-common/playwright.config.ts",
   "internal-tests-output-common/pnpm-lock.yaml",
+  "internal-tests-output-common/pnpm-workspace.yaml",
   "internal-tests-output-common/postcss.config.mjs",
   "internal-tests-output-common/prisma.config.ts",
   "internal-tests-output-common/prisma/schema/ERD.md",
