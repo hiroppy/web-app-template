@@ -11,7 +11,7 @@ runs:
       shell: bash
     - run: npm run setup
       shell: bash
-    - run: pnpm i
+    - run: pnpm i && pnpm rebuild
       shell: bash
     - run: pnpm generate:client
       shell: bash
