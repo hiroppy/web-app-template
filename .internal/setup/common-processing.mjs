@@ -8,6 +8,7 @@ export const removedFiles = /** @type {const} */ ([
   ".github/workflows/site.yml",
   ".github/workflows/internal.yml",
   ".github/workflows/update-internal-tests.yml",
+  "prisma/schema/ERD.md",
 ]);
 
 export const removedDirs = /** @type {const} */ ([]);
@@ -42,6 +43,6 @@ export async function executeCommonProcessing() {
       title("Creating migration files");
       await generateMigrationFiles();
     })(),
-    removeFiles(removedFiles),
+    await removeFiles(removedFiles),
   ]);
 }

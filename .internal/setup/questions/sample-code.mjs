@@ -24,7 +24,6 @@ export const removedFiles = /** @type {const} */ ([
   "e2e/integrations/item.test.ts",
 
   // others
-  "prisma/schema/ERD.md",
   "prisma/schema/item.prisma",
 ]);
 
