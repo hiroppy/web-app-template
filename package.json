@@ -55,14 +55,14 @@
     "@types/node": "22.15.21",
     "@types/react": "19.1.5",
     "@types/react-dom": "19.1.5",
-    "@vitejs/plugin-react": "4.4.1",
+    "@vitejs/plugin-react": "4.5.0",
     "jsdom": "26.1.0",
-    "knip": "5.57.2",
+    "knip": "5.58.1",
     "lefthook": "1.11.13",
     "prettier": "3.5.3",
     "prisma-erd-generator": "2.0.4",
     "tailwindcss": "4.1.7",
-    "testcontainers": "10.27.0",
+    "testcontainers": "10.28.0",
     "typescript": "5.8.3",
     "vitest": "3.1.4"
   }
