@@ -72,8 +72,8 @@ importers:
         specifier: 18.1.1
         version: 18.1.1(@types/node@22.15.24)
       zod:
-        specifier: 3.25.34
-        version: 3.25.34
+        specifier: 3.25.36
+        version: 3.25.36
     devDependencies:
       '@axe-core/playwright':
         specifier: 4.10.1
@@ -3705,8 +3705,8 @@ packages:
     peerDependencies:
       zod: ^3.18.0
 
-  zod@3.25.34:
-    resolution: {integrity: sha512-lZHvSc2PpWdcfpHlyB33HA9nqP16GpC9IpiG4lYq9jZCJVLZNnWd6Y1cj79bcLSBKTkxepfpjckPv5Y5VOPlwA==}
+  zod@3.25.36:
+    resolution: {integrity: sha512-eRFS3i8T0IrpGdL8HQyqFAugGOn7jOjyGgGdtv5NY4Wkhi7lJDk732bNZ609YMIGFbLoaj6J69O1Mura23gfIw==}
 
 snapshots:
 
@@ -6117,8 +6117,8 @@ snapshots:
       smol-toml: 1.3.1
       strip-json-comments: 5.0.1
       typescript: 5.8.3
-      zod: 3.25.34
-      zod-validation-error: 3.4.0(zod@3.25.34)
+      zod: 3.25.36
+      zod-validation-error: 3.4.0(zod@3.25.36)
 
   kolorist@1.8.0: {}
 
@@ -7370,8 +7370,8 @@ snapshots:
       compress-commons: 6.0.2
       readable-stream: 4.6.0
 
-  zod-validation-error@3.4.0(zod@3.25.34):
+  zod-validation-error@3.4.0(zod@3.25.36):
     dependencies:
-      zod: 3.25.34
+      zod: 3.25.36
 
-  zod@3.25.34: {}
+  zod@3.25.36: {}
