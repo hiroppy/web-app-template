@@ -62,7 +62,7 @@
     "prettier": "3.5.3",
     "prisma-erd-generator": "2.0.4",
     "tailwindcss": "4.1.8",
-    "testcontainers": "10.28.0",
+    "testcontainers": "11.0.0",
     "typescript": "5.8.3",
     "vitest": "3.1.4"
   }
