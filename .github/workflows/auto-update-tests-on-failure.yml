@@ -1,0 +1,168 @@
+name: Auto Update Tests on Failure
+
+on:
+  workflow_run:
+    workflows: ["internal"]
+    types: [completed]
+    branches-ignore:
+      - main
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  auto-update-tests:
+    if: github.event.workflow_run.conclusion == 'failure'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download workflow artifact
+        uses: dawidd6/action-download-artifact@v2
+        with:
+          workflow: ${{ github.event.workflow_run.workflow_id }}
+          run_id: ${{ github.event.workflow_run.id }}
+          name: event-payload
+          path: .
+        continue-on-error: true
+
+      - name: Read event payload
+        id: read-event
+        run: |
+          if [ -f event.json ]; then
+            echo "event=$(cat event.json)" >> $GITHUB_OUTPUT
+          else
+            echo "Failed to download event payload"
+            exit 1
+          fi
+        continue-on-error: true
+
+      - name: Get PR information
+        id: get-pr
+        uses: actions/github-script@v7
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const { owner, repo } = context.repo;
+
+            // Find the PR associated with this workflow run
+            const response = await github.rest.pulls.list({
+              owner,
+              repo,
+              state: 'open',
+              head: '${{ github.event.workflow_run.head_branch }}'
+            });
+
+            if (response.data.length === 0) {
+              console.log('No PR found for this branch');
+              return { found: false };
+            }
+
+            const pr = response.data[0];
+            return {
+              found: true,
+              number: pr.number,
+              headRef: pr.head.ref,
+              fromFork: pr.head.repo.fork,
+              headSha: pr.head.sha
+            };
+
+      - name: Check if PR was found
+        id: check-pr
+        run: |
+          if [[ "${{ fromJSON(steps.get-pr.outputs.result).found }}" == "true" ]]; then
+            echo "PR found: #${{ fromJSON(steps.get-pr.outputs.result).number }}"
+            echo "pr_found=true" >> $GITHUB_OUTPUT
+            echo "pr_number=${{ fromJSON(steps.get-pr.outputs.result).number }}" >> $GITHUB_OUTPUT
+            echo "head_ref=${{ fromJSON(steps.get-pr.outputs.result).headRef }}" >> $GITHUB_OUTPUT
+            echo "from_fork=${{ fromJSON(steps.get-pr.outputs.result).fromFork }}" >> $GITHUB_OUTPUT
+            echo "head_sha=${{ fromJSON(steps.get-pr.outputs.result).headSha }}" >> $GITHUB_OUTPUT
+          else
+            echo "No PR found for this branch"
+            echo "pr_found=false" >> $GITHUB_OUTPUT
+          fi
+
+      - uses: actions/checkout@v4
+        if: steps.check-pr.outputs.pr_found == 'true'
+        with:
+          ref: ${{ steps.check-pr.outputs.head_ref }}
+          fetch-depth: 0
+
+      - uses: ./.github/actions/setup-node
+        if: steps.check-pr.outputs.pr_found == 'true'
+
+      - name: Run skip-tests-update
+        if: steps.check-pr.outputs.pr_found == 'true'
+        run: cd .internal/tests && make skip-tests-update
+        env:
+          IS_LOCAL: false
+          IS_MAIN_BRANCH: false
+
+      - name: Check for changes
+        if: steps.check-pr.outputs.pr_found == 'true'
+        id: git-check
+        run: |
+          if [[ -n "$(git status --porcelain)" ]]; then
+            echo "changes=true" >> $GITHUB_OUTPUT
+          else
+            echo "changes=false" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Commit changes
+        if: steps.check-pr.outputs.pr_found == 'true' && steps.git-check.outputs.changes == 'true'
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git add .
+          git commit -m "Auto-update test snapshots after CI failure"
+
+          # Handle differently based on whether PR is from a fork
+          if [[ "${{ steps.check-pr.outputs.from_fork }}" == "true" ]]; then
+            echo "PR is from a fork. Creating a new branch in the main repository."
+            # For forks, create a new branch in the main repo
+            BRANCH_NAME="auto-update-tests-pr-${{ steps.check-pr.outputs.pr_number }}"
+            git checkout -b $BRANCH_NAME
+            git push origin $BRANCH_NAME
+            echo "BRANCH_NAME=$BRANCH_NAME" >> $GITHUB_ENV
+          else
+            # For PRs from the same repo, push directly to the PR branch
+            git push origin HEAD:${{ steps.check-pr.outputs.head_ref }}
+          fi
+
+      - name: Add comment to PR (fork)
+        if: steps.check-pr.outputs.pr_found == 'true' && steps.git-check.outputs.changes == 'true' && steps.check-pr.outputs.from_fork == 'true'
+        uses: actions/github-script@v7
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            github.rest.issues.createComment({
+              issue_number: ${{ steps.check-pr.outputs.pr_number }},
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: '🔄 CI tests failed, but we\'ve automatically updated the test snapshots and committed them to a new branch: `${{ env.BRANCH_NAME }}`. Since this PR is from a fork, we cannot push directly to your branch. Please pull these changes into your PR branch.'
+            })
+
+      - name: Add comment to PR (same repo)
+        if: steps.check-pr.outputs.pr_found == 'true' && steps.git-check.outputs.changes == 'true' && steps.check-pr.outputs.from_fork != 'true'
+        uses: actions/github-script@v7
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            github.rest.issues.createComment({
+              issue_number: ${{ steps.check-pr.outputs.pr_number }},
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: '🔄 CI tests failed, but we\'ve automatically updated the test snapshots and committed them to your PR branch. Please check the changes and re-run the tests.'
+            })
+
+      - name: Add comment if no changes
+        if: steps.check-pr.outputs.pr_found == 'true' && steps.git-check.outputs.changes == 'false'
+        uses: actions/github-script@v7
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            github.rest.issues.createComment({
+              issue_number: ${{ steps.check-pr.outputs.pr_number }},
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: '⚠️ CI tests failed, but no changes were detected when running the test update command. This may indicate a different issue with the tests.'
+            })

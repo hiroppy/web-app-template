@@ -8,6 +8,7 @@ export const removedFiles = /** @type {const} */ ([
   ".github/workflows/site.yml",
   ".github/workflows/internal.yml",
   ".github/workflows/update-internal-tests.yml",
+  ".github/workflows/auto-update-tests-on-failure.yml",
   "prisma/schema/ERD.md",
 ]);
 
