@@ -2,223 +2,109 @@ name: Update Internal Snapshots
 
 on:
   issue_comment:
-    types: [created]
+    types: [created, edited]
 
 permissions:
   contents: write
   pull-requests: write
 
 jobs:
-  update-snapshots:
-    name: Update Test Snapshots
-    if: ${{ github.event.issue.pull_request && contains(github.event.comment.body, '/update') }}
+  update-internal-snapshots:
+    if: github.event_name == 'issue_comment' && contains(github.event.comment.html_url, '/pull/') && startsWith(github.event.comment.body, '/update')
     runs-on: ubuntu-latest
-
     steps:
-      - name: Check Commenter Permission
-        id: check-permission
+      - name: "Get branch name and sha"
+        id: get_branch
+        run: |
+          PR=$(curl -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" ${{ github.event.issue.pull_request.url }})
+          echo "branch=$(echo $PR | jq -r '.head.ref')" >> $GITHUB_OUTPUT
+          echo "sha=$(echo $PR | jq -r '.head.sha')" >> $GITHUB_OUTPUT
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ steps.get_branch.outputs.branch }}
+      - name: Get PR details
+        id: pr
         uses: actions/github-script@v7
         with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
-            const { owner, repo } = context.repo;
-            const commenterId = context.payload.comment.user.id;
-
-            // Check if commenter is repo owner, member, or collaborator
-            try {
-              // First check if user is repo owner or member
-              const { data: permission } = await github.rest.repos.getCollaboratorPermissionLevel({
-                owner,
-                repo,
-                username: context.payload.comment.user.login
-              });
-
-              if (['admin', 'write', 'maintain'].includes(permission.permission)) {
-                console.log('User has sufficient permissions');
-                core.setOutput('result', 'allowed');
-                return 'allowed';
-              } else {
-                console.log('User does not have sufficient permissions');
-                await github.rest.issues.createComment({
-                  owner,
-                  repo,
-                  issue_number: context.issue.number,
-                  body: '❌ Only repository owners, members, or collaborators can trigger this workflow.'
-                });
-                core.setOutput('result', 'denied');
-                return 'denied';
-              }
-            } catch (error) {
-              console.log('Error checking permissions:', error);
-              await github.rest.issues.createComment({
-                owner,
-                repo,
-                issue_number: context.issue.number,
-                body: '❌ Failed to verify permissions. Only repository owners, members, or collaborators can trigger this workflow.'
-              });
-              core.setOutput('result', 'denied');
-              return 'denied';
-            }
-
-      - name: Add In-Progress Comment
-        if: steps.check-permission.outputs.result == 'allowed'
-        uses: actions/github-script@v7
-        with:
-          script: |
-            await github.rest.issues.createComment({
+            const pr = await github.rest.pulls.get({
               owner: context.repo.owner,
               repo: context.repo.repo,
-              issue_number: context.issue.number,
-              body: '🔄 Processing snapshot update request...'
+              pull_number: context.payload.issue.number
             });
-
-      - name: Get PR Details
-        if: steps.check-permission.outputs.result == 'allowed'
-        id: pr-details
-        uses: actions/github-script@v7
-        with:
-          script: |
-            const { owner, repo } = context.repo;
-            const issue_number = context.issue.number;
-
-            const { data: pullRequest } = await github.rest.pulls.get({
-              owner,
-              repo,
-              pull_number: issue_number
-            });
-
             return {
-              head_ref: pullRequest.head.ref,
-              head_sha: pullRequest.head.sha,
-              head_repo: pullRequest.head.repo.full_name,
-              base_ref: pullRequest.base.ref,
-              user_name: pullRequest.user.login,
-              user_email: `${pullRequest.user.login}@users.noreply.github.com`,
-              fork: pullRequest.head.repo.full_name !== `${owner}/${repo}`
+              headRef: pr.data.head.ref,
+              fromFork: pr.data.head.repo.fork
             };
-
-      - name: Checkout PR
-        if: steps.check-permission.outputs.result == 'allowed'
-        uses: actions/checkout@v4
+      - uses: ./.github/actions/setup-node
+      - uses: actions/github-script@v7
         with:
-          ref: ${{ fromJSON(steps.pr-details.outputs.result).head_ref }}
-          repository: ${{ fromJSON(steps.pr-details.outputs.result).head_repo }}
-          token: ${{ secrets.GITHUB_TOKEN }}
-          fetch-depth: 0
-
-      - name: Setup Node.js
-        if: steps.check-permission.outputs.result == 'allowed'
-        uses: actions/setup-node@v4
-        with:
-          node-version: "20"
-          cache: "pnpm"
-
-      - name: Install pnpm
-        if: steps.check-permission.outputs.result == 'allowed'
-        uses: pnpm/action-setup@v3
-        with:
-          version: 8
-          run_install: false
-
-      - name: Install Dependencies
-        if: steps.check-permission.outputs.result == 'allowed'
-        run: pnpm install --frozen-lockfile
-
-      - name: Update Snapshots
-        if: steps.check-permission.outputs.result == 'allowed'
-        id: update-snapshots
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            github.rest.reactions.createForIssueComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              comment_id: context.payload.comment.id,
+              content: 'eyes'
+            });
+      - run: cd .internal/tests && make skip-tests-update
+        env:
+          IS_LOCAL: false
+          IS_MAIN_BRANCH: false
+      - name: Check for changes
+        id: git-check
         run: |
-          cd .internal/tests
-          make skip-tests-update
-          cd ../..
-
-          # Check if there are any changes
           if [[ -n "$(git status --porcelain)" ]]; then
             echo "changes=true" >> $GITHUB_OUTPUT
           else
             echo "changes=false" >> $GITHUB_OUTPUT
           fi
-
-      - name: Configure Git
-        if: steps.check-permission.outputs.result == 'allowed' && steps.update-snapshots.outputs.changes == 'true'
+      - name: Commit changes
+        if: steps.git-check.outputs.changes == 'true'
         run: |
-          git config --local user.name "GitHub Actions"
-          git config --local user.email "actions@github.com"
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git add .
+          git commit -m "Update test snapshots"
+          # Use GITHUB_TOKEN for authentication
+          git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}
 
-      - name: Commit and Push Changes
-        if: steps.check-permission.outputs.result == 'allowed' && steps.update-snapshots.outputs.changes == 'true'
-        id: commit-changes
-        run: |
-          git add -A
-          git commit -m "chore: update test snapshots [skip ci]"
+          # Handle differently based on whether PR is from a fork
+          if [[ "${{ fromJSON(steps.pr.outputs.result).fromFork }}" == true ]]; then
+            echo "PR is from a fork. Creating a new branch in the main repository."
+            # For forks, create a new branch in the main repo
+            BRANCH_NAME="update-tests-pr-${{ github.event.issue.number }}"
+            git checkout -b $BRANCH_NAME
+            git push origin $BRANCH_NAME
 
-          # Try to push changes, with retry logic for potential conflicts
-          MAX_RETRIES=3
-          RETRY_COUNT=0
-          PUSH_SUCCESS=false
-
-          while [ $RETRY_COUNT -lt $MAX_RETRIES ] && [ "$PUSH_SUCCESS" = "false" ]; do
-            if git push; then
-              PUSH_SUCCESS=true
-            else
-              RETRY_COUNT=$((RETRY_COUNT+1))
-              if [ $RETRY_COUNT -lt $MAX_RETRIES ]; then
-                echo "Push failed, retrying in 5 seconds..."
-                git pull --rebase
-                sleep 5
-              fi
-            fi
-          done
-
-          if [ "$PUSH_SUCCESS" = "true" ]; then
-            echo "push_status=success" >> $GITHUB_OUTPUT
+            # Add a comment to the PR about the new branch
+            echo "BRANCH_NAME=$BRANCH_NAME" >> $GITHUB_ENV
           else
-            echo "push_status=failed" >> $GITHUB_OUTPUT
+            # For PRs from the same repo, push directly to the PR branch
+            git push origin HEAD:${{ fromJSON(steps.pr.outputs.result).headRef }}
           fi
-
-      - name: Add Success Comment
-        if: steps.check-permission.outputs.result == 'allowed' && steps.update-snapshots.outputs.changes == 'true' && steps.commit-changes.outputs.push_status == 'success'
+      - name: Add comment to PR (fork)
+        if: steps.git-check.outputs.changes == 'true' && fromJSON(steps.pr.outputs.result).fromFork == true
         uses: actions/github-script@v7
         with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
-            await github.rest.issues.createComment({
+            github.rest.issues.createComment({
+              issue_number: context.payload.issue.number,
               owner: context.repo.owner,
               repo: context.repo.repo,
-              issue_number: context.issue.number,
-              body: '✅ Test snapshots have been successfully updated and committed to this PR.'
-            });
-
-      - name: Add No Changes Comment
-        if: steps.check-permission.outputs.result == 'allowed' && steps.update-snapshots.outputs.changes == 'false'
+              body: '✅ Test snapshots have been updated and committed to a new branch: `${{ env.BRANCH_NAME }}`. Since this PR is from a fork, we cannot push directly to your branch. Please pull these changes into your PR branch.'
+            })
+      - name: Add comment if no changes
+        if: steps.git-check.outputs.changes == 'false'
         uses: actions/github-script@v7
         with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
-            await github.rest.issues.createComment({
+            github.rest.issues.createComment({
+              issue_number: context.payload.issue.number,
               owner: context.repo.owner,
               repo: context.repo.repo,
-              issue_number: context.issue.number,
-              body: '📝 No changes were needed for test snapshots.'
-            });
-
-      - name: Add Push Failure Comment
-        if: steps.check-permission.outputs.result == 'allowed' && steps.update-snapshots.outputs.changes == 'true' && steps.commit-changes.outputs.push_status == 'failed'
-        uses: actions/github-script@v7
-        with:
-          script: |
-            await github.rest.issues.createComment({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              issue_number: context.issue.number,
-              body: '❌ Failed to push snapshot updates. There might be conflicts with recent changes. Please try again later or update snapshots locally.'
-            });
-
-      - name: Handle Errors
-        if: steps.check-permission.outputs.result == 'allowed' && failure()
-        uses: actions/github-script@v7
-        with:
-          script: |
-            await github.rest.issues.createComment({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              issue_number: context.issue.number,
-              body: '❌ An error occurred while updating snapshots. Please check the workflow logs for details.'
-            });
+              body: '📝 No changes were detected in test snapshots.'
+            })
