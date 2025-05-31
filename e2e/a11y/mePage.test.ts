@@ -4,15 +4,12 @@ import { test } from "../fixtures";
 import { useUser } from "../helpers/users";
 
 test.describe("Me Page", () => {
-  useUser(test, user1.id);
+  useUser(test, user1);
 
   test("should not have any automatically detectable accessibility issues", async ({
     a11y,
-    registerToDB,
     mePage,
   }) => {
-    await registerToDB(user1);
-
     await mePage.goTo();
 
     const res = await a11y().analyze();

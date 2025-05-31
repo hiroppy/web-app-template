@@ -7,9 +7,9 @@ export class SignInPage extends Base {
   constructor(page: Page) {
     super(page);
 
-    this.buttonSignInWithGoogleLocator = this.page.locator(
-      'text="Sign in with Google"',
-    );
+    this.buttonSignInWithGoogleLocator = this.page.getByRole("button", {
+      name: "Sign in with Google",
+    });
   }
 
   async goTo() {

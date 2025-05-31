@@ -8,6 +8,7 @@ exports[`no-stripe > should put files 1`] = `
   "internal-tests-output-no-stripe/.github/actions/setup-db/action.yml",
   "internal-tests-output-no-stripe/.github/actions/setup-node/action.yml",
   "internal-tests-output-no-stripe/.github/copilot-instructions.md",
+  "internal-tests-output-no-stripe/.github/workflows/auto-update-tests-on-failure.yml",
   "internal-tests-output-no-stripe/.github/workflows/ci.yml",
   "internal-tests-output-no-stripe/.gitignore",
   "internal-tests-output-no-stripe/.node-version",

@@ -3,10 +3,9 @@ import { test } from "../fixtures";
 import { useUser } from "../helpers/users";
 
 test.describe("item", () => {
-  useUser(test, user1.id);
+  useUser(test, user1);
 
-  test.beforeEach(async ({ topPage, registerToDB }) => {
-    await registerToDB(user1);
+  test.beforeEach(async ({ topPage }) => {
     await topPage.goTo();
     await topPage.expectHeaderUI("signIn", user1);
     await topPage.expectUI("signIn", user1);

@@ -4,8 +4,8 @@ import type { JWT } from "next-auth/jwt";
 import type { TestFixtures, WorkerFixtures } from "../fixtures";
 import { generatePrismaClient } from "./prisma";
 
-export async function registerUserToDB(user: User) {
-  await using db = await generatePrismaClient();
+export async function registerUserToDB(user: User, dbUrl: string) {
+  await using db = await generatePrismaClient(dbUrl);
   await db.prisma.user.create({
     data: {
       ...user,
@@ -49,9 +49,12 @@ export async function createUserAuthState(context: BrowserContext, jwt: JWT) {
 
 export async function useUser<T extends TestType<TestFixtures, WorkerFixtures>>(
   test: T,
-  userId: string,
+  user: User,
 ) {
-  test.use({ storageState: getStorageStatePath(userId) });
+  test.use({ storageState: getStorageStatePath(user.id) });
+  test.beforeEach(async ({ registerToDB }) => {
+    await registerToDB(user);
+  });
 }
 
 function getStorageStatePath(id: string) {
