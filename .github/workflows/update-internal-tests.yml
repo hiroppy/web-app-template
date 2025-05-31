@@ -34,6 +34,7 @@ jobs:
 
               if (['admin', 'write', 'maintain'].includes(permission.permission)) {
                 console.log('User has sufficient permissions');
+                core.setOutput('result', 'allowed');
                 return 'allowed';
               } else {
                 console.log('User does not have sufficient permissions');
@@ -43,6 +44,7 @@ jobs:
                   issue_number: context.issue.number,
                   body: '❌ Only repository owners, members, or collaborators can trigger this workflow.'
                 });
+                core.setOutput('result', 'denied');
                 return 'denied';
               }
             } catch (error) {
@@ -53,6 +55,7 @@ jobs:
                 issue_number: context.issue.number,
                 body: '❌ Failed to verify permissions. Only repository owners, members, or collaborators can trigger this workflow.'
               });
+              core.setOutput('result', 'denied');
               return 'denied';
             }
 
