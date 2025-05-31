@@ -7,6 +7,7 @@ exports[`no-docker > should put files 1`] = `
   "internal-tests-output-no-docker/.github/actions/setup-db/action.yml",
   "internal-tests-output-no-docker/.github/actions/setup-node/action.yml",
   "internal-tests-output-no-docker/.github/copilot-instructions.md",
+  "internal-tests-output-no-docker/.github/workflows/auto-update-tests-on-failure.yml",
   "internal-tests-output-no-docker/.github/workflows/ci.yml",
   "internal-tests-output-no-docker/.gitignore",
   "internal-tests-output-no-docker/.node-version",
