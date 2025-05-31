@@ -29,7 +29,7 @@ export type WorkerFixtures = {
     prisma: Awaited<ReturnType<typeof setupDB>>["prisma"];
     appPort: number;
     baseURL: string;
-    dbUrl: string;
+    dbURL: string;
   }>;
 };
 
@@ -67,7 +67,7 @@ export const test = base.extend<TestFixtures, WorkerFixtures>({
         prisma: dbSetup.prisma,
         appPort,
         baseURL,
-        dbUrl: dbSetup.url,
+        dbURL: dbSetup.url,
       });
 
       if (cp.pid) {
@@ -81,13 +81,13 @@ export const test = base.extend<TestFixtures, WorkerFixtures>({
   ],
   registerToDB: async ({ reset, setup }, use) => {
     await use(async (user: User) => {
-      await registerUserToDB(user, setup.dbUrl);
+      await registerUserToDB(user, setup.dbURL);
     });
     await reset();
   },
   reset: ({ context, setup }, use) => {
     use(async () => {
-      await using db = await generatePrismaClient(setup.dbUrl);
+      await using db = await generatePrismaClient(setup.dbURL);
       await Promise.all([truncate(db.prisma), context.clearCookies()]);
     });
   },
