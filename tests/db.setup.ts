@@ -38,8 +38,9 @@ export async function setupDB({ port }: { port: "random" | number }) {
   }
 
   return {
+    url,
     container,
-    port,
+    port: mappedPort,
     prisma,
     truncate: () => truncate(prisma),
     down,

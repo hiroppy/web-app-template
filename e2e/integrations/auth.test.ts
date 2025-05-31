@@ -15,11 +15,9 @@ test.describe("no sign in", () => {
 });
 
 test.describe("sign in", () => {
-  useUser(test, user1.id);
+  useUser(test, user1);
 
-  test.beforeEach(async ({ registerToDB, topPage }) => {
-    await registerToDB(user1);
-
+  test.beforeEach(async ({ topPage }) => {
     await topPage.goTo();
     await topPage.expectUI("signIn", user1);
     await topPage.expectHeaderUI("signIn", user1);
