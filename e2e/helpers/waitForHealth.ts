@@ -2,7 +2,7 @@ import { setTimeout } from "node:timers/promises";
 
 export async function waitForHealth(baseUrl: string) {
   const maxAttempts = 30;
-  const interval = 500;
+  const interval = 100;
   const healthUrl = `${baseUrl}/api/health`;
   let attempts = 0;
 
