@@ -19,7 +19,7 @@ export type TestFixtures = {
   signInPage: SignInPage;
   notFoundPage: NotFoundPage;
   storageState: string;
-  registerToDB: (user: User) => Promise<void>;
+  registerUserToDB: (user: User) => Promise<void>;
   reset: () => Promise<void>;
   a11y: () => AxeBuilder;
 };
@@ -79,7 +79,7 @@ export const test = base.extend<TestFixtures, WorkerFixtures>({
       auto: true,
     },
   ],
-  registerToDB: async ({ reset, setup }, use) => {
+  registerUserToDB: async ({ reset, setup }, use) => {
     await use(async (user: User) => {
       await registerUserToDB(user, setup.dbURL);
     });
