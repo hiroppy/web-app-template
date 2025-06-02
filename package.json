@@ -41,7 +41,7 @@
     "next-auth": "5.0.0-beta.28",
     "react": "19.1.0",
     "react-dom": "19.1.0",
-    "react-hook-form": "7.56.4",
+    "react-hook-form": "7.57.0",
     "stripe": "18.2.0",
     "prisma": "6.8.2",
     "zod": "3.25.46"
@@ -64,6 +64,6 @@
     "tailwindcss": "4.1.8",
     "testcontainers": "11.0.0",
     "typescript": "5.8.3",
-    "vitest": "3.1.4"
+    "vitest": "3.2.0"
   }
 }
