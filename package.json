@@ -47,7 +47,7 @@
     "zod": "3.25.49"
   },
   "devDependencies": {
-    "@axe-core/playwright": "4.10.1",
+    "@axe-core/playwright": "4.10.2",
     "@biomejs/biome": "1.9.4",
     "@playwright/test": "1.52.0",
     "@tailwindcss/postcss": "4.1.8",
@@ -64,6 +64,6 @@
     "tailwindcss": "4.1.8",
     "testcontainers": "11.0.0",
     "typescript": "5.8.3",
-    "vitest": "3.2.0"
+    "vitest": "3.2.1"
   }
 }
