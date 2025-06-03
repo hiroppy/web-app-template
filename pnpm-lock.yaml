@@ -69,11 +69,11 @@ importers:
         specifier: 7.57.0
         version: 7.57.0(react@19.1.0)
       stripe:
-        specifier: 18.2.0
-        version: 18.2.0(@types/node@22.15.29)
+        specifier: 18.2.1
+        version: 18.2.1(@types/node@22.15.29)
       zod:
-        specifier: 3.25.48
-        version: 3.25.48
+        specifier: 3.25.49
+        version: 3.25.49
     devDependencies:
       '@axe-core/playwright':
         specifier: 4.10.1
@@ -3291,8 +3291,8 @@ packages:
     resolution: {integrity: sha512-0fk9zBqO67Nq5M/m45qHCJxylV/DhBlIOVExqgOMiCCrzrhU6tCibRXNqE3jwJLftzE9SNuZtYbpzcO+i9FiKw==}
     engines: {node: '>=14.16'}
 
-  stripe@18.2.0:
-    resolution: {integrity: sha512-RpOaGh5CLs3SYeVXw1CIQZNwPVADBJtgNyUgu+ZkIvu3u4pkZvNrlKr+WaLoNjSPQWef0dikxDS2AKHBl/l3bg==}
+  stripe@18.2.1:
+    resolution: {integrity: sha512-GwB1B7WSwEBzW4dilgyJruUYhbGMscrwuyHsPUmSRKrGHZ5poSh2oU9XKdii5BFVJzXHn35geRvGJ6R8bYcp8w==}
     engines: {node: '>=12.*'}
     peerDependencies:
       '@types/node': '>=12.x.x'
@@ -3712,8 +3712,8 @@ packages:
     peerDependencies:
       zod: ^3.18.0
 
-  zod@3.25.48:
-    resolution: {integrity: sha512-0X1mz8FtgEIvaxGjdIImYpZEaZMrund9pGXm3M6vM7Reba0e2eI71KPjSCGXBfwKDPwPoywf6waUKc3/tFvX2Q==}
+  zod@3.25.49:
+    resolution: {integrity: sha512-JMMPMy9ZBk3XFEdbM3iL1brx4NUSejd6xr3ELrrGEfGb355gjhiAWtG3K5o+AViV/3ZfkIrCzXsZn6SbLwTR8Q==}
 
 snapshots:
 
@@ -6128,8 +6128,8 @@ snapshots:
       smol-toml: 1.3.1
       strip-json-comments: 5.0.1
       typescript: 5.8.3
-      zod: 3.25.48
-      zod-validation-error: 3.4.0(zod@3.25.48)
+      zod: 3.25.49
+      zod-validation-error: 3.4.0(zod@3.25.49)
 
   kolorist@1.8.0: {}
 
@@ -6958,7 +6958,7 @@ snapshots:
 
   strip-json-comments@5.0.1: {}
 
-  stripe@18.2.0(@types/node@22.15.29):
+  stripe@18.2.1(@types/node@22.15.29):
     dependencies:
       qs: 6.14.0
     optionalDependencies:
@@ -7381,8 +7381,8 @@ snapshots:
       compress-commons: 6.0.2
       readable-stream: 4.6.0
 
-  zod-validation-error@3.4.0(zod@3.25.48):
+  zod-validation-error@3.4.0(zod@3.25.49):
     dependencies:
-      zod: 3.25.48
+      zod: 3.25.49
 
-  zod@3.25.48: {}
+  zod@3.25.49: {}
