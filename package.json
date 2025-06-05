@@ -57,7 +57,7 @@
     "@types/react-dom": "19.1.6",
     "@vitejs/plugin-react": "4.5.1",
     "jsdom": "26.1.0",
-    "knip": "5.60.1",
+    "knip": "5.60.2",
     "lefthook": "1.11.13",
     "prettier": "3.5.3",
     "prisma-erd-generator": "2.0.4",
