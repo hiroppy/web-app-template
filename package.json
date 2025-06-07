@@ -24,7 +24,7 @@
   },
   "dependencies": {
     "@auth/prisma-adapter": "2.9.1",
-    "@hookform/resolvers": "5.0.1",
+    "@hookform/resolvers": "5.1.0",
     "@next/env": "15.3.3",
     "@opentelemetry/exporter-metrics-otlp-grpc": "0.202.0",
     "@opentelemetry/exporter-trace-otlp-grpc": "0.202.0",
