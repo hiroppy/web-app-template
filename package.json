@@ -44,7 +44,7 @@
     "react-hook-form": "7.57.0",
     "stripe": "18.2.1",
     "prisma": "6.9.0",
-    "zod": "3.25.51"
+    "zod": "3.25.56"
   },
   "devDependencies": {
     "@axe-core/playwright": "4.10.2",
@@ -62,8 +62,8 @@
     "prettier": "3.5.3",
     "prisma-erd-generator": "2.0.4",
     "tailwindcss": "4.1.8",
-    "testcontainers": "11.0.0",
+    "testcontainers": "11.0.1",
     "typescript": "5.8.3",
-    "vitest": "3.2.1"
+    "vitest": "3.2.2"
   }
 }
