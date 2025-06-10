@@ -44,7 +44,7 @@
     "react-hook-form": "7.57.0",
     "stripe": "18.2.1",
     "prisma": "6.9.0",
-    "zod": "3.25.56"
+    "zod": "3.25.57"
   },
   "devDependencies": {
     "@axe-core/playwright": "4.10.2",
@@ -55,14 +55,14 @@
     "@types/node": "22.15.31",
     "@types/react": "19.1.7",
     "@types/react-dom": "19.1.6",
-    "@vitejs/plugin-react": "4.5.1",
+    "@vitejs/plugin-react": "4.5.2",
     "jsdom": "26.1.0",
     "knip": "5.60.2",
     "lefthook": "1.11.13",
     "prettier": "3.5.3",
     "prisma-erd-generator": "2.0.4",
     "tailwindcss": "4.1.8",
-    "testcontainers": "11.0.2",
+    "testcontainers": "11.0.3",
     "typescript": "5.8.3",
     "vitest": "3.2.3"
   }
