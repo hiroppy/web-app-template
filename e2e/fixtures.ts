@@ -4,6 +4,7 @@ import { test as base } from "@playwright/test";
 import type { User } from "next-auth";
 import { truncate } from "../tests/db.setup";
 import { setupDB } from "../tests/db.setup";
+import { setupApp } from "./helpers/app";
 import { getRandomPort } from "./helpers/getRandomPort";
 import { generatePrismaClient } from "./helpers/prisma";
 import { registerUserToDB } from "./helpers/users";
@@ -50,17 +51,16 @@ export const test = base.extend<TestFixtures, WorkerFixtures>({
     async ({ browser }, use) => {
       const appPort = await getRandomPort();
       await using dbSetup = await setupDB({ port: "random" });
-      const baseURL = `http://localhost:${appPort}`;
-      const cp = exec(
-        `NEXTAUTH_URL=${baseURL} DATABASE_PORT=${dbSetup.port} pnpm start --port ${appPort}`,
-      );
-      const originalNewContext = browser.newContext.bind(browser);
+      await using appSetup = await setupApp(dbSetup.port);
+      const baseURL = appSetup.baseURL;
 
-      await waitForHealth(baseURL);
+      const originalNewContext = browser.newContext.bind(browser);
 
       // rewrite newContext to include baseURL
       browser.newContext = async () => {
-        return originalNewContext({ baseURL });
+        return originalNewContext({
+          baseURL,
+        });
       };
 
       await use({
@@ -69,10 +69,6 @@ export const test = base.extend<TestFixtures, WorkerFixtures>({
         baseURL,
         dbURL: dbSetup.url,
       });
-
-      if (cp.pid) {
-        process.kill(cp.pid);
-      }
     },
     {
       scope: "worker",
