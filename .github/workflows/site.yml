@@ -34,8 +34,8 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/configure-pages@v5
       - uses: ./.github/actions/setup-node
-      - run: cd .internal/site && pnpm i
-      - run: cd .internal/site && pnpm build
+      - run: cd .internal/site && npm i
+      - run: cd .internal/site && npm run build
       - uses: actions/upload-pages-artifact@v3
         with:
           path: .internal/site/.vitepress/dist
