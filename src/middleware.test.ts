@@ -1,5 +1,4 @@
 import { beforeEach } from "node:test";
-import type { NextAuthResult } from "next-auth";
 import type { AppRouteHandlerFn } from "next/dist/server/route-modules/app-route/module";
 import {
   getRewrittenUrl,
@@ -7,6 +6,7 @@ import {
   unstable_doesMiddlewareMatch,
 } from "next/experimental/testing/server.js";
 import { NextRequest, type NextResponse } from "next/server";
+import type { NextAuthResult } from "next-auth";
 import { describe, expect, test, vi } from "vitest";
 import nextConfig from "../next.config";
 import middleware, { config } from "./middleware";
