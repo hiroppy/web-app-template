@@ -2,7 +2,6 @@ import { exec } from "node:child_process";
 import { promisify } from "node:util";
 import nextEnv from "@next/env";
 import { DockerComposeEnvironment, Wait } from "testcontainers";
-import { Prisma, PrismaClient } from "../src/app/__generated__/prisma/index.js";
 
 process.env.NODE_ENV = "test";
 

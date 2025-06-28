@@ -41,7 +41,7 @@ export const config = {
     }),
   ],
   callbacks: {
-    redirect: ({ url, baseUrl }) => {
+    redirect: ({ baseUrl }) => {
       return baseUrl;
     },
     session: ({ session, token }) => {

@@ -1,9 +1,5 @@
 import test, { describe } from "node:test";
-import {
-  modifiedFiles,
-  removedDirs,
-  removedFiles,
-} from "../setup/common-processing.mjs";
+import { modifiedFiles } from "../setup/common-processing.mjs";
 import { modifiedFiles as modifiedFilesForDocker } from "../setup/questions/docker.mjs";
 import { modifiedFiles as modifiedFilesForE2e } from "../setup/questions/e2e.mjs";
 import { modifiedFiles as modifiedFilesForOtel } from "../setup/questions/otel.mjs";

@@ -1,6 +1,6 @@
 import { exec } from "node:child_process";
 import { existsSync } from "node:fs";
-import { readFile, readdir, rm } from "node:fs/promises";
+import { readdir, readFile, rm } from "node:fs/promises";
 import { join, resolve as resolvePath } from "node:path";
 import { after, before, test } from "node:test";
 import { promisify } from "node:util";
@@ -20,7 +20,7 @@ export class BaseTest {
     before(
       async () => {
         await execAsync("docker compose stop");
-        await new Promise((resolve, reject) => {
+        await new Promise((resolve, _reject) => {
           if (!process.env.IS_MAIN_BRANCH) {
             process.env.LOCAL_FROM_PATH = resolvePath(process.cwd(), "../..");
           }

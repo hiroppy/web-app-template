@@ -8,7 +8,7 @@ type Props = {
   reset: () => void;
 };
 
-export default function GlobalError({ error, reset }: Props) {
+export default function GlobalError({ reset }: Props) {
   return (
     <html lang="en">
       <body>

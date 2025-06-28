@@ -15,7 +15,7 @@ export async function POST(req: Request) {
 
   try {
     rawBody = Buffer.from(await req.arrayBuffer());
-  } catch (err) {
+  } catch (_err) {
     return new NextResponse("Error reading request body", { status: 400 });
   }
 
@@ -27,7 +27,7 @@ export async function POST(req: Request) {
       sig,
       process.env.STRIPE_WEBHOOK_SECRET,
     );
-  } catch (err) {
+  } catch (_err) {
     return new NextResponse("Webhook signature verification failed", {
       status: 400,
     });

@@ -55,7 +55,7 @@ export async function stripe(answer, isSkipQuestion) {
       [modifiedFiles[6], fences[0]],
     ],
     yesCallback: async () => {
-      const { data } = await getPackageJson();
+      await getPackageJson();
       const deps = ["stripe"];
 
       await Promise.all([
@@ -64,9 +64,9 @@ export async function stripe(answer, isSkipQuestion) {
         removeDirs(removedDirs),
         removeDeps(deps),
         removeWords(modifiedFiles[6], [
-          "--build-arg STRIPE_PRICE_ID=${{env.STRIPE_PRICE_ID}} \\",
-          "--build-arg STRIPE_SECRET_KEY=${{env.STRIPE_SECRET_KEY}} \\",
-          "--build-arg STRIPE_WEBHOOK_SECRET=${{env.STRIPE_WEBHOOK_SECRET}} \\",
+          "--build-arg STRIPE_PRICE_ID=\${STRIPE_PRICE_ID} \\\\",
+          "--build-arg STRIPE_SECRET_KEY=\${STRIPE_SECRET_KEY} \\\\",
+          "--build-arg STRIPE_WEBHOOK_SECRET=\${STRIPE_WEBHOOK_SECRET} \\\\",
         ]),
       ]);
     },

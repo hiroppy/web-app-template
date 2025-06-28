@@ -1,6 +1,5 @@
 import { generateMigrationFiles } from "./db.mjs";
 import { updatePackageJson } from "./package-json.mjs";
-import { askQuestions } from "./questions/index.mjs";
 import { removeFiles, removeLines, title } from "./utils.mjs";
 
 export const removedFiles = /** @type {const} */ ([

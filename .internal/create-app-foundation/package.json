@@ -10,7 +10,9 @@
     "type": "git",
     "url": "git+https://github.com/hiroppy/create-app-foundation.git"
   },
-  "files": ["src"],
+  "files": [
+    "src"
+  ],
   "license": "MIT",
   "keywords": [
     "react",
