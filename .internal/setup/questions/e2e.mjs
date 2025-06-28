@@ -1,6 +1,5 @@
 import {
   executeOptionalQuestion,
-  getPackageJson,
   removeDeps,
   removeDirs,
   removeFiles,
@@ -33,7 +32,6 @@ export async function e2e(answer, isSkipQuestion) {
       [modifiedFiles[2], fences[1]],
     ],
     yesCallback: async () => {
-      await getPackageJson();
       const deps = ["@playwright/test", "@axe-core/playwright"];
 
       await Promise.all([
