@@ -1,6 +1,5 @@
 import {
   executeOptionalQuestion,
-  getPackageJson,
   removeDeps,
   removeDirs,
   removeFiles,
@@ -55,7 +54,6 @@ export async function stripe(answer, isSkipQuestion) {
       [modifiedFiles[6], fences[0]],
     ],
     yesCallback: async () => {
-      const { data } = await getPackageJson();
       const deps = ["stripe"];
 
       await Promise.all([
@@ -64,8 +62,11 @@ export async function stripe(answer, isSkipQuestion) {
         removeDirs(removedDirs),
         removeDeps(deps),
         removeWords(modifiedFiles[6], [
+          // biome-ignore lint/suspicious/noTemplateCurlyInString: GitHub Actions syntax
           "--build-arg STRIPE_PRICE_ID=${{env.STRIPE_PRICE_ID}} \\",
+          // biome-ignore lint/suspicious/noTemplateCurlyInString: GitHub Actions syntax
           "--build-arg STRIPE_SECRET_KEY=${{env.STRIPE_SECRET_KEY}} \\",
+          // biome-ignore lint/suspicious/noTemplateCurlyInString: GitHub Actions syntax
           "--build-arg STRIPE_WEBHOOK_SECRET=${{env.STRIPE_WEBHOOK_SECRET}} \\",
         ]),
       ]);

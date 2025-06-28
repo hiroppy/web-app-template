@@ -1,14 +1,11 @@
-import { exec } from "node:child_process";
 import AxeBuilder from "@axe-core/playwright";
 import { test as base } from "@playwright/test";
 import type { User } from "next-auth";
-import { truncate } from "../tests/db.setup";
-import { setupDB } from "../tests/db.setup";
+import { setupDB, truncate } from "../tests/db.setup";
 import { setupApp } from "./helpers/app";
 import { getRandomPort } from "./helpers/getRandomPort";
 import { generatePrismaClient } from "./helpers/prisma";
 import { registerUserToDB } from "./helpers/users";
-import { waitForHealth } from "./helpers/waitForHealth";
 import { MePage } from "./models/MePage";
 import { NotFoundPage } from "./models/NotFoundPage";
 import { SignInPage } from "./models/SignInPage";

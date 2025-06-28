@@ -75,7 +75,7 @@ export async function setup() {
       throw new Error("User not found");
     }
 
-    const { createdAt, updatedAt, ...rest } = me;
+    const { createdAt: _, updatedAt: __, ...rest } = me;
 
     return rest;
   }

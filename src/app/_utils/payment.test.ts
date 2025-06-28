@@ -68,7 +68,7 @@ describe("utils/payment", () => {
 
       expect(await prisma.subscription.count()).toBe(1);
 
-      const { id, createdAt, updatedAt, ...rest } = res;
+      const { id: _, createdAt: __, updatedAt: ___, ...rest } = res;
 
       expect(rest).toMatchInlineSnapshot(`
         {
@@ -87,7 +87,7 @@ describe("utils/payment", () => {
           throw new Error("Subscription not found");
         }
 
-        const { id, createdAt, updatedAt, ...rest } = res;
+        const { id: _, createdAt: __, updatedAt: ___, ...rest } = res;
 
         expect(rest).toMatchInlineSnapshot(`
           {
@@ -144,7 +144,7 @@ describe("utils/payment", () => {
           throw new Error("Subscription not updated");
         }
 
-        const { id, createdAt, updatedAt, ...rest } = res;
+        const { id: _, createdAt: __, updatedAt: ___, ...rest } = res;
 
         expect(rest).toMatchInlineSnapshot(`
           {

@@ -14,7 +14,7 @@ type UpdateMeState = Result<
 >;
 
 export async function updateMe(
-  prevState: UpdateMeState,
+  _prevState: UpdateMeState,
   formData: FormData,
 ): Promise<UpdateMeState> {
   const session = await getSessionOrReject();

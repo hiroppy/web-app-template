@@ -1,6 +1,6 @@
 import { exec } from "node:child_process";
 import { readFile, rm, unlink, writeFile } from "node:fs/promises";
-import { basename, join, resolve } from "node:path";
+import { join, resolve } from "node:path";
 import { promisify } from "node:util";
 
 export const basePath = resolve(import.meta.dirname, "../..");

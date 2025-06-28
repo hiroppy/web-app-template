@@ -1,6 +1,6 @@
-import NextAuth from "next-auth";
 import type { MiddlewareSourceConfig } from "next/experimental/testing/server";
 import { NextResponse } from "next/server";
+import NextAuth from "next-auth";
 import { config as authConfig } from "./app/_clients/nextAuthConfig";
 
 const { auth } = NextAuth(authConfig);

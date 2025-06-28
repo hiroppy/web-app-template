@@ -26,11 +26,11 @@ async function Status() {
 
   return (
     <div className="flex justify-between gap-3 flex-col md:flex-row md:items-center">
-      <p className="text-gray-300" aria-label="User status">
+      <output className="text-gray-300" aria-label="User status">
         {session?.data?.user
           ? `you are signed in as ${session.data.user.name} 😄`
           : "you are not signed in 🥲"}
-      </p>
+      </output>
       {session?.data?.user && (
         <div className="flex items-center gap-4">
           <Link href={"/create" as Route} scroll={false}>
