@@ -130,12 +130,7 @@ exports[`no-sample-code > should update e2e/fixtures.ts 1`] = `
   "import AxeBuilder from \\"@axe-core/playwright\\";",
   "import { test as base } from \\"@playwright/test\\";",
   "import type { User } from \\"next-auth\\";",
-<<<<<<< HEAD
-  "import { truncate } from \\"../tests/db.setup\\";",
-  "import { setupDB } from \\"../tests/db.setup\\";",
-=======
   "import { setupDB, truncate } from \\"../tests/db.setup\\";",
->>>>>>> e2abbc0 (fixup! fix: update code for Biome v2 compatibility)
   "import { setupApp } from \\"./helpers/app\\";",
   "import { getRandomPort } from \\"./helpers/getRandomPort\\";",
   "import { generatePrismaClient } from \\"./helpers/prisma\\";",
