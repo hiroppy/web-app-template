@@ -634,7 +634,7 @@ exports[`common > should update e2e/fixtures.ts 1`] = `
 
 exports[`common > should update e2e/models/TopPage.ts 1`] = `
 [
-  "import { type Locator, type Page, expect } from \\"@playwright/test\\";",
+  "import { expect, type Locator, type Page } from \\"@playwright/test\\";",
   "import type { User } from \\"next-auth\\";",
   "import { Base } from \\"./Base\\";",
   "",
@@ -1097,7 +1097,6 @@ exports[`common > should update src/app/layout.tsx 1`] = `
 exports[`common > should update src/middleware.test.ts 1`] = `
 [
   "import { beforeEach } from \\"node:test\\";",
-  "import type { NextAuthResult } from \\"next-auth\\";",
   "import type { AppRouteHandlerFn } from \\"next/dist/server/route-modules/app-route/module\\";",
   "import {",
   "  getRewrittenUrl,",
@@ -1105,6 +1104,7 @@ exports[`common > should update src/middleware.test.ts 1`] = `
   "  unstable_doesMiddlewareMatch,",
   "} from \\"next/experimental/testing/server.js\\";",
   "import { NextRequest, type NextResponse } from \\"next/server\\";",
+  "import type { NextAuthResult } from \\"next-auth\\";",
   "import { describe, expect, test, vi } from \\"vitest\\";",
   "import nextConfig from \\"../next.config\\";",
   "import middleware, { config } from \\"./middleware\\";",
@@ -1173,9 +1173,9 @@ exports[`common > should update src/middleware.test.ts 1`] = `
 
 exports[`common > should update src/middleware.ts 1`] = `
 [
-  "import NextAuth from \\"next-auth\\";",
   "import type { MiddlewareSourceConfig } from \\"next/experimental/testing/server\\";",
   "import { NextResponse } from \\"next/server\\";",
+  "import NextAuth from \\"next-auth\\";",
   "import { config as authConfig } from \\"./app/_clients/nextAuthConfig\\";",
   "",
   "const { auth } = NextAuth(authConfig);",
