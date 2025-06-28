@@ -60,8 +60,8 @@ export async function otel(answer, isSkipQuestion) {
         removeDirs(removedDirs),
         removeDeps(deps),
         removeWords(modifiedFiles[7], [
-          "--build-arg TRACE_EXPORTER_URL=$" +
-            "{{env.TRACE_EXPORTER_URL}} \\\\",
+          // biome-ignore lint/suspicious/noTemplateCurlyInString: GitHub Actions syntax
+          "--build-arg TRACE_EXPORTER_URL=${{env.TRACE_EXPORTER_URL}} \\",
         ]),
       ]);
     },
