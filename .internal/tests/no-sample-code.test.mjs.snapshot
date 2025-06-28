@@ -127,17 +127,19 @@ exports[`no-sample-code > should put files 1`] = `
 
 exports[`no-sample-code > should update e2e/fixtures.ts 1`] = `
 [
-  "import { exec } from \\"node:child_process\\";",
   "import AxeBuilder from \\"@axe-core/playwright\\";",
   "import { test as base } from \\"@playwright/test\\";",
   "import type { User } from \\"next-auth\\";",
+<<<<<<< HEAD
   "import { truncate } from \\"../tests/db.setup\\";",
   "import { setupDB } from \\"../tests/db.setup\\";",
+=======
+  "import { setupDB, truncate } from \\"../tests/db.setup\\";",
+>>>>>>> e2abbc0 (fixup! fix: update code for Biome v2 compatibility)
   "import { setupApp } from \\"./helpers/app\\";",
   "import { getRandomPort } from \\"./helpers/getRandomPort\\";",
   "import { generatePrismaClient } from \\"./helpers/prisma\\";",
   "import { registerUserToDB } from \\"./helpers/users\\";",
-  "import { waitForHealth } from \\"./helpers/waitForHealth\\";",
   "import { MePage } from \\"./models/MePage\\";",
   "import { NotFoundPage } from \\"./models/NotFoundPage\\";",
   "import { SignInPage } from \\"./models/SignInPage\\";",
@@ -396,11 +398,11 @@ exports[`no-sample-code > should update src/app/(public)/page.tsx 1`] = `
   "  return (",
   "    <div className=\\"space-y-10 p-10\\">",
   "      <h1 className=\\"text-2xl text-center\\">Hello World 😄</h1>",
-  "      <p className=\\"text-gray-300\\" aria-label=\\"User status\\">",
+  "      <output className=\\"text-gray-300\\" aria-label=\\"User status\\">",
   "        {session?.data?.user",
   "          ? \`you are signed in as \${session.data.user.name} 😄\`",
   "          : \\"you are not signed in 🥲\\"}",
-  "      </p>",
+  "      </output>",
   "    </div>",
   "  );",
   "}",
