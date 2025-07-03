@@ -69,8 +69,8 @@ importers:
         specifier: 7.59.0
         version: 7.59.0(react@19.1.0)
       stripe:
-        specifier: 18.2.1
-        version: 18.2.1(@types/node@22.16.0)
+        specifier: 18.3.0
+        version: 18.3.0(@types/node@22.16.0)
       zod:
         specifier: 3.25.67
         version: 3.25.67
@@ -3300,8 +3300,8 @@ packages:
   strip-literal@3.0.0:
     resolution: {integrity: sha512-TcccoMhJOM3OebGhSBEmp3UZ2SfDMZUEBdRA/9ynfLi8yYajyWX3JiXArcJt4Umh4vISpspkQIY8ZZoCqjbviA==}
 
-  stripe@18.2.1:
-    resolution: {integrity: sha512-GwB1B7WSwEBzW4dilgyJruUYhbGMscrwuyHsPUmSRKrGHZ5poSh2oU9XKdii5BFVJzXHn35geRvGJ6R8bYcp8w==}
+  stripe@18.3.0:
+    resolution: {integrity: sha512-FkxrTUUcWB4CVN2yzgsfF/YHD6WgYHduaa7VmokCy5TLCgl5UNJkwortxcedrxSavQ8Qfa4Ir4JxcbIYiBsyLg==}
     engines: {node: '>=12.*'}
     peerDependencies:
       '@types/node': '>=12.x.x'
@@ -6977,7 +6977,7 @@ snapshots:
     dependencies:
       js-tokens: 9.0.1
 
-  stripe@18.2.1(@types/node@22.16.0):
+  stripe@18.3.0(@types/node@22.16.0):
     dependencies:
       qs: 6.14.0
     optionalDependencies:
