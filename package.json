@@ -42,7 +42,7 @@
     "react": "19.1.0",
     "react-dom": "19.1.0",
     "react-hook-form": "7.59.0",
-    "stripe": "18.2.1",
+    "stripe": "18.3.0",
     "prisma": "6.11.0",
     "zod": "3.25.67"
   },
