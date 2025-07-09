@@ -58,7 +58,7 @@
     "@vitejs/plugin-react": "4.6.0",
     "jsdom": "26.1.0",
     "knip": "5.61.3",
-    "lefthook": "1.12.0",
+    "lefthook": "1.12.1",
     "prettier": "3.6.2",
     "prisma-erd-generator": "2.0.4",
     "tailwindcss": "4.1.11",
