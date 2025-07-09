@@ -41,7 +41,7 @@
     "next-auth": "5.0.0-beta.29",
     "react": "19.1.0",
     "react-dom": "19.1.0",
-    "react-hook-form": "7.59.0",
+    "react-hook-form": "7.60.0",
     "stripe": "18.3.0",
     "prisma": "6.11.1",
     "zod": "3.25.76"
@@ -58,11 +58,11 @@
     "@vitejs/plugin-react": "4.6.0",
     "jsdom": "26.1.0",
     "knip": "5.61.3",
-    "lefthook": "1.11.16",
+    "lefthook": "1.12.0",
     "prettier": "3.6.2",
     "prisma-erd-generator": "2.0.4",
     "tailwindcss": "4.1.11",
-    "testcontainers": "11.0.3",
+    "testcontainers": "11.2.1",
     "typescript": "5.8.3",
     "vitest": "3.2.4"
   }
