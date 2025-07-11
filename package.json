@@ -49,7 +49,7 @@
   "devDependencies": {
     "@axe-core/playwright": "4.10.2",
     "@biomejs/biome": "2.1.1",
-    "@playwright/test": "1.54.0",
+    "@playwright/test": "1.54.1",
     "@tailwindcss/postcss": "4.1.11",
     "@testing-library/react": "16.3.0",
     "@types/node": "22.16.3",
@@ -58,7 +58,7 @@
     "@vitejs/plugin-react": "4.6.0",
     "jsdom": "26.1.0",
     "knip": "5.61.3",
-    "lefthook": "1.12.1",
+    "lefthook": "1.12.2",
     "prettier": "3.6.2",
     "prisma-erd-generator": "2.0.4",
     "tailwindcss": "4.1.11",
