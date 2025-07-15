@@ -1,4 +1,4 @@
-import type { typeToFlattenedError } from "zod";
+import type { ZodFlattenedError } from "zod";
 
 type SuccessResult<T> = {
   success: true;
@@ -10,7 +10,9 @@ type FailureResult<T, U> = {
   success: false;
   message?: string;
   data?: U;
-  zodErrors?: typeToFlattenedError<T>["fieldErrors"];
+  zodErrors?: T extends Record<string, unknown>
+    ? ZodFlattenedError<T>["fieldErrors"]
+    : never;
 };
 
 /**
