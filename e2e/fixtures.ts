@@ -3,7 +3,6 @@ import { test as base } from "@playwright/test";
 import type { User } from "next-auth";
 import { setupDB, truncate } from "../tests/db.setup";
 import { setupApp } from "./helpers/app";
-import { getRandomPort } from "./helpers/getRandomPort";
 import { generatePrismaClient } from "./helpers/prisma";
 import { registerUserToDB } from "./helpers/users";
 import { MePage } from "./models/MePage";
@@ -17,7 +16,7 @@ export type TestFixtures = {
   signInPage: SignInPage;
   notFoundPage: NotFoundPage;
   storageState: string;
-  registerUserToDB: (user: User) => Promise<void>;
+  registerToDB: (user: User) => Promise<void>;
   reset: () => Promise<void>;
   a11y: () => AxeBuilder;
 };
@@ -46,11 +45,9 @@ export const test = base.extend<TestFixtures, WorkerFixtures>({
   },
   setup: [
     async ({ browser }, use) => {
-      const appPort = await getRandomPort();
       await using dbSetup = await setupDB({ port: "random" });
       await using appSetup = await setupApp(dbSetup.port);
       const baseURL = appSetup.baseURL;
-
       const originalNewContext = browser.newContext.bind(browser);
 
       // rewrite newContext to include baseURL
@@ -62,7 +59,7 @@ export const test = base.extend<TestFixtures, WorkerFixtures>({
 
       await use({
         prisma: dbSetup.prisma,
-        appPort,
+        appPort: appSetup.appPort,
         baseURL,
         dbURL: dbSetup.url,
       });
@@ -72,7 +69,7 @@ export const test = base.extend<TestFixtures, WorkerFixtures>({
       auto: true,
     },
   ],
-  registerUserToDB: async ({ reset, setup }, use) => {
+  registerToDB: async ({ reset, setup }, use) => {
     await use(async (user: User) => {
       await registerUserToDB(user, setup.dbURL);
     });

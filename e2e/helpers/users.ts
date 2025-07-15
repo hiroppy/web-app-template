@@ -52,7 +52,7 @@ export async function useUser<T extends TestType<TestFixtures, WorkerFixtures>>(
   user: User,
 ) {
   test.use({ storageState: getStorageStatePath(user.id) });
-  test.beforeEach(async ({ registerUserToDB: registerToDB }) => {
+  test.beforeEach(async ({ registerToDB }) => {
     await registerToDB(user);
   });
 }

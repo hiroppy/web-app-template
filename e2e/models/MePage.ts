@@ -9,7 +9,7 @@ export class MePage extends Base {
     super(page);
 
     this.inputNameLocator = this.page.locator('input[name="name"]');
-    this.buttonSubmitLocator = this.page.locator('button[type="submit"]');
+    this.buttonSubmitLocator = this.page.getByRole("button", { name: "Save" });
   }
 
   async goTo() {
