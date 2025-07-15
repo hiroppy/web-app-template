@@ -53,7 +53,7 @@ export function config(kind: "static" | "runtime" = "static") {
 
   if (res.error) {
     console.error("\x1b[31m%s\x1b[0m", "[Errors] environment variables");
-    console.error(JSON.stringify(res.error.errors, null, 2));
+    console.error(JSON.stringify(res.error.issues, null, 2));
     process.exit(1);
   }
 }
