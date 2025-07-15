@@ -10,7 +10,7 @@ type FailureResult<T, U> = {
   success: false;
   message?: string;
   data?: U;
-  zodErrors?: ZodFlattenedError<T>["fieldErrors"];
+  zodErrors?: T extends Record<string, unknown> ? ZodFlattenedError<T>["fieldErrors"] : never;
 };
 
 /**
