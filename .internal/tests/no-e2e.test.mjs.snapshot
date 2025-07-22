@@ -9,7 +9,6 @@ exports[`no-e2e > should put files 1`] = `
   "internal-tests-output-no-e2e/.github/actions/setup-node/action.yml",
   "internal-tests-output-no-e2e/.github/copilot-instructions.md",
   "internal-tests-output-no-e2e/.github/workflows/ci.yml",
-  "internal-tests-output-no-e2e/.github/workflows/update-internal-e2e.yml",
   "internal-tests-output-no-e2e/.gitignore",
   "internal-tests-output-no-e2e/.node-version",
   "internal-tests-output-no-e2e/.npmrc",

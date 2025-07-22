@@ -9,7 +9,6 @@ exports[`common > should put files 1`] = `
   "internal-tests-output-common/.github/actions/setup-node/action.yml",
   "internal-tests-output-common/.github/copilot-instructions.md",
   "internal-tests-output-common/.github/workflows/ci.yml",
-  "internal-tests-output-common/.github/workflows/update-internal-e2e.yml",
   "internal-tests-output-common/.gitignore",
   "internal-tests-output-common/.node-version",
   "internal-tests-output-common/.npmrc",
