@@ -71,6 +71,21 @@ jobs:
           Co-Authored-By: GitHub Action <action@github.com>"
           git pull --rebase origin ${{ fromJson(steps.pr.outputs.result).head_ref }}
           git push
+      - name: Trigger CI
+        if: steps.changes.outputs.changed == 'true'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            await github.rest.repos.createDispatchEvent({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              event_type: 'trigger-ci',
+              client_payload: {
+                pr_number: context.issue.number,
+                branch: '${{ fromJson(steps.pr.outputs.result).head_ref }}',
+                triggered_by: 'update-internal-e2e'
+              }
+            });
       - name: Comment on PR - Success
         if: steps.changes.outputs.changed == 'true'
         uses: actions/github-script@v7
@@ -80,7 +95,7 @@ jobs:
               owner: context.repo.owner,
               repo: context.repo.repo,
               issue_number: context.issue.number,
-              body: '✅ Snapshots have been updated and committed to this PR.'
+              body: '✅ Snapshots have been updated and committed to this PR. CI is running...'
             });
       - name: Comment on PR - No changes
         if: steps.changes.outputs.changed == 'false'

@@ -27,6 +27,8 @@ on:
       # start: docker #
       - Dockerfile
       # end: docker #
+  repository_dispatch:
+    types: [trigger-ci]
 
 jobs:
   lint:
