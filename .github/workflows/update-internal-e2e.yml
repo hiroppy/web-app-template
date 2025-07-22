@@ -1,0 +1,95 @@
+name: Update internal e2e
+
+on:
+  issue_comment:
+    types: [created]
+
+permissions:
+  contents: write
+  pull-requests: write
+  packages: write
+
+env:
+  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  IS_MAIN_BRANCH: false
+  IS_LOCAL: false
+
+jobs:
+  update-snapshots:
+    if: github.event.issue.pull_request && contains(github.event.comment.body, '/update')
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ./.github/actions/setup-node
+      - uses: ./.github/actions/setup-db
+      - run: pnpm exec playwright install chromium
+      - name: Get PR information
+        id: pr
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const { data: pullRequest } = await github.rest.pulls.get({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              pull_number: context.issue.number
+            });
+            return {
+              head_ref: pullRequest.head.ref,
+              head_sha: pullRequest.head.sha,
+              base_ref: pullRequest.base.ref
+            };
+      - name: Checkout PR branch
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          ref: ${{ fromJson(steps.pr.outputs.result).head_ref }}
+      - name: Fix git safe directory
+        run: git config --global --add safe.directory /__w/web-app-template/web-app-template
+      - uses: ./.github/actions/setup-node
+      - name: Update snapshots
+        run: cd .internal/tests && make skip-tests-update
+      - name: Check for changes
+        id: changes
+        run: |
+          if [ -n "$(git status --porcelain)" ]; then
+            echo "changed=true" >> $GITHUB_OUTPUT
+            echo "Files have been modified by the build process"
+          else
+            echo "changed=false" >> $GITHUB_OUTPUT
+            echo "No files were modified by the build process"
+          fi
+      - name: Commit and push changes
+        if: steps.changes.outputs.changed == 'true'
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add .
+          git commit -m "chore: update test snapshots
+
+          🤖 Generated with GitHub Actions
+
+          Co-Authored-By: GitHub Action <action@github.com>"
+          git pull --rebase origin ${{ fromJson(steps.pr.outputs.result).head_ref }}
+          git push
+      - name: Comment on PR - Success
+        if: steps.changes.outputs.changed == 'true'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+              body: '✅ Snapshots have been updated and committed to this PR.'
+            });
+      - name: Comment on PR - No changes
+        if: steps.changes.outputs.changed == 'false'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+              body: 'ℹ️ No snapshot changes detected.'
+            });

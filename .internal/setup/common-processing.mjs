@@ -7,6 +7,7 @@ export const removedFiles = /** @type {const} */ ([
   ".github/workflows/site.yml",
   ".github/workflows/internal.yml",
   ".github/workflows/claude-code-review.yml",
+  ".github/workflows/update-internal-e2e.yml",
   ".github/workflows/claude.yml",
   "prisma/schema/ERD.md",
 ]);
