@@ -27,8 +27,10 @@ on:
       # start: docker #
       - Dockerfile
       # end: docker #
+  ####### 👉 remove #######
   repository_dispatch:
     types: [trigger-ci]
+  ########################
 
 jobs:
   lint:
