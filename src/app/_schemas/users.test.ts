@@ -92,7 +92,7 @@ describe("schemas/users", () => {
         expect(res.success).toBeFalsy();
 
         if (!res.success) {
-          expect(errors).toEqual(res.error.errors.map((e) => e.message));
+          expect(errors).toEqual(res.error.issues.map((e) => e.message));
         }
       }
     });
