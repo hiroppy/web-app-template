@@ -121,8 +121,8 @@ importers:
         specifier: 4.1.11
         version: 4.1.11
       testcontainers:
-        specifier: 11.3.1
-        version: 11.3.1
+        specifier: 11.3.2
+        version: 11.3.2
       typescript:
         specifier: 5.8.3
         version: 5.8.3
@@ -3389,8 +3389,8 @@ packages:
     resolution: {integrity: sha512-5S7Va8hKfV7W5U6g3aYxXmlPoZVAwUMy9AOKyF2fVuZa2UD3qZjg578OrLRt8PcNN1PleVaL/5/yYATNL0ICUw==}
     engines: {node: '>=18'}
 
-  testcontainers@11.3.1:
-    resolution: {integrity: sha512-5oO0oQjF7gdWdXCVYC3vH6iSTDW8rQsWq7p5xdR17ujhhiPfQgf0hptqmeCCcnht/Qw6wWk5h1JlZnaJPP/Bhg==}
+  testcontainers@11.3.2:
+    resolution: {integrity: sha512-Kkc27Lor8ojvWKJOJKWjaE8BGnr3Sc0Wwjxel5DM4bEjhaX+8b76FvQ60Xr1sQLt09KqNVIA9ek81FCK69HZ0A==}
 
   text-decoder@1.2.3:
     resolution: {integrity: sha512-3/o9z3X0X0fTupwsYvR03pJ/DjWuqqrfwBgTQzdWDiQSm9KitAyz/9WqsT2JQW7KV2m+bC2ol/zqpW37NHxLaA==}
@@ -3489,8 +3489,8 @@ packages:
   undici-types@6.21.0:
     resolution: {integrity: sha512-iwDZqg0QAGrg9Rav5H4n0M64c3mkR59cJ6wQp+7C4nI0gsmExaedaYLNO44eT4AtBBwjbTiGPMlt2Md0T9H9JQ==}
 
-  undici@7.11.0:
-    resolution: {integrity: sha512-heTSIac3iLhsmZhUCjyS3JQEkZELateufzZuBaVM5RHXdSBMb1LPMQf5x+FH7qjsZYDP0ttAc3nnVpUB+wYbOg==}
+  undici@7.12.0:
+    resolution: {integrity: sha512-GrKEsc3ughskmGA9jevVlIOPMiiAHJ4OFUtaAH+NhfTUSiZ1wMPIQqQvAJUrJspFXJt3EBWgpAeoHEDVT1IBug==}
     engines: {node: '>=20.18.1'}
 
   update-browserslist-db@1.1.1:
@@ -7123,7 +7123,7 @@ snapshots:
       mkdirp: 3.0.1
       yallist: 5.0.0
 
-  testcontainers@11.3.1:
+  testcontainers@11.3.2:
     dependencies:
       '@balena/dockerignore': 1.0.2
       '@types/dockerode': 3.3.42
@@ -7139,7 +7139,7 @@ snapshots:
       ssh-remote-port-forward: 1.0.4
       tar-fs: 3.1.0
       tmp: 0.2.3
-      undici: 7.11.0
+      undici: 7.12.0
     transitivePeerDependencies:
       - bare-buffer
       - supports-color
@@ -7222,7 +7222,7 @@ snapshots:
 
   undici-types@6.21.0: {}
 
-  undici@7.11.0: {}
+  undici@7.12.0: {}
 
   update-browserslist-db@1.1.1(browserslist@4.24.3):
     dependencies:
