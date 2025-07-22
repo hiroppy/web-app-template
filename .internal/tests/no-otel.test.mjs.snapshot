@@ -9,6 +9,7 @@ exports[`no-otel > should put files 1`] = `
   "internal-tests-output-no-otel/.github/actions/setup-node/action.yml",
   "internal-tests-output-no-otel/.github/copilot-instructions.md",
   "internal-tests-output-no-otel/.github/workflows/ci.yml",
+  "internal-tests-output-no-otel/.github/workflows/update-internal-e2e.yml",
   "internal-tests-output-no-otel/.gitignore",
   "internal-tests-output-no-otel/.node-version",
   "internal-tests-output-no-otel/.npmrc",
