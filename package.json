@@ -24,7 +24,7 @@
   },
   "dependencies": {
     "@auth/prisma-adapter": "2.10.0",
-    "@hookform/resolvers": "5.1.1",
+    "@hookform/resolvers": "5.2.1",
     "@next/env": "15.4.5",
     "@opentelemetry/exporter-metrics-otlp-grpc": "0.203.0",
     "@opentelemetry/exporter-trace-otlp-grpc": "0.203.0",
@@ -42,7 +42,7 @@
     "react": "19.1.1",
     "react-dom": "19.1.1",
     "react-hook-form": "7.61.1",
-    "stripe": "18.3.0",
+    "stripe": "18.4.0",
     "prisma": "6.12.0",
     "zod": "4.0.14"
   },
