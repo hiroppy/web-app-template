@@ -63,7 +63,7 @@
     "prisma-erd-generator": "2.0.4",
     "tailwindcss": "4.1.11",
     "testcontainers": "11.4.0",
-    "typescript": "5.8.3",
+    "typescript": "5.9.2",
     "vitest": "3.2.4"
   }
 }
