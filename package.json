@@ -41,7 +41,7 @@
     "next-auth": "5.0.0-beta.29",
     "react": "19.1.1",
     "react-dom": "19.1.1",
-    "react-hook-form": "7.61.1",
+    "react-hook-form": "7.62.0",
     "stripe": "18.4.0",
     "prisma": "6.13.0",
     "zod": "4.0.15"
@@ -62,7 +62,7 @@
     "prettier": "3.6.2",
     "prisma-erd-generator": "2.0.4",
     "tailwindcss": "4.1.11",
-    "testcontainers": "11.4.0",
+    "testcontainers": "11.5.1",
     "typescript": "5.9.2",
     "vitest": "3.2.4"
   }
