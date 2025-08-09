@@ -44,7 +44,7 @@
     "react-hook-form": "7.61.1",
     "stripe": "18.4.0",
     "prisma": "6.13.0",
-    "zod": "4.0.15"
+    "zod": "4.0.16"
   },
   "devDependencies": {
     "@axe-core/playwright": "4.10.2",
