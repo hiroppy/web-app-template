@@ -87,10 +87,6 @@ export default defineConfig({
             text: "Code Quality Automation",
             link: "/features/code-quality-automation",
           },
-          {
-            text: "Copilot Edits",
-            link: "/features/copilot",
-          },
         ],
       },
     ],

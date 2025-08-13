@@ -80,7 +80,6 @@
 
 - Supporting recommended extensions for team members
 - Setting up some workspace configurations mainly linter, formatter, and cSpell
-- Supporting instructions for GitHub Copilot Edits
 
 <br />
 <br />
