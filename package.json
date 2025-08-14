@@ -50,7 +50,7 @@
     "@axe-core/playwright": "4.10.2",
     "@biomejs/biome": "2.1.4",
     "@playwright/test": "1.54.2",
-    "@tailwindcss/postcss": "4.1.11",
+    "@tailwindcss/postcss": "4.1.12",
     "@testing-library/react": "16.3.0",
     "@types/node": "22.17.1",
     "@types/react": "19.1.10",
@@ -61,7 +61,7 @@
     "lefthook": "1.12.3",
     "prettier": "3.6.2",
     "prisma-erd-generator": "2.0.4",
-    "tailwindcss": "4.1.11",
+    "tailwindcss": "4.1.12",
     "testcontainers": "11.5.1",
     "typescript": "5.9.2",
     "vitest": "3.2.4"
