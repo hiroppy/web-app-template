@@ -21,7 +21,8 @@
         "useNumberNamespace": "error",
         "noInferrableTypes": "error",
         "noUselessElse": "error"
-      }
+      },
+      "suspicious": {}
     }
   },
   "files": {
