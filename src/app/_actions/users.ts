@@ -42,13 +42,11 @@ export async function updateMe(
     };
   }
 
-  await prisma.$transaction(async (prisma) => {
-    return await prisma.user.update({
-      where: {
-        id: user.id,
-      },
-      data: validatedFields.data,
-    });
+  await prisma.user.update({
+    where: {
+      id: user.id,
+    },
+    data: validatedFields.data,
   });
 
   revalidatePath("/");

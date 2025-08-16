@@ -47,8 +47,6 @@ https://mermaid.live/edit#pako:eNp1k81OwzAQhF_F8qkIqt5zQKLkwBGVG4qEtvaSWm1s4x8QQ
 <!-- prettier-ignore -->
 <<< ../../../../src/app/_actions/payment.ts
 
-<<< ../../../../src/app/api/payment/success/route.ts
-
 :::
 
 _This template doesn't provide a custom payment screen so if you want to create it, please change the redirected endpoint. And also cancel screen as well._
@@ -66,7 +64,7 @@ If users want to cancel a subscription, you change the cancel_at_period_end para
 ::: code-group
 
 <!-- prettier-ignore -->
-<<< ../../../../src/app/_components/Payment.tsx
+<<< ../../../../src/app/me/payment/page.tsx
 
 <!-- prettier-ignore -->
 <<< ../../../../src/app/_actions/payment.ts
