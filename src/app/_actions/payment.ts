@@ -29,10 +29,33 @@ export async function checkout(): Promise<Result> {
     };
   }
 
-  const customer = await stripe.customers.create({
-    email: me.email,
-    name: me.name ?? "-",
-  });
+  let stripeId = me.stripeId;
+
+  if (!stripeId) {
+    try {
+      const customer = await stripe.customers.create({
+        email: me.email,
+        name: me.name ?? "-",
+      });
+
+      stripeId = customer.id;
+
+      await prisma.user.update({
+        where: {
+          id: me.id,
+        },
+        data: {
+          stripeId,
+        },
+      });
+    } catch {
+      return {
+        success: false,
+        message: "failed to create stripe customer",
+      };
+    }
+  }
+
   const checkoutSession = await stripe.checkout.sessions.create({
     mode: "subscription",
     line_items: [
@@ -44,7 +67,7 @@ export async function checkout(): Promise<Result> {
     automatic_tax: {
       enabled: true,
     },
-    customer: customer.id,
+    customer: stripeId,
     customer_update: {
       // for automatic_tax
       shipping: "auto",
@@ -56,15 +79,6 @@ export async function checkout(): Promise<Result> {
     currency: "jpy",
     success_url: successUrl,
     cancel_url: cancelUrl,
-  });
-
-  await prisma.user.update({
-    where: {
-      id: me.id,
-    },
-    data: {
-      stripeId: customer.id,
-    },
   });
 
   if (!checkoutSession.url) {

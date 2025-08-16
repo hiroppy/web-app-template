@@ -29,17 +29,15 @@ export async function create(input: ItemSchema): Promise<ReturnedCreate> {
     };
   }
 
-  const res = await prisma.$transaction(async (prisma) => {
-    return await prisma.item.create({
-      data: {
-        content: validatedFields.data.content,
-        user: {
-          connect: {
-            id: user.id,
-          },
+  const res = await prisma.item.create({
+    data: {
+      content: validatedFields.data.content,
+      user: {
+        connect: {
+          id: user.id,
         },
       },
-    });
+    },
   });
 
   revalidatePath("/");
