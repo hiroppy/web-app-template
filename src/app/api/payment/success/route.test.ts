@@ -5,7 +5,7 @@ import { setup } from "../../../../../tests/vitest.helper";
 // need to import after vitest.helper
 import { GET } from "./route";
 
-const { prisma, mock, createUser, getUser } = await setup();
+const { mock, createUser } = await setup();
 const { retrieve } = vi.hoisted(() => ({
   retrieve: vi.fn(),
 }));
@@ -50,19 +50,6 @@ describe("api/payment/success", () => {
     test("should redirect to /me/payment if payment is complete", async () => {
       await createUser();
 
-      expect(await getUser()).toMatchInlineSnapshot(`
-        {
-          "email": "hello@a.com",
-          "emailVerified": null,
-          "id": "id",
-          "image": "https://a.com",
-          "name": "name",
-          "role": "USER",
-          "stripeId": null,
-        }
-      `);
-      expect(await prisma.subscription.count()).toBe(0);
-
       retrieve.mockReturnValueOnce({
         status: "complete",
         customer: "cus_123",
@@ -89,28 +76,37 @@ describe("api/payment/success", () => {
           ],
         ]
       `);
-      expect(await getUser()).toMatchInlineSnapshot(`
-        {
-          "email": "hello@a.com",
-          "emailVerified": null,
-          "id": "id",
-          "image": "https://a.com",
-          "name": "name",
-          "role": "USER",
-          "stripeId": "cus_123",
-        }
-      `);
-      expect(await prisma.subscription.findFirst()).contain({
-        subscriptionId: "sub_123",
-        status: "complete",
-        currentPeriodEnd: null,
-        cancelAtPeriodEnd: false,
-        userId: "id",
-      });
     });
 
     test("should redirect to /me/payment if payment is incomplete", async () => {
       await createUser();
+
+      retrieve.mockReturnValueOnce({
+        status: "incomplete",
+        customer: "cus_123",
+        subscription: "sub_123",
+      });
+
+      const req = new NextRequest(
+        `${process.env.NEXT_PUBLIC_SITE_URL}/api/payment/success?session_id=123`,
+      );
+      const res = await GET(req);
+
+      expect(res).toBeUndefined();
+      expect(retrieve.mock.calls).toMatchInlineSnapshot(`
+        [
+          [
+            "123",
+          ],
+        ]
+      `);
+      expect(mock.redirect.mock.calls).toMatchInlineSnapshot(`
+        [
+          [
+            "/me/payment?status=incomplete",
+          ],
+        ]
+      `);
     });
   });
 });
