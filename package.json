@@ -55,7 +55,7 @@
     "@types/node": "22.17.2",
     "@types/react": "19.1.10",
     "@types/react-dom": "19.1.7",
-    "@vitejs/plugin-react": "5.0.0",
+    "@vitejs/plugin-react": "5.0.1",
     "jsdom": "26.1.0",
     "knip": "5.62.0",
     "lefthook": "1.12.3",
