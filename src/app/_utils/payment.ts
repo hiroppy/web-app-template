@@ -33,6 +33,7 @@ export async function handleSubscriptionUpsert(
         cancelAtPeriodEnd: cancel_at_period_end,
       },
       update: {
+        subscriptionId: id,
         status,
         currentPeriodEnd,
         cancelAtPeriodEnd: cancel_at_period_end,
