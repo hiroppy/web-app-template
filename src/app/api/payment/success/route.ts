@@ -1,7 +1,6 @@
 import { redirect } from "next/navigation";
 import { type NextRequest, NextResponse } from "next/server";
 import { getSessionOrReject } from "../../../_actions/auth";
-import { prisma } from "../../../_clients/prisma";
 import { stripe } from "../../../_clients/stripe";
 
 export async function GET(req: NextRequest) {
@@ -17,34 +16,12 @@ export async function GET(req: NextRequest) {
     return new NextResponse(session.message, { status: 401 });
   }
 
-  const { user } = session.data;
   const paymentInfo = await stripe.checkout.sessions.retrieve(sessionId);
 
   if (paymentInfo.status === "complete") {
-    try {
-      await prisma.$transaction(async (prisma) => {
-        await prisma.user.update({
-          where: {
-            id: user.id,
-          },
-          data: {
-            stripeId: `${paymentInfo.customer}`,
-            subscriptions: {
-              create: {
-                subscriptionId: `${paymentInfo.subscription}`,
-                status: `${paymentInfo.status}`,
-              },
-            },
-          },
-        });
-      });
-    } catch {
-      // session is expired
-      redirect("/me/payment?status=incomplete");
-    }
-
     redirect("/me/payment");
   } else {
+    // session is expired
     redirect("/me/payment?status=incomplete");
   }
 }
