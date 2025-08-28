@@ -1,6 +1,6 @@
-import type { ZodSafeParseError } from "zod";
+import type { SafeParseReturnType } from "zod";
 
-export function getFieldErrors<T>(parsedValues: ZodSafeParseError<T>) {
+export function getFieldErrors<T>(parsedValues: SafeParseReturnType<any, T>) {
   if (!parsedValues.success) {
     return parsedValues.error.flatten().fieldErrors;
   }
