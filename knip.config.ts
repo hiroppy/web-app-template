@@ -16,7 +16,7 @@ const config: KnipConfig = {
     entry: ["src/**/*.test.ts", "tests/**/*.ts"],
   },
   ignoreDependencies: ["postcss", "tailwindcss", "prisma-erd-generator"],
-  ignoreBinaries: [],
+  ignoreBinaries: ["stripe"],
 };
 
 export default config;
