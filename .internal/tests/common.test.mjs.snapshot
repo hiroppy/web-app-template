@@ -41,7 +41,6 @@ exports[`common > should put files 1`] = `
   "internal-tests-output-common/tests/vitest.helper.ts",
   "internal-tests-output-common/tests/vitest.setup.ts",
   "internal-tests-output-common/tsconfig.json",
-  "internal-tests-output-common/tsconfig.tsbuildinfo",
   "internal-tests-output-common/vitest.config.ts",
   "mocked/migration.sql"
 ]

@@ -101,7 +101,6 @@ exports[`no-stripe > should put files 1`] = `
   "internal-tests-output-no-stripe/tests/vitest.helper.ts",
   "internal-tests-output-no-stripe/tests/vitest.setup.ts",
   "internal-tests-output-no-stripe/tsconfig.json",
-  "internal-tests-output-no-stripe/tsconfig.tsbuildinfo",
   "internal-tests-output-no-stripe/vitest.config.ts",
   "mocked/migration.sql"
 ]

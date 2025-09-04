@@ -40,7 +40,6 @@ exports[`no-otel > should put files 1`] = `
   "internal-tests-output-no-otel/tests/vitest.helper.ts",
   "internal-tests-output-no-otel/tests/vitest.setup.ts",
   "internal-tests-output-no-otel/tsconfig.json",
-  "internal-tests-output-no-otel/tsconfig.tsbuildinfo",
   "internal-tests-output-no-otel/vitest.config.ts",
   "mocked/migration.sql"
 ]
