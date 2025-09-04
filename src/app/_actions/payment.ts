@@ -74,7 +74,7 @@ export async function checkout(): Promise<Result> {
     };
   }
 
-  redirect(checkoutSession.url);
+  redirect(checkoutSession.url as any);
 }
 
 type ReturnedUpdate = Result<
