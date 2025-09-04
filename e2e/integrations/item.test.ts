@@ -9,6 +9,8 @@ test.describe("item", () => {
     await topPage.goTo();
     await topPage.expectHeaderUI("signIn", user1);
     await topPage.expectUI("signIn", user1);
+    // Wait for database cleanup to complete before checking items
+    await topPage.page.waitForLoadState("networkidle");
     await topPage.expectItems([]);
   });
 
