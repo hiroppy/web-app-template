@@ -1,5 +1,5 @@
 import { notFound } from "next/navigation";
-import { getSessionOrReject } from "../../_actions/auth";
+import { getSessionOrReject } from "../../_utils/auth";
 import { UpdateMyInfo } from "./_components/UpdateMyInfo";
 
 export default async function Page() {

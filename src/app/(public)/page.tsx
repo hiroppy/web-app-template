@@ -2,7 +2,7 @@ import type { Route } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { Suspense } from "react";
-import { getSessionOrReject } from "../_actions/auth";
+import { getSessionOrReject } from "../_utils/auth";
 import { deleteAll } from "../_actions/items";
 import { prisma } from "../_clients/prisma";
 import { Button } from "../_components/Button";

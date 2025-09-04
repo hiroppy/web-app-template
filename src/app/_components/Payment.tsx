@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { status } from "../_actions/payment";
+import { status } from "../_utils/payment";
 import { format } from "../_utils/date";
 import { PaymentButton } from "./PaymentButton";
 

@@ -1,6 +1,6 @@
 import { redirect } from "next/navigation";
 import { type NextRequest, NextResponse } from "next/server";
-import { getSessionOrReject } from "../../../_actions/auth";
+import { getSessionOrReject } from "../../../_utils/auth";
 import { prisma } from "../../../_clients/prisma";
 import { stripe } from "../../../_clients/stripe";
 

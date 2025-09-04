@@ -6,7 +6,7 @@ import { getSessionOrReject } from "./auth";
 
 const { createUser } = await setup();
 
-describe("actions/auth", () => {
+describe("utils/auth", () => {
   describe("getSessionOrReject", () => {
     test("should return session data", async () => {
       await createUser();
