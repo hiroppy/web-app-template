@@ -380,7 +380,7 @@ exports[`no-sample-code > should update prisma/schema/user.prisma 1`] = `
 
 exports[`no-sample-code > should update src/app/(public)/page.tsx 1`] = `
 [
-  "import { getSessionOrReject } from \\"../_actions/auth\\";",
+  "import { getSessionOrReject } from \\"../_utils/auth\\";",
   "",
   "export default async function Page() {",
   "  const session = await getSessionOrReject();",
