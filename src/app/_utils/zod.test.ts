@@ -31,7 +31,6 @@ describe("utils/zod", () => {
         name: "foo",
       });
 
-      // biome-ignore lint: snapshot
       expect(getFieldErrors(parsedValues)).toMatchInlineSnapshot(`{}`);
     });
   });
