@@ -47,7 +47,9 @@ describe("middleware", () => {
 
   test("should route /signin to when fallback", async () => {
     const req = new NextRequest("http://localhost:3000");
-    const res = (await middleware(req, { params: Promise.resolve({}) })) as NextResponse;
+    const res = (await middleware(req, {
+      params: Promise.resolve({}),
+    })) as NextResponse;
 
     expect(isRewrite(res)).toEqual(true);
     expect(getRewrittenUrl(res)).toEqual("http://localhost:3000/signin");
@@ -63,7 +65,9 @@ describe("middleware", () => {
       },
     } as NextAuthRequest;
 
-    const res = (await middleware(req, { params: Promise.resolve({}) })) as NextResponse;
+    const res = (await middleware(req, {
+      params: Promise.resolve({}),
+    })) as NextResponse;
 
     expect(isRewrite(res)).toEqual(false);
     expect(getRewrittenUrl(res)).toEqual(null);
