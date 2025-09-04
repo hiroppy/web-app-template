@@ -1,4 +1,4 @@
-FROM node:22.18.0-slim AS base
+FROM node:22.19.0-slim AS base
 
 ARG DATABASE_USER=''
 ARG DATABASE_PASSWORD=''
