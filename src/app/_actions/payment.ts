@@ -1,14 +1,13 @@
 "use server";
 
+import type { Route } from "next";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import type { Subscription } from "../__generated__/prisma";
 import { prisma } from "../_clients/prisma";
 import { cancelUrl, stripe, successUrl } from "../_clients/stripe";
-import { handleSubscriptionUpsert } from "../_utils/payment";
 import { getSessionOrReject } from "../_utils/auth";
-import { status } from "../_utils/payment";
-import type { Route } from "next";
+import { handleSubscriptionUpsert, status } from "../_utils/payment";
 
 export async function checkout(): Promise<Result> {
   const session = await getSessionOrReject();

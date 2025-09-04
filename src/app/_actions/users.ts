@@ -3,8 +3,8 @@
 import { revalidatePath } from "next/cache";
 import { prisma } from "../_clients/prisma";
 import { type MeSchema, meSchema } from "../_schemas/users";
-import { getFieldErrors } from "../_utils/zod";
 import { getSessionOrReject } from "../_utils/auth";
+import { getFieldErrors } from "../_utils/zod";
 
 type UpdateMeState = Result<
   PartialWithNullable<MeSchema>,

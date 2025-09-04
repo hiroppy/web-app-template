@@ -1,3 +1,14 @@
 onlyBuiltDependencies:
-  - "@prisma/client"
+  - '@prisma/client'
+  - '@prisma/engines'
+  - '@tailwindcss/oxide'
+  - cpu-features
+  - esbuild
+  - lefthook
   - oxc-resolver
+  - prisma
+  - protobufjs
+  - puppeteer
+  - sharp
+  - ssh2
+  - vue-demi
