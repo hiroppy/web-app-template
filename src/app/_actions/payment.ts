@@ -8,6 +8,7 @@ import { cancelUrl, stripe, successUrl } from "../_clients/stripe";
 import { handleSubscriptionUpsert } from "../_utils/payment";
 import { getSessionOrReject } from "../_utils/auth";
 import { status } from "../_utils/payment";
+import type { Route } from "next";
 
 export async function checkout(): Promise<Result> {
   const session = await getSessionOrReject();
@@ -74,7 +75,7 @@ export async function checkout(): Promise<Result> {
     };
   }
 
-  redirect(checkoutSession.url as any);
+  redirect(checkoutSession.url as Route);
 }
 
 type ReturnedUpdate = Result<
