@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { getSessionOrReject } from "../_actions/auth";
+import { getSessionOrReject } from "../_utils/auth";
 import { Container } from "./Container";
 import { SignInButton } from "./SignInButton";
 import { SignOutButton } from "./SignOutButton";

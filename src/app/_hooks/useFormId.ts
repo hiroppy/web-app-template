@@ -7,5 +7,5 @@ export function useFormId() {
   return {
     id,
     errorId,
-  } as const;
+  };
 }

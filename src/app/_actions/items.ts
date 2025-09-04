@@ -4,9 +4,8 @@ import { revalidatePath } from "next/cache";
 import type { Item } from "../__generated__/prisma";
 import { prisma } from "../_clients/prisma";
 import { type ItemSchema, itemSchema } from "../_schemas/items";
+import { getSessionOrReject } from "../_utils/auth";
 import { getFieldErrors } from "../_utils/zod";
-import { getSessionOrReject } from "./auth";
-import type { Result } from "./types";
 
 type ReturnedCreate = Result<
   Pick<Item, "id" | "content" | "createdAt" | "updatedAt">

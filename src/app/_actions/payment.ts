@@ -1,13 +1,13 @@
 "use server";
 
+import type { Route } from "next";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import type { Subscription } from "../__generated__/prisma";
 import { prisma } from "../_clients/prisma";
 import { cancelUrl, stripe, successUrl } from "../_clients/stripe";
-import { handleSubscriptionUpsert } from "../_utils/payment";
-import { getSessionOrReject } from "./auth";
-import type { Result } from "./types";
+import { getSessionOrReject } from "../_utils/auth";
+import { handleSubscriptionUpsert, status } from "../_utils/payment";
 
 export async function checkout(): Promise<Result> {
   const session = await getSessionOrReject();
@@ -74,7 +74,7 @@ export async function checkout(): Promise<Result> {
     };
   }
 
-  redirect(checkoutSession.url);
+  redirect(checkoutSession.url as Route);
 }
 
 type ReturnedUpdate = Result<
@@ -126,45 +126,4 @@ export async function update(
       message: "subscription update failed",
     };
   }
-}
-
-type ReturnedStatus = Result<Pick<
-  Subscription,
-  "subscriptionId" | "cancelAtPeriodEnd" | "currentPeriodEnd"
-> | null>;
-
-// this sample code assumes that the user has only one subscription
-export async function status(): Promise<ReturnedStatus> {
-  const session = await getSessionOrReject();
-
-  if (!session.success) {
-    return session;
-  }
-
-  const { user } = session.data;
-  const subscription = await prisma.subscription.findFirst({
-    where: {
-      userId: user.id,
-      status: {
-        in: ["active", "complete"],
-      },
-    },
-  });
-
-  if (!subscription) {
-    return {
-      success: true,
-      data: null,
-      message: "subscription not found",
-    };
-  }
-
-  return {
-    success: true,
-    data: {
-      subscriptionId: subscription.subscriptionId,
-      cancelAtPeriodEnd: subscription.cancelAtPeriodEnd,
-      currentPeriodEnd: subscription.currentPeriodEnd,
-    },
-  };
 }

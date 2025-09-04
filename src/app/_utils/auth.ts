@@ -2,7 +2,6 @@
 
 import type { Session } from "next-auth";
 import { auth } from "../_clients/nextAuth";
-import type { Result } from "./types";
 
 export async function getSessionOrReject(): Promise<Result<Session, void>> {
   try {

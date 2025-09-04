@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { status } from "../_actions/payment";
 import { format } from "../_utils/date";
+import { status } from "../_utils/payment";
 import { PaymentButton } from "./PaymentButton";
 
 export async function Payment() {

@@ -1,8 +1,8 @@
 import { redirect } from "next/navigation";
 import { type NextRequest, NextResponse } from "next/server";
-import { getSessionOrReject } from "../../../_actions/auth";
 import { prisma } from "../../../_clients/prisma";
 import { stripe } from "../../../_clients/stripe";
+import { getSessionOrReject } from "../../../_utils/auth";
 
 export async function GET(req: NextRequest) {
   const sessionId = req.nextUrl.searchParams.get("session_id");

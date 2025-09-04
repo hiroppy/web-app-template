@@ -1,4 +1,4 @@
-import { getSessionOrReject } from "../_actions/auth";
+import { getSessionOrReject } from "../_utils/auth";
 
 export default async function Page() {
   const session = await getSessionOrReject();

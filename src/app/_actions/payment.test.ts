@@ -2,7 +2,7 @@ import { beforeEach, describe, expect, test, vi } from "vitest";
 import { setup } from "../../../tests/vitest.helper";
 
 // need to import after vitest.helper
-import { checkout, status, update } from "./payment";
+import { checkout, update } from "./payment";
 
 const { mock, createUser, getUser, prisma } = await setup();
 
@@ -257,84 +257,6 @@ describe("actions/payment", () => {
         {
           "message": "subscription update failed",
           "success": false,
-        }
-      `);
-    });
-  });
-
-  describe("status", () => {
-    test("should throw an error if there is no session token", async () => {
-      mock.auth.mockReturnValueOnce(null);
-
-      expect(await status()).toMatchInlineSnapshot(`
-        {
-          "message": "no session token",
-          "success": false,
-        }
-      `);
-    });
-
-    test("should return an error if the subscription is not found", async () => {
-      expect(await status()).toMatchInlineSnapshot(`
-        {
-          "data": null,
-          "message": "subscription not found",
-          "success": true,
-        }
-      `);
-    });
-
-    test("should return the subscription status", async () => {
-      const { id } = await getUser();
-
-      await prisma.subscription.createMany({
-        data: [
-          {
-            userId: id,
-            cancelAtPeriodEnd: false,
-            subscriptionId: "sub_1",
-            status: "expired",
-          },
-          {
-            userId: id,
-            cancelAtPeriodEnd: false,
-            subscriptionId: "sub_2",
-            status: "active",
-          },
-          {
-            userId: id,
-            cancelAtPeriodEnd: true,
-            subscriptionId: "sub_3",
-            status: "complete",
-          },
-        ],
-      });
-
-      expect(await status()).toMatchInlineSnapshot(`
-        {
-          "data": {
-            "cancelAtPeriodEnd": false,
-            "currentPeriodEnd": null,
-            "subscriptionId": "sub_2",
-          },
-          "success": true,
-        }
-      `);
-
-      await prisma.subscription.delete({
-        where: {
-          subscriptionId: "sub_2",
-        },
-      });
-
-      expect(await status()).toMatchInlineSnapshot(`
-        {
-          "data": {
-            "cancelAtPeriodEnd": true,
-            "currentPeriodEnd": null,
-            "subscriptionId": "sub_3",
-          },
-          "success": true,
         }
       `);
     });

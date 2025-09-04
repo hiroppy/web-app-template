@@ -61,11 +61,8 @@ exports[`no-sample-code > should put files 1`] = `
   "internal-tests-output-no-sample-code/src/app/(public)/layout.tsx",
   "internal-tests-output-no-sample-code/src/app/(public)/page.tsx",
   "internal-tests-output-no-sample-code/src/app/(public)/signin/page.tsx",
-  "internal-tests-output-no-sample-code/src/app/_actions/auth.test.ts",
-  "internal-tests-output-no-sample-code/src/app/_actions/auth.ts",
   "internal-tests-output-no-sample-code/src/app/_actions/payment.test.ts",
   "internal-tests-output-no-sample-code/src/app/_actions/payment.ts",
-  "internal-tests-output-no-sample-code/src/app/_actions/types.ts",
   "internal-tests-output-no-sample-code/src/app/_actions/users.test.ts",
   "internal-tests-output-no-sample-code/src/app/_actions/users.ts",
   "internal-tests-output-no-sample-code/src/app/_clients/nextAuth.ts",
@@ -87,6 +84,8 @@ exports[`no-sample-code > should put files 1`] = `
   "internal-tests-output-no-sample-code/src/app/_hooks/useFormId.ts",
   "internal-tests-output-no-sample-code/src/app/_schemas/users.test.ts",
   "internal-tests-output-no-sample-code/src/app/_schemas/users.ts",
+  "internal-tests-output-no-sample-code/src/app/_utils/auth.test.ts",
+  "internal-tests-output-no-sample-code/src/app/_utils/auth.ts",
   "internal-tests-output-no-sample-code/src/app/_utils/date.test.ts",
   "internal-tests-output-no-sample-code/src/app/_utils/date.ts",
   "internal-tests-output-no-sample-code/src/app/_utils/db.test.ts",
@@ -381,7 +380,7 @@ exports[`no-sample-code > should update prisma/schema/user.prisma 1`] = `
 
 exports[`no-sample-code > should update src/app/(public)/page.tsx 1`] = `
 [
-  "import { getSessionOrReject } from \\"../_actions/auth\\";",
+  "import { getSessionOrReject } from \\"../_utils/auth\\";",
   "",
   "export default async function Page() {",
   "  const session = await getSessionOrReject();",
