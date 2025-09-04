@@ -6,6 +6,7 @@
   "scripts": {
     "setup": "corepack enable pnpm",
     "dev": "pnpm db:up && pnpm db:migrate && pnpm generate:client && next dev",
+    "dev:stripe": "stripe listen --forward-to localhost:3000/api/payment/webhook",
     "start": "next start",
     "build": "pnpm generate:client && next build",
     "build:test": "node ./tests/build.mjs",

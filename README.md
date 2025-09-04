@@ -101,7 +101,7 @@ STRIPE_PRICE_ID=
 4. Execute the following command in another terminal.
 
 ```sh
-$ stripe listen --forward-to localhost:3000/api/payment/webhook
+$ pnpm dev:stripe
 ```
 
 5. After signing in, you can go to the `http://localhost:3000/me/payment` page to see how to make a payment.
