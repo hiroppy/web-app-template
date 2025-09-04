@@ -11,7 +11,7 @@ const staticEnv = z.object({
     .default("development"),
 
   // for client and server
-  NEXT_PUBLIC_SITE_URL: z.string().url(),
+  NEXT_PUBLIC_SITE_URL: z.url(),
 
   // for server
   DATABASE_USER: z.string().min(1),
@@ -28,7 +28,7 @@ const staticEnv = z.object({
   NEXTAUTH_SECRET: z.string().min(1),
 
   /* start: otel */
-  TRACE_EXPORTER_URL: z.string().url().optional().or(z.literal("")),
+  TRACE_EXPORTER_URL: z.url().optional().or(z.literal("")),
   /* end: otel */
 
   /* start: stripe */

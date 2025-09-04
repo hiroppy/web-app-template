@@ -143,6 +143,7 @@ async function copyDir(from, to) {
     // add files written in .gitignore
     /.githooks/,
     /node_modules/,
+    /\tsconfig.tsbuildinfo$/,
     /\.DS_Store$/,
     /\.next$/,
     /test-results/,
