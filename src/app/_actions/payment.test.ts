@@ -77,7 +77,7 @@ describe("actions/payment", () => {
       `);
     });
 
-    test("should redirect to the checkout session url", async () => {
+    test("should create a new stripe customer and redirect to the checkout session url", async () => {
       createCustomer.mockResolvedValueOnce({
         id: stripeId,
       });
@@ -99,6 +99,16 @@ describe("actions/payment", () => {
 
       await checkout();
 
+      expect(createCustomer.mock.calls).toMatchInlineSnapshot(`
+        [
+          [
+            {
+              "email": "hello@a.com",
+              "name": "name",
+            },
+          ],
+        ]
+      `);
       expect(createSession.mock.calls).toMatchInlineSnapshot(`
         [
           [
@@ -145,6 +155,108 @@ describe("actions/payment", () => {
           "name": "name",
           "role": "USER",
           "stripeId": "cus_1",
+        }
+      `);
+    });
+
+    test("should use existing stripe customer and redirect to the checkout session url", async () => {
+      await prisma.user.update({
+        where: {
+          id: "id",
+        },
+        data: {
+          stripeId: "existing_cus_123",
+        },
+      });
+
+      createSession.mockResolvedValueOnce({
+        url: "https://example.com",
+      });
+
+      expect(await getUser()).toMatchInlineSnapshot(`
+        {
+          "email": "hello@a.com",
+          "emailVerified": null,
+          "id": "id",
+          "image": "https://a.com",
+          "name": "name",
+          "role": "USER",
+          "stripeId": "existing_cus_123",
+        }
+      `);
+
+      await checkout();
+
+      expect(createCustomer).not.toHaveBeenCalled();
+
+      expect(createSession.mock.calls).toMatchInlineSnapshot(`
+        [
+          [
+            {
+              "automatic_tax": {
+                "enabled": true,
+              },
+              "cancel_url": "http://localhost:3000",
+              "currency": "jpy",
+              "customer": "existing_cus_123",
+              "customer_update": {
+                "shipping": "auto",
+              },
+              "line_items": [
+                {
+                  "price": "dummy",
+                  "quantity": 1,
+                },
+              ],
+              "mode": "subscription",
+              "shipping_address_collection": {
+                "allowed_countries": [
+                  "JP",
+                ],
+              },
+              "success_url": "http://localhost:3000/api/payment/success?session_id={CHECKOUT_SESSION_ID}",
+            },
+          ],
+        ]
+      `);
+      expect(mock.redirect.mock.calls).toMatchInlineSnapshot(`
+        [
+          [
+            "https://example.com",
+          ],
+        ]
+      `);
+      expect(await getUser()).toMatchInlineSnapshot(`
+        {
+          "email": "hello@a.com",
+          "emailVerified": null,
+          "id": "id",
+          "image": "https://a.com",
+          "name": "name",
+          "role": "USER",
+          "stripeId": "existing_cus_123",
+        }
+      `);
+    });
+
+    test("should return an error if stripe customer creation fails", async () => {
+      createCustomer.mockRejectedValueOnce(new Error("Stripe error"));
+
+      expect(await checkout()).toMatchInlineSnapshot(`
+        {
+          "message": "failed to create stripe customer",
+          "success": false,
+        }
+      `);
+      expect(await getUser()).toMatchInlineSnapshot(`
+        {
+          "email": "hello@a.com",
+          "emailVerified": null,
+          "id": "id",
+          "image": "https://a.com",
+          "name": "name",
+          "role": "USER",
+          "stripeId": null,
         }
       `);
     });

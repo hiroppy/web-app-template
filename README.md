@@ -90,9 +90,8 @@ $ pnpm dev
 
 2. Modify the environment variables. The test API key is [here](https://dashboard.stripe.com/test/apikeys).
 
-```
+```sh
 STRIPE_SECRET_KEY=
-STRIPE_WEBHOOK_SECRET=
 STRIPE_PRICE_ID=
 ```
 
@@ -104,7 +103,13 @@ STRIPE_PRICE_ID=
 $ pnpm dev:stripe
 ```
 
-5. After signing in, you can go to the `http://localhost:3000/me/payment` page to see how to make a payment.
+5. Add webhook signing secret like `whsec_...` from the cli output to env file
+
+```
+STRIPE_WEBHOOK_SECRET=whsec_...
+```
+
+6. After signing in, you can go to the `http://localhost:3000/me/payment` page to see how to make a payment.
 
 <!-- end: stripe -->
 
