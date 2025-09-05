@@ -49,7 +49,7 @@
   },
   "devDependencies": {
     "@axe-core/playwright": "4.10.2",
-    "@biomejs/biome": "2.2.2",
+    "@biomejs/biome": "2.2.3",
     "@playwright/test": "1.55.0",
     "@tailwindcss/postcss": "4.1.13",
     "@testing-library/react": "16.3.0",
