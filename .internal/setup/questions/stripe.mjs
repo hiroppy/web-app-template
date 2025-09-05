@@ -4,6 +4,7 @@ import {
   removeDirs,
   removeFiles,
   removeItemModelFromPrisma,
+  removeNpmScripts,
   removeWords,
 } from "../utils.mjs";
 
@@ -30,7 +31,6 @@ export const modifiedFiles = /** @type {const} */ ([
   ".env.test",
   "Dockerfile",
   ".github/workflows/ci.yml",
-  "package.json",
 ]);
 
 export async function stripe(answer, isSkipQuestion) {
@@ -70,10 +70,10 @@ export async function stripe(answer, isSkipQuestion) {
           // biome-ignore lint/suspicious/noTemplateCurlyInString: GitHub Actions syntax
           "--build-arg STRIPE_WEBHOOK_SECRET=${{env.STRIPE_WEBHOOK_SECRET}} \\",
         ]),
-        removeWords(modifiedFiles[7], [
-          '"dev:stripe": "stripe listen --forward-to localhost:3000/api/payment/webhook",',
-        ]),
       ]);
+
+      // avoid dead-lock
+      await removeNpmScripts(["dev:stripe"]);
     },
   });
 }
