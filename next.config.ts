@@ -44,7 +44,6 @@ const nextConfig: NextConfig = {
   },
   /* end: sample */
   experimental: {
-    typedRoutes: true,
     authInterrupts: true,
   },
   /* start: otel */
