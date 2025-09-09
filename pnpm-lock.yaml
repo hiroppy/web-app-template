@@ -115,8 +115,8 @@ importers:
         specifier: 3.6.2
         version: 3.6.2
       prisma-erd-generator:
-        specifier: 2.0.4
-        version: 2.0.4(@babel/core@7.28.3)(@babel/template@7.27.2)(@prisma/client@6.15.0(prisma@6.15.0(typescript@5.9.2))(typescript@5.9.2))(@types/react@19.1.12)(puppeteer@19.11.1(typescript@5.9.2))
+        specifier: 2.1.0
+        version: 2.1.0(@babel/core@7.28.3)(@babel/template@7.27.2)(@prisma/client@6.15.0(prisma@6.15.0(typescript@5.9.2))(typescript@5.9.2))(@types/react@19.1.12)(puppeteer@19.11.1(typescript@5.9.2))
       tailwindcss:
         specifier: 4.1.13
         version: 4.1.13
@@ -3174,9 +3174,9 @@ packages:
     resolution: {integrity: sha512-Qb1gy5OrP5+zDf2Bvnzdl3jsTf1qXVMazbvCoKhtKqVs4/YK4ozX4gKQJJVyNe+cajNPn0KoC0MC3FUmaHWEmQ==}
     engines: {node: ^10.13.0 || ^12.13.0 || ^14.15.0 || >=15.0.0}
 
-  prisma-erd-generator@2.0.4:
-    resolution: {integrity: sha512-XVdaojAc75GaWq2Ia6orFqDcP8vEQZdooKtMWNJNV9cC/JCTh3OW6Zs+mMLedLEv96Xnjfzp7Tzld6dm/KuOnA==}
-    engines: {node: '>=18'}
+  prisma-erd-generator@2.1.0:
+    resolution: {integrity: sha512-1BWerhaHkebNwPW3Xz8IeHeWFlQb/j59bIScyC4QdO03+Ry8bJLEvRZRy3skWCc07PMSkTSdZlqtnCfKuke0Rg==}
+    engines: {node: '>=20'}
     hasBin: true
     peerDependencies:
       '@prisma/client': ^5.0.0 || ^6.0.0
@@ -6947,7 +6947,7 @@ snapshots:
       ansi-styles: 5.2.0
       react-is: 17.0.2
 
-  prisma-erd-generator@2.0.4(@babel/core@7.28.3)(@babel/template@7.27.2)(@prisma/client@6.15.0(prisma@6.15.0(typescript@5.9.2))(typescript@5.9.2))(@types/react@19.1.12)(puppeteer@19.11.1(typescript@5.9.2)):
+  prisma-erd-generator@2.1.0(@babel/core@7.28.3)(@babel/template@7.27.2)(@prisma/client@6.15.0(prisma@6.15.0(typescript@5.9.2))(typescript@5.9.2))(@types/react@19.1.12)(puppeteer@19.11.1(typescript@5.9.2)):
     dependencies:
       '@mermaid-js/mermaid-cli': 11.9.0(@babel/core@7.28.3)(@babel/template@7.27.2)(@types/react@19.1.12)(puppeteer@19.11.1(typescript@5.9.2))
       '@prisma/client': 6.15.0(prisma@6.15.0(typescript@5.9.2))(typescript@5.9.2)
