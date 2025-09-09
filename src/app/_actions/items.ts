@@ -1,11 +1,14 @@
 "use server";
 
+import * as Sentry from "@sentry/nextjs";
+
 import { revalidatePath } from "next/cache";
 import type { Item } from "../__generated__/prisma";
 import { prisma } from "../_clients/prisma";
 import { type ItemSchema, itemSchema } from "../_schemas/items";
 import type { Result } from "../_types/result";
 import { getSessionOrReject } from "../_utils/auth";
+import { setUser } from "../_utils/sentry";
 import { getFieldErrors } from "../_utils/zod";
 
 type ReturnedCreate = Result<

@@ -3,6 +3,7 @@ import type { Metadata, Viewport } from "next";
 import { Inter } from "next/font/google";
 import { Footer } from "./_components/Footer";
 import { Header } from "./_components/Header";
+import { SentryProvider } from "./_providers/Sentry";
 import "./globals.css";
 
 const inter = Inter({
@@ -25,16 +26,20 @@ export const viewport: Viewport = {
 
 export default function Layout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body
+        // Extensions like Grammarly mutate <body> attributes before hydration.
+        suppressHydrationWarning
         className={clsx(
           inter.className,
           "bg-gray-700 text-gray-200 min-h-screen flex flex-col",
         )}
       >
-        <Header />
-        <main className="flex-1">{children}</main>
-        <Footer />
+        <SentryProvider>
+          <Header />
+          <main className="flex-1">{children}</main>
+          <Footer />
+        </SentryProvider>
       </body>
     </html>
   );
