@@ -1,7 +1,6 @@
 import { clsx } from "clsx";
 import type { Metadata, Viewport } from "next";
 import { Inter } from "next/font/google";
-import type { PropsWithChildren, ReactNode } from "react";
 import { Footer } from "./_components/Footer";
 import { Header } from "./_components/Header";
 import "./globals.css";
@@ -19,11 +18,7 @@ export const viewport: Viewport = {
   maximumScale: 1,
 };
 
-type Props = PropsWithChildren<{
-  dialog: ReactNode;
-}>;
-
-export default function Layout({ dialog, children }: Props) {
+export default function Layout({ dialog, children }: LayoutProps<"/">) {
   return (
     <html lang="en">
       <body
