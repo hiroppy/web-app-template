@@ -45,7 +45,7 @@
     "react-dom": "19.1.1",
     "react-hook-form": "7.62.0",
     "stripe": "18.5.0",
-    "zod": "4.1.7"
+    "zod": "4.1.8"
   },
   "devDependencies": {
     "@axe-core/playwright": "4.10.2",
