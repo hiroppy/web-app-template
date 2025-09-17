@@ -33,7 +33,6 @@ export async function executeCommonProcessing() {
       [modifiedFiles[0], fences[0]],
       [modifiedFiles[1], fences[0]],
       [modifiedFiles[2], fences[1]],
-      [modifiedFiles[2], fences[1]],
       [modifiedFiles[3], fences[2]],
     ]),
     (async () => {
