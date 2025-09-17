@@ -7,10 +7,7 @@ import {
   removeWords,
 } from "../utils.mjs";
 
-export const removedFiles = /** @type {const} */ ([
-  "otel-collector-config.yml",
-  "./src/instrumentation.ts",
-]);
+export const removedFiles = /** @type {const} */ (["./src/instrumentation.ts"]);
 
 export const removedDirs = /** @type {const} */ (["./src/otel"]);
 

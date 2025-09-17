@@ -3,7 +3,7 @@ import { spawn } from "node:child_process";
 export async function generateMigrationFiles() {
   const commands = [
     "pnpm db:up",
-    "pnpm db:migrate --name initial-migration",
+    "pnpm db:migrate --name initial",
     "pnpm generate:client",
     "docker compose down",
   ];

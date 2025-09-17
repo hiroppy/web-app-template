@@ -3,6 +3,7 @@ import type { Metadata, Viewport } from "next";
 import { Inter } from "next/font/google";
 import { Footer } from "./_components/Footer";
 import { Header } from "./_components/Header";
+import { SentryProvider } from "./_providers/Sentry";
 import "./globals.css";
 
 const inter = Inter({
@@ -32,9 +33,11 @@ export default function Layout({ children }: LayoutProps<"/">) {
           "bg-gray-700 text-gray-200 min-h-screen flex flex-col",
         )}
       >
-        <Header />
-        <main className="flex-1">{children}</main>
-        <Footer />
+        <SentryProvider>
+          <Header />
+          <main className="flex-1">{children}</main>
+          <Footer />
+        </SentryProvider>
       </body>
     </html>
   );

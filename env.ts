@@ -36,6 +36,11 @@ const staticEnv = z.object({
   STRIPE_SECRET_KEY: z.string().min(1),
   STRIPE_WEBHOOK_SECRET: z.string().min(1),
   /* end: stripe */
+
+  SENTRY_ORG: z.string().min(1).optional().or(z.literal("")),
+  SENTRY_PROJECT: z.string().min(1).optional().or(z.literal("")),
+  SENTRY_AUTH_TOKEN: z.string().min(1).optional().or(z.literal("")),
+  NEXT_PUBLIC_SENTRY_DSN: z.string().min(1).optional().or(z.literal("")),
 });
 
 const runtimeEnv = z.object({});

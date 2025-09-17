@@ -1,3 +1,4 @@
+import { withSentryConfig } from "@sentry/nextjs";
 import type { NextConfig } from "next";
 import { config } from "./env";
 
@@ -31,6 +32,15 @@ const nextConfig: NextConfig = {
           },
         ],
       },
+      {
+        source: "/:path*",
+        headers: [
+          {
+            key: "Document-Policy",
+            value: "js-profiling",
+          },
+        ],
+      },
     ];
   },
   /* start: sample */
@@ -61,8 +71,20 @@ const nextConfig: NextConfig = {
     "@opentelemetry/sdk-node",
     "@opentelemetry/sdk-trace-base",
     "@opentelemetry/semantic-conventions",
+    "@sentry/nextjs",
+    "@sentry/profiling-node",
   ],
   /* end: otel */
 };
 
-export default nextConfig;
+export default withSentryConfig(nextConfig, {
+  org: process.env.SENTRY_ORG,
+  project: process.env.SENTRY_PROJECT,
+  silent: !process.env.CI,
+  widenClientFileUpload: true,
+  authToken: process.env.SENTRY_AUTH_TOKEN,
+  disableLogger: true,
+  reactComponentAnnotation: {
+    enabled: true,
+  },
+});
