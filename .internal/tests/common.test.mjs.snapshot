@@ -1085,7 +1085,17 @@ exports[`common > should update src/app/layout.tsx 1`] = `
   "  maximumScale: 1,",
   "};",
   "",
+<<<<<<< HEAD
   "export default function Layout({ children }: LayoutProps<\\"/\\">) {",
+||||||| parent of da30f8f (refactor: clean up)
+  "type Props = PropsWithChildren<{",
+  "  dialog: ReactNode;",
+  "}>;",
+  "",
+  "export default function Layout({ dialog, children }: Props) {",
+=======
+  "export default function Layout({ dialog, children }: LayoutProps<\\"/\\">) {",
+>>>>>>> da30f8f (refactor: clean up)
   "  return (",
   "    <html lang=\\"en\\">",
   "      <body",
