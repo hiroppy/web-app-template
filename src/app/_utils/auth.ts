@@ -1,7 +1,6 @@
-"use server";
-
 import type { Session } from "next-auth";
 import { auth } from "../_clients/nextAuth";
+import type { Result } from "../_types/result";
 
 export async function getSessionOrReject(): Promise<Result<Session, void>> {
   try {

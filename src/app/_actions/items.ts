@@ -4,6 +4,7 @@ import { revalidatePath } from "next/cache";
 import type { Item } from "../__generated__/prisma";
 import { prisma } from "../_clients/prisma";
 import { type ItemSchema, itemSchema } from "../_schemas/items";
+import type { Result } from "../_types/result";
 import { getSessionOrReject } from "../_utils/auth";
 import { getFieldErrors } from "../_utils/zod";
 
@@ -53,7 +54,7 @@ export async function create(input: ItemSchema): Promise<ReturnedCreate> {
   };
 }
 
-export async function deleteAll() {
+export async function deleteAll(): Promise<void> {
   const session = await getSessionOrReject();
 
   if (!session.success) {

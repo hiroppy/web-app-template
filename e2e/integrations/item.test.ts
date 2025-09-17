@@ -33,4 +33,28 @@ test.describe("item", () => {
     await topPage.deleteAllItems();
     await topPage.expectItems([]);
   });
+
+  test("should navigate to item detail page and display content", async ({
+    topPage,
+    itemPage,
+  }) => {
+    await topPage.addItem("hello world!");
+    await topPage.expectItems([
+      {
+        img: user1.image,
+        title: "hello world!",
+      },
+    ]);
+
+    await topPage.clickItemByTitle("hello world!");
+    await itemPage.expectUI("hello world!");
+  });
+
+  test("should handle non-existent item", async ({
+    itemPage,
+    notFoundPage,
+  }) => {
+    await itemPage.goTo("non-existent-id");
+    await notFoundPage.expectUI();
+  });
 });

@@ -1,8 +1,7 @@
-"use server";
-
 import type Stripe from "stripe";
 import type { Subscription } from "../__generated__/prisma";
 import { prisma } from "../_clients/prisma";
+import type { Result } from "../_types/result";
 import { getSessionOrReject } from "./auth";
 
 type ReturnedStatus = Result<Pick<

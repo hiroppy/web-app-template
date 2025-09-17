@@ -29,7 +29,6 @@
 ## Prisma
 
 - Adding [schema](https://authjs.dev/getting-started/adapters/prisma#schema) required by [@auth/prisma-adapter](https://authjs.dev/getting-started/adapters/prisma)
-- Generating Database ER diagram by [prisma-erd-generator](https://github.com/keonik/prisma-erd-generator) automatically
 - Resolving Next.js’s HMR [issue](https://www.prisma.io/docs/orm/more/help-and-troubleshooting/nextjs-help) when development
 
 ## Unit Test

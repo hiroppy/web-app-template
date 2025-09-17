@@ -41,7 +41,7 @@ export async function e2e(answer, isSkipQuestion) {
       ]);
 
       // avoid dead-lock
-      await removeNpmScripts(["build:test", "test:e2e", "test:e2e:ui"]);
+      await removeNpmScripts(["test:e2e", "test:e2e:ui"]);
     },
   });
 }

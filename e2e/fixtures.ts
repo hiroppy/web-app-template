@@ -1,10 +1,12 @@
 import AxeBuilder from "@axe-core/playwright";
 import { test as base } from "@playwright/test";
 import type { User } from "next-auth";
-import { setupDB, truncate } from "../tests/db.setup";
+import { setupDB } from "../tests/db.setup";
 import { setupApp } from "./helpers/app";
-import { generatePrismaClient } from "./helpers/prisma";
 import { registerUserToDB } from "./helpers/users";
+/* start: sample */
+import { ItemPage } from "./models/ItemPage";
+/* end: sample */
 import { MePage } from "./models/MePage";
 import { NotFoundPage } from "./models/NotFoundPage";
 import { SignInPage } from "./models/SignInPage";
@@ -12,6 +14,9 @@ import { TopPage } from "./models/TopPage";
 
 export type TestFixtures = {
   topPage: TopPage;
+  /* start: sample */
+  itemPage: ItemPage;
+  /* end: sample */
   mePage: MePage;
   signInPage: SignInPage;
   notFoundPage: NotFoundPage;
@@ -27,6 +32,7 @@ export type WorkerFixtures = {
     appPort: number;
     baseURL: string;
     dbURL: string;
+    truncate: () => Promise<void>;
   }>;
 };
 
@@ -34,6 +40,11 @@ export const test = base.extend<TestFixtures, WorkerFixtures>({
   topPage: ({ page }, use) => {
     use(new TopPage(page));
   },
+  /* start: sample */
+  itemPage: ({ page }, use) => {
+    use(new ItemPage(page));
+  },
+  /* end: sample */
   mePage: ({ page }, use) => {
     use(new MePage(page));
   },
@@ -62,6 +73,7 @@ export const test = base.extend<TestFixtures, WorkerFixtures>({
         appPort: appSetup.appPort,
         baseURL,
         dbURL: dbSetup.url,
+        truncate: () => dbSetup.truncate(),
       });
     },
     {
@@ -77,8 +89,7 @@ export const test = base.extend<TestFixtures, WorkerFixtures>({
   },
   reset: ({ context, setup }, use) => {
     use(async () => {
-      await using db = await generatePrismaClient(setup.dbURL);
-      await Promise.all([truncate(db.prisma), context.clearCookies()]);
+      await Promise.all([setup.truncate(), context.clearCookies()]);
     });
   },
   a11y: async ({ page }, use) => {

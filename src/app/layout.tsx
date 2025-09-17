@@ -5,12 +5,17 @@ import { Footer } from "./_components/Footer";
 import { Header } from "./_components/Header";
 import "./globals.css";
 
-const inter = Inter({ subsets: ["latin"] });
+const inter = Inter({
+  subsets: ["latin"],
+});
 
 export const metadata: Metadata = {
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL),
   title: "web app template",
   description: "😸",
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL),
+  alternates: {
+    canonical: process.env.NEXT_PUBLIC_SITE_URL,
+  },
 };
 
 export const viewport: Viewport = {
@@ -18,21 +23,18 @@ export const viewport: Viewport = {
   maximumScale: 1,
 };
 
-export default function Layout({ dialog, children }: LayoutProps<"/">) {
+export default function Layout({ children }: LayoutProps<"/">) {
   return (
     <html lang="en">
       <body
         className={clsx(
           inter.className,
           "bg-gray-700 text-gray-200 min-h-screen flex flex-col",
-          // for dialog
-          "has-[dialog[open]]:overflow-hidden",
         )}
       >
         <Header />
         <main className="flex-1">{children}</main>
         <Footer />
-        {dialog}
       </body>
     </html>
   );
