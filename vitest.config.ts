@@ -1,12 +1,12 @@
+import react from "@vitejs/plugin-react";
 import { defineConfig } from "vitest/config";
 import { config } from "./env";
 
 config();
 
 export default defineConfig(async () => {
-  const react = await import("@vitejs/plugin-react");
   return {
-    plugins: [react.default()],
+    plugins: [react()],
     test: {
       globals: true,
       mockReset: true,

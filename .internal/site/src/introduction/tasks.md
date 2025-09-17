@@ -64,8 +64,8 @@ A build task must be executed before running tests to bypass JWT logic.
 ```sh
 # install chrome
 $ pnpm exec playwright install chrome
-# build using test environments since it needs to change encode/decode functions of next-auth
-$ pnpm build:test
+
+$ pnpm build
 
 $ pnpm test:e2e
 # execute with UI

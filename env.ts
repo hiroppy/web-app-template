@@ -10,10 +10,8 @@ const staticEnv = z.object({
     ])
     .default("development"),
 
-  // for client and server
   NEXT_PUBLIC_SITE_URL: z.url(),
 
-  // for server
   DATABASE_USER: z.string().min(1),
   DATABASE_PASSWORD: z.string().min(1),
   DATABASE_DB: z.string().min(1),
@@ -21,11 +19,7 @@ const staticEnv = z.object({
   DATABASE_PORT: z.coerce.number().min(1),
   DATABASE_SCHEMA: z.string().min(1),
 
-  GOOGLE_CLIENT_ID: z.string().min(1),
-  GOOGLE_CLIENT_SECRET: z.string().min(1),
-
   NEXTAUTH_URL: z.string().min(1),
-  NEXTAUTH_SECRET: z.string().min(1),
 
   /* start: otel */
   TRACE_EXPORTER_URL: z.url().optional().or(z.literal("")),
@@ -33,12 +27,20 @@ const staticEnv = z.object({
 
   /* start: stripe */
   STRIPE_PRICE_ID: z.string().min(1),
+  /* end: stripe */
+});
+
+const runtimeEnv = z.object({
+  GOOGLE_CLIENT_ID: z.string().min(1),
+  GOOGLE_CLIENT_SECRET: z.string().min(1),
+
+  NEXTAUTH_SECRET: z.string().min(1),
+
+  /* start: stripe */
   STRIPE_SECRET_KEY: z.string().min(1),
   STRIPE_WEBHOOK_SECRET: z.string().min(1),
   /* end: stripe */
 });
-
-const runtimeEnv = z.object({});
 
 export type Schema = z.infer<typeof schema>;
 

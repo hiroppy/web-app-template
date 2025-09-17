@@ -1,21 +1,20 @@
 "use client";
 
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useRouter } from "next/navigation";
 import { useTransition } from "react";
 import { type SubmitHandler, useForm } from "react-hook-form";
-import { create } from "../../_actions/items";
+import { create, deleteAll } from "../../_actions/items";
+import { Button } from "../../_components/Button";
 import { Input } from "../../_components/Input";
 import { type ItemSchema, itemSchema } from "../../_schemas/items";
-import { Dialog } from "../_components/Dialog";
 
-export function Content() {
-  const router = useRouter();
+export function ItemManager() {
   const [isPending, startTransition] = useTransition();
   const {
     register,
     formState: { errors },
     handleSubmit,
+    reset,
   } = useForm<ItemSchema>({
     mode: "onChange",
     resolver: zodResolver(itemSchema),
@@ -30,7 +29,7 @@ export function Content() {
       const { success, message } = await create(values);
 
       if (success) {
-        router.push("/");
+        reset();
       } else {
         alert(message);
       }
@@ -38,18 +37,27 @@ export function Content() {
   };
 
   return (
-    <Dialog>
-      <div className="space-y-6">
-        <h2 className="text-center">New memo</h2>
-        <form onSubmit={handleSubmit(submit)} className="space-y-4">
+    <div className="flex gap-3 items-start flex-col md:flex-row">
+      <form onSubmit={handleSubmit(submit)} className="flex gap-3 items-start">
+        <div className="relative flex gap-3 items-start">
           <Input
             {...register("content")}
             disabled={isPending}
             placeholder="write your memo..."
             error={errors.content?.message}
+            // TODO
+            className="!py-2 !w-[280px]"
           />
-        </form>
-      </div>
-    </Dialog>
+          <Button type="submit" className="bg-blue-600 w-full">
+            Add an item
+          </Button>
+        </div>
+      </form>
+      <form action={deleteAll}>
+        <Button type="submit" className="bg-orange-800 text-gray-100">
+          Delete my items
+        </Button>
+      </form>
+    </div>
   );
 }

@@ -42,7 +42,7 @@ https://mermaid.live/edit#pako:eNp1k81OwzAQhF_F8qkIqt5zQKLkwBGVG4qEtvaSWm1s4x8QQ
 ::: code-group
 
 <!-- prettier-ignore -->
-<<< ../../../../src/app/_components/PaymentButton.tsx
+<<< ../../../../src/app/(private)/me/payment/_components/PaymentButton.tsx
 
 <!-- prettier-ignore -->
 <<< ../../../../src/app/_actions/payment.ts

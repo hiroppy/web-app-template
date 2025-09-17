@@ -61,41 +61,60 @@ jobs:
             -t app \
             -f Dockerfile \
             --add-host=host.docker.internal:host-gateway \
-            --build-arg DATABASE_USER=${{env.DATABASE_USER}} \
-            --build-arg DATABASE_PASSWORD=${{env.DATABASE_PASSWORD}} \
-            --build-arg DATABASE_DB=${{env.DATABASE_DB}} \
-            --build-arg DATABASE_HOST=${{env.DATABASE_HOST}} \
-            --build-arg DATABASE_PORT=${{env.DATABASE_PORT}} \
-            --build-arg DATABASE_SCHEMA=${{env.DATABASE_SCHEMA}} \
-            --build-arg GOOGLE_CLIENT_ID=${{env.GOOGLE_CLIENT_ID}} \
-            --build-arg GOOGLE_CLIENT_SECRET=${{env.GOOGLE_CLIENT_SECRET}} \
             --build-arg NEXT_PUBLIC_SITE_URL=${{env.NEXT_PUBLIC_SITE_URL}} \
-            --build-arg NEXTAUTH_SECRET=${{env.NEXTAUTH_SECRET}} \
             --build-arg TRACE_EXPORTER_URL=${{env.TRACE_EXPORTER_URL}} \
             --build-arg STRIPE_PRICE_ID=${{env.STRIPE_PRICE_ID}} \
-            --build-arg STRIPE_SECRET_KEY=${{env.STRIPE_SECRET_KEY}} \
-            --build-arg STRIPE_WEBHOOK_SECRET=${{env.STRIPE_WEBHOOK_SECRET}} \
+            -e DATABASE_USER=${{env.DATABASE_USER}} \
+            -e DATABASE_PASSWORD=${{env.DATABASE_PASSWORD}} \
+            -e DATABASE_DB=${{env.DATABASE_DB}} \
+            -e DATABASE_HOST=${{env.DATABASE_HOST}} \
+            -e DATABASE_PORT=${{env.DATABASE_PORT}} \
+            -e DATABASE_SCHEMA=${{env.DATABASE_SCHEMA}} \
             .
         env:
-          # please set the following environment variables as github secrets
+          # Database configuration for testing
           DATABASE_USER: local
           DATABASE_PASSWORD: 1234
-          DATABASE_DB: database
+          DATABASE_DB: local
           DATABASE_HOST: host.docker.internal
           DATABASE_PORT: 5432
           DATABASE_SCHEMA: public
-          NEXTAUTH_SECRET: TKDdLVjf7cTyTs5oWVpv04senu6fia4RGQbYHRQIR5Q=
-          GOOGLE_CLIENT_ID: dummy
-          GOOGLE_CLIENT_SECRET: dummy
           # start: otel #
           TRACE_EXPORTER_URL: ""
           # end: otel #
           # start: stripe #
           STRIPE_PRICE_ID: price_1
+          # end: stripe #
+      - run: |
+          docker run -d -p 3000:3000 \
+            -e DATABASE_USER=${{env.DATABASE_USER}} \
+            -e DATABASE_PASSWORD=${{env.DATABASE_PASSWORD}} \
+            -e DATABASE_DB=${{env.DATABASE_DB}} \
+            -e DATABASE_HOST=${{env.DATABASE_HOST}} \
+            -e DATABASE_PORT=${{env.DATABASE_PORT}} \
+            -e DATABASE_SCHEMA=${{env.DATABASE_SCHEMA}} \
+            -e GOOGLE_CLIENT_ID=${{env.GOOGLE_CLIENT_ID}} \
+            -e GOOGLE_CLIENT_SECRET=${{env.GOOGLE_CLIENT_SECRET}} \
+            -e NEXTAUTH_SECRET=${{env.NEXTAUTH_SECRET}} \
+            -e STRIPE_SECRET_KEY=${{env.STRIPE_SECRET_KEY}} \
+            -e STRIPE_WEBHOOK_SECRET=${{env.STRIPE_WEBHOOK_SECRET}} \
+            app
+        env:
+          # Database configuration for testing
+          DATABASE_USER: local
+          DATABASE_PASSWORD: 1234
+          DATABASE_DB: local
+          DATABASE_HOST: host.docker.internal
+          DATABASE_PORT: 5432
+          DATABASE_SCHEMA: public
+          # Test credentials (use GitHub secrets for production)
+          GOOGLE_CLIENT_ID: dummy
+          GOOGLE_CLIENT_SECRET: dummy
+          NEXTAUTH_SECRET: TKDdLVjf7cTyTs5oWVpv04senu6fia4RGQbYHRQIR5Q=
+          # start: stripe #
           STRIPE_SECRET_KEY: pk_test_1
           STRIPE_WEBHOOK_SECRET: whsec_1
           # end: stripe #
-      - run: docker run -d -p 3000:3000 app
       - run: |
           until $(curl --output /dev/null --silent --fail ${{env.NEXT_PUBLIC_SITE_URL}}); do
             printf '!'
@@ -112,12 +131,11 @@ jobs:
   # start: e2e #
   e2e-test:
     runs-on: ubuntu-latest
-    env:
-      NEXTAUTH_SECRET: UfxvOS6HetHOFkL44YTITYgc0DOuOlz5TBp3jkbnZ3w=
     steps:
       - uses: actions/checkout@v5
       - uses: ./.github/actions/setup-node
+      - uses: ./.github/actions/setup-db
       - run: pnpm exec playwright install chromium
-      - run: pnpm build:test
+      - run: pnpm build
       - run: pnpm test:e2e
   # end: e2e #

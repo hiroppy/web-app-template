@@ -12,7 +12,6 @@ export const removedFiles = /** @type {const} */ ([
   "./src/app/_actions/payment.ts",
   "./src/app/_actions/payment.test.ts",
   "./src/app/_clients/stripe.ts",
-  "./src/app/_components/PaymentButton.tsx",
   "./src/app/_utils/payment.ts",
   "./src/app/_utils/payment.test.ts",
 ]);
