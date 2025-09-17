@@ -9,7 +9,7 @@ pre-commit:
     prettier:
       glob: "*.{md,yml}"
       run: |
-        npx prettier --write {staged_files}
+        npx prettier --experimental-cli -w {staged_files}
       stage_fixed: true
     prisma:
       glob: "*.prisma"
