@@ -5,7 +5,7 @@ import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import type { Subscription } from "../__generated__/prisma";
 import { prisma } from "../_clients/prisma";
-import { cancelUrl, stripe, successUrl } from "../_clients/stripe";
+import { cancelUrl, paymentPage, stripe, successUrl } from "../_clients/stripe";
 import { getSessionOrReject } from "../_utils/auth";
 import { handleSubscriptionUpsert, status } from "../_utils/payment";
 
@@ -29,10 +29,33 @@ export async function checkout(): Promise<Result> {
     };
   }
 
-  const customer = await stripe.customers.create({
-    email: me.email,
-    name: me.name ?? "-",
-  });
+  let stripeId = me.stripeId;
+
+  if (!stripeId) {
+    try {
+      const customer = await stripe.customers.create({
+        email: me.email,
+        name: me.name ?? "-",
+      });
+
+      stripeId = customer.id;
+
+      await prisma.user.update({
+        where: {
+          id: me.id,
+        },
+        data: {
+          stripeId,
+        },
+      });
+    } catch {
+      return {
+        success: false,
+        message: "failed to create stripe customer",
+      };
+    }
+  }
+
   const checkoutSession = await stripe.checkout.sessions.create({
     mode: "subscription",
     line_items: [
@@ -44,27 +67,19 @@ export async function checkout(): Promise<Result> {
     automatic_tax: {
       enabled: true,
     },
-    customer: customer.id,
+    customer: stripeId,
     customer_update: {
       // for automatic_tax
-      shipping: "auto",
+      // shipping: "auto",
+      address: "auto",
     },
-    shipping_address_collection: {
-      // for automatic_tax
-      allowed_countries: ["JP"],
-    },
+    // shipping_address_collection: {
+    //   // for automatic_tax
+    //   allowed_countries: ["JP"],
+    // },
     currency: "jpy",
     success_url: successUrl,
     cancel_url: cancelUrl,
-  });
-
-  await prisma.user.update({
-    where: {
-      id: me.id,
-    },
-    data: {
-      stripeId: customer.id,
-    },
   });
 
   if (!checkoutSession.url) {
@@ -126,4 +141,29 @@ export async function update(
       message: "subscription update failed",
     };
   }
+}
+
+export async function redirectToBillingPortal(): Promise<void> {
+  const session = await getSessionOrReject();
+
+  if (!session.success) {
+    throw new Error(session.message);
+  }
+
+  const me = await prisma.user.findUnique({
+    where: {
+      id: session.data.user.id,
+    },
+  });
+
+  if (!me?.stripeId) {
+    throw new Error("user not found");
+  }
+
+  const portal = await stripe.billingPortal.sessions.create({
+    customer: me.stripeId,
+    return_url: paymentPage,
+  });
+
+  redirect(portal.url);
 }
