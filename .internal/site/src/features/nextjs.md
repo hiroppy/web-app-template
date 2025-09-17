@@ -10,14 +10,14 @@
 
 If you throw an Error in a server action, it will be caught by ErrorBoundary and error.tsx will be called. However, this is only an unexpected error; in most cases of the real world, errors will be expected. In that case, returning an object such as a `message` is common instead of throwing an error. Also, the Result type is friendly for `useActionState`.
 
-::: code-group
+<!-- ::: code-group -->
 
 <!-- prettier-ignore -->
-<<< ../../../../src/app/_actions/types.ts
+<!-- <<< ../../../../src/app/_actions/types.ts -->
 
 <!-- prettier-ignore -->
-<<< ../../../../src/app/_actions/auth.ts
-:::
+<!-- <<< ../../../../src/app/_actions/auth.ts -->
+<!-- ::: -->
 
 ::: warning
 The `action` of Form requires `Promise<void>` so when using Form directly, need to avoid using the Result type.
