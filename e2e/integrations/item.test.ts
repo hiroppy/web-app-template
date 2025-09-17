@@ -21,11 +21,11 @@ test.describe("item", () => {
     await topPage.addItem("hello2!");
     await topPage.expectItems([
       {
-        img: user1.image ?? "",
+        img: user1.image,
         title: "hello2!",
       },
       {
-        img: user1.image ?? "",
+        img: user1.image,
         title: "hello!",
       },
     ]);

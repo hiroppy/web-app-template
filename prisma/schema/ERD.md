@@ -58,9 +58,7 @@ ADMIN ADMIN
 
     "items" o|--|| "users" : "user"
     "accounts" o|--|| "users" : "user"
-    "users" o{--}o "accounts" : "accounts"
     "users" o|--|| "Role" : "enum:role"
-    "users" o{--}o "items" : "items"
-    "users" o{--}o "subscriptions" : "subscriptions"
+    "users" o{--}o "subscriptions" : ""
     "subscriptions" o|--|| "users" : "user"
 ```
