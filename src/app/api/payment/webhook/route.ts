@@ -8,15 +8,19 @@ export async function POST(req: Request) {
   const sig = req.headers.get("stripe-signature");
 
   if (!sig) {
-    return new NextResponse("Missing stripe-signature", { status: 400 });
+    return new NextResponse("Missing stripe-signature", {
+      status: 400,
+    });
   }
 
   let rawBody: Buffer;
 
   try {
     rawBody = Buffer.from(await req.arrayBuffer());
-  } catch (_err) {
-    return new NextResponse("Error reading request body", { status: 400 });
+  } catch {
+    return new NextResponse("Error reading request body", {
+      status: 400,
+    });
   }
 
   let event: Stripe.Event;
@@ -27,7 +31,7 @@ export async function POST(req: Request) {
       sig,
       process.env.STRIPE_WEBHOOK_SECRET,
     );
-  } catch (_err) {
+  } catch {
     return new NextResponse("Webhook signature verification failed", {
       status: 400,
     });
@@ -80,5 +84,7 @@ export async function POST(req: Request) {
     }
   }
 
-  return new NextResponse("received", { status: 200 });
+  return new NextResponse("received", {
+    status: 200,
+  });
 }

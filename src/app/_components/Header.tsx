@@ -1,9 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
 import { getSessionOrReject } from "../_utils/auth";
+import { SignInButton, SignOutButton } from "./AuthButtons";
 import { Container } from "./Container";
-import { SignInButton } from "./SignInButton";
-import { SignOutButton } from "./SignOutButton";
 
 export async function Header() {
   const session = await getSessionOrReject();
@@ -14,7 +13,7 @@ export async function Header() {
         {session?.data?.user?.image ? (
           <Link href="/me">
             <Image
-              src={session?.data?.user?.image}
+              src={session.data.user.image}
               width={40}
               height={40}
               className="rounded-full"

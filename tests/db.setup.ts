@@ -50,7 +50,7 @@ export async function setupDB({ port }: { port: "random" | number }) {
   } as const;
 }
 
-export async function truncate(prisma: PrismaClient) {
+async function truncate(prisma: PrismaClient) {
   const tableNames = Prisma.dmmf.datamodel.models.map((model) => {
     return model.dbName || model.name.toLowerCase();
   });

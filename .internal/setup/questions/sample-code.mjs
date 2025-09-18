@@ -26,7 +26,7 @@ export const removedFiles = /** @type {const} */ ([
   "prisma/schema/item.prisma",
 ]);
 
-export const removedDirs = /** @type {const} */ (["src/app/@dialog"]);
+export const removedDirs = /** @type {const} */ ([]);
 
 export const modifiedFiles = /** @type {const} */ ([
   "next.config.ts",

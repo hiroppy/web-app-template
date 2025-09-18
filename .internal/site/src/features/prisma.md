@@ -20,14 +20,6 @@
 
 - [Prisma Adapter#schema](https://authjs.dev/getting-started/adapters/prisma#schema)
 
-## ER diagram
-
-[prisma-erd-generator](https://github.com/keonik/prisma-erd-generator) can generate ERD from the schema. The current template ERD is [here](https://github.com/hiroppy/web-app-template/blob/main/prisma/ERD.md).
-
-::: details See Full Code
-<<< ../../../../prisma/schema/ERD.md
-:::
-
 ## Making single client instance in Development <Badge type="tip" text="Best Practice" />
 
 In development, prisma requires avoiding multiple Prisma Client instances but Hot Module Replacement creates them. So this template prepares code to resolve this issue.

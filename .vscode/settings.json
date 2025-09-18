@@ -33,5 +33,5 @@
     "cuid"
   ],
   "cSpell.allowCompoundWords": true,
-  "cSpell.ignorePaths": ["**/node_modules/**", "**/vscode-extension/**"]
+  "cSpell.ignorePaths": ["**/node_modules/**"]
 }
