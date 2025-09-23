@@ -21,12 +21,17 @@ export const removedFiles = /** @type {const} */ ([
 
   // e2e
   "e2e/integrations/item.test.ts",
+  "e2e/a11y/itemPage.test.ts",
+  "e2e/models/ItemPage.ts",
 
   // others
   "prisma/schema/item.prisma",
 ]);
 
-export const removedDirs = /** @type {const} */ (["src/app/@dialog"]);
+export const removedDirs = /** @type {const} */ ([
+  "src/app/(public)/items",
+  "src/app/(public)/_components",
+]);
 
 export const modifiedFiles = /** @type {const} */ ([
   "next.config.ts",
@@ -37,6 +42,7 @@ export const modifiedFiles = /** @type {const} */ ([
   "src/middleware.ts",
   "src/middleware.test.ts",
   "prisma/schema/user.prisma",
+  "e2e/a11y/topPage.test.ts",
 ]);
 
 // TODO: need to consider keeping them or not
@@ -61,6 +67,7 @@ export async function sampleCode(answer, isSkipQuestion) {
       [modifiedFiles[3], fences[0]],
       [modifiedFiles[4], fences[0]],
       [modifiedFiles[7], fences[1]],
+      [modifiedFiles[8], fences[0]],
     ],
     yesCallback: async () => {
       await Promise.all([

@@ -1,8 +1,8 @@
 "use client";
 
 import { useTransition } from "react";
-import { checkout, update } from "../_actions/payment";
-import { Button } from "./Button";
+import { checkout, update } from "../../../../_actions/payment";
+import { Button } from "../../../../_components/Button";
 
 type Props = {
   hasSubscription: boolean;

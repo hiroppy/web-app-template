@@ -12,11 +12,11 @@ export class TopPage extends Base {
   constructor(page: Page) {
     super(page);
 
-    this.textUserStatusLabelLocator = this.page.locator(
-      '[aria-label="User status"]',
+    this.textUserStatusLabelLocator = this.page.getByText(
+      /you are (signed in as|not signed in)/,
     );
     /* start: sample */
-    this.buttonAddItemLocator = this.page.getByRole("link", {
+    this.buttonAddItemLocator = this.page.getByRole("button", {
       name: "Add an item",
     });
     this.buttonDeleteItemsLocator = this.page.getByRole("button", {
@@ -60,7 +60,7 @@ export class TopPage extends Base {
     const res = await Promise.all(
       items.map(async (item) => {
         const img = await item.getByRole("img").getAttribute("src");
-        const title = await item.getByRole("heading").innerText();
+        const title = await item.getByRole("link").innerText();
 
         return {
           img,
@@ -73,12 +73,6 @@ export class TopPage extends Base {
   }
 
   async addItem(content: string) {
-    expect(await this.buttonAddItemLocator.getAttribute("href")).toBe(
-      "/create",
-    );
-
-    await this.buttonAddItemLocator.click();
-
     const inputCreateContentLocator = this.page.locator(
       'input[name="content"]',
     );
@@ -88,15 +82,16 @@ export class TopPage extends Base {
 
     await inputCreateContentLocator.fill(content);
     await expect(inputCreateContentErrorLocator).not.toBeVisible();
-    await this.page.keyboard.press("Enter");
+    await this.buttonAddItemLocator.click();
 
     await this.page.waitForLoadState("networkidle");
-    await this.page.goto("/");
+    await expect(inputCreateContentLocator).toHaveValue("");
   }
 
   async deleteAllItems() {
     await this.buttonDeleteItemsLocator.click();
     await this.page.waitForLoadState("networkidle");
+    await expect(this.page.getByRole("list", { name: "items" })).toBeEmpty();
   }
 
   async expectItems(
@@ -106,6 +101,13 @@ export class TopPage extends Base {
     }[],
   ) {
     expect(await this.getItems()).toMatchObject(expected);
+  }
+
+  async clickItemByTitle(title: string) {
+    const itemLink = this.page.getByRole("link", {
+      name: title,
+    });
+    await itemLink.click();
   }
   /* end: sample */
 }

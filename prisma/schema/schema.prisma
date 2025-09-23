@@ -11,10 +11,3 @@ generator client {
   output          = "../../src/app/__generated__/prisma"
   moduleFormat    = "esm"
 }
-
-generator erd {
-  provider                  = "prisma-erd-generator"
-  theme                     = "forest"
-  output                    = "ERD.md"
-  includeRelationFromFields = true
-}

@@ -3,9 +3,9 @@ import { notFound } from "next/navigation";
 import { redirectToBillingPortal } from "../../../_actions/payment";
 import { stripe } from "../../../_clients/stripe";
 import { Button } from "../../../_components/Button";
-import { PaymentButton } from "../../../_components/PaymentButton";
 import { format } from "../../../_utils/date";
 import { status } from "../../../_utils/payment";
+import { PaymentButton } from "./_components/PaymentButton";
 
 type SearchParams = {
   sessionId?: string;

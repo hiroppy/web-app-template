@@ -80,7 +80,7 @@ jobs:
           # please set the following environment variables as github secrets
           DATABASE_USER: local
           DATABASE_PASSWORD: 1234
-          DATABASE_DB: database
+          DATABASE_DB: local
           DATABASE_HOST: host.docker.internal
           DATABASE_PORT: 5432
           DATABASE_SCHEMA: public
@@ -112,12 +112,11 @@ jobs:
   # start: e2e #
   e2e-test:
     runs-on: ubuntu-latest
-    env:
-      NEXTAUTH_SECRET: UfxvOS6HetHOFkL44YTITYgc0DOuOlz5TBp3jkbnZ3w=
     steps:
       - uses: actions/checkout@v5
       - uses: ./.github/actions/setup-node
+      - uses: ./.github/actions/setup-db
       - run: pnpm exec playwright install chromium
-      - run: pnpm build:test
+      - run: pnpm build
       - run: pnpm test:e2e
   # end: e2e #

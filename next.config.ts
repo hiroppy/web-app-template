@@ -43,8 +43,12 @@ const nextConfig: NextConfig = {
     ],
   },
   /* end: sample */
+  typedRoutes: true,
   experimental: {
     authInterrupts: true,
+    sri: {
+      algorithm: "sha256",
+    },
   },
   /* start: otel */
   serverExternalPackages: [

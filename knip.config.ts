@@ -10,12 +10,12 @@ const config: KnipConfig = {
   ],
   playwright: {
     config: ["playwright.config.ts"],
-    entry: ["e2e/**/*.ts", "tests/**/*.ts"],
+    entry: ["e2e/**/*.ts"],
   },
   vitest: {
-    entry: ["src/**/*.test.ts", "tests/**/*.ts"],
+    entry: ["src/**/*.test.ts"],
   },
-  ignoreDependencies: ["postcss", "tailwindcss", "prisma-erd-generator"],
+  ignoreDependencies: ["postcss", "tailwindcss"],
   ignoreBinaries: ["stripe"],
 };
 

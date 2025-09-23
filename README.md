@@ -152,8 +152,8 @@ A build task must be executed before running tests to bypass JWT logic.
 ```sh
 # install chrome
 $ pnpm exec playwright install chrome
-# build using test environments since it needs to change encode/decode functions of next-auth
-$ pnpm build:test
+
+$ pnpm build
 
 $ pnpm test:e2e
 $ pnpm test:e2e:ui
@@ -172,5 +172,4 @@ $ pnpm db:studio
 
 ## Links
 
-- [Database ER diagram](/prisma/schema/ERD.md)
 - [Web App Template](https://hiroppy.github.io/web-app-template/)

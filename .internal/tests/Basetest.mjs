@@ -258,21 +258,17 @@ export class BaseTest {
     });
   }
 
-  async testBuild(hasE2e = true) {
-    const command = !hasE2e ? "npm run build" : "npm run build:test";
-
+  async testBuild() {
     test("should build", async (t) => {
       await execAsync("docker compose down", {
         cwd: this.outputPath,
       });
 
-      if (!hasE2e) {
-        await execAsync("pnpm db:up && pnpm db:deploy", {
-          cwd: this.outputPath,
-        });
-      }
+      await execAsync("pnpm db:up && pnpm db:deploy", {
+        cwd: this.outputPath,
+      });
 
-      await execAsync(command, {
+      await execAsync("pnpm build", {
         cwd: this.outputPath,
       });
 
@@ -305,7 +301,7 @@ export class BaseTest {
       return;
     }
 
-    await this.testBuild(hasE2e);
+    await this.testBuild();
 
     await Promise.all([this.testLint(), this.testUnit()]);
 

@@ -6,6 +6,7 @@ import { redirect } from "next/navigation";
 import type { Subscription } from "../__generated__/prisma";
 import { prisma } from "../_clients/prisma";
 import { cancelUrl, paymentPage, stripe, successUrl } from "../_clients/stripe";
+import type { Result } from "../_types/result";
 import { getSessionOrReject } from "../_utils/auth";
 import { handleSubscriptionUpsert, status } from "../_utils/payment";
 
@@ -165,5 +166,5 @@ export async function redirectToBillingPortal(): Promise<void> {
     return_url: paymentPage,
   });
 
-  redirect(portal.url);
+  redirect(portal.url as Route);
 }

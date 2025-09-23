@@ -1,12 +1,10 @@
-import type { Route } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { Suspense } from "react";
-import { deleteAll } from "../_actions/items";
 import { prisma } from "../_clients/prisma";
-import { Button } from "../_components/Button";
 import { getSessionOrReject } from "../_utils/auth";
 import { format } from "../_utils/date";
+import { ItemManager } from "./_components/ItemManager";
 
 export default async function Page() {
   return (
@@ -25,24 +23,13 @@ async function Status() {
   const session = await getSessionOrReject();
 
   return (
-    <div className="flex justify-between gap-3 flex-col md:flex-row md:items-center">
-      <output className="text-gray-300" aria-label="User status">
+    <div className="flex justify-between gap-3 flex-col lg:flex-row lg:items-center">
+      <p className="text-gray-300">
         {session?.data?.user
           ? `you are signed in as ${session.data.user.name} 😄`
           : "you are not signed in 🥲"}
-      </output>
-      {session?.data?.user && (
-        <div className="flex items-center gap-4">
-          <Link href={"/create" as Route} scroll={false}>
-            <Button className="bg-blue-600">Add an item</Button>
-          </Link>
-          <form action={deleteAll}>
-            <Button type="submit" className="bg-orange-800  text-gray-100">
-              Delete my items
-            </Button>
-          </form>
-        </div>
-      )}
+      </p>
+      {session?.data?.user && <ItemManager />}
     </div>
   );
 }
@@ -75,12 +62,12 @@ async function List() {
                 priority
               />
             )}
-            <h2
-              className="font-semibold md:text-xl break-all"
-              title="memo title"
+            <Link
+              href={`/items/${id}`}
+              className="font-semibold md:text-xl break-all underline hover:text-blue-300"
             >
               {content}
-            </h2>
+            </Link>
           </div>
           <span className="text-sm text-gray-300">{format(createdAt)}</span>
         </li>
