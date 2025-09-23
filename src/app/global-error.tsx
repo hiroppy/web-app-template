@@ -1,6 +1,7 @@
 "use client";
 
-import { Button } from "./_components/Button";
+import * as Sentry from "@sentry/nextjs";
+import { useEffect } from "react";
 import { Container } from "./_components/Container";
 
 type Props = {
@@ -8,13 +9,16 @@ type Props = {
   reset: () => void;
 };
 
-export default function GlobalError({ reset }: Props) {
+export default function GlobalError({ error }: Props) {
+  useEffect(() => {
+    Sentry.captureException(error);
+  }, [error]);
+
   return (
     <html lang="en">
       <body>
         <Container>
           <h2>Something went wrong!</h2>
-          <Button onClick={() => reset()}>Try again</Button>
         </Container>
       </body>
     </html>

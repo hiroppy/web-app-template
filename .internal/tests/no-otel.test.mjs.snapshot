@@ -79,6 +79,11 @@ exports[`no-otel > should update .env.sample 1`] = `
   "STRIPE_SECRET_KEY=xxxx",
   "STRIPE_WEBHOOK_SECRET=xxxx",
   "STRIPE_PRICE_ID=xxxx",
+  "",
+  "SENTRY_ORG=",
+  "SENTRY_PROJECT=",
+  "SENTRY_AUTH_TOKEN=",
+  "NEXT_PUBLIC_SENTRY_DSN=",
   ""
 ]
 `;
@@ -394,6 +399,8 @@ exports[`no-otel > should update dependencies 1`] = `
     "@hookform/resolvers",
     "@next/env",
     "@prisma/client",
+    "@sentry/nextjs",
+    "@sentry/profiling-node",
     "clsx",
     "next",
     "next-auth",
@@ -460,6 +467,11 @@ exports[`no-otel > should update env.ts 1`] = `
   "  STRIPE_PRICE_ID: z.string().min(1),",
   "  STRIPE_SECRET_KEY: z.string().min(1),",
   "  STRIPE_WEBHOOK_SECRET: z.string().min(1),",
+  "",
+  "  SENTRY_ORG: z.string().min(1).optional().or(z.literal(\\"\\")),",
+  "  SENTRY_PROJECT: z.string().min(1).optional().or(z.literal(\\"\\")),",
+  "  SENTRY_AUTH_TOKEN: z.string().min(1).optional().or(z.literal(\\"\\")),",
+  "  NEXT_PUBLIC_SENTRY_DSN: z.string().min(1).optional().or(z.literal(\\"\\")),",
   "});",
   "",
   "const runtimeEnv = z.object({});",
@@ -487,6 +499,7 @@ exports[`no-otel > should update env.ts 1`] = `
 
 exports[`no-otel > should update next.config.ts 1`] = `
 [
+  "import { withSentryConfig } from \\"@sentry/nextjs\\";",
   "import type { NextConfig } from \\"next\\";",
   "import { config } from \\"./env\\";",
   "",
@@ -520,6 +533,15 @@ exports[`no-otel > should update next.config.ts 1`] = `
   "          },",
   "        ],",
   "      },",
+  "      {",
+  "        source: \\"/:path*\\",",
+  "        headers: [",
+  "          {",
+  "            key: \\"Document-Policy\\",",
+  "            value: \\"js-profiling\\",",
+  "          },",
+  "        ],",
+  "      },",
   "    ];",
   "  },",
   "  images: {",
@@ -539,7 +561,17 @@ exports[`no-otel > should update next.config.ts 1`] = `
   "  },",
   "};",
   "",
-  "export default nextConfig;",
+  "export default withSentryConfig(nextConfig, {",
+  "  org: process.env.SENTRY_ORG,",
+  "  project: process.env.SENTRY_PROJECT,",
+  "  silent: !process.env.CI,",
+  "  widenClientFileUpload: true,",
+  "  authToken: process.env.SENTRY_AUTH_TOKEN,",
+  "  disableLogger: true,",
+  "  reactComponentAnnotation: {",
+  "    enabled: true,",
+  "  },",
+  "});",
   ""
 ]
 `;
