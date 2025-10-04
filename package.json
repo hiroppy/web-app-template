@@ -40,9 +40,9 @@
     "next": "15.5.4",
     "next-auth": "5.0.0-beta.29",
     "prisma": "6.16.2",
-    "react": "19.1.1",
-    "react-dom": "19.1.1",
-    "react-hook-form": "7.63.0",
+    "react": "19.2.0",
+    "react-dom": "19.2.0",
+    "react-hook-form": "7.64.0",
     "stripe": "18.5.0",
     "zod": "4.1.11"
   },
@@ -61,7 +61,7 @@
     "lefthook": "1.13.6",
     "prettier": "3.6.2",
     "tailwindcss": "4.1.14",
-    "testcontainers": "11.6.0",
+    "testcontainers": "11.7.1",
     "typescript": "5.9.3",
     "vitest": "3.2.4"
   }
