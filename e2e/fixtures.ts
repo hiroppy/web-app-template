@@ -21,7 +21,9 @@ export type TestFixtures = {
   signInPage: SignInPage;
   notFoundPage: NotFoundPage;
   storageState: string;
-  registerToDB: (user: User) => Promise<void>;
+  registerToDB: (
+    user: Pick<User, "id" | "name" | "email" | "image" | "role">,
+  ) => Promise<void>;
   reset: () => Promise<void>;
   a11y: () => AxeBuilder;
 };
@@ -82,9 +84,11 @@ export const test = base.extend<TestFixtures, WorkerFixtures>({
     },
   ],
   registerToDB: async ({ reset, setup }, use) => {
-    await use(async (user: User) => {
-      await registerUserToDB(user, setup.dbURL);
-    });
+    await use(
+      async (user: Pick<User, "id" | "name" | "email" | "image" | "role">) => {
+        await registerUserToDB(user, setup.dbURL);
+      },
+    );
     await reset();
   },
   reset: ({ context, setup }, use) => {
