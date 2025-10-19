@@ -1,10 +1,8 @@
-import type { User } from "next-auth";
+import type { User } from "../src/app/_clients/betterAuth";
 
-type RemoveNullish<T> = {
-  [K in keyof T]-?: NonNullable<T[K]>;
-};
-
-type NonNullableUser = RemoveNullish<User>;
+type NonNullableUser = Required<
+  Pick<User, "id" | "name" | "email" | "image" | "role">
+>;
 
 export const user1: NonNullableUser = {
   id: "id1",

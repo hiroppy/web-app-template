@@ -39,7 +39,6 @@ describe("actions/users", () => {
       expect(await getUser()).toMatchInlineSnapshot(`
         {
           "email": "b@c.com",
-          "emailVerified": null,
           "id": "id",
           "image": "https://a.com",
           "name": "foo",
@@ -75,7 +74,7 @@ describe("actions/users", () => {
     });
 
     test("should throw an error if there is no session token", async () => {
-      mock.auth.mockReturnValueOnce(null);
+      mock.getSession.mockResolvedValueOnce(null);
 
       const formData = new FormData();
 

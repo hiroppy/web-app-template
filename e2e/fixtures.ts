@@ -1,6 +1,6 @@
 import AxeBuilder from "@axe-core/playwright";
 import { test as base } from "@playwright/test";
-import type { User } from "next-auth";
+import type { User } from "../src/app/_clients/betterAuth";
 import { setupDB } from "../tests/db.setup";
 import { setupApp } from "./helpers/app";
 import { registerUserToDB } from "./helpers/users";
@@ -21,7 +21,9 @@ export type TestFixtures = {
   signInPage: SignInPage;
   notFoundPage: NotFoundPage;
   storageState: string;
-  registerToDB: (user: User) => Promise<void>;
+  registerToDB: (
+    user: Pick<User, "id" | "name" | "email" | "image" | "role">,
+  ) => Promise<void>;
   reset: () => Promise<void>;
   a11y: () => AxeBuilder;
 };
@@ -82,9 +84,11 @@ export const test = base.extend<TestFixtures, WorkerFixtures>({
     },
   ],
   registerToDB: async ({ reset, setup }, use) => {
-    await use(async (user: User) => {
-      await registerUserToDB(user, setup.dbURL);
-    });
+    await use(
+      async (user: Pick<User, "id" | "name" | "email" | "image" | "role">) => {
+        await registerUserToDB(user, setup.dbURL);
+      },
+    );
     await reset();
   },
   reset: ({ context, setup }, use) => {

@@ -1,5 +1,5 @@
 import { expect, type Locator, type Page } from "@playwright/test";
-import type { User } from "next-auth";
+import type { User } from "../../src/app/_clients/betterAuth";
 
 export class Base {
   page: Page;

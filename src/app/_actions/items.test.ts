@@ -36,7 +36,7 @@ describe("actions/items", () => {
     });
 
     test("should throw an error if there is no session token", async () => {
-      mock.auth.mockReturnValueOnce(null);
+      mock.getSession.mockResolvedValueOnce(null);
 
       expect(await create({ content: "hello" })).toMatchInlineSnapshot(`
         {
@@ -92,7 +92,7 @@ describe("actions/items", () => {
     });
 
     test("should throw an error if there is no session token", async () => {
-      mock.auth.mockReturnValueOnce(null);
+      mock.getSession.mockResolvedValueOnce(null);
 
       await expect(deleteAll()).rejects.toThrow("no session token");
     });

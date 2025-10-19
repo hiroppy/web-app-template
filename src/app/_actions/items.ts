@@ -19,7 +19,6 @@ export async function create(input: ItemSchema): Promise<ReturnedCreate> {
     return session;
   }
 
-  const { user } = session.data;
   const validatedFields = itemSchema.safeParse(input);
 
   if (!validatedFields.success) {
@@ -35,7 +34,7 @@ export async function create(input: ItemSchema): Promise<ReturnedCreate> {
       content: validatedFields.data.content,
       user: {
         connect: {
-          id: user.id,
+          id: session.data.id,
         },
       },
     },
@@ -61,12 +60,10 @@ export async function deleteAll(): Promise<void> {
     throw new Error("no session token");
   }
 
-  const { user } = session.data;
-
   await prisma.$transaction(async (prisma) => {
     await prisma.item.deleteMany({
       where: {
-        userId: user.id,
+        userId: session.data.id,
       },
     });
   });

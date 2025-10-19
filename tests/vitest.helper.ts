@@ -1,5 +1,5 @@
-import type { User } from "next-auth";
 import { afterAll, afterEach, expect, vi } from "vitest";
+import type { User } from "../src/app/_clients/betterAuth";
 
 export async function setup() {
   const { container, prisma, truncate, down } = await vi.hoisted(async () => {
@@ -9,7 +9,7 @@ export async function setup() {
   });
 
   const mock = vi.hoisted(() => ({
-    auth: vi.fn(),
+    getSession: vi.fn(),
     revalidatePath: vi.fn(),
     revalidateTag: vi.fn(),
     redirect: vi.fn(),
@@ -20,11 +20,13 @@ export async function setup() {
     prisma,
   }));
 
-  vi.mock("next-auth", async (actual) => ({
-    ...(await actual<typeof import("next-auth")>()),
-    default: () => ({
-      auth: mock.auth,
-    }),
+  vi.mock("../src/app/_clients/betterAuth", async (actual) => ({
+    ...(await actual<typeof import("../src/app/_clients/betterAuth")>()),
+    auth: {
+      api: {
+        getSession: mock.getSession,
+      },
+    },
   }));
 
   vi.mock("next/cache", async (actual) => ({
@@ -38,6 +40,10 @@ export async function setup() {
     redirect: mock.redirect,
   }));
 
+  vi.mock("next/headers", async () => ({
+    headers: vi.fn().mockResolvedValue(new Headers()),
+  }));
+
   afterAll(async () => {
     await down();
   });
@@ -47,7 +53,7 @@ export async function setup() {
   });
 
   async function createUser() {
-    const user: User = {
+    const user: Pick<User, "id" | "name" | "email" | "image" | "role"> = {
       id: "id",
       name: "name",
       email: "hello@a.com",
@@ -56,12 +62,26 @@ export async function setup() {
     };
 
     await prisma.user.create({
-      data: user,
+      data: {
+        id: user.id,
+        name: user.name,
+        email: user.email,
+        emailVerified: false,
+        image: user.image,
+        role: user.role as "USER" | "ADMIN",
+      },
     });
 
-    mock.auth.mockReturnValue({
+    const sessionMock = {
+      session: {
+        id: "session-id",
+        userId: user.id,
+        expiresAt: new Date(Date.now() + 1000 * 60 * 60 * 24 * 7),
+      },
       user,
-    });
+    };
+
+    mock.getSession.mockResolvedValue(sessionMock);
 
     expect(await prisma.user.count()).toBe(1);
 
@@ -75,7 +95,7 @@ export async function setup() {
       throw new Error("User not found");
     }
 
-    const { createdAt: _, updatedAt: __, ...rest } = me;
+    const { createdAt: _, updatedAt: __, emailVerified: ___, ...rest } = me;
 
     return rest;
   }

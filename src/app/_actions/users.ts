@@ -23,12 +23,10 @@ export async function updateMe(
     return session;
   }
 
-  const { user } = session.data;
-
   const input: PartialWithNullable<MeSchema> = {
-    name: user.name,
-    email: user.email,
-    image: user.image,
+    name: session.data.name,
+    email: session.data.email,
+    image: session.data.image,
     ...Object.fromEntries(formData.entries()),
   };
 
@@ -45,7 +43,7 @@ export async function updateMe(
 
   await prisma.user.update({
     where: {
-      id: user.id,
+      id: session.data.id,
     },
     data: validatedFields.data,
   });
