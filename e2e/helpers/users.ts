@@ -1,6 +1,5 @@
 import type { BrowserContext, TestType } from "@playwright/test";
-import type { User } from "next-auth";
-import type { JWT } from "next-auth/jwt";
+import type { User } from "../../src/app/_clients/betterAuth";
 import type { TestFixtures, WorkerFixtures } from "../fixtures";
 import { generatePrismaClient } from "./prisma";
 
@@ -8,15 +7,18 @@ export async function registerUserToDB(user: User, dbUrl: string) {
   await using db = await generatePrismaClient(dbUrl);
   await db.prisma.user.create({
     data: {
-      ...user,
+      id: user.id,
+      name: user.name,
+      email: user.email,
+      emailVerified: false,
+      image: user.image,
+      role: user.role as "USER" | "ADMIN",
       accounts: {
         create: {
-          type: "oauth",
-          provider: "google",
-          providerAccountId: `${Math.random()}`,
-          id_token: "id_token",
-          access_token: "access_token",
-          token_type: "Bearer",
+          accountId: `${Math.random()}`,
+          providerId: "google",
+          accessToken: "access_token",
+          idToken: "id_token",
           scope: "scope",
         },
       },
@@ -24,17 +26,22 @@ export async function registerUserToDB(user: User, dbUrl: string) {
   });
 }
 
-export async function createUserAuthState(context: BrowserContext, jwt: JWT) {
+export async function createUserAuthState(
+  context: BrowserContext,
+  jwt: { user: Pick<User, "id" | "name" | "email" | "image" | "role"> },
+) {
+  const sessionToken = JSON.stringify({
+    user: jwt.user,
+    session: {
+      userId: jwt.user.id,
+      expiresAt: new Date(Date.now() + 60 * 60 * 24 * 1000 * 7).toISOString(),
+    },
+  });
+
   await context.addCookies([
     {
-      name: "authjs.session-token",
-      value: btoa(
-        JSON.stringify({
-          ...jwt,
-          // google provider attaches `sub` to the token
-          sub: jwt.user.id,
-        }),
-      ),
+      name: "better-auth.session_token",
+      value: btoa(sessionToken),
       domain: "localhost",
       path: "/",
       httpOnly: true,

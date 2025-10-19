@@ -1,6 +1,6 @@
 import AxeBuilder from "@axe-core/playwright";
 import { test as base } from "@playwright/test";
-import type { User } from "next-auth";
+import type { User } from "../src/app/_clients/betterAuth";
 import { setupDB } from "../tests/db.setup";
 import { setupApp } from "./helpers/app";
 import { registerUserToDB } from "./helpers/users";

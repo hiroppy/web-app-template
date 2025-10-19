@@ -14,13 +14,11 @@ describe("utils/auth", () => {
       expect(await getSessionOrReject()).toMatchInlineSnapshot(`
         {
           "data": {
-            "user": {
-              "email": "hello@a.com",
-              "id": "id",
-              "image": "https://a.com",
-              "name": "name",
-              "role": "USER",
-            },
+            "email": "hello@a.com",
+            "id": "id",
+            "image": "https://a.com",
+            "name": "name",
+            "role": "USER",
           },
           "success": true,
         }

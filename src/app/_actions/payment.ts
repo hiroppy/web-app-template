@@ -19,7 +19,7 @@ export async function checkout(): Promise<Result> {
 
   const me = await prisma.user.findUnique({
     where: {
-      id: session.data.user.id,
+      id: session.data.id,
     },
   });
 
@@ -153,7 +153,7 @@ export async function redirectToBillingPortal(): Promise<void> {
 
   const me = await prisma.user.findUnique({
     where: {
-      id: session.data.user.id,
+      id: session.data.id,
     },
   });
 

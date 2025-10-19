@@ -161,7 +161,7 @@ describe("utils/payment", () => {
 
   describe("status", () => {
     test("should throw an error if there is no session token", async () => {
-      mock.auth.mockReturnValueOnce(null);
+      mock.getSession.mockResolvedValueOnce(null);
 
       expect(await status()).toMatchInlineSnapshot(`
         {

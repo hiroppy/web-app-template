@@ -9,7 +9,5 @@ export default async function Page() {
     notFound();
   }
 
-  const { user } = session.data;
-
-  return <UpdateMyInfo name={user.name ?? ""} />;
+  return <UpdateMyInfo name={session.data.name ?? ""} />;
 }

@@ -51,7 +51,7 @@ describe("actions/payment", () => {
 
   describe("checkout", () => {
     test("should throw an error if there is no session token", async () => {
-      mock.auth.mockReturnValueOnce(null);
+      mock.getSession.mockResolvedValueOnce(null);
 
       expect(await checkout()).toMatchInlineSnapshot(`
         {
@@ -97,7 +97,6 @@ describe("actions/payment", () => {
       expect(await getUser()).toMatchInlineSnapshot(`
         {
           "email": "hello@a.com",
-          "emailVerified": null,
           "id": "id",
           "image": "https://a.com",
           "name": "name",
@@ -153,7 +152,6 @@ describe("actions/payment", () => {
       expect(await getUser()).toMatchInlineSnapshot(`
         {
           "email": "hello@a.com",
-          "emailVerified": null,
           "id": "id",
           "image": "https://a.com",
           "name": "name",
@@ -180,7 +178,6 @@ describe("actions/payment", () => {
       expect(await getUser()).toMatchInlineSnapshot(`
         {
           "email": "hello@a.com",
-          "emailVerified": null,
           "id": "id",
           "image": "https://a.com",
           "name": "name",
@@ -228,7 +225,6 @@ describe("actions/payment", () => {
       expect(await getUser()).toMatchInlineSnapshot(`
         {
           "email": "hello@a.com",
-          "emailVerified": null,
           "id": "id",
           "image": "https://a.com",
           "name": "name",
@@ -250,7 +246,6 @@ describe("actions/payment", () => {
       expect(await getUser()).toMatchInlineSnapshot(`
         {
           "email": "hello@a.com",
-          "emailVerified": null,
           "id": "id",
           "image": "https://a.com",
           "name": "name",
@@ -274,7 +269,7 @@ describe("actions/payment", () => {
     });
 
     test("should throw an error if there is no session token", async () => {
-      mock.auth.mockReturnValueOnce(null);
+      mock.getSession.mockResolvedValueOnce(null);
 
       expect(await update(true)).toMatchInlineSnapshot(`
         {
@@ -375,7 +370,7 @@ describe("actions/payment", () => {
 
   describe("redirectToBillingPortal", () => {
     test("should throw an error if there is no session token", async () => {
-      mock.auth.mockReturnValueOnce(null);
+      mock.getSession.mockResolvedValueOnce(null);
 
       await expect(redirectToBillingPortal()).rejects.toThrow(
         "no session token",

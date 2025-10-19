@@ -17,10 +17,9 @@ export async function status(): Promise<ReturnedStatus> {
     return session;
   }
 
-  const { user } = session.data;
   const subscription = await prisma.subscription.findFirst({
     where: {
-      userId: user.id,
+      userId: session.data.id,
       status: {
         in: ["active", "complete"],
       },

@@ -70,7 +70,8 @@ jobs:
             --build-arg GOOGLE_CLIENT_ID=${{env.GOOGLE_CLIENT_ID}} \
             --build-arg GOOGLE_CLIENT_SECRET=${{env.GOOGLE_CLIENT_SECRET}} \
             --build-arg NEXT_PUBLIC_SITE_URL=${{env.NEXT_PUBLIC_SITE_URL}} \
-            --build-arg NEXTAUTH_SECRET=${{env.NEXTAUTH_SECRET}} \
+            --build-arg BETTER_AUTH_SECRET=${{env.BETTER_AUTH_SECRET}} \
+            --build-arg BETTER_AUTH_URL=${{env.BETTER_AUTH_URL}} \
             --build-arg TRACE_EXPORTER_URL=${{env.TRACE_EXPORTER_URL}} \
             --build-arg STRIPE_PRICE_ID=${{env.STRIPE_PRICE_ID}} \
             --build-arg STRIPE_SECRET_KEY=${{env.STRIPE_SECRET_KEY}} \
@@ -84,7 +85,8 @@ jobs:
           DATABASE_HOST: host.docker.internal
           DATABASE_PORT: 5432
           DATABASE_SCHEMA: public
-          NEXTAUTH_SECRET: TKDdLVjf7cTyTs5oWVpv04senu6fia4RGQbYHRQIR5Q=
+          BETTER_AUTH_SECRET: TKDdLVjf7cTyTs5oWVpv04senu6fia4RGQbYHRQIR5Q=
+          BETTER_AUTH_URL: http://localhost:3000
           GOOGLE_CLIENT_ID: dummy
           GOOGLE_CLIENT_SECRET: dummy
           # start: otel #

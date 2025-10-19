@@ -10,10 +10,10 @@ export async function Header() {
   return (
     <header className="border-b border-b-gray-600 sticky top-0 bg-gray-700 z-30">
       <Container className="flex items-center justify-between" size="md">
-        {session?.data?.user?.image ? (
+        {session.success && session.data.image ? (
           <Link href="/me">
             <Image
-              src={session.data.user.image}
+              src={session.data.image}
               width={40}
               height={40}
               className="rounded-full"

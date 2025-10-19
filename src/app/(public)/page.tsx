@@ -25,11 +25,11 @@ async function Status() {
   return (
     <div className="flex justify-between gap-3 flex-col lg:flex-row lg:items-center">
       <p className="text-gray-300">
-        {session?.data?.user
-          ? `you are signed in as ${session.data.user.name} 😄`
+        {session.success
+          ? `you are signed in as ${session.data.name} 😄`
           : "you are not signed in 🥲"}
       </p>
-      {session?.data?.user && <ItemManager />}
+      {session.success && <ItemManager />}
     </div>
   );
 }
