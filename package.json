@@ -58,7 +58,7 @@
     "@vitejs/plugin-react": "5.0.4",
     "jsdom": "27.0.1",
     "knip": "5.66.2",
-    "lefthook": "1.13.6",
+    "lefthook": "2.0.0",
     "prettier": "3.6.2",
     "tailwindcss": "4.1.15",
     "testcontainers": "11.7.1",
