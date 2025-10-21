@@ -2,7 +2,7 @@
   "name": "web-app-template",
   "version": "0.0.1",
   "description": "",
-  "packageManager": "pnpm@10.17.1",
+  "packageManager": "pnpm@10.19.0",
   "scripts": {
     "setup": "corepack enable pnpm",
     "dev": "pnpm db:up && pnpm db:migrate && pnpm generate:client && next dev",
