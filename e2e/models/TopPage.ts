@@ -80,6 +80,7 @@ export class TopPage extends Base {
       `#${await inputCreateContentLocator.getAttribute("id")}-error`,
     );
 
+    await expect(inputCreateContentLocator).toBeEnabled();
     await inputCreateContentLocator.fill(content);
     await expect(inputCreateContentErrorLocator).not.toBeVisible();
     await this.buttonAddItemLocator.click();

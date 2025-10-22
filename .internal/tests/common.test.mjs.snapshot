@@ -727,6 +727,7 @@ exports[`common > should update e2e/models/TopPage.ts 1`] = `
   "      \`#\${await inputCreateContentLocator.getAttribute(\\"id\\")}-error\`,",
   "    );",
   "",
+  "    await expect(inputCreateContentLocator).toBeEnabled();",
   "    await inputCreateContentLocator.fill(content);",
   "    await expect(inputCreateContentErrorLocator).not.toBeVisible();",
   "    await this.buttonAddItemLocator.click();",
