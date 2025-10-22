@@ -1,8 +1,12 @@
 import { notFound } from "next/navigation";
+import { unstable_noStore } from "next/cache";
+import { Suspense } from "react";
 import { prisma } from "../../../_clients/prisma";
 import { format } from "../../../_utils/date";
 
-export default async function Page({ params }: PageProps<"/items/[itemId]">) {
+async function ItemContent({ params }: { params: Promise<{ itemId: string }> }) {
+  unstable_noStore();
+
   const { itemId } = await params;
   const item = await prisma.item.findUnique({
     where: {
@@ -27,5 +31,13 @@ export default async function Page({ params }: PageProps<"/items/[itemId]">) {
       </div>
       <p>{item.content}</p>
     </div>
+  );
+}
+
+export default function Page({ params }: PageProps<"/items/[itemId]">) {
+  return (
+    <Suspense fallback={<div className="text-sm">Loading item...</div>}>
+      <ItemContent params={params} />
+    </Suspense>
   );
 }
