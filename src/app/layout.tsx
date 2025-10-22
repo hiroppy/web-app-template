@@ -1,6 +1,7 @@
 import { clsx } from "clsx";
 import type { Metadata, Viewport } from "next";
 import { Inter } from "next/font/google";
+import { Suspense } from "react";
 import { Footer } from "./_components/Footer";
 import { Header } from "./_components/Header";
 import "./globals.css";
@@ -32,7 +33,9 @@ export default function Layout({ children }: LayoutProps<"/">) {
           "bg-gray-700 text-gray-200 min-h-screen flex flex-col",
         )}
       >
-        <Header />
+        <Suspense fallback={<div className="h-16 border-b border-b-gray-600" />}>
+          <Header />
+        </Suspense>
         <main className="flex-1">{children}</main>
         <Footer />
       </body>
