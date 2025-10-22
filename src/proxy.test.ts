@@ -9,7 +9,7 @@ import { NextRequest, type NextResponse } from "next/server";
 import type { NextAuthResult } from "next-auth";
 import { describe, expect, test, vi } from "vitest";
 import nextConfig from "../next.config";
-import middleware, { config } from "./middleware";
+import middleware, { config } from "./proxy";
 
 type NextAuthRequest = Parameters<Parameters<NextAuthResult["auth"]>[0]>[0];
 

@@ -44,11 +44,14 @@ const nextConfig: NextConfig = {
   },
   /* end: sample */
   typedRoutes: true,
+  cacheComponents: true,
+  reactCompiler: true,
   experimental: {
     authInterrupts: true,
-    sri: {
-      algorithm: "sha256",
-    },
+    // sri: {
+    //   algorithm: "sha256",
+    // },
+    turbopackFileSystemCacheForDev: true,
   },
   /* start: otel */
   serverExternalPackages: [
