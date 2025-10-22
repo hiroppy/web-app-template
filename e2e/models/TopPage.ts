@@ -80,6 +80,8 @@ export class TopPage extends Base {
       `#${await inputCreateContentLocator.getAttribute("id")}-error`,
     );
 
+    // Wait for the input to be enabled (in case previous action is still pending)
+    await expect(inputCreateContentLocator).toBeEnabled();
     await inputCreateContentLocator.fill(content);
     await expect(inputCreateContentErrorLocator).not.toBeVisible();
     await this.buttonAddItemLocator.click();
