@@ -20,7 +20,6 @@ exports[`no-docker > should put files 1`] = `
   "internal-tests-output-no-docker/knip.config.ts",
   "internal-tests-output-no-docker/lefthook.yml",
   "internal-tests-output-no-docker/next.config.ts",
-  "internal-tests-output-no-docker/otel-collector-config.yml",
   "internal-tests-output-no-docker/package.json",
   "internal-tests-output-no-docker/playwright.config.ts",
   "internal-tests-output-no-docker/pnpm-lock.yaml",

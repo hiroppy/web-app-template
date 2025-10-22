@@ -1,6 +1,7 @@
 import type { Session } from "next-auth";
 import { auth } from "../_clients/nextAuth";
 import type { Result } from "../_types/result";
+import { setUser } from "./sentry";
 
 export async function getSessionOrReject(): Promise<Result<Session, void>> {
   try {
@@ -12,6 +13,8 @@ export async function getSessionOrReject(): Promise<Result<Session, void>> {
         message: "no session token",
       };
     }
+
+    setUser(session.user);
 
     return {
       success: true,
