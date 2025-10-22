@@ -208,7 +208,7 @@ exports[`no-otel > should update .github/workflows/ci.yml 1`] = `
 
 exports[`no-otel > should update Dockerfile 1`] = `
 [
-  "FROM node:22.19.0-slim AS base",
+  "FROM node:22.21.0-slim AS base",
   "",
   "ARG DATABASE_USER=''",
   "ARG DATABASE_PASSWORD=''",
