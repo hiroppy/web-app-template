@@ -1,8 +1,5 @@
-import type { PropsWithChildren } from "react";
 import { Container } from "../_components/Container";
 
-type Props = PropsWithChildren;
-
-export default function Layout({ children }: Props) {
+export default function Layout({ children }: LayoutProps<"/">) {
   return <Container>{children}</Container>;
 }
