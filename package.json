@@ -23,7 +23,7 @@
     "fmt": "prettier -w './**/*.{md,yml}' && biome format --write . && prisma format"
   },
   "dependencies": {
-    "@auth/prisma-adapter": "2.11.0",
+    "@auth/prisma-adapter": "2.11.1",
     "@hookform/resolvers": "5.2.2",
     "@next/env": "15.5.6",
     "@opentelemetry/exporter-metrics-otlp-grpc": "0.207.0",
@@ -38,7 +38,7 @@
     "@prisma/instrumentation": "6.18.0",
     "clsx": "2.1.1",
     "next": "15.5.6",
-    "next-auth": "5.0.0-beta.29",
+    "next-auth": "5.0.0-beta.30",
     "prisma": "6.18.0",
     "react": "19.2.0",
     "react-dom": "19.2.0",
@@ -50,7 +50,7 @@
     "@axe-core/playwright": "4.11.0",
     "@biomejs/biome": "2.3.3",
     "@playwright/test": "1.56.1",
-    "@tailwindcss/postcss": "4.1.15",
+    "@tailwindcss/postcss": "4.1.16",
     "@testing-library/react": "16.3.0",
     "@types/node": "24.10.0",
     "@types/react": "19.2.2",
@@ -58,9 +58,9 @@
     "@vitejs/plugin-react": "5.0.4",
     "jsdom": "27.0.1",
     "knip": "5.66.2",
-    "lefthook": "2.0.0",
+    "lefthook": "2.0.2",
     "prettier": "3.6.2",
-    "tailwindcss": "4.1.15",
+    "tailwindcss": "4.1.16",
     "testcontainers": "11.7.2",
     "typescript": "5.9.3",
     "vitest": "3.2.4"
