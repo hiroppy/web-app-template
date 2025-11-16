@@ -415,7 +415,7 @@ exports[`common > should update compose.yml 1`] = `
   "",
   "services:",
   "  db:",
-  "    image: postgres:18",
+  "    image: postgres:17",
   "    ports:",
   "      - \${DATABASE_PORT:-5432}:5432",
   "    environment:",
