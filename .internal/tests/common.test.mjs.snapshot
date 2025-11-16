@@ -1111,7 +1111,6 @@ exports[`common > should update src/app/layout.tsx 1`] = `
 
 exports[`common > should update src/middleware.test.ts 1`] = `
 [
-  "import { beforeEach } from \\"node:test\\";",
   "import type { AppRouteHandlerFn } from \\"next/dist/server/route-modules/app-route/module\\";",
   "import {",
   "  getRewrittenUrl,",
@@ -1120,7 +1119,7 @@ exports[`common > should update src/middleware.test.ts 1`] = `
   "} from \\"next/experimental/testing/server.js\\";",
   "import { NextRequest, type NextResponse } from \\"next/server\\";",
   "import type { NextAuthResult } from \\"next-auth\\";",
-  "import { describe, expect, test, vi } from \\"vitest\\";",
+  "import { beforeEach, describe, expect, test, vi } from \\"vitest\\";",
   "import nextConfig from \\"../next.config\\";",
   "import middleware, { config } from \\"./middleware\\";",
   "",
