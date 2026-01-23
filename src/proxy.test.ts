@@ -8,11 +8,11 @@ import { NextRequest, type NextResponse } from "next/server";
 import type { NextAuthResult } from "next-auth";
 import { beforeEach, describe, expect, test, vi } from "vitest";
 import nextConfig from "../next.config";
-import middleware, { config } from "./middleware";
+import proxy, { config } from "./proxy";
 
 type NextAuthRequest = Parameters<Parameters<NextAuthResult["auth"]>[0]>[0];
 
-describe("middleware", () => {
+describe("proxy", () => {
   beforeEach(() => {
     vi.mock("next-auth", async (actual) => ({
       ...(await actual<typeof import("next-auth")>()),
@@ -27,7 +27,7 @@ describe("middleware", () => {
     }));
   });
 
-  test("should execute middleware when paths are specified by config", () => {
+  test("should execute proxy when paths are specified by config", () => {
     const fixtures: [string, boolean][] = [
       ["/", false],
       ["/me", true],
@@ -46,7 +46,7 @@ describe("middleware", () => {
 
   test("should route /signin to when fallback", async () => {
     const req = new NextRequest("http://localhost:3000");
-    const res = (await middleware(req, {
+    const res = (await proxy(req, {
       params: Promise.resolve({}),
     })) as NextResponse;
 
@@ -64,7 +64,7 @@ describe("middleware", () => {
       },
     } as NextAuthRequest;
 
-    const res = (await middleware(req, {
+    const res = (await proxy(req, {
       params: Promise.resolve({}),
     })) as NextResponse;
 

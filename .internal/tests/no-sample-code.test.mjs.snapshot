@@ -106,9 +106,9 @@ exports[`no-sample-code > should put files 1`] = `
   "internal-tests-output-no-sample-code/src/app/not-found.tsx",
   "internal-tests-output-no-sample-code/src/app/robots.txt",
   "internal-tests-output-no-sample-code/src/instrumentation.ts",
-  "internal-tests-output-no-sample-code/src/middleware.test.ts",
-  "internal-tests-output-no-sample-code/src/middleware.ts",
   "internal-tests-output-no-sample-code/src/otel/node.ts",
+  "internal-tests-output-no-sample-code/src/proxy.test.ts",
+  "internal-tests-output-no-sample-code/src/proxy.ts",
   "internal-tests-output-no-sample-code/tests/db.setup.ts",
   "internal-tests-output-no-sample-code/tests/vitest.helper.ts",
   "internal-tests-output-no-sample-code/tests/vitest.setup.ts",
@@ -484,7 +484,7 @@ exports[`no-sample-code > should update src/app/layout.tsx 1`] = `
 ]
 `;
 
-exports[`no-sample-code > should update src/middleware.test.ts 1`] = `
+exports[`no-sample-code > should update src/proxy.test.ts 1`] = `
 [
   "import type { AppRouteHandlerFn } from \\"next/dist/server/route-modules/app-route/module\\";",
   "import {",
@@ -496,11 +496,11 @@ exports[`no-sample-code > should update src/middleware.test.ts 1`] = `
   "import type { NextAuthResult } from \\"next-auth\\";",
   "import { beforeEach, describe, expect, test, vi } from \\"vitest\\";",
   "import nextConfig from \\"../next.config\\";",
-  "import middleware, { config } from \\"./middleware\\";",
+  "import proxy, { config } from \\"./proxy\\";",
   "",
   "type NextAuthRequest = Parameters<Parameters<NextAuthResult[\\"auth\\"]>[0]>[0];",
   "",
-  "describe(\\"middleware\\", () => {",
+  "describe(\\"proxy\\", () => {",
   "  beforeEach(() => {",
   "    vi.mock(\\"next-auth\\", async (actual) => ({",
   "      ...(await actual<typeof import(\\"next-auth\\")>()),",
@@ -515,7 +515,7 @@ exports[`no-sample-code > should update src/middleware.test.ts 1`] = `
   "    }));",
   "  });",
   "",
-  "  test(\\"should execute middleware when paths are specified by config\\", () => {",
+  "  test(\\"should execute proxy when paths are specified by config\\", () => {",
   "    const fixtures: [string, boolean][] = [",
   "      [\\"/\\", false],",
   "      [\\"/me\\", true],",
@@ -534,7 +534,7 @@ exports[`no-sample-code > should update src/middleware.test.ts 1`] = `
   "",
   "  test(\\"should route /signin to when fallback\\", async () => {",
   "    const req = new NextRequest(\\"http://localhost:3000\\");",
-  "    const res = (await middleware(req, {",
+  "    const res = (await proxy(req, {",
   "      params: Promise.resolve({}),",
   "    })) as NextResponse;",
   "",
@@ -552,7 +552,7 @@ exports[`no-sample-code > should update src/middleware.test.ts 1`] = `
   "      },",
   "    } as NextAuthRequest;",
   "",
-  "    const res = (await middleware(req, {",
+  "    const res = (await proxy(req, {",
   "      params: Promise.resolve({}),",
   "    })) as NextResponse;",
   "",
@@ -564,7 +564,7 @@ exports[`no-sample-code > should update src/middleware.test.ts 1`] = `
 ]
 `;
 
-exports[`no-sample-code > should update src/middleware.ts 1`] = `
+exports[`no-sample-code > should update src/proxy.ts 1`] = `
 [
   "import type { MiddlewareSourceConfig } from \\"next/experimental/testing/server\\";",
   "import { NextResponse } from \\"next/server\\";",
@@ -577,7 +577,7 @@ exports[`no-sample-code > should update src/middleware.ts 1`] = `
   "  matcher: [\\"/me(.*)\\"],",
   "};",
   "",
-  "export default auth(async function middleware(req) {",
+  "export default auth(async function proxy(req) {",
   "  if (req.auth?.user.role === \\"USER\\") {",
   "    return NextResponse.next();",
   "  }",

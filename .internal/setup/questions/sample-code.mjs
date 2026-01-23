@@ -39,8 +39,8 @@ export const modifiedFiles = /** @type {const} */ ([
   "src/app/(public)/page.tsx",
   "e2e/fixtures.ts",
   "e2e/models/TopPage.ts",
-  "src/middleware.ts",
-  "src/middleware.test.ts",
+  "src/proxy.ts",
+  "src/proxy.test.ts",
   "prisma/schema/user.prisma",
   "e2e/a11y/topPage.test.ts",
 ]);

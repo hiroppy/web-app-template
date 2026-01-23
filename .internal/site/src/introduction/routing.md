@@ -93,34 +93,6 @@ app
 <<< ../../../../src/app/layout.tsx
 :::
 
-## _intercepting_ (`/create`)
-
-This page is a [Paralleled Routing](https://nextjs.org/docs/app/building-your-application/routing/parallel-routes) and [intercepted routeing](https://nextjs.org/docs/app/building-your-application/routing/intercepting-routes) so you can't access it directly. When you have signed in to this site, you will be able to see the "Add an item" button on the top page and you can access this page, which means users not signed in never access this page.
-
-> [!NOTE]
-> In this case, this case is using intercepting routes purely as a sample, and they are not mandatory. However, as you can see from the directory structure, understanding these routes can be challenging. To make it simpler and easier to understand, we have included them for clarity.
-
-### What can you learn from this page?
-
-- Parallel Routing
-- Intercepting Routing
-- Client Components
-- Client Components + Form + react-hook-form + `useTransition` + Server Actions
-- Dialog Element
-
-### Affected Layouts
-
-- `app/layout.tsx`
-- `@dialog/(.)create/page.tsx`
-
-::: details See Full Code
-::: code-group
-
-<<< ../../../../src/app/@dialog/(.)create/Content.tsx
-<<< ../../../../src/app/@dialog/(.)create/page.tsx
-<<< ../../../../src/app/layout.tsx
-:::
-
 ## Why use Route Groups?
 
 ```

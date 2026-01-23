@@ -37,7 +37,7 @@ The `action` of Form requires `Promise<void>` so when using Form directly, need 
 It is common to use middleware to check a user's role, etc., and restrict access to pages. This template uses JSON Web Token as session tokens to check the permissions.
 Learn more [here](/features/next-auth).
 
-<<< ../../../../src/middleware.ts
+<<< ../../../../src/proxy.ts
 
 - [Middleware](https://nextjs.org/docs/app/building-your-application/routing/middleware)
 
@@ -57,7 +57,7 @@ conducting tests based on the following aspects:
   - `isRewrite` and `getRewrittenUrl`
 
 ::: details See Full Code
-<<< ../../../../src/middleware.test.ts
+<<< ../../../../src/proxy.test.ts
 :::
 
 - [Middleware#unit-testing-experimental](https://nextjs.org/docs/app/building-your-application/routing/middleware#unit-testing-experimental)
