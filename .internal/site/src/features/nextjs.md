@@ -57,7 +57,7 @@ conducting tests based on the following aspects:
   - `isRewrite` and `getRewrittenUrl`
 
 ::: details See Full Code
-<<< ../../../../src/middleware.test.ts
+<<< ../../../../src/proxy.test.ts
 :::
 
 - [Middleware#unit-testing-experimental](https://nextjs.org/docs/app/building-your-application/routing/middleware#unit-testing-experimental)
