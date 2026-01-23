@@ -9,7 +9,7 @@ export const config: MiddlewareSourceConfig = {
   matcher: ["/me(.*)"],
 };
 
-export default auth(async function middleware(req) {
+export default auth(async function proxy(req) {
   if (req.auth?.user.role === "USER") {
     return NextResponse.next();
   }

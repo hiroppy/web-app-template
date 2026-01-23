@@ -26,7 +26,7 @@ This approach(`lazy initialization`) involves a split strategy where the adapter
 <!-- prettier-ignore -->
 <<< ../../../../src/app/_clients/nextAuthConfig.ts
 
-<<< ../../../../src/middleware.ts
+<<< ../../../../src/proxy.ts
 
 <!-- prettier-ignore -->
 <<< ../../../../src/app/_clients/nextAuth.ts
