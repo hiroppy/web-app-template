@@ -64,7 +64,7 @@ If users want to cancel a subscription, you change the cancel_at_period_end para
 ::: code-group
 
 <!-- prettier-ignore -->
-<<< ../../../../src/app/me/payment/page.tsx
+<<< ../../../../src/app/(private)/me/payment/page.tsx
 
 <!-- prettier-ignore -->
 <<< ../../../../src/app/_actions/payment.ts
