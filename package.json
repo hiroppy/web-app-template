@@ -42,7 +42,7 @@
     "prisma": "6.19.2",
     "react": "19.2.4",
     "react-dom": "19.2.4",
-    "react-hook-form": "7.71.1",
+    "react-hook-form": "7.71.2",
     "stripe": "20.2.0",
     "zod": "4.3.6"
   },
