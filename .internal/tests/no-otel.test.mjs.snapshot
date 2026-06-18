@@ -369,7 +369,7 @@ exports[`no-otel > should update compose.yml 1`] = `
   "",
   "services:",
   "  db:",
-  "    image: postgres:17",
+  "    image: postgres:18",
   "    ports:",
   "      - \${DATABASE_PORT:-5432}:5432",
   "    environment:",
