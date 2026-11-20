@@ -31,12 +31,12 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v6
-      - uses: actions/configure-pages@v5
+      - uses: actions/checkout@v6.1.0
+      - uses: actions/configure-pages@v5.0.0
       - uses: ./.github/actions/setup-node
       - run: cd .internal/site && npm i
       - run: cd .internal/site && npm run build
-      - uses: actions/upload-pages-artifact@v4
+      - uses: actions/upload-pages-artifact@v4.0.0
         with:
           path: .internal/site/.vitepress/dist
   deploy:
@@ -49,4 +49,4 @@ jobs:
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@v4.0.5
